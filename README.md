@@ -8,7 +8,7 @@
 
 ## Important
 
-<font color=red>**This library is not yet finish, and cannot be used for the time being.**</font>
+<span style="color: red">**This library is not yet finish, and cannot be used for the time being.**</span>
 
 ## Requirements
 
