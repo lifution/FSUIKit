@@ -1,13 +1,7 @@
-use_frameworks!
 
-platform :ios, '10.0'
+use_frameworks!
+platform :ios, '11.0'
 
 target 'FSUIKit_Example' do
   pod 'FSUIKit', :path => '../'
-
-  target 'FSUIKit_Tests' do
-    inherit! :search_paths
-
-    
-  end
 end

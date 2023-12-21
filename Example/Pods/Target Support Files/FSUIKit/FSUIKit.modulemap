@@ -1,0 +1,6 @@
+framework module FSUIKit {
+  umbrella header "FSUIKit-umbrella.h"
+
+  export *
+  module * { export * }
+}

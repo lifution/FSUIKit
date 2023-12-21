@@ -1,29 +1,31 @@
 # FSUIKit
 
-[![CI Status](https://img.shields.io/travis/Sheng/FSUIKit.svg?style=flat)](https://travis-ci.org/Sheng/FSUIKit)
-[![Version](https://img.shields.io/cocoapods/v/FSUIKit.svg?style=flat)](https://cocoapods.org/pods/FSUIKit)
-[![License](https://img.shields.io/cocoapods/l/FSUIKit.svg?style=flat)](https://cocoapods.org/pods/FSUIKit)
-[![Platform](https://img.shields.io/cocoapods/p/FSUIKit.svg?style=flat)](https://cocoapods.org/pods/FSUIKit)
-
-## Example
-
-To run the example project, clone the repo, and run `pod install` from the Example directory first.
+[![Version Status](https://img.shields.io/cocoapods/v/FSCollectionKit.svg)](https://cocoapods.org/pods/FSCollectionKit)
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+[![license MIT](https://img.shields.io/cocoapods/l/FSCollectionKit.svg)](https://github.com/lifution/FSUIKit/blob/main/LICENSE)
+[![Platform](https://img.shields.io/cocoapods/p/FSCollectionKit.svg)](https://github.com/lifution/FSUIKit/blob/main/README.md)
+[![Swift 5.0](https://img.shields.io/badge/Swift-5.0-orange.svg?style=flat)](https://developer.apple.com/swift/)
 
 ## Requirements
 
+* iOS 11+
+* Swift 5
+* Xcode 14+
+
 ## Installation
 
-FSUIKit is available through [CocoaPods](https://cocoapods.org). To install
-it, simply add the following line to your Podfile:
+#### [CocoaPods](http://cocoapods.org) (recommended)
 
 ```ruby
 pod 'FSUIKit'
 ```
 
-## Author
+#### [Carthage](https://github.com/Carthage/Carthage)
 
-Sheng, kingofthenorth@foxmail.com
+````bash
+github "lifution/FSUIKit"
+````
 
 ## License
 
-FSUIKit is available under the MIT license. See the LICENSE file for more info.
+  FSUIKit is available under the MIT license. [See the LICENSE](https://github.com/lifution/FSUIKit/blob/main/LICENSE) file for more info.
