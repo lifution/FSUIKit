@@ -6,6 +6,10 @@
 [![Platform](https://img.shields.io/cocoapods/p/FSCollectionKit.svg)](https://github.com/lifution/FSUIKit/blob/main/README.md)
 [![Swift 5.0](https://img.shields.io/badge/Swift-5.0-orange.svg?style=flat)](https://developer.apple.com/swift/)
 
+## Important
+
+**This library is not yet finish, and cannot be used for the time being.**
+
 ## Requirements
 
 * iOS 11+
@@ -28,4 +32,4 @@ github "lifution/FSUIKit"
 
 ## License
 
-  FSUIKit is available under the MIT license. [See the LICENSE](https://github.com/lifution/FSUIKit/blob/main/LICENSE) file for more info.
+FSUIKit is available under the MIT license. [See the LICENSE](https://github.com/lifution/FSUIKit/blob/main/LICENSE) file for more info.
