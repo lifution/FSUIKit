@@ -1,0 +1,49 @@
+//
+//  PublicNamespace.swift
+//  FSUIKit
+//
+//  Created by Sheng on 2023/12/23.
+//  Copyright © 2023 Sheng. All rights reserved.
+//
+
+import UIKit
+
+public struct FSUIKitWrapper<Base> {
+    let base: Base
+    init(_ base: Base) {
+        self.base = base
+    }
+}
+
+public protocol FSUIKitCompatible: AnyObject {}
+extension FSUIKitCompatible {
+    public static var fs: FSUIKitWrapper<Self>.Type {
+        get { return FSUIKitWrapper<Self>.self }
+        set {}
+    }
+    public var fs: FSUIKitWrapper<Self> {
+        get { return FSUIKitWrapper(self) }
+        set {}
+    }
+}
+
+public protocol FSUIKitCompatibleValue {}
+extension FSUIKitCompatibleValue {
+    public static var fs: FSUIKitWrapper<Self>.Type {
+        get { return FSUIKitWrapper<Self>.self }
+        set {}
+    }
+    public var fs: FSUIKitWrapper<Self> {
+        get { return FSUIKitWrapper(self) }
+        set {}
+    }
+}
+
+extension Date: FSUIKitCompatibleValue {}
+extension CGRect: FSUIKitCompatibleValue {}
+extension String: FSUIKitCompatibleValue {}
+extension CGFloat: FSUIKitCompatibleValue {}
+extension Dictionary: FSUIKitCompatibleValue {}
+extension UIEdgeInsets: FSUIKitCompatibleValue {}
+
+extension NSObject: FSUIKitCompatible {}
