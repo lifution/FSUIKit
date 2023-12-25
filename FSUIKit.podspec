@@ -10,8 +10,11 @@ Pod::Spec.new do |s|
     :tag => s.version.to_s
   }
   
+  s.requires_arc = true
+  s.swift_version = '5'
   s.ios.deployment_target = '11.0'
   
+  s.frameworks = 'UIKit', 'Foundation', 'CoreGraphics'
   s.source_files = 'Sources/Classes/**/*'
   
   # s.resource_bundles = {
