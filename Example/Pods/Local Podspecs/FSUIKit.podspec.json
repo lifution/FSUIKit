@@ -1,21 +1,33 @@
 {
   "name": "FSUIKit",
-  "version": "0.1.0",
-  "summary": "A short description of FSUIKit.",
-  "homepage": "https://github.com/Sheng/FSUIKit",
+  "version": "1.0.0",
+  "summary": "A collection of iOS components written in Swift.",
+  "homepage": "https://github.com/lifution/FSUIKit",
   "license": {
     "type": "MIT",
     "file": "LICENSE"
   },
-  "authors": {
-    "Sheng": "kingofthenorth@foxmail.com"
-  },
+  "authors": "Sheng",
   "source": {
-    "git": "https://github.com/Sheng/FSUIKit.git",
-    "tag": "0.1.0"
+    "git": "https://github.com/lifution/FSUIKit.git",
+    "tag": "1.0.0"
   },
+  "requires_arc": true,
+  "swift_versions": "5",
   "platforms": {
     "ios": "11.0"
   },
-  "source_files": "Sources/Classes/**/*"
+  "frameworks": [
+    "UIKit",
+    "Foundation",
+    "CoreGraphics",
+    "CoreText"
+  ],
+  "source_files": "Sources/Classes/**/*",
+  "resource_bundles": {
+    "FSUIKit": [
+      "Sources/Assets/**/*"
+    ]
+  },
+  "swift_version": "5"
 }

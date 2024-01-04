@@ -1,16 +1,23 @@
 PODS:
-  - FSUIKit (0.1.0)
+  - FSUIKit (1.0.0)
+  - SnapKit (5.6.0)
 
 DEPENDENCIES:
   - FSUIKit (from `../`)
+  - SnapKit
+
+SPEC REPOS:
+  trunk:
+    - SnapKit
 
 EXTERNAL SOURCES:
   FSUIKit:
     :path: "../"
 
 SPEC CHECKSUMS:
-  FSUIKit: cc41d6f84b829c5e296b206cd60e288f19288fe3
+  FSUIKit: 3c5bc8a192b8d323f86b4b3ce14a6dd3412788f6
+  SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
 
-PODFILE CHECKSUM: 3c46854f7c74b60c6854c6985529b7a49aa9ffe3
+PODFILE CHECKSUM: cfdf47f3a7d1c087bf21bb8fe96f20367e3bab41
 
-COCOAPODS: 1.14.2
+COCOAPODS: 1.14.3
