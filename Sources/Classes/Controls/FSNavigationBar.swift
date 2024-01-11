@@ -120,6 +120,12 @@ open class FSNavigationBar: UIView {
     /// 默认的背景色为 white。
     public let backgroundView = UIView()
     
+    /// 底部分割线颜色
+    public var bottomSeparatorColor: UIColor? {
+        get { return bottomSeparator.color }
+        set { bottomSeparator.color = newValue }
+    }
+    
     /// 标识是否显示底部分割线，默认为 true。
     public var shouldShowBottomSeparator = true {
         didSet {
