@@ -214,6 +214,25 @@ extension FSUIKitWrapper where Base: NSMutableAttributedString {
         
         base.insert(full_attr, at: index)
     }
+    
+    func setLineSpacing(_ spacing: CGFloat, range: NSRange) {
+        base.enumerateAttribute(.paragraphStyle, in: .init(location: 0, length: base.length), options: []) { (value, subRange, stop) in
+            var style: NSMutableParagraphStyle?
+            if let value = value as? NSParagraphStyle {
+                if value is NSMutableParagraphStyle {
+                    style = value as? NSMutableParagraphStyle
+                } else {
+                    style = value.mutableCopy() as? NSMutableParagraphStyle
+                }
+            } else {
+                style = NSParagraphStyle.default.mutableCopy() as? NSMutableParagraphStyle
+            }
+            style?.lineSpacing = spacing
+            if let style = style {
+                base.addAttribute(.paragraphStyle, value: style, range: subRange)
+            }
+        }
+    }
 }
 
 // MARK: - FSAttachmentSpaces
