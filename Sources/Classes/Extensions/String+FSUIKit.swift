@@ -11,7 +11,7 @@ import CommonCrypto
 
 public extension FSUIKitWrapper where Base == String {
     
-    /// 当前文本是否包含了阿拉伯语
+    /// 检查当前文本是否包含了阿拉伯语。
     var containsArabic: Bool {
         let predicate = NSPredicate(format: "SELF MATCHES %@", "(?s).*\\p{Arabic}.*")
         return predicate.evaluate(with: base)

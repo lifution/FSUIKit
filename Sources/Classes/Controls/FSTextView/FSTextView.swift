@@ -22,9 +22,6 @@ import UIKit
 ///   是 FSTextView 内部设置的代理对象，并非外部设置的代理对象，如果需要从 FSTextView 读取外部设置的代理对象，可读取 FSTextView 的 externalDelegate 属性。
 /// * 外部需要用到 FSTextViewDelegate 的时候，只需要在 delegate 对象中实现 FSTextViewDelegate 协议即可。
 ///
-/// - Note:
-/// 大部分代码参考自 [QMUITextView](https://github.com/Tencent/QMUI_iOS/blob/master/QMUIKit/QMUIComponents/QMUITextView.m)。
-///
 open class FSTextView: UITextView {
     
     // MARK: Properties/Public
@@ -60,10 +57,10 @@ open class FSTextView: UITextView {
     
     /// 显示允许输入的最大文字长度，默认为 UInt.max，也即不限制长度，
     /// 当该属性为 0 时同样表示不限制长度。
-    public var maximumTextLength: UInt = UInt.max {
+    public var maximumTextCount: UInt = UInt.max {
         didSet {
-            if maximumTextLength <= 0 {
-                maximumTextLength = UInt.max
+            if maximumTextCount <= 0 {
+                maximumTextCount = UInt.max
             }
         }
     }
@@ -91,7 +88,7 @@ open class FSTextView: UITextView {
     ///
     public var shouldResponseToProgrammaticallyTextChanges = true
     
-    /// 在使用 maximumTextLength 功能的时候，是否把文字长度按照「中文 2 个字符、英文 1 个字符」的方式来计算。
+    /// 在使用 maximumTextCount 功能的时候，是否把文字长度按照「中文 2 个字符、英文 1 个字符」的方式来计算。
     /// 默认为 false。
     public var shouldCountingNonASCIICharacterAsTwo: Bool = false
     
@@ -99,7 +96,7 @@ open class FSTextView: UITextView {
     public var heightDidChangeHandler: ((_ newHeight: CGFloat) -> Void)?
     
     /// 达到最大限制数量时的回调，外部可实现该 closure 监听，也可实现 FSTextViewDelegate 监听。
-    public var countDidHitMaximumHandler: (() -> Void)?
+    public var onDidHitMaximumTextCountHandler: (() -> Void)?
     
     /// 控制输入框是否要出现「粘贴」menu。
     ///
@@ -118,7 +115,7 @@ open class FSTextView: UITextView {
     public var textParser: FSTextViewTextParseable?
     
     /// 纯文本，外部可读取该字段获取输入框内容的纯文本内容。
-    public var plainText: String! {
+    public var plainText: String {
         var text = ""
         if let parser = textParser, let string = parser.plainText(of: attributedText, for: .init(location: 0, length: attributedText.length)) {
             text = string
@@ -159,9 +156,9 @@ open class FSTextView: UITextView {
         p_didInitialize()
     }
     
-    @available(*, unavailable)
     public required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: coder)
+        p_didInitialize()
     }
 }
 
@@ -395,10 +392,8 @@ private extension FSTextView {
         do {
             scrollsToTop = false
             self.delegate = delegator
-            if #available(iOS 11.0, *) {
-                contentInsetAdjustmentBehavior = .never
-                textDragInteraction?.isEnabled = false
-            }
+            contentInsetAdjustmentBehavior = .never
+            textDragInteraction?.isEnabled = false
         }
         do {
             placeholderLabel.textColor = placeholderDefaultColor
@@ -526,7 +521,7 @@ private extension FSTextView {
         shouldRejectSystemScroll = true
         
         // 用 dispatch 延迟一下，因为在文字发生换行时，系统自己会做一些滚动，我们要延迟一点才能避免被系统的滚动覆盖。
-        DispatchQueue.main.async {
+        DispatchQueue.main.asyncAfter(deadline: .now()) {
             self.shouldRejectSystemScroll = false
             self.p_scrollCaretToVisible(animated: false)
         }
@@ -583,7 +578,7 @@ extension _FSTextViewDelegator: FSTextViewDelegate {
     
     func textView(_ textView: FSTextView, didPreventTextChangeIn range: NSRange, replacementText text: String) {
         do {
-            textView.countDidHitMaximumHandler?()
+            textView.onDidHitMaximumTextCountHandler?()
         }
         if let delegate = externalDelegate as? FSTextViewDelegate {
             delegate.textView(textView, didPreventTextChangeIn: range, replacementText: text)
@@ -622,7 +617,7 @@ extension _FSTextViewDelegator: UITextViewDelegate {
             }
         }
         
-        if textView.maximumTextLength < UInt.max {
+        if textView.maximumTextCount < UInt.max {
             
             /// 如果是中文输入法正在输入拼音的过程中（markedTextRange 不为 nil），
             /// 是不应该限制字数的（例如输入 "huang" 这5个字符，其实只是为了输入 "黄" 这一个字符），
@@ -653,16 +648,16 @@ extension _FSTextViewDelegator: UITextViewDelegate {
                 }
                 return range.length
             }()
-            let textWillOutofMaximumTextLength = (textView.p_count(of: textView.text) - rangeLength + textView.p_count(of: text)) > textView.maximumTextLength
-            if textWillOutofMaximumTextLength {
+            let textWillOutofMaximumTextCount = (textView.p_count(of: textView.text) - rangeLength + textView.p_count(of: text)) > textView.maximumTextCount
+            if textWillOutofMaximumTextCount {
                 /// 当输入的文本达到最大长度限制后，此时继续点击 return 按钮（相当于尝试插入 "\n"），就会认为总文字长度已经超过最大长度限制，
                 /// 所以此次 return 按钮的点击被拦截，外界无法感知到有这个 return 事件发生，所以这里为这种情况做了特殊保护。
-                if (textView.p_count(of: textView.text) - rangeLength) == textView.maximumTextLength, text == "\n" {
+                if (textView.p_count(of: textView.text) - rangeLength) == textView.maximumTextCount, text == "\n" {
                     return false
                 }
                 
                 // 将要插入的文字裁剪成多长，就可以让它插入了。
-                let substringLength = Int(textView.maximumTextLength) - textView.p_count(of: textView.text) + rangeLength
+                let substringLength = Int(textView.maximumTextCount) - textView.p_count(of: textView.text) + rangeLength
                 
                 if substringLength > 0, textView.p_count(of: text) > substringLength {
                     let allowedText = text.fs.substringAvoidBreakingUpCharacterSequences(range: .init(location: 0, length: substringLength), lessValue: true, countingNonASCIICharacterAsTwo: textView.shouldCountingNonASCIICharacterAsTwo)
@@ -699,8 +694,8 @@ extension _FSTextViewDelegator: UITextViewDelegate {
             // 文本处理，比如插入表情。
             textView.fp_parseText()
         }
-        if textView.p_count(of: textView.text) > textView.maximumTextLength {
-            let range = NSRange(location: 0, length: Int(textView.maximumTextLength))
+        if textView.p_count(of: textView.text) > textView.maximumTextCount {
+            let range = NSRange(location: 0, length: Int(textView.maximumTextCount))
             textView.text = textView.text.fs.substringAvoidBreakingUpCharacterSequences(range: range, lessValue: true, countingNonASCIICharacterAsTwo: textView.shouldCountingNonASCIICharacterAsTwo)
             /// 如果是在这里被截断，是无法得知截断前光标所处的位置及要输入的文本的，所以只能将当前的 selectedRange 传过去，而 replacementText 为 `""`。
             self.textView(textView, didPreventTextChangeIn: textView.selectedRange, replacementText: "")
