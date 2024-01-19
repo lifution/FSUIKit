@@ -8,7 +8,7 @@
 
 import UIKit
 
-/// - Warning: ⚠️ 外部禁止使用该类，该类仅用于 FSUIKit 内部 hook 操作使用。
+/// - Warning: 🛑 This object is only used internally in FSUIKit.
 public final class FSUIApplicationLoader: NSObject {
     
     private static var isLoaded = false
