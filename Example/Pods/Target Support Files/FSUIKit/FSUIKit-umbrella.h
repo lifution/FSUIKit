@@ -10,6 +10,7 @@
 #endif
 #endif
 
+#import "UIApplication+FSUIKitHook.h"
 
 FOUNDATION_EXPORT double FSUIKitVersionNumber;
 FOUNDATION_EXPORT const unsigned char FSUIKitVersionString[];
