@@ -18,6 +18,10 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         p_setupViews()
     }
+    
+    @IBAction func show(_ sender: Any) {
+        
+    }
 }
 
 // MARK: - Private
@@ -42,6 +46,7 @@ private extension ViewController {
             }
         }
         do {
+            /*
             let view = UIView()
             view.backgroundColor = .red
             
@@ -65,8 +70,10 @@ private extension ViewController {
                     self.navigationBar.rightItemViews = nil
                 }
             }
+             */
         }
         
+        /*
         let textView = FSTextView()
         textView.font = .systemFont(ofSize: 16.0)
 //        textView.delegate = self
@@ -86,6 +93,9 @@ private extension ViewController {
             make.right.equalTo(-20.0)
             make.height.equalTo(100.0)
         }
+         */
     }
+    
+    
 }
 
