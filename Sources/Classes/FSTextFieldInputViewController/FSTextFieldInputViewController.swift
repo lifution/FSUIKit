@@ -19,6 +19,7 @@ open class FSTextFieldInputViewController: UIViewController {
     // MARK: Properties/Private
     
     private let keyboardObserver = _KeyboardObserver()
+    private let textFieldDelegator = _InternalTextFieldDelegator()
     
     private let toolBar = FSToolBar()
     private let confirmButton = FSButton()
@@ -72,6 +73,31 @@ private extension FSTextFieldInputViewController {
             guard let self = self else { return }
             self.p_keyboardChanged(transition)
         }
+        
+        do {
+            textFieldDelegator.shouldReturn = { [weak self] textField in
+                guard let self = self else { return false }
+                if let text = textField.text, !text.isEmpty {
+                    self.p_didPressConfirmButton()
+                }
+                return false
+            }
+            textFieldDelegator.shouldChangeCharacters = { [weak self] (textField, range, string) in
+                guard let self = self else { return false }
+                // Prvents keyboard new line.
+                if string == "\n\u{07}" {
+                    return false
+                }
+                // Prvents white-space in first location.
+                if range.location == 0, !string.isEmpty {
+                    let s = string.trimmingCharacters(in: .whitespacesAndNewlines)
+                    if s.isEmpty {
+                        return false
+                    }
+                }
+                return true
+            }
+        }
     }
     
     /// Invoked in the `viewDidLoad` method.
@@ -83,7 +109,7 @@ private extension FSTextFieldInputViewController {
             confirmButton.translatesAutoresizingMaskIntoConstraints = false
         }
         do {
-            textField.delegate = self
+            textField.delegate = textFieldDelegator
             textField.placeholder = "请输入..."
             textField.returnKeyType = .done
             textField.clipsToBounds = true
@@ -228,30 +254,5 @@ private extension FSTextFieldInputViewController {
         } else {
             confirmButton.isEnabled = false
         }
-    }
-}
-
-extension FSTextFieldInputViewController: UITextFieldDelegate {
-    
-    public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if let text = textField.text, !text.isEmpty {
-            p_didPressConfirmButton()
-        }
-        return false
-    }
-    
-    public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        // Prvents keyboard new line.
-        if string == "\n\u{07}" {
-            return false
-        }
-        // Prvents white-space in first location.
-        if range.location == 0, !string.isEmpty {
-            let s = string.trimmingCharacters(in: .whitespacesAndNewlines)
-            if s.isEmpty {
-                return false
-            }
-        }
-        return true
     }
 }
