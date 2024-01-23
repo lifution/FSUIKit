@@ -82,8 +82,7 @@ private extension FSTextFieldInputViewController {
                 }
                 return false
             }
-            textFieldDelegator.shouldChangeCharacters = { [weak self] (textField, range, string) in
-                guard let self = self else { return false }
+            textFieldDelegator.shouldChangeCharacters = { (textField, range, string) in
                 // Prvents keyboard new line.
                 if string == "\n\u{07}" {
                     return false
@@ -136,7 +135,7 @@ private extension FSTextFieldInputViewController {
             confirmButton.addTarget(self, action: #selector(p_didPressConfirmButton), for: .touchUpInside)
             NSLayoutConstraint.activate([
                 confirmButton.widthAnchor.constraint(equalToConstant: 60.0),
-                confirmButton.heightAnchor.constraint(equalToConstant: 34.0)
+                confirmButton.heightAnchor.constraint(equalToConstant: 35.0)
             ])
         }
         do {
@@ -201,7 +200,7 @@ private extension FSTextFieldInputViewController {
                                                          toItem: nil,
                                                          attribute: .notAnAttribute,
                                                          multiplier: 1,
-                                                         constant: 34.0))
+                                                         constant: 35.0))
             }
         }
     }

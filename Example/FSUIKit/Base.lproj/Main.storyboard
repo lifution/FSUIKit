@@ -20,12 +20,21 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jy1-mJ-JAH">
-                                <rect key="frame" x="150" y="107" width="75" height="35"/>
+                                <rect key="frame" x="141" y="107" width="93" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="tinted" title="Button"/>
+                                <buttonConfiguration key="configuration" style="tinted" title="TextField"/>
                                 <connections>
                                     <action selector="show:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="3Jd-FH-g7u"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YjO-hI-c31">
+                                <rect key="frame" x="141" y="163" width="93" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="tinted" title="TextView"/>
+                                <connections>
+                                    <action selector="showTextViewInput:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="xC8-mv-M4z"/>
                                 </connections>
                             </button>
                         </subviews>

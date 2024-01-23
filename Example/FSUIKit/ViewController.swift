@@ -26,6 +26,14 @@ class ViewController: UIViewController {
             print(text)
         }
     }
+    
+    @IBAction func showTextViewInput(_ sender: Any) {
+        let vc = FSTextViewInputViewController()
+        present(vc, animated: true)
+        vc.onDidConfirmText = { text in
+            print(text)
+        }
+    }
 }
 
 // MARK: - Private
