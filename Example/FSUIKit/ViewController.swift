@@ -94,8 +94,15 @@ private extension ViewController {
             make.height.equalTo(100.0)
         }
          */
+//        do {
+//            let toolBar = FSToolBar()
+//            toolBar.backgroundView.backgroundColor = .yellow.withAlphaComponent(0.35)
+//            view.addSubview(toolBar)
+//            toolBar.snp.makeConstraints { make in
+//                make.left.right.equalTo(0.0)
+//                make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
+//            }
+//        }
     }
-    
-    
 }
 

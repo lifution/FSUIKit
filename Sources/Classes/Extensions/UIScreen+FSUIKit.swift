@@ -35,6 +35,21 @@ public extension FSUIKitWrapper where Base: UIScreen {
         return _UIScreenConsts.portraitHeight
     }
     
+    static var safeAreaInsets: UIEdgeInsets {
+        if #available(iOS 13.0, *), let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+            if let insets = scene.windows.first?.safeAreaInsets {
+                return insets
+            }
+            return .zero
+        }
+        if let delegate = UIApplication.shared.delegate {
+            if let insets = delegate.window??.safeAreaInsets {
+                return insets
+            }
+        }
+        return .zero
+    }
+    
     static var isPhone: Bool {
         return _UIScreenConsts.isPhone
     }

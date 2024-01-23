@@ -183,6 +183,8 @@ open class FSNavigationBar: UIView {
         }
     }
     
+    // MARK: Properties/Private
+    
     private let contentView = UIView()
     
     private weak var backButton: FSButton?
@@ -231,7 +233,7 @@ open class FSNavigationBar: UIView {
     
     private lazy var bottomSeparator: FSSeparatorView = {
         let separator = FSSeparatorView()
-        separator.color = .fs.color(hexed: "F0F1F3")
+        separator.color = .fs.color(hexed: "B5B5B5")
         separator.translatesAutoresizingMaskIntoConstraints = false
         return separator
     }()
