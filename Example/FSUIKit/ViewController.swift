@@ -20,7 +20,11 @@ class ViewController: UIViewController {
     }
     
     @IBAction func show(_ sender: Any) {
-        
+        let vc = FSTextFieldInputViewController()
+        present(vc, animated: true)
+        vc.onDidConfirmText = { text in
+            print(text)
+        }
     }
 }
 
