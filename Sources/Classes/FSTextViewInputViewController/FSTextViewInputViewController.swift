@@ -10,7 +10,7 @@ import UIKit
 
 open class FSTextViewInputViewController: UIViewController {
     
-    // MARK: Properties/Internal
+    // MARK: Properties/Public
     
     public var onDidConfirmText: ((_ text: String) -> Void)?
     

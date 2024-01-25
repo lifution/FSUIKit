@@ -50,7 +50,8 @@ private extension ViewController {
 //            label.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
 //            navigationBar.titleView = label
             
-            navigationBar.title = "😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭😭"
+            navigationBar.title = "😂😂😂😂😂😂😂😂😂😂😂😂😂😂😂😂😂😂😂"
+            navigationBar.leftItemViews = []
             view.addSubview(navigationBar)
             navigationBar.snp.makeConstraints { (make) in
                 make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
