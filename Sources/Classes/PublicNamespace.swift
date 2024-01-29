@@ -43,6 +43,7 @@ extension Date: FSUIKitCompatibleValue {}
 extension CGRect: FSUIKitCompatibleValue {}
 extension String: FSUIKitCompatibleValue {}
 extension CGFloat: FSUIKitCompatibleValue {}
+extension Array: FSUIKitCompatibleValue {}
 extension Dictionary: FSUIKitCompatibleValue {}
 extension UIEdgeInsets: FSUIKitCompatibleValue {}
 
