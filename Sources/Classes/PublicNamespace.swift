@@ -39,6 +39,7 @@ extension FSUIKitCompatibleValue {
     }
 }
 
+extension Int: FSUIKitCompatibleValue {}
 extension Date: FSUIKitCompatibleValue {}
 extension CGRect: FSUIKitCompatibleValue {}
 extension String: FSUIKitCompatibleValue {}
