@@ -58,6 +58,17 @@ private extension ViewController {
                 make.left.right.equalTo(0.0)
             }
         }
+//        do {
+//            let button = FSButton()
+//            button.backgroundColor = .fs.random()
+//            button.setImage(.init(named: "gift"), for: .normal)
+//            button.hitTestEdgeInsets = .init(top: -100.0, left: -100.0, bottom: -100.0, right: -100.0)
+//            button.addTarget(self, action: #selector(p_tap), for: .touchUpInside)
+//            view.addSubview(button)
+//            button.snp.makeConstraints { make in
+//                make.center.equalToSuperview()
+//            }
+//        }
         do {
             /*
             let view = UIView()
@@ -116,6 +127,10 @@ private extension ViewController {
 //                make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
 //            }
 //        }
+    }
+    
+    @objc func p_tap() {
+        print("tapped")
     }
 }
 

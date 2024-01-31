@@ -123,6 +123,19 @@ private extension FSTextViewInputViewController {
             ])
         }
         do {
+            let backgroundView = UIView()
+            backgroundView.backgroundColor = .black.withAlphaComponent(0.2)
+            backgroundView.isUserInteractionEnabled = false
+            backgroundView.translatesAutoresizingMaskIntoConstraints = false
+            view.addSubview(backgroundView)
+            view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[view]|",
+                                                               metrics: nil,
+                                                               views: ["view": backgroundView]))
+            view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[view]|",
+                                                               metrics: nil,
+                                                               views: ["view": backgroundView]))
+        }
+        do {
             view.addSubview(toolBar)
             view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[view]|",
                                                                metrics: nil,
