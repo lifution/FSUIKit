@@ -24,6 +24,7 @@ public func FSFlat<T: FloatingPoint>(_ x: T) -> T {
     return flattedValue
 }
 
+
 public extension FSUIKitWrapper where Base == CGRect {
     
     /// Whether CGRect contains NaN value.
