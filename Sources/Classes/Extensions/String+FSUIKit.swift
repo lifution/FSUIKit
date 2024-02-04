@@ -17,6 +17,12 @@ public extension FSUIKitWrapper where Base == String {
         return predicate.evaluate(with: base)
     }
     
+    /// Checks whether the current string is a chinese mainland mobile phone number.
+    var isCNPhoneNumber: Bool {
+        let predicate = NSPredicate(format: "SELF MATCHES %@", "^1[0-9]{10}$")
+        return predicate.evaluate(with: base)
+    }
+    
     subscript(integerIndex: Int) -> Character? {
         guard integerIndex >= 0, integerIndex < base.count else {
             return nil
