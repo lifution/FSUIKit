@@ -10,29 +10,11 @@ import UIKit
 import SnapKit
 import FSUIKit
 
-class ViewController: UIViewController {
+class ViewController: UITableViewController {
     
-    private let navigationBar = FSNavigationBar()
-
     override func viewDidLoad() {
         super.viewDidLoad()
         p_setupViews()
-    }
-    
-    @IBAction func show(_ sender: Any) {
-        let vc = FSTextFieldInputViewController()
-        present(vc, animated: true)
-        vc.onDidConfirmText = { text in
-            print(text)
-        }
-    }
-    
-    @IBAction func showTextViewInput(_ sender: Any) {
-        let vc = FSTextViewInputViewController()
-        present(vc, animated: true)
-        vc.onDidConfirmText = { text in
-            print(text)
-        }
     }
 }
 
@@ -50,25 +32,14 @@ private extension ViewController {
 //            label.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
 //            navigationBar.titleView = label
             
-            navigationBar.title = "😂😂😂😂😂😂😂😂😂😂😂😂😂😂😂😂😂😂😂"
-            navigationBar.leftItemViews = []
-            view.addSubview(navigationBar)
-            navigationBar.snp.makeConstraints { (make) in
-                make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
-                make.left.right.equalTo(0.0)
-            }
-        }
-//        do {
-//            let button = FSButton()
-//            button.backgroundColor = .fs.random()
-//            button.setImage(.init(named: "gift"), for: .normal)
-//            button.hitTestEdgeInsets = .init(top: -100.0, left: -100.0, bottom: -100.0, right: -100.0)
-//            button.addTarget(self, action: #selector(p_tap), for: .touchUpInside)
-//            view.addSubview(button)
-//            button.snp.makeConstraints { make in
-//                make.center.equalToSuperview()
+//            navigationBar.title = "😂😂😂😂😂😂😂😂😂😂😂😂😂😂😂😂😂😂😂"
+//            navigationBar.leftItemViews = []
+//            view.addSubview(navigationBar)
+//            navigationBar.snp.makeConstraints { (make) in
+//                make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+//                make.left.right.equalTo(0.0)
 //            }
-//        }
+        }
         do {
             /*
             let view = UIView()
@@ -128,9 +99,15 @@ private extension ViewController {
 //            }
 //        }
     }
-    
-    @objc func p_tap() {
-        print("tapped")
-    }
 }
 
+extension ViewController {
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return CGFloat.leastNonzeroMagnitude
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return CGFloat.leastNonzeroMagnitude
+    }
+}

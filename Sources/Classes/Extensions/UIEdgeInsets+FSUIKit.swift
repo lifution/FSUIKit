@@ -33,7 +33,7 @@ public extension FSUIKitWrapper where Base == UIEdgeInsets {
     
     /// 使用一个默认的数值创建一个 UIEdgeInsets。
     ///
-    ///     let insets = UIEdgeInsets.jzk.create(with: 1.0)
+    ///     let insets = UIEdgeInsets.fs.create(with: 1.0)
     ///     print(insets) // UIEdgeInsets(top: 1.0, left: 1.0, bottom: 1.0, right: 1.0)
     ///
     static func create(with value: CGFloat) -> UIEdgeInsets {

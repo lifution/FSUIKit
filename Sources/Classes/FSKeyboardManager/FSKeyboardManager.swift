@@ -136,15 +136,15 @@ private extension FSKeyboardManager {
             return nil
         }
         
-        var window: UIWindow?
         for w in UIApplication.shared.windows {
-            if let _window = p_getKeyboardView(from: w) as? UIWindow {
-                return _window
+            if let _ = p_getKeyboardView(from: w) {
+                return w
             }
         }
-        window = UIApplication.shared.keyWindow
-        if let _window = p_getKeyboardView(from: window) as? UIWindow {
-            return _window
+        
+        let window = UIApplication.shared.keyWindow
+        if let _ = p_getKeyboardView(from: window) {
+            return window
         }
         
         var kbWindows = [UIWindow]()

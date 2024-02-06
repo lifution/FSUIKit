@@ -16,12 +16,9 @@ open class FSVisualEffectView: UIVisualEffectView {
     /// Returns the instance of UIBlurEffect.
     private let blurEffect = (NSClassFromString("_UICustomBlurEffect") as! UIBlurEffect.Type).init()
     
-    /**
-     Tint color.
-     
-     The default value is nil.
-     */
-    open var colorTint: UIColor? {
+    /// Tint color.
+    /// The default value is nil.
+    open var color: UIColor? {
         get {
             if #available(iOS 14, *) {
                 return ios14_colorTint
@@ -38,13 +35,10 @@ open class FSVisualEffectView: UIVisualEffectView {
         }
     }
     
-    /**
-     Tint color alpha.
-
-     Don't use it unless `colorTint` is not nil.
-     The default value is 0.0.
-     */
-    open var colorTintAlpha: CGFloat {
+    /// Tint color alpha.
+    /// Don't use it unless `color` is not nil.
+    /// The default value is 0.0.
+    open var colorAlpha: CGFloat {
         get { return _value(forKey: .colorTintAlpha) ?? 0.0 }
         set {
             if #available(iOS 14, *) {
@@ -55,11 +49,8 @@ open class FSVisualEffectView: UIVisualEffectView {
         }
     }
     
-    /**
-     Blur radius.
-     
-     The default value is 0.0.
-     */
+    /// Blur radius.
+    /// The default value is 0.0.
     open var blurRadius: CGFloat {
         get {
             if #available(iOS 14, *) {
@@ -77,34 +68,29 @@ open class FSVisualEffectView: UIVisualEffectView {
         }
     }
     
-    /**
-     Scale factor.
-     
-     The scale factor determines how content in the view is mapped from the logical coordinate space (measured in points) to the device coordinate space (measured in pixels).
-     
-     The default value is 1.0.
-     */
+    /// Scale factor.
+    /// The scale factor determines how content in the view is mapped from the logical
+    /// coordinate space (measured in points) to the device coordinate space (measured in pixels).
+    /// The default value is 1.0.
     open var scale: CGFloat {
         get { return _value(forKey: .scale) ?? 1.0 }
         set { _setValue(newValue, forKey: .scale) }
     }
     
-    // MARK: Initialization
+    // MARK: - Initialization
     
     public override init(effect: UIVisualEffect?) {
         super.init(effect: effect)
-        
         scale = 1
     }
     
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        
         scale = 1
     }
 }
 
-// MARK: - Helpers
+// MARK: - Private
 
 private extension FSVisualEffectView {
     
