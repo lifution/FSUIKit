@@ -38,4 +38,11 @@ public extension FSUIKitWrapper where Base: UIViewController {
         
         return viewController
     }
+    
+    func present(_ viewControllerToPresent: UIViewController, animated flag: Bool, completion: (() -> Void)? = nil) {
+        /// UIKit 的该方法有时候会延迟一点时间再跳转，使用 `DispatchQueue.main.async {}` 可缓解。
+        DispatchQueue.main.async {
+            base.present(viewControllerToPresent, animated: flag, completion: completion)
+        }
+    }
 }
