@@ -65,6 +65,7 @@ extension ToastViewController {
                     let text = "设计模式（Design pattern）代表了最佳的实践，通常被有经验的面向对象的软件开发人员所采用。设计模式是软件开发人员在软件开发过程中面临的一般问题的解决方案。这些解决方案是众多软件开发人员经过相当长的一段时间的试验和错误总结出来的。"
                     return NSAttributedString(string: text, attributes: attributes)
                 }()
+                content.contentInset = .init(top: 12.0, left: 12.0, bottom: 12.0, right: 12.0)
                 self.fs.show(content: content)
             }
         case 3:

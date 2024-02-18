@@ -107,6 +107,7 @@ open class FSToastContent: FSToastContentConvertable {
                 duration = 0.0
                 animation = FSToastAnimation(kind: .scale)
                 contentInset = .init(top: 16.0, left: 16.0, bottom: 16.0, right: 16.0)
+                topViewBottomSpacing = 10.0
             }
         case .warning, .success, .error:
             do {
@@ -131,7 +132,6 @@ open class FSToastContent: FSToastContentConvertable {
                 duration = 1.5
                 animation = FSToastAnimation(kind: .fade)
                 contentInset = .init(top: 12.0, left: 15.0, bottom: 12.0, right: 15.0)
-                topViewBottomSpacing = 4.0
                 do {
                     if style == .success {
                         tapticEffect = .notification(.success)

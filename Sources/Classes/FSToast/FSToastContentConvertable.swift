@@ -107,9 +107,9 @@ public extension FSToastContentConvertable {
     var backgroundColor: UIColor? { get { return .black } set {} }
     var backgroundEffect: FSToastBackgroundEffect? { get { return nil } set {} }
     var contentInset: UIEdgeInsets { get { return .init(top: 12.0, left: 16.0, bottom: 12.0, right: 16.0) } set {} }
-    var topViewBottomSpacing: CGFloat { get { return 12.0 } set {} }
-    var textBottomSpacing: CGFloat { get { return 12.0 } set {} }
-    var detailBottomSpacing: CGFloat { get { return 12.0 } set {} }
+    var topViewBottomSpacing: CGFloat { get { return 10.0 } set {} }
+    var textBottomSpacing: CGFloat { get { return 10.0 } set {} }
+    var detailBottomSpacing: CGFloat { get { return 10.0 } set {} }
     var topView: UIView? { get { return nil } set {} }
     var topViewSize: CGSize? { get { return nil } set {} }
     var text: String? { get { return nil } set {} }
