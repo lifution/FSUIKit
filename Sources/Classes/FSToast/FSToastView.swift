@@ -233,29 +233,37 @@ private extension FSToastView {
             sizeToFit()
             invalidateIntrinsicContentSize()
         }
-        guard let content = content else {
+        
+        guard 
+            let containerView = superview,
+            let content = content
+        else {
             contentSize = .zero
             return
         }
         
+        let containerSize = containerView.frame.size
+        
         let layoutWidthMax: CGFloat = {
-            var result = UIScreen.fs.width
+            var result = containerSize.width
+            result -= containerView.safeAreaInsets.fs.horizontalValue()
             result -= paddingInset.fs.horizontalValue()
             result -= content.contentInset.fs.horizontalValue()
-            result -= UIScreen.fs.safeAreaInsets.fs.horizontalValue()
             return result
         }()
         
         let layoutHeightMax: CGFloat = {
-            var result = UIScreen.fs.height
-            result -= paddingInset.fs.horizontalValue()
-            result -= content.contentInset.fs.horizontalValue()
-            result -= UIScreen.fs.safeAreaInsets.fs.verticalValue()
+            var result = containerSize.height
+            result -= containerView.safeAreaInsets.fs.verticalValue()
+            result -= paddingInset.fs.verticalValue()
+            result -= content.contentInset.fs.verticalValue()
             return result
         }()
         
-        var contentWidth: CGFloat = content.contentInset.fs.horizontalValue()
-        var contentHeight: CGFloat = content.contentInset.fs.verticalValue()
+        guard layoutWidthMax > 0.0, layoutHeightMax > 0.0 else {
+            contentSize = .zero
+            return
+        }
         
         let fitsSize = CGSize(width: layoutWidthMax, height: layoutHeightMax)
         
@@ -295,13 +303,14 @@ private extension FSToastView {
             return detailTextLabel.sizeThatFits(fitsSize)
         }()
         
-        contentWidth += {
-            var result: CGFloat = 0.0
+        var contentWidth: CGFloat = 0.0
+        var contentHeight: CGFloat = 0.0
+        
+        contentWidth = {
             let sizes = [topViewSize, bottomViewSize, textSize, detailSize]
-            sizes.forEach { result = max(result, $0.width) }
-            return result
+            return sizes.map { $0.width }.max() ?? 0.0
         }()
-        contentWidth = min(contentWidth, layoutWidthMax)
+        contentWidth += content.contentInset.fs.horizontalValue()
         
         do {
             var lastMaxY = content.contentInset.top
@@ -315,20 +324,16 @@ private extension FSToastView {
                 spacing  = content.topViewBottomSpacing
             }
             if !textLabel.isHidden {
-                let x = content.contentInset.left
+                let x = (contentWidth - textSize.width) / 2
                 let y = lastMaxY + spacing
-                let w = contentWidth - x - content.contentInset.right
-                let h = textSize.height
-                textLabel.frame = .init(x: x, y: y, width: w, height: h)
+                textLabel.frame = .init(origin: .init(x: x, y: y), size: textSize)
                 lastMaxY = textLabel.frame.maxY
                 spacing  = content.textBottomSpacing
             }
             if !detailTextLabel.isHidden {
-                let x = content.contentInset.left
+                let x = (contentWidth - detailSize.width) / 2
                 let y = lastMaxY + spacing
-                let w = contentWidth - x - content.contentInset.right
-                let h = detailSize.height
-                detailTextLabel.frame = .init(x: x, y: y, width: w, height: h)
+                detailTextLabel.frame = .init(origin: .init(x: x, y: y), size: detailSize)
                 lastMaxY = detailTextLabel.frame.maxY
                 spacing  = content.detailBottomSpacing
             }
