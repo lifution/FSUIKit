@@ -8,29 +8,35 @@
 
 /*
  FSToastView layout:
- ┌────────────────────────────────┐
- |      ┌──────────────┐          |
- |      |    TopView   |          |
- |      └──────────────┘          |
- |               |                |
- |            (space)             |
- |               |                |
- |       ┌────────────────┐       |
- |       | UILabel (Text) |       |
- |       └────────────────┘       |
- |               |                |
- |            (space)             |
- |               |                |
- |    ┌──────────────────────┐    |
- |    | UILabel (DetailText) |    |
- |    └──────────────────────┘    |
- |               |                |
- |            (space)             |
- |               |                |
- |       ┌──────────────┐         |
- |       |  BottomView  |         |
- |       └──────────────┘         |
- └────────────────────────────────┘
+ ┌────────────────────────────────────────────────────────────────────────┐
+ |                                   |                                    |
+ |                           (contentInset.top)                           |
+ |                                   |                                    |
+ |                           ┌──────────────┐                             |
+ |                           |    TopView   |                             |
+ |                           └──────────────┘                             |
+ |                                   |                                    |
+ |                                (spacing)                               |
+ |                                   |                                    |
+ |                           ┌────────────────┐                           |
+ |                           | UILabel (Text) |                           |
+ |                           └────────────────┘                           |
+ |                                   |                                    |
+ | - (contentInset.right) -       (spacing)      - (contentInset.right) - |
+ |                                   |                                    |
+ |                          ┌──────────────────┐                          |
+ |                          | UILabel (Detail) |                          |
+ |                          └──────────────────┘                          |
+ |                                   |                                    |
+ |                                (spacing)                               |
+ |                                   |                                    |
+ |                           ┌──────────────┐                             |
+ |                           |  BottomView  |                             |
+ |                           └──────────────┘                             |
+ |                                   |                                    |
+ |                         (contentInset.bottom)                          |
+ |                                   |                                    |
+ └────────────────────────────────────────────────────────────────────────┘
  */
 
 import UIKit
@@ -46,6 +52,8 @@ open class FSToastView: FSReloadableView {
     }
     
     // MARK: Properties/Private
+    
+    private var userInterfaceStyleRaw: Int = 0
     
     private var contentSize: CGSize = .zero
     
@@ -203,6 +211,11 @@ private extension FSToastView {
     /// Invoked after initialization.
     func p_didInitialize() {
         do {
+            if #available(iOS 13, *) {
+                userInterfaceStyleRaw = UITraitCollection.current.userInterfaceStyle.rawValue
+            }
+        }
+        do {
             clipsToBounds = true
             if #available(iOS 17, *) {
                 registerForTraitChanges([UITraitUserInterfaceStyle.self]) { (self: Self, previousTraitCollection: UITraitCollection) in
@@ -299,7 +312,7 @@ private extension FSToastView {
                 let y = lastMaxY
                 view.frame = .init(origin: .init(x: x, y: y), size: topViewSize)
                 lastMaxY = view.frame.maxY
-                spacing  = content.topViewBottomSpace
+                spacing  = content.topViewBottomSpacing
             }
             if !textLabel.isHidden {
                 let x = content.contentInset.left
@@ -308,7 +321,7 @@ private extension FSToastView {
                 let h = textSize.height
                 textLabel.frame = .init(x: x, y: y, width: w, height: h)
                 lastMaxY = textLabel.frame.maxY
-                spacing  = content.textBottomSpace
+                spacing  = content.textBottomSpacing
             }
             if !detailTextLabel.isHidden {
                 let x = content.contentInset.left
@@ -317,7 +330,7 @@ private extension FSToastView {
                 let h = detailSize.height
                 detailTextLabel.frame = .init(x: x, y: y, width: w, height: h)
                 lastMaxY = detailTextLabel.frame.maxY
-                spacing  = content.detailBottomSpace
+                spacing  = content.detailBottomSpacing
             }
             if let view = bottomView {
                 let x = (contentWidth - bottomViewSize.width) / 2
@@ -332,7 +345,10 @@ private extension FSToastView {
     }
     
     func p_traitCollectionDidChange() {
-        content?.traitCollectionDidChange()
+        guard #available(iOS 13, *), userInterfaceStyleRaw != UITraitCollection.current.userInterfaceStyle.rawValue else {
+            return
+        }
+        content?.userInterfaceStyleDidChange()
         setNeedsReload()
     }
 }

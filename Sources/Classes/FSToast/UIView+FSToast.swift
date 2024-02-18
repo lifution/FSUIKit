@@ -128,7 +128,7 @@ extension FSUIKitWrapper where Base: UIView {
     /// 外部手动隐藏 toast。
     ///
     /// - Note:
-    ///   - 调用该方法不会回调 `toastView.content.onDidDisappear`。
+    ///   - 调用该方法不会回调 `toastView.content.onDidDismiss`。
     ///
     public func dismissToast() {
         p_dismiss()
@@ -296,17 +296,18 @@ private class _ToastHelper: FSKeyboardObserver {
             return
         }
         
-        if toastView.bounds.size == .zero {
+        if isAppearing {
             toastView.superview?.layoutIfNeeded()
         }
         
         let keyboardFrame = manager.keyboardFrame
         let toastFrameInWindow = toastView.superview?.convert(toastView.frame, to: window) ?? .zero
-        let space = keyboardFrame.minY - toastFrameInWindow.maxY
-        if space >= 20.0 {
+        let toastOriginalMaxY = toastFrameInWindow.maxY - (centerYConstraint?.constant ?? 0.0)
+        let spacing = toastOriginalMaxY - keyboardFrame.minY
+        if spacing <= -20.0 {
             return
         }
-        let translateY = 20.0 - space
+        let translateY = spacing < 0 ? 20.0 : (20.0 + spacing)
         centerYConstraint?.constant = -translateY
         if !isAppearing {
             UIView.animate(withDuration: 0.25) {
@@ -326,6 +327,7 @@ private class _ToastHelper: FSKeyboardObserver {
         
         p_stopTimer()
         p_stopDestroyTimer()
+        
         self.isUserInteractionEnabled = isUserInteractionEnabled
         
         // remove previous

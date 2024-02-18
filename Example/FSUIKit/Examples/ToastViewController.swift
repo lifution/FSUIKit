@@ -15,12 +15,9 @@ class ToastViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         do {
-            FSKeyboardManager.shared.add(self)
-        }
-        do {
             let textField = UITextField()
             textField.font = .systemFont(ofSize: 14.0)
-            textField.placeholder = "测试键盘弹出"
+            textField.placeholder = "Test Keyboard"
             textField.borderStyle = .roundedRect
             navigationItem.rightBarButtonItem = UIBarButtonItem(customView: textField)
             textField.snp.makeConstraints { (make) in
@@ -105,10 +102,10 @@ extension ToastViewController {
         case 4:
             do {
                 let content = FSToastContent(style: .hint)
-                content.text = "This is a hint toast with disappear handler, see console output."
+                content.text = "This is a hint toast with dismission handler, see console output."
                 content.duration = 3.0
                 content.onDidDismiss = {
-                    print("👻 Hint Toast did disappear.")
+                    print("👻 Hint Toast did dismiss.")
                 }
                 self.fs.show(content: content)
             }
@@ -124,27 +121,27 @@ extension ToastViewController {
                 content.text = "本次交易存在较大风险"
                 content.duration = 0.0
                 content.bottomView = {
-                    
-                    let update: ((FSButton) -> Void) = { button in
-                        let color: UIColor = {
-                            if #available(iOS 13, *) {
-                                return UITraitCollection.current.userInterfaceStyle == .dark ? .black : .white
-                            }
-                            return .white
-                        }()
-                        button.layer.borderColor = color.cgColor
-                        button.setTitleColor(color, for: .normal)
-                    }
-                    
+                    let titleColor: UIColor = {
+                        if #available(iOS 13, *) {
+                            return .init(dynamicProvider: { trait in
+                                if trait.userInterfaceStyle == .dark {
+                                    return .black
+                                }
+                                return .white
+                            })
+                        }
+                        return .white
+                    }()
                     let button = FSButton()
                     button.titleLabel?.font = .systemFont(ofSize: 15.0)
                     button.layer.borderWidth = 1.0
                     button.layer.cornerRadius = 6.0
+                    button.layer.borderColor = titleColor.cgColor
                     button.setTitle("知道了", for: .normal)
+                    button.setTitleColor(titleColor, for: .normal)
                     button.fs.setHandler(for: .touchUpInside) { [weak self] _ in
                         self?.fs.dismissToast()
                     }
-                    update(button)
                     return button
                 }()
                 content.bottomViewSize = .init(width: 68.0, height: 30.0)
@@ -168,16 +165,5 @@ extension ToastViewController {
         default:
             break
         }
-    }
-}
-
-extension ToastViewController: FSKeyboardObserver {
-    
-    func keyboardChanged(_ transition: FSKeyboardTransition) {
-        let manager = FSKeyboardManager.shared
-        print("------------------")
-        print("keyboard is visible: [\(manager.isKeyboardVisible ? "true" : "false")]")
-        print("keyboard frame: [\(manager.keyboardFrame)]")
-        print("------------------")
     }
 }

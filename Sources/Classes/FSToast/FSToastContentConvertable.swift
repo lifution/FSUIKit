@@ -38,17 +38,17 @@ public protocol FSToastContentConvertable: AnyObject {
     var backgroundEffect: FSToastBackgroundEffect? { get set }
     
     /// 整体内容的四边距，
-    /// 默认为 `(top: 8.0, left: 12.0, bottom: 8.0, right: 12.0)`。
+    /// 默认为 `(top: 12.0, left: 16.0, bottom: 12.0, right: 16.0)`。
     var contentInset: UIEdgeInsets { get set }
     
     /// 顶部视图的底部空隙
-    var topViewBottomSpace: CGFloat { get set }
+    var topViewBottomSpacing: CGFloat { get set }
     
     /// 正文的底部空隙
-    var textBottomSpace: CGFloat { get set }
+    var textBottomSpacing: CGFloat { get set }
     
     /// 详细文本的底部空隙
-    var detailBottomSpace: CGFloat { get set }
+    var detailBottomSpacing: CGFloat { get set }
     
     /// 顶部视图
     var topView: UIView? { get set }
@@ -89,11 +89,12 @@ public protocol FSToastContentConvertable: AnyObject {
     ///
     var onDidDismiss: (() -> Void)? { get set }
     
-    /// app 主题更新了。
+    /// Dark mode has been change.
+    /// This method will be called when the dark mode changes.
     ///
-    ///  - FSToastView 内部会监听 app 主题更新，并会调用该方法。
+    /// - Note: Only available after iOS13.
     ///
-    func traitCollectionDidChange()
+    func userInterfaceStyleDidChange()
 }
 
 // optional
@@ -105,10 +106,10 @@ public extension FSToastContentConvertable {
     var borderWidth: CGFloat { get { return 0.0 } set {} }
     var backgroundColor: UIColor? { get { return .black } set {} }
     var backgroundEffect: FSToastBackgroundEffect? { get { return nil } set {} }
-    var contentInset: UIEdgeInsets { get { return .init(top: 8.0, left: 12.0, bottom: 8.0, right: 12.0) } set {} }
-    var topViewBottomSpace: CGFloat { get { return 10.0 } set {} }
-    var textBottomSpace: CGFloat { get { return 10.0 } set {} }
-    var detailBottomSpace: CGFloat { get { return 10.0 } set {} }
+    var contentInset: UIEdgeInsets { get { return .init(top: 12.0, left: 16.0, bottom: 12.0, right: 16.0) } set {} }
+    var topViewBottomSpacing: CGFloat { get { return 12.0 } set {} }
+    var textBottomSpacing: CGFloat { get { return 12.0 } set {} }
+    var detailBottomSpacing: CGFloat { get { return 12.0 } set {} }
     var topView: UIView? { get { return nil } set {} }
     var topViewSize: CGSize? { get { return nil } set {} }
     var text: String? { get { return nil } set {} }
@@ -119,5 +120,5 @@ public extension FSToastContentConvertable {
     var bottomViewSize: CGSize? { get { return nil } set {} }
     var animation: FSToastAnimatedTransitioning? { get { return nil } set {} }
     var onDidDismiss: (() -> Void)? { get { return nil } set {} }
-    func traitCollectionDidChange() {}
+    func userInterfaceStyleDidChange() {}
 }
