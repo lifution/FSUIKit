@@ -8,7 +8,7 @@
 
 import UIKit
 
-public final class FSToast {
+public struct FSToast {
     
     // MARK: Properties/Private
     
