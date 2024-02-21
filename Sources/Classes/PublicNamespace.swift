@@ -49,5 +49,6 @@ extension CGFloat: FSUIKitCompatibleValue {}
 extension Array: FSUIKitCompatibleValue {}
 extension Dictionary: FSUIKitCompatibleValue {}
 extension UIEdgeInsets: FSUIKitCompatibleValue {}
+extension Decimal: FSUIKitCompatibleValue {}
 
 extension NSObject: FSUIKitCompatible {}
