@@ -81,7 +81,7 @@ extension FSUIKitWrapper where Base: UIView {
     ///   - text: 提示语
     ///   - isUserInteractionEnabled: 是否允许用户触摸 toast 所在的 view。
     ///
-    public func showSuccess(_ text: String? = nil, isUserInteractionEnabled: Bool = true) {
+    public func showSuccess(_ text: String?, isUserInteractionEnabled: Bool = true) {
         let content = FSToastContent(style: .success)
         content.text = text
         p_show(content: content, isUserInteractionEnabled: isUserInteractionEnabled)
@@ -93,7 +93,7 @@ extension FSUIKitWrapper where Base: UIView {
     ///   - text: 提示语
     ///   - isUserInteractionEnabled: 是否允许用户触摸 toast 所在的 view。
     ///
-    public func showError(_ text: String? = nil, isUserInteractionEnabled: Bool = true) {
+    public func showError(_ text: String?, isUserInteractionEnabled: Bool = true) {
         let content = FSToastContent(style: .error)
         content.text = text
         p_show(content: content, isUserInteractionEnabled: isUserInteractionEnabled)
@@ -105,7 +105,7 @@ extension FSUIKitWrapper where Base: UIView {
     ///   - text: 提示语
     ///   - isUserInteractionEnabled: 是否允许用户触摸 toast 所在的 view。
     ///
-    public func showWarning(_ text: String? = nil, isUserInteractionEnabled: Bool = true) {
+    public func showWarning(_ text: String?, isUserInteractionEnabled: Bool = true) {
         let content = FSToastContent(style: .warning)
         content.text = text
         p_show(content: content, isUserInteractionEnabled: isUserInteractionEnabled)

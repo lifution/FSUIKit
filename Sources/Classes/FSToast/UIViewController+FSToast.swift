@@ -21,17 +21,17 @@ extension FSUIKitWrapper where Base: UIViewController {
     }
     
     /// 注释参考 `UIView+FSToast` 中的同名方法。
-    public func showSuccess(_ text: String? = nil, isUserInteractionEnabled: Bool = true) {
+    public func showSuccess(_ text: String?, isUserInteractionEnabled: Bool = true) {
         base.view.fs.showSuccess(text, isUserInteractionEnabled: isUserInteractionEnabled)
     }
     
     /// 注释参考 `UIView+FSToast` 中的同名方法。
-    public func showError(_ text: String? = nil, isUserInteractionEnabled: Bool = true) {
+    public func showError(_ text: String?, isUserInteractionEnabled: Bool = true) {
         base.view.fs.showError(text, isUserInteractionEnabled: isUserInteractionEnabled)
     }
     
     /// 注释参考 `UIView+FSToast` 中的同名方法。
-    public func showWarning(_ text: String? = nil, isUserInteractionEnabled: Bool = true) {
+    public func showWarning(_ text: String?, isUserInteractionEnabled: Bool = true) {
         base.view.fs.showWarning(text, isUserInteractionEnabled: isUserInteractionEnabled)
     }
     
