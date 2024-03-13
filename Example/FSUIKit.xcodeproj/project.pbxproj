@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		041102552B72AA2200E243D2 /* ToastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041102542B72AA2200E243D2 /* ToastViewController.swift */; };
+		04F52B112BA1D4AE000AC4BE /* FlexibleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F52B102BA1D4AE000AC4BE /* FlexibleViewController.swift */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
@@ -18,6 +19,7 @@
 
 /* Begin PBXFileReference section */
 		041102542B72AA2200E243D2 /* ToastViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastViewController.swift; sourceTree = "<group>"; };
+		04F52B102BA1D4AE000AC4BE /* FlexibleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexibleViewController.swift; sourceTree = "<group>"; };
 		0E5C54A5FC366BAB9992D07A /* Pods-FSUIKit_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FSUIKit_Example.release.xcconfig"; path = "Target Support Files/Pods-FSUIKit_Example/Pods-FSUIKit_Example.release.xcconfig"; sourceTree = "<group>"; };
 		1B99EBA78898161DBF9957D1 /* FSUIKit.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = FSUIKit.podspec; path = ../FSUIKit.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		392C34A4B15F3FC1F64CFE94 /* Pods-FSUIKit_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FSUIKit_Tests.release.xcconfig"; path = "Target Support Files/Pods-FSUIKit_Tests/Pods-FSUIKit_Tests.release.xcconfig"; sourceTree = "<group>"; };
@@ -52,6 +54,7 @@
 			isa = PBXGroup;
 			children = (
 				041102542B72AA2200E243D2 /* ToastViewController.swift */,
+				04F52B102BA1D4AE000AC4BE /* FlexibleViewController.swift */,
 			);
 			path = Examples;
 			sourceTree = "<group>";
@@ -251,6 +254,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
+				04F52B112BA1D4AE000AC4BE /* FlexibleViewController.swift in Sources */,
 				041102552B72AA2200E243D2 /* ToastViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 			);
