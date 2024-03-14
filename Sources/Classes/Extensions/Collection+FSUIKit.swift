@@ -9,13 +9,16 @@ import Foundation
 
 public extension FSUIKitWrapper where Base: Collection {
     
-    /// Returns: the pretty printed JSON string or an error string if any error occur.
-    var json: String {
+    /// Returns: the pretty printed JSON string or nil if any error occur.
+    var json: String? {
         do {
             let jsonData = try JSONSerialization.data(withJSONObject: base, options: .prettyPrinted)
-            return String(data: jsonData, encoding: .utf8) ?? ""
+            return String(data: jsonData, encoding: .utf8)
         } catch {
-            return "json serialization error: \(error)"
+            #if DEBUG
+            print("JSON serialization error: \(error)")
+            #endif
+            return nil
         }
     }
 }

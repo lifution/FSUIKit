@@ -176,12 +176,11 @@ public extension FSUIKitWrapper where Base == String {
         return base
     }
     
-    /// 将当前 string 转换为字典，如果转化失败则返回 nil。
-    /// 该方法用于把「json 字符串」转化为「json 原型」。
-    func toJSON() -> [AnyHashable: Any]? {
+    /// Convert current string to object.
+    func toJSON<T>() -> T? {
         guard
             let data = base.data(using: .utf8),
-            let result = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [AnyHashable: Any]
+            let result = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? T
         else {
             return nil
         }
