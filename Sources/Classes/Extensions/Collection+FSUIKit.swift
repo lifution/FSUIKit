@@ -9,15 +9,22 @@ import Foundation
 
 public extension FSUIKitWrapper where Base: Collection {
     
-    /// Returns: the pretty printed JSON string or nil if any error occur.
-    var json: String? {
-        do {
-            let jsonData = try JSONSerialization.data(withJSONObject: base, options: .prettyPrinted)
-            return String(data: jsonData, encoding: .utf8)
-        } catch {
-            #if DEBUG
-            print("JSON serialization error: \(error)")
-            #endif
+    /// Converts current collection to json string.
+    func toJSONString(prettyPrint: Bool = false) -> String? {
+        let object = base
+        if JSONSerialization.isValidJSONObject(object) {
+            do {
+                let jsonData: Data
+                if prettyPrint {
+                    jsonData = try JSONSerialization.data(withJSONObject: object, options: [.prettyPrinted])
+                } else {
+                    jsonData = try JSONSerialization.data(withJSONObject: object, options: [])
+                }
+                return String(data: jsonData, encoding: .utf8)
+            } catch {
+                return nil
+            }
+        } else {
             return nil
         }
     }

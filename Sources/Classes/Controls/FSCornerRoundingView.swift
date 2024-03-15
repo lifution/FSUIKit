@@ -89,14 +89,14 @@ open class FSCornerRoundingView: UIView {
     // MARK: Open
     
     /// 初始化后会调用该方法，subclass 可重载该方法做一些初始化后的相关操作。
-    open dynamic func didInitialize() {
+    @objc open dynamic func didInitialize() {
         
     }
     
     /// 系统 dark mode 更改时会回调该方法。
     /// FSCornerRoundingView 内部已做了 iOS17 API 的适配，iOS17 后使用新 API，
     /// iOS17 之前使用旧 API，因此 subclass 只需要重载该方法做 dark mode 的适配即可。
-    open dynamic func userInterfaceDidChange() {
+    @objc open dynamic func userInterfaceDidChange() {
         
     }
 }
