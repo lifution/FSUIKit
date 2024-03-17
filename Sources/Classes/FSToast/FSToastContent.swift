@@ -36,7 +36,7 @@ open class FSToastContent: FSToastContentConvertable {
     
     open var backgroundEffect: FSToastBackgroundEffect?
     
-    open var contentInset: UIEdgeInsets = .init(top: 8.0, left: 12.0, bottom: 8.0, right: 12.0)
+    open var contentInset: UIEdgeInsets = .init(top: 12.0, left: 12.0, bottom: 12.0, right: 12.0)
     
     open var topViewBottomSpacing: CGFloat = 10.0
     
