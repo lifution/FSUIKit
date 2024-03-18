@@ -49,21 +49,21 @@ public struct FSToast {
     }
     
     /// 注释参考 `UIView+FSToast` 中的同名方法。
-    public static func showSuccess(_ text: String? = nil, isUserInteractionEnabled: Bool = true) {
+    public static func showSuccess(_ text: String?, isUserInteractionEnabled: Bool = true) {
         p_removePrevious()
         showingWindow = window
         showingWindow?.fs.showSuccess(text, isUserInteractionEnabled: isUserInteractionEnabled)
     }
     
     /// 注释参考 `UIView+FSToast` 中的同名方法。
-    public static func showError(_ text: String? = nil, isUserInteractionEnabled: Bool = true) {
+    public static func showError(_ text: String?, isUserInteractionEnabled: Bool = true) {
         p_removePrevious()
         showingWindow = window
         showingWindow?.fs.showError(text, isUserInteractionEnabled: isUserInteractionEnabled)
     }
     
     /// 注释参考 `UIView+FSToast` 中的同名方法。
-    public static func showWarning(_ text: String? = nil, isUserInteractionEnabled: Bool = true) {
+    public static func showWarning(_ text: String?, isUserInteractionEnabled: Bool = true) {
         p_removePrevious()
         showingWindow = window
         showingWindow?.fs.showWarning(text, isUserInteractionEnabled: isUserInteractionEnabled)
