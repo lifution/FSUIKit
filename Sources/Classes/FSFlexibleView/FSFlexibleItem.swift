@@ -23,19 +23,19 @@ open class FSFlexibleItem {
     // MARK: Properties/Public
     
     /// 该属性表示的就是 item 对应的 cell 的 frame。
-    public final var frame: CGRect = .zero
+    open var frame: CGRect = .zero
     
     /// cell 的类型。
-    public final var cellType: FSFlexibleCell.Type = FSFlexibleCell.self
+    open var cellType: FSFlexibleCell.Type = FSFlexibleCell.self
     
     /// 是否允许选中。
-    public final var shouldSelect = true
+    open var shouldSelect = true
     
     /// cell 绑定的数据。
-    public final var data: Any?
+    open var data: Any?
     
     /// 选中回调。
-    public final var onDidSelect: ((_ flexibleView: FSFlexibleView, _ index: Int) -> Void)?
+    open var onDidSelect: ((_ flexibleView: FSFlexibleView, _ index: Int) -> Void)?
     
     // MARK: Properties/Internal
     
@@ -48,9 +48,7 @@ open class FSFlexibleItem {
     
     // MARK: Initialization
     
-    public init() {
-        
-    }
+    public init() {}
 }
 
 // MARK: - Public

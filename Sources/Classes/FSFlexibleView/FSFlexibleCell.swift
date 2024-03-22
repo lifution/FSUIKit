@@ -38,17 +38,13 @@ open class FSFlexibleCell: UIView {
     // MARK: Open
     
     /// 该方法会在初始化后调用。
-    open func didInitialize() {
-        
-    }
+    open func didInitialize() {}
     
     /// 在当前 cell 被重用前会调用该方法。
     ///
     /// - 只有被重用的 cell 才会调用该方法，新创建的 cell 不会调用该方法。
     ///
-    open func prepareForReuse() {
-        
-    }
+    open func prepareForReuse() {}
     
     /// 当 cell 被选中后会回调该方法。
     ///
@@ -57,9 +53,7 @@ open class FSFlexibleCell: UIView {
     ///   FSFlexibleCell 的「选中」其实就是点击了，因此该方法是可能会被多次回调的，每一
     ///   次用户选中后都会回调该方法。
     ///
-    open func didSelect() {
-        
-    }
+    open func didSelect() {}
     
     /// 该方法用于把 item 和 cell 绑定。
     ///
