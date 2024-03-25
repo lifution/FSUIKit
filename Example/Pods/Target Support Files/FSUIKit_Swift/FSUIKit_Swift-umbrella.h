@@ -12,6 +12,6 @@
 
 #import "UIApplication+FSUIKitHook.h"
 
-FOUNDATION_EXPORT double FSUIKitVersionNumber;
-FOUNDATION_EXPORT const unsigned char FSUIKitVersionString[];
+FOUNDATION_EXPORT double FSUIKit_SwiftVersionNumber;
+FOUNDATION_EXPORT const unsigned char FSUIKit_SwiftVersionString[];
 

@@ -1,5 +1,5 @@
 {
-  "name": "FSUIKit",
+  "name": "FSUIKit_Swift",
   "version": "1.0.0",
   "summary": "A collection of iOS components written in Swift.",
   "homepage": "https://github.com/lifution/FSUIKit",
@@ -25,7 +25,7 @@
   ],
   "source_files": "Sources/Classes/**/*",
   "resource_bundles": {
-    "FSUIKit": [
+    "FSUIKit_Swift": [
       "Sources/Assets/**/*"
     ]
   },

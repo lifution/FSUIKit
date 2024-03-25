@@ -1,5 +1,5 @@
 Pod::Spec.new do |s|
-  s.name     = 'FSUIKit.Swift'
+  s.name     = 'FSUIKit_Swift'
   s.version  = '1.0.0'
   s.summary  = 'A collection of iOS components written in Swift.'
   s.homepage = 'https://github.com/lifution/FSUIKit'
@@ -18,6 +18,6 @@ Pod::Spec.new do |s|
   s.source_files = 'Sources/Classes/**/*'
   
    s.resource_bundles = {
-     'FSUIKit' => ['Sources/Assets/**/*']
+     'FSUIKit_Swift' => ['Sources/Assets/**/*']
    }
 end

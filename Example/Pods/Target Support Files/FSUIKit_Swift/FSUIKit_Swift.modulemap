@@ -1,0 +1,6 @@
+framework module FSUIKit_Swift {
+  umbrella header "FSUIKit_Swift-umbrella.h"
+
+  export *
+  module * { export * }
+}

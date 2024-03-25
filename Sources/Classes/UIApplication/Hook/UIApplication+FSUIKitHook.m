@@ -7,7 +7,7 @@
 //
 
 #import "UIApplication+FSUIKitHook.h"
-#import <FSUIKit/FSUIKit-Swift.h>
+#import <FSUIKit_Swift/FSUIKit_Swift-Swift.h>
 
 @implementation UIApplication (FSUIKitHook)
 

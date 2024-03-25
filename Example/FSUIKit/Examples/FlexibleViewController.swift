@@ -8,7 +8,7 @@
 
 import UIKit
 import SnapKit
-import FSUIKit
+import FSUIKit_Swift
 
 class FlexibleViewController: UIViewController {
     

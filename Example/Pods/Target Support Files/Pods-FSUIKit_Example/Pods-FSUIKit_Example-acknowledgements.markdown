@@ -1,7 +1,7 @@
 # Acknowledgements
 This application makes use of the following third party libraries:
 
-## FSUIKit
+## FSUIKit_Swift
 
 Copyright (c) 2023 Sheng (https://github.com/lifution)
 
