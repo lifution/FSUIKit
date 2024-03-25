@@ -1,5 +1,5 @@
 Pod::Spec.new do |s|
-  s.name     = 'FSUIKit'
+  s.name     = 'FSUIKit.Swift'
   s.version  = '1.0.0'
   s.summary  = 'A collection of iOS components written in Swift.'
   s.homepage = 'https://github.com/lifution/FSUIKit'
