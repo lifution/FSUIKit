@@ -97,3 +97,47 @@ extension FSUIKitWrapper where Base: UIColor {
         return UIColor(red: red, green: green, blue: blue, alpha: alpha)
     }
 }
+
+// MARK: - Common Const Colors
+
+public extension FSUIKitWrapper where Base: UIColor {
+    
+    /// Color for text title.
+    static var title: UIColor {
+        return _FSUIColorConsts.title
+    }
+    
+    /// Color for text subtitle.
+    static var subtitle: UIColor {
+        return _FSUIColorConsts.subtitle
+    }
+    
+    /// Color for placeholder.
+    static var placeholder: UIColor {
+        return _FSUIColorConsts.placeholder
+    }
+    
+    /// Color for one pixel line.
+    static var separator: UIColor {
+        return _FSUIColorConsts.separator
+    }
+    
+    /// Color for section separation in table view or collection view.
+    static var sectionSeparator: UIColor {
+        return _FSUIColorConsts.sectionSeparator
+    }
+    
+    /// Color for warnings.
+    static var warning: UIColor {
+        return _FSUIColorConsts.warning
+    }
+}
+
+private struct _FSUIColorConsts {
+    static let title: UIColor = .black
+    static let subtitle: UIColor = .gray
+    static let placeholder: UIColor = .fs.color(hexed: "#C4C8D0") ?? .white
+    static let separator: UIColor = .fs.color(hexed: "#CFCFCF") ?? .white
+    static let sectionSeparator: UIColor = .fs.color(hexed: "#F7F7F7") ?? .white
+    static let warning: UIColor = .fs.color(hexed: "#d9001b") ?? .red
+}
