@@ -18,7 +18,7 @@ open class FSTextFieldInputViewController: UIViewController {
     
     // MARK: Properties/Private
     
-    private let keyboardObserver = _KeyboardObserver()
+    private let keyboardObserver = FSKeyboardObserver()
     private let textFieldDelegator = _InternalTextFieldDelegator()
     
     private let toolBar = FSToolBar()

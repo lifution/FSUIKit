@@ -393,7 +393,7 @@ private extension FSKeyboardManager {
         
         if trans.toFrame != fromFrame {
             observers.allObjects.forEach {
-                if let observer = $0 as? FSKeyboardObserver {
+                if let observer = $0 as? FSKeyboardListener {
                     observer.keyboardChanged(trans)
                 }
             }
@@ -507,7 +507,7 @@ public extension FSKeyboardManager {
     ///
     /// - Parameter observer: An observer.
     ///
-    func add(_ observer: FSKeyboardObserver?) {
+    func add(_ observer: FSKeyboardListener?) {
         guard let observer = observer else {
             return
         }
@@ -520,7 +520,7 @@ public extension FSKeyboardManager {
     ///
     /// - Parameter observer: An observer.
     ///
-    func remove(_ observer: FSKeyboardObserver?) {
+    func remove(_ observer: FSKeyboardListener?) {
         guard let observer = observer else {
             return
         }

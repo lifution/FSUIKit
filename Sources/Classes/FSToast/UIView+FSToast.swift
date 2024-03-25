@@ -138,7 +138,7 @@ extension FSUIKitWrapper where Base: UIView {
 
 // MARK: - _ToastHelper
 
-private class _ToastHelper: FSKeyboardObserver {
+private class _ToastHelper: FSKeyboardListener {
     
     // MARK: Properties/Fileprivate
     
@@ -534,7 +534,7 @@ private class _ToastHelper: FSKeyboardObserver {
         p_dismiss(completion)
     }
     
-    // MARK: FSKeyboardObserver
+    // MARK: FSKeyboardListener
     
     func keyboardChanged(_ transition: FSKeyboardTransition) {
         p_adjustPosition()
