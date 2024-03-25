@@ -50,5 +50,6 @@ extension Array: FSUIKitCompatibleValue {}
 extension Dictionary: FSUIKitCompatibleValue {}
 extension UIEdgeInsets: FSUIKitCompatibleValue {}
 extension Decimal: FSUIKitCompatibleValue {}
+extension CGSize: FSUIKitCompatibleValue {}
 
 extension NSObject: FSUIKitCompatible {}
