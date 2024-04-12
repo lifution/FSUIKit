@@ -21,7 +21,7 @@
 #### [CocoaPods](http://cocoapods.org) (recommended)
 
 ```ruby
-pod 'FSUIKit'
+pod 'FSUIKitSwift'
 ```
 
 #### [Carthage](https://github.com/Carthage/Carthage)

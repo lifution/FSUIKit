@@ -1,6 +1,6 @@
 //
 //  NSAttributedString+FSToast.swift
-//  FSUIKit
+//  FSUIKitSwift
 //
 //  Created by Sheng on 2024/2/6.
 //  Copyright © 2024 Sheng. All rights reserved.
@@ -15,7 +15,6 @@ extension FSUIKitWrapper where Base: NSAttributedString {
     public static func toast_richText(string str: String) -> NSAttributedString {
         let style = NSMutableParagraphStyle()
         style.alignment = .center
-        
         let color: UIColor = {
             if #available(iOS 13, *) {
                 return UIColor(dynamicProvider: { trait in
@@ -27,9 +26,8 @@ extension FSUIKitWrapper where Base: NSAttributedString {
             }
             return .black
         }()
-        
         let attributes: [NSAttributedString.Key: Any] = [
-            .font: UIFont.systemFont(ofSize: 14.0),
+            .font: UIFont.systemFont(ofSize: 14.0, weight: .medium),
             .paragraphStyle: style,
             .foregroundColor: color
         ]
@@ -40,7 +38,6 @@ extension FSUIKitWrapper where Base: NSAttributedString {
     public static func toast_richDetail(string str: String) -> NSAttributedString {
         let style = NSMutableParagraphStyle()
         style.alignment = .center
-        
         let color: UIColor = {
             if #available(iOS 13, *) {
                 return UIColor(dynamicProvider: { trait in
@@ -52,9 +49,8 @@ extension FSUIKitWrapper where Base: NSAttributedString {
             }
             return .black
         }()
-        
         let attributes: [NSAttributedString.Key: Any] = [
-            .font: UIFont.systemFont(ofSize: 12.0),
+            .font: UIFont.systemFont(ofSize: 12.0, weight: .medium),
             .paragraphStyle: style,
             .foregroundColor: color
         ]

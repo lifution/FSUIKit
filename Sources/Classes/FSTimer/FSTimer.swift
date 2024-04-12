@@ -1,6 +1,6 @@
 //
 //  FSTimer.swift
-//  FSUIKit
+//  FSUIKitSwift
 //
 //  Created by Sheng on 2024/2/6.
 //  Copyright © 2024 Sheng. All rights reserved.

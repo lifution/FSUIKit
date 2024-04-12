@@ -1,6 +1,6 @@
 //
 //  FSCollectionViewWaterfallLayout.swift
-//  FSUIKit_Swift
+//  FSUIKitSwift
 //
 //  Created by Sheng on 2024/3/31.
 //  Copyright © 2024 Sheng. All rights reserved.

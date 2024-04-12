@@ -1,6 +1,6 @@
 //
 //  FSCornerRoundingView.swift
-//  FSUIKit
+//  FSUIKitSwift
 //
 //  Created by Sheng on 2024/3/13.
 //

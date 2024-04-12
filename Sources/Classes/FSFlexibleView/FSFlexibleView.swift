@@ -1,6 +1,6 @@
 //
 //  FSFlexibleView.swift
-//  FSUIKit
+//  FSUIKitSwift
 //
 //  Created by Sheng on 2024/3/13.
 //  Copyright © 2024 Sheng. All rights reserved.

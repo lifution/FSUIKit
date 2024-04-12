@@ -1,6 +1,6 @@
 //
 //  FlexibleViewController.swift
-//  FSUIKit_Example
+//  FSUIKitSwift_Example
 //
 //  Created by Sheng on 2024/3/13.
 //  Copyright © 2024 CocoaPods. All rights reserved.
@@ -8,7 +8,7 @@
 
 import UIKit
 import SnapKit
-import FSUIKit_Swift
+import FSUIKitSwift
 
 class FlexibleViewController: UIViewController {
     

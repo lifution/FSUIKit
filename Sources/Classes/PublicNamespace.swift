@@ -1,6 +1,6 @@
 //
 //  PublicNamespace.swift
-//  FSUIKit
+//  FSUIKitSwift
 //
 //  Created by Sheng on 2023/12/23.
 //  Copyright © 2023 Sheng. All rights reserved.

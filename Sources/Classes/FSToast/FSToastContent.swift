@@ -1,6 +1,6 @@
 //
 //  FSToastContent.swift
-//  FSUIKit
+//  FSUIKitSwift
 //
 //  Created by Sheng on 2024/2/6.
 //  Copyright © 2024 Sheng. All rights reserved.
@@ -20,7 +20,7 @@ open class FSToastContent: FSToastContentConvertable {
         case error
     }
     
-    // MARK: Properties/<FSToastContentConvertable>
+    // MARK: Properties/FSToastContentConvertable
     
     open var duration: TimeInterval = 0.0
     
@@ -36,7 +36,7 @@ open class FSToastContent: FSToastContentConvertable {
     
     open var backgroundEffect: FSToastBackgroundEffect?
     
-    open var contentInset: UIEdgeInsets = .init(top: 12.0, left: 12.0, bottom: 12.0, right: 12.0)
+    open var contentInset: UIEdgeInsets = .init(top: 12.0, left: 15.0, bottom: 12.0, right: 15.0)
     
     open var topViewBottomSpacing: CGFloat = 10.0
     
@@ -78,13 +78,12 @@ open class FSToastContent: FSToastContentConvertable {
     // MARK: Private
     
     private func p_update() {
-        
         switch style {
         case .hint:
             do {
                 duration = 1.5
                 animation = FSToastAnimation(kind: .slideUp)
-                contentInset = .init(top: 8.0, left: 12.0, bottom: 8.0, right: 12.0)
+                contentInset = .init(top: 10.0, left: 12.0, bottom: 10.0, right: 12.0)
             }
         case .loading:
             do {
@@ -106,7 +105,6 @@ open class FSToastContent: FSToastContentConvertable {
                 }()
                 duration = 0.0
                 animation = FSToastAnimation(kind: .scale)
-                contentInset = .init(top: 16.0, left: 16.0, bottom: 16.0, right: 16.0)
                 topViewBottomSpacing = 10.0
             }
         case .warning, .success, .error:
@@ -131,21 +129,17 @@ open class FSToastContent: FSToastContentConvertable {
                 }()
                 duration = 1.5
                 animation = FSToastAnimation(kind: .fade)
-                contentInset = .init(top: 12.0, left: 15.0, bottom: 12.0, right: 15.0)
-                do {
-                    if style == .success {
-                        tapticEffect = .notification(.success)
-                    } else if style == .warning {
-                        tapticEffect = .notification(.warning)
-                    } else {
-                        tapticEffect = .notification(.error)
-                    }
+                if style == .success {
+                    tapticEffect = .notification(.success)
+                } else if style == .warning {
+                    tapticEffect = .notification(.warning)
+                } else {
+                    tapticEffect = .notification(.error)
                 }
             }
         case .custom:
             break
         }
-        
         if style != .custom {
             // background blur effect
             backgroundEffect = {
@@ -164,7 +158,7 @@ open class FSToastContent: FSToastContentConvertable {
         }
     }
     
-    // MARK: <FSToastContentConvertable>
+    // MARK: FSToastContentConvertable
     
     open func userInterfaceStyleDidChange() {
         p_update()

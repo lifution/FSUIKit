@@ -1,6 +1,6 @@
 //
 //  FSToastAnimation.swift
-//  FSUIKit
+//  FSUIKitSwift
 //
 //  Created by Sheng on 2024/2/6.
 //  Copyright © 2024 Sheng. All rights reserved.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-/// FSUIKit 提供的默认 FSToast 动画。
+/// FSUIKitSwift 提供的默认 FSToast 动画。
 open class FSToastAnimation: FSToastAnimatedTransitioning {
     
     public enum Kind {

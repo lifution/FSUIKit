@@ -3,7 +3,7 @@ use_frameworks!
 platform :ios, '11.0'
 
 target 'FSUIKit_Example' do
-  pod 'FSUIKit_Swift', :path => '../'
+  pod 'FSUIKitSwift', :path => '../'
   pod 'SnapKit'
 end
 

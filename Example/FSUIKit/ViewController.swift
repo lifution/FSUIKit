@@ -1,6 +1,6 @@
 //
 //  ViewController.swift
-//  FSUIKit
+//  FSUIKitSwift
 //
 //  Created by Sheng on 12/21/2023.
 //  Copyright (c) 2023 Sheng. All rights reserved.
@@ -8,7 +8,7 @@
 
 import UIKit
 import SnapKit
-import FSUIKit_Swift
+import FSUIKitSwift
 
 class ViewController: UITableViewController {
     
