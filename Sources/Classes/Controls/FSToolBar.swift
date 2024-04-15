@@ -57,7 +57,7 @@ open class FSToolBar: UIView {
     
     private lazy var topSeparator: FSSeparatorView = {
         let separator = FSSeparatorView()
-        separator.color = .fs.color(hexed: "B5B5B5")
+        separator.color = .fs.separator
         separator.translatesAutoresizingMaskIntoConstraints = false
         return separator
     }()

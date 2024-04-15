@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		041102552B72AA2200E243D2 /* ToastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041102542B72AA2200E243D2 /* ToastViewController.swift */; };
 		0482E20D2BC7E85D00681954 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0482E20C2BC7E85D00681954 /* LaunchScreen.storyboard */; };
+		048C86842BCA064E0080322D /* TextInputAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048C86832BCA064E0080322D /* TextInputAlertViewController.swift */; };
 		04F52B112BA1D4AE000AC4BE /* FlexibleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F52B102BA1D4AE000AC4BE /* FlexibleViewController.swift */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
@@ -20,6 +21,7 @@
 /* Begin PBXFileReference section */
 		041102542B72AA2200E243D2 /* ToastViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastViewController.swift; sourceTree = "<group>"; };
 		0482E20C2BC7E85D00681954 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		048C86832BCA064E0080322D /* TextInputAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInputAlertViewController.swift; sourceTree = "<group>"; };
 		04F52B102BA1D4AE000AC4BE /* FlexibleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexibleViewController.swift; sourceTree = "<group>"; };
 		0E5C54A5FC366BAB9992D07A /* Pods-FSUIKit_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FSUIKit_Example.release.xcconfig"; path = "Target Support Files/Pods-FSUIKit_Example/Pods-FSUIKit_Example.release.xcconfig"; sourceTree = "<group>"; };
 		1B99EBA78898161DBF9957D1 /* FSUIKit.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = FSUIKit.podspec; path = ../FSUIKit.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
@@ -55,6 +57,7 @@
 			children = (
 				041102542B72AA2200E243D2 /* ToastViewController.swift */,
 				04F52B102BA1D4AE000AC4BE /* FlexibleViewController.swift */,
+				048C86832BCA064E0080322D /* TextInputAlertViewController.swift */,
 			);
 			path = Examples;
 			sourceTree = "<group>";
@@ -252,6 +255,7 @@
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
 				04F52B112BA1D4AE000AC4BE /* FlexibleViewController.swift in Sources */,
 				041102552B72AA2200E243D2 /* ToastViewController.swift in Sources */,
+				048C86842BCA064E0080322D /* TextInputAlertViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -382,7 +386,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FSUIKit/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = FSUIKit;
-				INFOPLIST_KEY_UILaunchStoryboardName = "";
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UIRequiredDeviceCapabilities = armv7;
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
@@ -419,7 +423,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FSUIKit/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = FSUIKit;
-				INFOPLIST_KEY_UILaunchStoryboardName = "";
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UIRequiredDeviceCapabilities = armv7;
 				INFOPLIST_KEY_UIStatusBarHidden = YES;

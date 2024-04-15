@@ -8,10 +8,19 @@
 
 import UIKit
 
-extension FSUIKitWrapper where Base: UIColor {
+public extension FSUIKitWrapper where Base: UIColor {
+    
+    static func color(light: UIColor, dark: UIColor) -> UIColor {
+        if #available(iOS 13, *) {
+            return .init(dynamicProvider: { trait in
+                return trait.userInterfaceStyle == .dark ? dark : light
+            })
+        }
+        return light
+    }
     
     /// Create a random color.
-    public static func random() -> UIColor {
+    static func random() -> UIColor {
         return UIColor(red: .random(in: 0...1),
                        green: .random(in: 0...1),
                        blue: .random(in: 0...1),
@@ -25,7 +34,7 @@ extension FSUIKitWrapper where Base: UIColor {
     /// #RRGGBB   #ff00ff == #ffff00ff，RGBA(255, 0, 255, 1)
     /// #AARRGGBB #00ff00ff == RGBA(255, 0, 255, 0)
     ///
-    public static func color(hexed hex: String) -> UIColor? {
+    static func color(hexed hex: String) -> UIColor? {
         
         guard hex.count > 0 else {
             return nil
@@ -91,8 +100,9 @@ extension FSUIKitWrapper where Base: UIColor {
         default:
             #if DEBUG
             fatalError("Color value [\(hex)] is invalid. It should be a hex value of the form #RBG, #ARGB, #RRGGBB, or #AARRGGBB")
-            #endif
+            #else
             return nil
+            #endif
         }
         return UIColor(red: red, green: green, blue: blue, alpha: alpha)
     }
@@ -134,10 +144,10 @@ public extension FSUIKitWrapper where Base: UIColor {
 }
 
 private struct _FSUIColorConsts {
-    static let title: UIColor = .black
-    static let subtitle: UIColor = .gray
-    static let placeholder: UIColor = .fs.color(hexed: "#C4C8D0") ?? .white
-    static let separator: UIColor = .fs.color(hexed: "#CFCFCF") ?? .white
-    static let sectionSeparator: UIColor = .fs.color(hexed: "#F7F7F7") ?? .white
+    static let title: UIColor = .fs.color(light: .black, dark: .fs.color(hexed: "#ECECEC")!)
+    static let subtitle: UIColor = .fs.color(light: .gray, dark: .fs.color(hexed: "#B5B5B5")!)
+    static let placeholder: UIColor = .fs.color(light: .fs.color(hexed: "#C4C8D0")!, dark: .fs.color(hexed: "#c4c8d0")!)
+    static let separator: UIColor = .fs.color(light: .fs.color(hexed: "#CFCFCF")!, dark: .fs.color(hexed: "#343742")!)
+    static let sectionSeparator: UIColor = .fs.color(light: .fs.color(hexed: "#F7F7F7")!, dark: .fs.color(hexed: "#181B24")!)
     static let warning: UIColor = .fs.color(hexed: "#d9001b") ?? .red
 }

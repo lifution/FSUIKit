@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="NmV-D8-IGq">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="NmV-D8-IGq">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -57,6 +58,26 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <segue destination="ToJ-5C-yJX" kind="show" id="mLp-7U-ei7"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="UfJ-SZ-zke" style="IBUITableViewCellStyleDefault" id="8Rb-Vu-KWw">
+                                        <rect key="frame" x="0.0" y="138" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8Rb-Vu-KWw" id="z1h-TP-aGR">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Text Input Alert" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="UfJ-SZ-zke">
+                                                    <rect key="frame" x="16" y="0.0" width="343" height="44"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="ZrA-2J-S8F" kind="show" id="JoF-k6-4OY"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
@@ -306,13 +327,10 @@
         <scene sceneID="Xwc-FR-eYZ">
             <objects>
                 <viewController id="ToJ-5C-yJX" customClass="FlexibleViewController" customModule="FSUIKit_Example" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="GPb-ct-vPV"/>
-                        <viewControllerLayoutGuide type="bottom" id="ydA-F4-Rne"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Xwb-H3-VZu">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="Aw5-cx-xyH"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="E3h-Zn-OS1"/>
@@ -336,6 +354,59 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Ac-Xx-yPl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-205" y="25"/>
+        </scene>
+        <!--Text Input Alert View Controller-->
+        <scene sceneID="9Ee-Yd-mbc">
+            <objects>
+                <viewController storyboardIdentifier="TextInputAlertViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ZrA-2J-S8F" customClass="TextInputAlertViewController" customModule="FSUIKit_Example" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="xPo-KK-qzT">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3mO-5K-dWQ">
+                                <rect key="frame" x="98" y="316" width="179" height="35"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="tinted" title="Show TextField Alert"/>
+                                <connections>
+                                    <action selector="showTextFieldInput:" destination="ZrA-2J-S8F" eventType="touchUpInside" id="JNP-r4-Baw"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rx5-Ed-xtM">
+                                <rect key="frame" x="168" y="84" width="39.5" height="19.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oRA-YZ-ygH">
+                                <rect key="frame" x="97.5" y="381" width="180" height="35"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="tinted" title="Show TextView Alert"/>
+                                <connections>
+                                    <action selector="showTextFieldInput:" destination="ZrA-2J-S8F" eventType="touchUpInside" id="Mw3-yB-xQx"/>
+                                    <action selector="showTextViewInput:" destination="ZrA-2J-S8F" eventType="touchUpInside" id="VUo-sj-a8H"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="bHc-As-LCN"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Rx5-Ed-xtM" firstAttribute="top" secondItem="bHc-As-LCN" secondAttribute="top" constant="20" id="8iM-5U-dAK"/>
+                            <constraint firstItem="oRA-YZ-ygH" firstAttribute="top" secondItem="3mO-5K-dWQ" secondAttribute="bottom" constant="30" id="8tk-LB-bex"/>
+                            <constraint firstItem="3mO-5K-dWQ" firstAttribute="centerY" secondItem="xPo-KK-qzT" secondAttribute="centerY" id="N7e-3w-MFa"/>
+                            <constraint firstItem="oRA-YZ-ygH" firstAttribute="centerX" secondItem="xPo-KK-qzT" secondAttribute="centerX" id="Q4r-dJ-ldc"/>
+                            <constraint firstItem="Rx5-Ed-xtM" firstAttribute="width" relation="lessThanOrEqual" secondItem="xPo-KK-qzT" secondAttribute="width" constant="-30" id="bFf-0u-FGa"/>
+                            <constraint firstItem="Rx5-Ed-xtM" firstAttribute="centerX" secondItem="xPo-KK-qzT" secondAttribute="centerX" id="dn8-3h-J9n"/>
+                            <constraint firstItem="3mO-5K-dWQ" firstAttribute="centerX" secondItem="xPo-KK-qzT" secondAttribute="centerX" id="feo-dr-A63"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="Wpy-2a-yrP"/>
+                    <connections>
+                        <outlet property="textLabel" destination="Rx5-Ed-xtM" id="qTc-0a-Fvu"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="niw-Tf-8d4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="716" y="725"/>
         </scene>
     </scenes>
     <resources>
