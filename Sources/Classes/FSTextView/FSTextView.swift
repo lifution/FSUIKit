@@ -125,6 +125,10 @@ open class FSTextView: UITextView {
         return text
     }
     
+    /// 当前 view 的 size。
+    /// 当该属性更新时会回调 `viewSizeDidChange` 方法。
+    public private(set) var viewSize: CGSize = .zero
+    
     // MARK: Properties/Private
     
     /// 如果在 `handleTextChanged(_:)` 里主动调整 contentOffset，则为了避免被系统的自动调整覆盖，会利用这个标记去屏蔽系统对 `setContentOffset(_:)` 的调用。
@@ -159,6 +163,13 @@ open class FSTextView: UITextView {
     public required init?(coder: NSCoder) {
         super.init(coder: coder)
         p_didInitialize()
+    }
+    
+    // MARK: Open
+    
+    /// 当 viewSize 更改后会回调该方法。
+    @objc dynamic open func viewSizeDidChange() {
+        
     }
 }
 
@@ -380,6 +391,12 @@ extension FSTextView {
             labelSize.height = min(limitHeight, labelSize.height)
             placeholderLabel.frame = CGRect.fs.flatRect(x: labelMargins.left, y: labelMargins.top, width: limitWidth, height: labelSize.height)
         }
+        do {
+            if viewSize != frame.size {
+                viewSize = frame.size
+                p_viewSizeDidChange()
+            }
+        }
     }
 }
 
@@ -390,8 +407,8 @@ private extension FSTextView {
     /// Invoked after initialization.
     func p_didInitialize() {
         do {
+            delegate = delegator
             scrollsToTop = false
-            self.delegate = delegator
             contentInsetAdjustmentBehavior = .never
             textDragInteraction?.isEnabled = false
         }
@@ -405,6 +422,16 @@ private extension FSTextView {
                                                    name: UITextView.textDidChangeNotification,
                                                    object: nil)
         }
+    }
+    
+    func p_viewSizeDidChange() {
+        defer {
+            viewSizeDidChange()
+        }
+        guard viewSize.height > 0, viewSize.width > 0 else {
+            return
+        }
+        
     }
     
     func p_count(of string: String?) -> Int {
@@ -426,6 +453,16 @@ private extension FSTextView {
             return !self.text.isEmpty
         }
         return (self.text != text)
+    }
+    
+    // ⚠️ 此处需要考虑外部修改了高度后导致 view size 更新后的递归回调。
+    func p_refreshViewHeightIfNeeded() {
+        let height = FSFlat(sizeThatFits(.init(width: viewSize.width, height: CGFloat.greatestFiniteMagnitude)).height)
+        // 通知 delegate 去更新 textView 的高度。
+        if height != FSFlat(viewSize.height) {
+            heightDidChangeHandler?(height)
+            delegator.textView(self, heightDidChangeTo: height)
+        }
     }
     
     func p_updatePlaceholderStyle() {
@@ -487,7 +524,6 @@ private extension FSTextView {
 private extension FSTextView {
     
     @objc func p_didReceive(notification: Notification) {
-        
         guard
             notification.name == UITextView.textDidChangeNotification,
             let textView = notification.object as? FSTextView,
@@ -500,14 +536,7 @@ private extension FSTextView {
         p_updatePlaceholderHiddenStatus()
         
         // 计算高度
-        do {
-            let resultHeight = FSFlat(textView.sizeThatFits(.init(width: textView.bounds.width, height: CGFloat.greatestFiniteMagnitude)).height)
-            // 通知 delegate 去更新 textView 的高度。
-            if resultHeight != FSFlat(textView.bounds.height) {
-                heightDidChangeHandler?(resultHeight)
-                delegator.textView(textView, heightDidChangeTo: resultHeight)
-            }
-        }
+        
         
         // textView 尚未被展示到界面上时，此时过早进行光标调整会计算错误。
         if window == nil {

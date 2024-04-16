@@ -233,7 +233,7 @@ open class FSNavigationBar: UIView {
     
     private lazy var bottomSeparator: FSSeparatorView = {
         let separator = FSSeparatorView()
-        separator.color = .fs.color(hexed: "B5B5B5")
+        separator.color = .fs.separator
         separator.translatesAutoresizingMaskIntoConstraints = false
         return separator
     }()

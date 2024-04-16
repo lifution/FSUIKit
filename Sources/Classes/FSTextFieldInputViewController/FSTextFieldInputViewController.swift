@@ -8,7 +8,7 @@
 
 import UIKit
 
-open class FSTextFieldInputViewController: UIViewController {
+open class FSTextFieldInputViewController: FSViewController {
     
     // MARK: Properties/Public
     
@@ -97,6 +97,16 @@ extension FSTextFieldInputViewController {
     }
 }
 
+// MARK: - Override
+
+extension FSTextFieldInputViewController {
+    
+    open override func viewSizeDidChange() {
+        super.viewSizeDidChange()
+        p_updateToolBarLayout()
+    }
+}
+
 // MARK: - Private
 
 private extension FSTextFieldInputViewController {
@@ -144,7 +154,7 @@ private extension FSTextFieldInputViewController {
     func p_setupViews() {
         defer {
             p_updateSummary()
-            p_textFieldDidChange()
+            p_textDidChange()
         }
         do {
             view.backgroundColor = .clear
@@ -154,8 +164,7 @@ private extension FSTextFieldInputViewController {
             confirmButton.translatesAutoresizingMaskIntoConstraints = false
         }
         do {
-            summaryLabel.font = .systemFont(ofSize: 16.0)
-//            summaryLabel.textColor = .fs.color(light: .black, dark: .fs.color(hexed: "ECECEC")!)
+            summaryLabel.font = .systemFont(ofSize: 14.0)
             summaryLabel.textColor = .fs.subtitle
             summaryLabel.numberOfLines = 0
         }
@@ -170,7 +179,7 @@ private extension FSTextFieldInputViewController {
             textField.backgroundColor = .fs.color(light: .white, dark: .fs.color(hexed: "#2f2f2e")!)
             textField.layer.cornerRadius = 6.0
             textField.enablesReturnKeyAutomatically = true
-            textField.addTarget(self, action: #selector(p_textFieldDidChange), for: .editingChanged)
+            textField.addTarget(self, action: #selector(p_textDidChange), for: .editingChanged)
             do {
                 let leftView = UIView()
                 leftView.frame.size.width = 6.0
@@ -316,7 +325,6 @@ private extension FSTextFieldInputViewController {
         guard isViewLoaded else {
             return
         }
-        view.layoutIfNeeded()
         if !summaryLabel.isHidden {
             summaryLabel.preferredMaxLayoutWidth = toolBar.frame.width - 24.0
         }
@@ -387,7 +395,7 @@ private extension FSTextFieldInputViewController {
     }
     
     @objc
-    func p_textFieldDidChange() {
+    func p_textDidChange() {
         if let range = textField.markedTextRange, let _ = textField.position(from: range.start, offset: 0) {
             // 正处于输入中文拼音还未点确定的中间状态，直接返回。
             return

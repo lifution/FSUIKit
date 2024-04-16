@@ -59,7 +59,7 @@ open class FSSeparatorView: UIView {
     // MARK: Private
     
     private func p_didInitialize() {
-        color = UIColor(red: 0.90, green: 0.90, blue: 0.90, alpha: 1.00)
+        color = .fs.separator
         layer.addSublayer(colorLayer)
         if #available(iOS 17, *) {
             registerForTraitChanges([UITraitUserInterfaceStyle.self]) { (self: Self, previousTraitCollection: UITraitCollection) in

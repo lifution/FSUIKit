@@ -382,7 +382,6 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="tinted" title="Show TextView Alert"/>
                                 <connections>
-                                    <action selector="showTextFieldInput:" destination="ZrA-2J-S8F" eventType="touchUpInside" id="Mw3-yB-xQx"/>
                                     <action selector="showTextViewInput:" destination="ZrA-2J-S8F" eventType="touchUpInside" id="VUo-sj-a8H"/>
                                 </connections>
                             </button>
