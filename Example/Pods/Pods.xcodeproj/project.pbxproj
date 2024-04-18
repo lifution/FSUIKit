@@ -8,308 +8,325 @@
 
 /* Begin PBXBuildFile section */
 		00A2749F46C967ED4725A32357E3FB1B /* ConstraintLayoutSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA50A49AB14A27B030EF455D9943EB8B /* ConstraintLayoutSupport.swift */; };
-		018C77AA211CC90C31493C6AAF163730 /* BinaryInteger+FSUIKitSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = F672DC8B1A40A876D8C93FA973717145 /* BinaryInteger+FSUIKitSwift.swift */; };
-		01C245A059FE6828EE3AFB6C60D3CF67 /* FSToastContentConvertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19EAA3470C9741E7C5E74CEC624F1C0E /* FSToastContentConvertable.swift */; };
-		03F4DBBF979EE4227C0683A5414D5B99 /* UIView+FSToast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FFE414524058FA213215E1A466141E /* UIView+FSToast.swift */; };
+		035A8FFE43BF45FDBE344DDBD68040BD /* _InternalTextViewDelegator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20656F7DB9694C153BBC14E23D2513EA /* _InternalTextViewDelegator.swift */; };
 		04637C70546B34F93C3A1D79C3F78B37 /* ConstraintDirectionalInsetTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BC84DB0CD86A51B4B66E0450CBF40DE /* ConstraintDirectionalInsetTarget.swift */; };
 		0591132B5EA1BE4DDA268D8A9C3D0421 /* LayoutConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A6A462E0F0B040B83C8763773533FE /* LayoutConstraint.swift */; };
+		05A7926E9F8603CC3E2BCF9127FDB1F8 /* FSCollectionViewAnimatedFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D3847F8FECA2C71380493503BAB587 /* FSCollectionViewAnimatedFlowLayout.swift */; };
 		06E43B4751069B47B3BD4AFD936A57E3 /* ConstraintPriority.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57B4B15AAC3AB24B43306829FAA77A0 /* ConstraintPriority.swift */; };
 		0833E66E7F19849322305D67777B77DB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 101730EB667B099EB50342B41447C3FA /* Foundation.framework */; };
+		094BB95E5E3ECBBFC35C2E7EA8CDAA44 /* UIApplication+FSUIKitSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23762E6EA21FA04B976754C3B003D23C /* UIApplication+FSUIKitSwift.swift */; };
 		0B994CDC79B1AD3A7BE62490D27C60C8 /* ConstraintAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2DCDFF2011C08759407B4E2038CA11 /* ConstraintAttributes.swift */; };
-		13A552183EBEDDCF1AA3E76963B6C8E6 /* FSTextViewInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B498E2A031CFFA047BCEBA09AB48CDA7 /* FSTextViewInputViewController.swift */; };
-		17452D91E7A68B375861F35E49D7556B /* FSSeparatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B861380EF5A1DA4B10DFCC9739A4D3 /* FSSeparatorView.swift */; };
+		0BE1119B137F4F7327DD96B4EFFADC82 /* Array+FSUIKitSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C76AC94BBC14AB54F7DEEADEEAA32F3 /* Array+FSUIKitSwift.swift */; };
+		0E3BC04EDA265ECA82173DBD4E8B17FB /* InternalNamespace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3746C3A764AD5A0151CD9AA144D932D3 /* InternalNamespace.swift */; };
+		15087018A75E7E31D65FA25D9B3598B8 /* FSTapticEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = E334916A0C7228E79FAAD257CE3C62BA /* FSTapticEngine.swift */; };
+		1658093232E22150E97428017AC6EA2D /* FSKeyboardObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7957F6155A79BE43357A6D8F770D26 /* FSKeyboardObserver.swift */; };
+		16C45450F50CABBECCCE2AD13FE2DCCB /* FSTextFieldInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB70C77116AB1F9BC60742677EE3F2DE /* FSTextFieldInputViewController.swift */; };
 		183D8B3E057B885EA7DF9A8CDCCE9029 /* ConstraintMakerRelatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8251A08ED8E6CF34420BBF858126F7 /* ConstraintMakerRelatable.swift */; };
-		1A512131A896ACD9E8ED4F771B11C308 /* CoreGraphics+FSUIKitSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F89FFCF2841853AB75560BB2428873 /* CoreGraphics+FSUIKitSwift.swift */; };
-		1E0F33EBEE1F14A0F7D572C0B2C1FE33 /* FSFlexibleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC34AAC86DF752F4257438FAF343DDED /* FSFlexibleCell.swift */; };
+		1873A1B68E9A0F1214D1418389269FF0 /* CGFloatConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADE158E8C6312A781A70544F8F1AE0B /* CGFloatConvertible.swift */; };
+		18CF0FA1FC421499B3AE376909B51D9C /* FSToastBackgroundEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6398B4AA5EE7D2A35297D6CBC0ADF973 /* FSToastBackgroundEffect.swift */; };
+		1CA187A4B86F9C14F0D4174CB223F15C /* DateFormatter+FSUIKitSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50B8D08CB69CFBCBC06F995EC0E74CA /* DateFormatter+FSUIKitSwift.swift */; };
+		2125C47691F52226D2E41E8E4A960F8E /* UIStackView+FSUIKitSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CEB1CC959510B6198F98C0494F02826 /* UIStackView+FSUIKitSwift.swift */; };
 		220D6AC9B1B1EC8EFFB204F9C1EAC842 /* ConstraintMakerEditable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F57C38722D9F65992CF2200038C8651E /* ConstraintMakerEditable.swift */; };
-		2233CCF8D4313C3E342DFBD9CACD3A78 /* FSToastAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441522F270070D88BA7CA5B80BD5E595 /* FSToastAnimation.swift */; };
 		256558233B40ACA6818F143BBC5B8017 /* ConstraintViewDSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0072CC268C7456CC1DA6E8180975AB43 /* ConstraintViewDSL.swift */; };
-		27591BA0B9DB3C31F5F7939F56C274CE /* FSFlexibleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311ACAF45D17371AC9C57D80377730DA /* FSFlexibleView.swift */; };
-		2887AEF759F33AC3FE850C4436F3FB2B /* CGSize+FSUIKitSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818F334E5D3697A0324CF8556F21D330 /* CGSize+FSUIKitSwift.swift */; };
-		2916AFD210154F5BA9A189F7019DE896 /* FSNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1BA2EFE412CF160490F166EE1F744E /* FSNavigationBar.swift */; };
-		2EB82AB6EF032C8E75E4328631C469A4 /* FSKeyboardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A0A1F457BA28895DA00D8E1D87CD075 /* FSKeyboardManager.swift */; };
-		2EF0F5F3918F518F737D7A01473E722A /* FSToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303D1D7941424CB1C4BAEE6D059F9625 /* FSToastView.swift */; };
-		31A3ECF24A9C02661801DBCADC4B42DB /* UIEdgeInsets+FSUIKitSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BCCEC72BCECB0E1D721C5068FCC827 /* UIEdgeInsets+FSUIKitSwift.swift */; };
-		354588B57A803955C506D6B126B83E87 /* PublicNamespace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4837D0863A8AD4A280FC38E0306B1E3B /* PublicNamespace.swift */; };
+		2A5C418B0EAC11EF599C64222301A82D /* FSPageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8231708FAFCA8B961F8CCB3154BE0C /* FSPageControl.swift */; };
+		2AF638704CD790A8A543BFF5048AF286 /* CoreGraphics+FSUIKitSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C15BDFB9A60F300FCFDD525AB65DCAF /* CoreGraphics+FSUIKitSwift.swift */; };
+		2CE99E4AFBAEE1FBDB35AA50CFF3C561 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBD01C36D7C465A1C603CAF2F519C687 /* UIKit.framework */; };
+		2E8896149BBA11E644F1CEFC8B02504E /* FSEmptyViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 547661D0322BFAB44919CCC52F624079 /* FSEmptyViewDataSource.swift */; };
+		33BA22783E02E421BBD321F7F3474921 /* FSUIApplicationLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50A95D828110A12B7D5F45FDD2A74C3 /* FSUIApplicationLoader.swift */; };
+		353153E23D0F90D7B401F823A10C34FD /* UIControl+FSUIKitSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCEB718DFF96A8DDFE3E724C43441434 /* UIControl+FSUIKitSwift.swift */; };
 		3660B4F629053ABC3C1DF69366770289 /* ConstraintConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD101E65ADCCC341BCD3BFF777CA947C /* ConstraintConfig.swift */; };
+		37935A3844152B9E798013EA3ED6C592 /* FSKeyboardListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A2ED570D0E4E60E4E68B40851EECBE /* FSKeyboardListener.swift */; };
 		38B9D58E94D9C1CECD7E381C64A2329D /* UILayoutSupport+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152EE8343B4F64CFDE73F65CEF14A13F /* UILayoutSupport+Extensions.swift */; };
-		3A94D8873BC2A829DF63D7D6BF753279 /* FSFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFB6451427404D913D7543FC18D2F98 /* FSFormatter.swift */; };
-		40500FC80906B4C849395531000131C6 /* UIView+FSUIKitSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = B569ADE9E5A3A73B581994E018C1246B /* UIView+FSUIKitSwift.swift */; };
-		40DD0E3396820DB86E3A91B994698DF5 /* FSUIKitSwift-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 38859CFD8374B397768BFCCFA2A8230F /* FSUIKitSwift-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		40E4C3B89155DC5021A2FB593A4DFF56 /* NSAttributedString+FSUIKitSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20ED412EED9FD3743AF25E421118740 /* NSAttributedString+FSUIKitSwift.swift */; };
 		42B6ACFCF650183030867CB3EF345E95 /* ConstraintMakerFinalizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 412D51A2BEEF78C262C4B3F3798D1702 /* ConstraintMakerFinalizable.swift */; };
-		468E56D0EF3C6279D3439AA244FCC24D /* String+FSUIKitSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A494AE762CC7DD5673B76E08A6B433 /* String+FSUIKitSwift.swift */; };
-		4935C27BBA5DF04D476DAC520449333A /* FSPageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56AE8F80A8BEE40802A70A7805E1BAB8 /* FSPageControl.swift */; };
+		448B1F6FF3F3169E5B3A67C764AA95FA /* FSUIKitSwift-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B5843612D1322294580E3FF7A514FA7 /* FSUIKitSwift-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		44CE20B2FB000CB36D50F1E6DB774F34 /* FSTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6746C0CD28248702E43E8B01CEF80E22 /* FSTimer.swift */; };
+		485024345939650682318EFFCD48AC09 /* FSCollectionViewWaterfallLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D94B69ACDC57CBCA16CEE466BAA299 /* FSCollectionViewWaterfallLayout.swift */; };
 		4BAD99B7394E225CEDBF94B8100BCC7F /* ConstraintRelation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30E74C9EDB065D2E76B3EDCCB6E2153 /* ConstraintRelation.swift */; };
-		4BC622C0F660152322E5B34F1A04A720 /* FSToastContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C5B374FCD57183FDD3000AADDAFD701 /* FSToastContent.swift */; };
-		4C846EFF7F11F3B4F43E9CCE9E32197E /* _InternalTextFieldDelegator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB1443C492C2CD9682B5F714C1787D0 /* _InternalTextFieldDelegator.swift */; };
+		4CEF4A7F0F7F5153C4983FD89D65C216 /* FSToastAnimatedTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C46A76331FAC5CC5529BC879DC7E17 /* FSToastAnimatedTransitioning.swift */; };
 		4DA72FD7F1FB2C0449EDEF4B8A579807 /* ConstraintPriorityTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7096225ED146E16EC168C99FEDD215B5 /* ConstraintPriorityTarget.swift */; };
-		4EEF709343A5E0E96ABC7C0CEBF5A14B /* FSTextViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A16C346030F378B15FCED9E9A2BB428 /* FSTextViewDelegate.swift */; };
+		52D5448FEBFAADA70107C546EBB0F682 /* FSKeyboardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DCEADA75A282AA829D18595D3536337 /* FSKeyboardManager.swift */; };
 		5380454C48A12A6E376122ABD8096968 /* ConstraintDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A0BC61944B3E89515CACB83BB1B976 /* ConstraintDescription.swift */; };
 		55E51F45F1E157D3B4942BA7252C277E /* ConstraintRelatableTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF34962F54DAA8DEB0A1D7D4F3FC09A /* ConstraintRelatableTarget.swift */; };
 		56A72F6D13D930C4A2568F24DEA33C8D /* ConstraintLayoutSupportDSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5032FD34D5BB9A1F925C649B43CC02DC /* ConstraintLayoutSupportDSL.swift */; };
 		56AC6DC6459AE47E7BC4AF06E5B148D2 /* ConstraintDSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02732995CB94C03CB83E1935B434AD74 /* ConstraintDSL.swift */; };
-		597632C792B6E0D2AEBA407FB8FED8C4 /* Decimal+FSUIKitSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9166F948D26B3C2BB73D9E077EE5DC41 /* Decimal+FSUIKitSwift.swift */; };
+		5883FEB44F0E1173A9F020678D6FD395 /* UIScreen+FSUIKitSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93B067DE711B22DBB3A7B0297F0EC61 /* UIScreen+FSUIKitSwift.swift */; };
 		5AD6356AF2E2E1CDCBF61192BF696334 /* Pods-FSUIKit_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = B217352CAC5FAE339509269F8E426AD2 /* Pods-FSUIKit_Example-dummy.m */; };
 		5D36B99F3CAB1FC7337082D9581FECA6 /* Debugging.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CBE69DD3B611E4180FCBDD8CDE8814 /* Debugging.swift */; };
-		5F24B1F78C093FC3A2C946BF04628281 /* FSTextFieldInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC54799A07D389B088B708661416ABD1 /* FSTextFieldInputViewController.swift */; };
 		604D3C93C17978C23600EC415949AB64 /* ConstraintInsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D52A60BF41010F680313572B051598 /* ConstraintInsets.swift */; };
 		611CEF7FF1EF9EA1BCEF6C73EEE3ACCF /* ConstraintLayoutGuide.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55D2A11C17BBCE3C9F7F0BA9555B5AE /* ConstraintLayoutGuide.swift */; };
-		625656ACC22E9A621C88A68EDA8D5B94 /* UIImage+FSUIKit_Private.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937500348328421258E8A260D60408E6 /* UIImage+FSUIKit_Private.swift */; };
-		633A9ACE4B11E7035CDAC1294DD9B180 /* FSButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AECEEB94B2FBA927DE6467166E5406B /* FSButton.swift */; };
-		681B1598C74BF63AEC11186C888F784A /* FSToastBackgroundEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D57C9CE62D11850FF2B06EBFE585C97 /* FSToastBackgroundEffect.swift */; };
+		664ABD03A278686CBCE610D7F731FA0F /* FSEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0184D6B35D53E92585E6FA11954A20CD /* FSEmptyView.swift */; };
 		69DE75BA185BBAB5FDAA28321F3C849F /* ConstraintItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E5BB7E9F99F41E937A7E2CCEF178BE /* ConstraintItem.swift */; };
 		6AC1B881BB319C89AD023A02CDC8FC3D /* ConstraintLayoutGuide+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E04B678C00268C9CF7E410145D6F78AA /* ConstraintLayoutGuide+Extensions.swift */; };
-		6C03FDFA49AA2D7E7B08BC347CB66296 /* NSAttributedString+FSToast.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA81AB3672F0B657C30238BEDCDA2610 /* NSAttributedString+FSToast.swift */; };
+		6B2B10CCF8856C5FB19ED686025ABB0E /* FSVisualEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0237CD5237BA8323C25659FC12FD1EC0 /* FSVisualEffectView.swift */; };
 		6EAC8B6FA2D115DE708A58C601DD25E1 /* Constraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFDF096C3836F945945C9FFDB5090F5 /* Constraint.swift */; };
-		6F8CF2B13EED6D318CD6ABFEC34F20B4 /* UIViewController+FSUIKitSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF15CAE2353C82E39C2037BF0F04F00F /* UIViewController+FSUIKitSwift.swift */; };
-		706F3DCF44D82806E4389F4C87BB5326 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85AEFB9797F73F445F5F8FDC0FCA8F1C /* CoreText.framework */; };
-		717DCA2B598AB2A5DB65236881FBFF57 /* Array+FSUIKitSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDFB91FF399BA230625D0705115137D1 /* Array+FSUIKitSwift.swift */; };
-		7310AF98FE1AABDB67DC81BF41531C4B /* UIControl+FSUIKitSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F4BE569FCB2EE749C8EE9873355DB1 /* UIControl+FSUIKitSwift.swift */; };
-		73A4D9E679BFF8FFDED3AB0F30F98B3A /* FSToastAnimatedTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B2BA1EB7BBDE47E536BA6DFD142EA0 /* FSToastAnimatedTransitioning.swift */; };
-		74D2458F400535188E641F34800F51DD /* FSTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10CF974B744DE236FE95325F4F1CEDB /* FSTextView.swift */; };
-		78B68B521C01F84DD951693EB329B071 /* FSKeyboardObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F507CC798BF2E2721F0B8FD854C9E65 /* FSKeyboardObserver.swift */; };
-		7AAF6E6C390C66E5E87D19B8F11A1C89 /* UIStackView+FSUIKitSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30CC8A8972B8ECFA88DD7FF6E9E9A87B /* UIStackView+FSUIKitSwift.swift */; };
-		80082842FCD56CEEDA528D8FDAF8E9B5 /* FSCollectionViewWaterfallLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4673D0B70BAD78B8D5AC9B924C98E8AE /* FSCollectionViewWaterfallLayout.swift */; };
-		832429438A5E6E2EF2FCC3B626FFCE04 /* Float+FSUIKitSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA085528930FECC4082D89ECA9840F55 /* Float+FSUIKitSwift.swift */; };
-		86A48CB5A163763AE295708A170CF3AE /* FSVisualEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F0E7311DB84737D97BC1F45285DA1B /* FSVisualEffectView.swift */; };
-		86C165888EB87EE7B6ED9E450711EAB6 /* Collection+FSUIKitSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2545658D2134C34895AB5E687F51CD01 /* Collection+FSUIKitSwift.swift */; };
-		87DCE6F3AFB88B85A0C91D8B2678EDCC /* UIColor+FSUIKitSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57AD97515B17D19F9F282BB29827D84F /* UIColor+FSUIKitSwift.swift */; };
-		8E00C69D7F6494D1FEB37C0FE2349FF6 /* UIApplication+FSUIKitSwiftHook.h in Headers */ = {isa = PBXBuildFile; fileRef = 08B35BFB81393A3C53960CD0F7914560 /* UIApplication+FSUIKitSwiftHook.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		920AB6408D1477778B736714F434D16F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1BD8E5B5F14FFFF9F60FCD03CD5F2902 /* Assets.xcassets */; };
-		94859B2BA243D26D6F82F26E1379BE4A /* Double+FSUIKitSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123C0CA78A4FDD7111773A8C3340609B /* Double+FSUIKitSwift.swift */; };
+		702C3117D7FFABC4325819B1420C4A7C /* FSTextViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174CBF52F36910BB1F4A9560CB98ED29 /* FSTextViewDelegate.swift */; };
+		75274F7994A62509077F737B0DCB4168 /* FSEmptyContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841D277CD1ACBD026E854DB89A4DE5F6 /* FSEmptyContent.swift */; };
+		7A118408220E2B4AE1C76C0C34A34FD6 /* String+FSUIKitSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FBB080B59B18F59FDC7E70797C9E059 /* String+FSUIKitSwift.swift */; };
+		7ED5320A10CD7A575537F3A212641CAF /* FSToastTapticEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABFFB61BA89449E34D5954CE3C374E4 /* FSToastTapticEffect.swift */; };
+		82AD98DE9FC2AC11AF1F497463A2F630 /* FSTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251F9C3D17B88644ABE86AA3BD46B454 /* FSTextView.swift */; };
+		8A615FA3A41C4B876B85692D3D3FCAC7 /* Float+FSUIKitSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = A807AEA502BC87B9F92160F7EC348EC5 /* Float+FSUIKitSwift.swift */; };
+		8C1BD78DC7A65DE0FD1D61BCF14B32CB /* FSButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9713B8A440401866721CD3F376426AC /* FSButton.swift */; };
+		8C48A6CDFA4F1F610748F98D1F6C8CD5 /* Date+FSUIKitSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2BC6E1A029902D2AAD8D229BA86A1F /* Date+FSUIKitSwift.swift */; };
+		8E1D1D0ED15EB0BA16A900980CE1A684 /* FSFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8124922A72C076AE56C9D99CE9F3B3FB /* FSFormatter.swift */; };
+		8F02614C4752F8F3EEDB7636D7EBE103 /* FSTextViewInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FDBB8AA2688F7223C8BAFD8F954E67 /* FSTextViewInputViewController.swift */; };
+		8F24A2D5D6FEC871A33479B36DDE5206 /* FSToastContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 428948E9E96073A263AE0547F34B3089 /* FSToastContent.swift */; };
 		95E194A3AABB5407231E898B6686F73E /* ConstraintMakerRelatable+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 583BBF75085D255E27A5F9EF9EC203A5 /* ConstraintMakerRelatable+Extensions.swift */; };
-		97E6472A5ACD773AACBC1BC8D971E779 /* DateFormatter+FSUIKitSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486BDD0E38EAC63F76DF519414168F4E /* DateFormatter+FSUIKitSwift.swift */; };
 		98F570DA48370453D648BD526FDAAEAA /* LayoutConstraintItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE15C12D4B2736CB1D1B07F4838FCA7 /* LayoutConstraintItem.swift */; };
-		998E3F8F71E2CB9D9718520CE87E3EFF /* CALayer+FSUIKitSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9ADBF750310B8CD1D8AD88C8358A3D /* CALayer+FSUIKitSwift.swift */; };
+		9C67661476B9A5D408987EE6DC303284 /* FSToast.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE463CCAE47F528CBC2B23009D843880 /* FSToast.swift */; };
 		9C9548E8B4675954566202F7B87FF0E6 /* ConstraintConstantTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = C282AEDFB53BD2F6B277738727FF116D /* ConstraintConstantTarget.swift */; };
-		9D748FD841DA2D6D69462E718E9EAA40 /* FSCollectionViewWaterfallLayoutDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B9CA7FBBE700095B8B057F2762D9F2 /* FSCollectionViewWaterfallLayoutDelegate.swift */; };
 		9E02CFFEFE1BEC978B512286F03D31DA /* ConstraintInsetTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE5693124BFA9269D2085EC1ADFAAD76 /* ConstraintInsetTarget.swift */; };
 		A03FDA8BC5741880B1EF11AFD248EF48 /* ConstraintOffsetTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751D5202E1F291CC13F7AE0CD669B831 /* ConstraintOffsetTarget.swift */; };
+		A191BCDEB49EE5A3FAF0A519F4E86B19 /* CGSize+FSUIKitSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8000642C050EF133C538B2D7F61CE5F0 /* CGSize+FSUIKitSwift.swift */; };
 		A3E3AB7C765C21AE17B1E6EE6560040C /* SnapKit-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 932076048BB79360F50A76C2C738DFC8 /* SnapKit-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A520C86266436D58CCC503967E75AFC3 /* FSKeyboardListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D20A6DFFAD45BC9214D7ED2306FE97 /* FSKeyboardListener.swift */; };
-		A563DFA3CC97E5D1D7ECD690787E8003 /* FSUIApplicationLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A0B9EAA2D247F2B054B90C560503E7 /* FSUIApplicationLoader.swift */; };
+		A4EF25A8282163122F55DB509A830247 /* FSToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563C9192B5665BDD0C71F868747F8D26 /* FSToolBar.swift */; };
 		A5A8BF973BFE9C9304372A26C9F2E35B /* ConstraintMakerExtendable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFBBDB0D11D15EA3C0D640EF407F700 /* ConstraintMakerExtendable.swift */; };
-		A60379455D8A7ACBC3FEE49D412612F2 /* FSToast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3579D2F096437489D239BD98DCF678 /* FSToast.swift */; };
+		A66F65C459E3A60203619D929B4718FC /* FSUIKitSwift-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 700568291C02B57ED93E6D62BF467E6D /* FSUIKitSwift-dummy.m */; };
+		A6E290B04F484DBB6DF27B937C55F561 /* FSToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0E520E550451968E5D8D67883C3FF9 /* FSToastView.swift */; };
+		A7E077FA363C40B3A1958C347A09F886 /* FSEmptyContentProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = C952DE2190B3DFC8269C804D25B993B7 /* FSEmptyContentProxy.swift */; };
+		A860F85771DE1A770298CFD7111AE86B /* UIView+FSUIKitSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27DA1BCEBEADF3D31815ED8C6F323598 /* UIView+FSUIKitSwift.swift */; };
+		AA9EF369CA9204C9FA89E2700D66A93E /* FSEmptyViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 973059B51ECD619FD9896FF3F32CBF5E /* FSEmptyViewDelegate.swift */; };
+		ACEB68026B7D3D475E63348D0843D571 /* FSCollectionViewWaterfallLayoutDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9ED171405A8B6D16A1C6BAB927816E /* FSCollectionViewWaterfallLayoutDelegate.swift */; };
+		AE318C52FB4C394DFBDB59484652F64A /* Double+FSUIKitSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCFF979086DCAF368C4CB100B9EA8781 /* Double+FSUIKitSwift.swift */; };
+		B011A6A42CCDE8423D67F1FE4D50EC65 /* NSAttributedString+FSToast.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFE44F16C55085EC9C68B640ABA2E2D5 /* NSAttributedString+FSToast.swift */; };
+		B029588C33F44574C5A58FFF03CB76E1 /* UIViewController+FSToast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974EF805BC376408922DC11EC3EDD156 /* UIViewController+FSToast.swift */; };
 		B03B5579590D528CBA6D11FF638BC2AF /* Typealiases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960E2E91424D9428F311B73888D8E927 /* Typealiases.swift */; };
-		B22886A9FB087166B3231A56326096F0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBD01C36D7C465A1C603CAF2F519C687 /* UIKit.framework */; };
+		B281FA16488328903EB486821526DA47 /* UIApplication+FSUIKitSwiftHook.h in Headers */ = {isa = PBXBuildFile; fileRef = 34B4DA158EE7D0BA68CC5907EADCF0A7 /* UIApplication+FSUIKitSwiftHook.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B31F4DD30697A4A31E90A329902C0A0A /* FSNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE206060AC07CF19606AC6D262A708B /* FSNavigationBar.swift */; };
+		B336FD78A50ED3C5C1E66661443819C8 /* FSFlexibleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27175038096E8A7E7277C910BD3771A1 /* FSFlexibleView.swift */; };
 		B43017FEC99D227D4CDD81DD2C27D9D9 /* ConstraintMakerPrioritizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A527ED8F0A719FF610D743A87DAD3 /* ConstraintMakerPrioritizable.swift */; };
-		B4A745376C85B8A9DA231E1A4CD601BD /* UIApplication+FSUIKitSwiftHook.m in Sources */ = {isa = PBXBuildFile; fileRef = D146F813DBF85853D49A4B01C0F5DF48 /* UIApplication+FSUIKitSwiftHook.m */; };
+		B60D2122A8D288DE4F582935C19C4424 /* Decimal+FSUIKitSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5E263328AC22359D1604FB696594BA /* Decimal+FSUIKitSwift.swift */; };
 		B752F7C4BECB65894B1F49421049CE5F /* ConstraintView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458867733779570F7398C76B46AEAF5E /* ConstraintView.swift */; };
+		B75A6804E2297A4AED13240D0C305891 /* FSKeyboardTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE3ACD3229D313A4052CEC60DE50B43 /* FSKeyboardTransition.swift */; };
+		BC09F83F1EF22B3DAB4807B4B7A7B32F /* BinaryInteger+FSUIKitSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1BC839EC1BB03D42BB068EB6478400F /* BinaryInteger+FSUIKitSwift.swift */; };
+		BC5B7E17261DED4F9855453DECBA7946 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 101730EB667B099EB50342B41447C3FA /* Foundation.framework */; };
 		BD47CB74CD9B2B4D2D942C9B65748DFB /* SnapKit-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 143498449916D71708A8AF2F96E7320A /* SnapKit-dummy.m */; };
-		C25C695226FF561FE99892F371FF75D2 /* _InternalTextViewDelegator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F165B624FFB1BF8350CD80DC2D55405 /* _InternalTextViewDelegator.swift */; };
-		CA015643F8AEFE81404C161DE20314F1 /* FSReloadableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AFC3BCD204D6B8F9580BDDABE2A473 /* FSReloadableView.swift */; };
+		BF3D97F6441B81EDF53F9954CD110FF8 /* FSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8DC4B23630E77211C180D8D1DDC19F /* FSViewController.swift */; };
+		BFB03CD4C31A36842302453091DC2D85 /* FSReloadableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D3846F0720E338F605E23F882B7EE8B /* FSReloadableView.swift */; };
+		C06E2919AF8C4F588726BDDA43BFDED6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C036BDFC758B46C21F176881544E8CD6 /* Assets.xcassets */; };
+		C118F27E5DCE5A0F260FB54E9F7278E2 /* FSToastAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CCA3D0A730FDB7BCA18F9FCBB262D35 /* FSToastAnimation.swift */; };
+		C2715A36833B437567A031724C655B9F /* FSToastContentConvertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2895CE036C7AE37FDF004C6DC35F7F /* FSToastContentConvertable.swift */; };
+		CA191A880F6EF330727DD727DC0DE0A4 /* UIView+FSToast.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33266F468705F7A82C236ECD7B5566E /* UIView+FSToast.swift */; };
+		CD484A69383F83BC198F0AE1748B9D5D /* FSSeparatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F8A3CDB3452345647888C0878CCBF4 /* FSSeparatorView.swift */; };
+		CE65BBCB6D5EA5FBED55DD6BE603454B /* PublicNamespace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9F9AAF83692FEC54A147FD2FD87AD3 /* PublicNamespace.swift */; };
 		CEF724726D612D7BD367B60E1695572D /* Pods-FSUIKit_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = C8F83FE9C4B5C437024512B014590DED /* Pods-FSUIKit_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		CF0B6CA7D21AA23F19C70B5E7C2B167B /* FSToastTapticEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE37A93FA8A7955AB845BD0A0AC8A7ED /* FSToastTapticEffect.swift */; };
-		D1BD66743E23499EAFB6D6521B950838 /* FSTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D19796A4D117093F137F25DC699807AE /* FSTimer.swift */; };
-		D2D60E8F2A9C5D91A6006C1F995DC17C /* UIViewEffectViewiOS14.swift in Sources */ = {isa = PBXBuildFile; fileRef = 973E0B80AD6BDD6EF4D8D397284222F7 /* UIViewEffectViewiOS14.swift */; };
-		D3D440CF232E8A7665375E122E7EE062 /* FSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AFC9223168CBC0BF3DC4AC04834A223 /* FSViewController.swift */; };
-		D4C7933BE79D6443447A2AE890606C2D /* UIViewController+FSToast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E757ECD88371A81C4B930CAA06738AF /* UIViewController+FSToast.swift */; };
-		D53974D8B605AA954F48750363DE039A /* FSToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8698520F041B64276764E99019BA38B9 /* FSToolBar.swift */; };
-		D602DA3949A014D73F1533781DE3D8C3 /* FSTapticEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = F359C18DEDCAEAD7D45A83F62F14E4E4 /* FSTapticEngine.swift */; };
-		D6CE15805755A5720DCD9FEB234132D8 /* UIScreen+FSUIKitSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D44585DF8E967083F4B4A8F6742A99 /* UIScreen+FSUIKitSwift.swift */; };
-		DD9A39EF6ED692C5362AD3EC96E2E040 /* FSFlexibleItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245BFF2446B609E9C76D542BEE10FE9C /* FSFlexibleItem.swift */; };
-		DFD13F7D58844F37E1534D4AF2495968 /* NSAttributedString+FSUIKitSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4289A1C7A2E75B3A5474C49EF2F99BDA /* NSAttributedString+FSUIKitSwift.swift */; };
-		E1DA0EA4DEE516BA93C812C872BFDD9B /* FSUIKitSwift-FSUIKitSwift in Resources */ = {isa = PBXBuildFile; fileRef = 385994136B2BD110C038B9DD5F9A2D0D /* FSUIKitSwift-FSUIKitSwift */; };
-		E6090250292987CDAF11D9D8D1B137BF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 101730EB667B099EB50342B41447C3FA /* Foundation.framework */; };
-		E7C750C1FF8E4E7639EC13A0157380C5 /* CGFloatConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F353AD923E951D69B7A3762DC84FBF8 /* CGFloatConvertible.swift */; };
+		D576B64FBCD4594C5DDCC7BE44439F7F /* FSUIKitSwift-FSUIKitSwift in Resources */ = {isa = PBXBuildFile; fileRef = 385994136B2BD110C038B9DD5F9A2D0D /* FSUIKitSwift-FSUIKitSwift */; };
+		D805006AFA852CD5C6D7248176719241 /* UIViewController+FSUIKitSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9734AB8C3081F2C70C847508B9354EB9 /* UIViewController+FSUIKitSwift.swift */; };
+		E2EF68EC7CA5BA10C747A541985DA9FE /* FSCornerRoundingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10CC122E12D8FFB93D5BDD63ACA563CE /* FSCornerRoundingView.swift */; };
+		E4AC5D62A94ACAE96969FB7BBE8A3995 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85AEFB9797F73F445F5F8FDC0FCA8F1C /* CoreText.framework */; };
+		E631F98BC3AE0C2F4C00C125589DBE81 /* UIEdgeInsets+FSUIKitSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDB0FD008011E0D1740882BF596A765 /* UIEdgeInsets+FSUIKitSwift.swift */; };
+		E91D4EE0D84CC25B7D0D11C92D1D0027 /* UIImage+FSUIKit_Private.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CBCC19A9B8B161BDCDBE79FDCDCF7A0 /* UIImage+FSUIKit_Private.swift */; };
+		E93271A0A7EA454F9AE12E07C0C08DDC /* UIApplication+FSUIKitSwiftHook.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C23219C79B29CCCD89B38EFF03CB177 /* UIApplication+FSUIKitSwiftHook.m */; };
+		E976836415532516ACA1D0E8C285F151 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9292ADAFD66A11EA3B2334A0EF1BD508 /* CoreGraphics.framework */; };
 		E98DC8FB2578E76A812E0C94BA10E1B1 /* ConstraintDirectionalInsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8DFD8FEE78807F86F0544749C80450 /* ConstraintDirectionalInsets.swift */; };
-		EA28089E9766CEFA85DB464D361F68C1 /* InternalNamespace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71EA173B72B405B0C3418612BA8F2E1B /* InternalNamespace.swift */; };
-		EBB5D13614EBB248D80DEE5D82E7E710 /* UIImage+FSUIKitSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14C7B22DB99F8DBE26B7755140086BA /* UIImage+FSUIKitSwift.swift */; };
-		EBD1D4ACB9233ACCCB295928E9F5DD06 /* FSCornerRoundingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE5868939384D224EB34E92FCD28D6F /* FSCornerRoundingView.swift */; };
-		EE108BC3EC2CA169CB6F47ADEE1F8952 /* UIApplication+FSUIKitSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2ADF84B8875ED6D4C09483F3D81F16 /* UIApplication+FSUIKitSwift.swift */; };
+		EB23A46DA0A564CBEE9990645AA9EAC2 /* FSFlexibleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB94ECD9BEFCDD25F22A992215847F33 /* FSFlexibleCell.swift */; };
+		EBEB94AA3627F18FB351ACA8825CC2B1 /* UIImage+FSUIKitSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A0D9BEA703943515B289B8B73A1529F /* UIImage+FSUIKitSwift.swift */; };
 		EF21586EC3DFF6097A58EEC87376A0C1 /* ConstraintLayoutGuideDSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91F91B010D4991E838DAC578595BA7A /* ConstraintLayoutGuideDSL.swift */; };
-		F12A14A28149449478516BDFF2C9D1A9 /* FSTextViewTextParseable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C7F447B7CAD754273EBEBC9D41AF6F /* FSTextViewTextParseable.swift */; };
-		F2A7F5475ECAA4F9EDFF770B855D9902 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9292ADAFD66A11EA3B2334A0EF1BD508 /* CoreGraphics.framework */; };
-		F4E81DF615A12C27AA9F732DC4DD8F2A /* FSKeyboardTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = F05C3EF90675B26D4BCAABA3777092E8 /* FSKeyboardTransition.swift */; };
-		F61DD9A513508D737E80FB96E919D66D /* Date+FSUIKitSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D44CED3150734F307373896468270AC /* Date+FSUIKitSwift.swift */; };
+		F10F42CC09C4894E9B0C97DBD5D39721 /* UIColor+FSUIKitSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BAEC66FD2397930C4B64DC9A9A1FC0 /* UIColor+FSUIKitSwift.swift */; };
+		F42C816175B8D02221466A6A2181ABE8 /* FSTextViewTextParseable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D666BECB7C44E02ED35FEB9C5357B1 /* FSTextViewTextParseable.swift */; };
+		F58FE83E77EEEF4D682A1703353292FA /* _InternalTextFieldDelegator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F31D1D56400F099E339903B55861CA /* _InternalTextFieldDelegator.swift */; };
 		F7C0960CEEB8F0C18F4503B405EAC08F /* ConstraintMultiplierTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00529F62152FE0E9A82AF6D8EAAAE2E1 /* ConstraintMultiplierTarget.swift */; };
+		F95117E6ED51AC1AA5F0D2B8599AB483 /* CALayer+FSUIKitSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD0ABC27C01F0140802F44E1FB6537F /* CALayer+FSUIKitSwift.swift */; };
 		F953AA9104BFE0C2DAD639EA60104A75 /* ConstraintView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83141A7BA266489296BCBEF99AC5412 /* ConstraintView+Extensions.swift */; };
-		F9839740CA635F8CB0100A060916AAE3 /* FSCollectionViewAnimatedFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72E9A8F44A939BAB167A4F00B2C5F8E0 /* FSCollectionViewAnimatedFlowLayout.swift */; };
-		F9A766FA65050F6DB7FFA28EBE327FE7 /* FSUIKitSwift-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 099BC283510714CE2F5C2606864FBD4E /* FSUIKitSwift-dummy.m */; };
+		FA4DC6ECF490711D6822450337EF2360 /* UIViewEffectViewiOS14.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2E2581F517955BE4EFB0B6C855DC37 /* UIViewEffectViewiOS14.swift */; };
 		FAB03959C2357E325B19E08BC4775DAB /* ConstraintMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4B3092297166519217A25AD70D5341 /* ConstraintMaker.swift */; };
+		FB789CD3A8EA5E18BB56025885908762 /* FSFlexibleItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86410C967BCFEFFD4001D9EA0BB36CBB /* FSFlexibleItem.swift */; };
 		FDAC4781D6982A0DF5C0A01CE82571FE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 101730EB667B099EB50342B41447C3FA /* Foundation.framework */; };
+		FE636DDAC61883107E7CFF9EC6C98E16 /* Collection+FSUIKitSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE30B9A93C59297CE4A13163E4802EA /* Collection+FSUIKitSwift.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		3B3371F6FBE98885D9BC2C2DD720D4DD /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = DDDE61E66D18F4CA02AF50F4F0E4DBB6;
-			remoteInfo = FSUIKitSwift;
-		};
-		3BBCF9D3FE34F23C0D94D61FD453D6AC /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 19622742EBA51E823D6DAE3F8CDBFAD4;
-			remoteInfo = SnapKit;
-		};
-		A7C227D661C222F8FD0EE466E564A8F6 /* PBXContainerItemProxy */ = {
+		16F37B6F37C2F3D6A310AC7D0E4482C9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = A69F2BD3E2A1D5E5DE6816A06D57A7C1;
 			remoteInfo = "FSUIKitSwift-FSUIKitSwift";
 		};
+		40B0981274DE498DEBE800DA7F96C7AC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 19622742EBA51E823D6DAE3F8CDBFAD4;
+			remoteInfo = SnapKit;
+		};
+		5C9FFE253950B7104479A3FAA6EACDCD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DDDE61E66D18F4CA02AF50F4F0E4DBB6;
+			remoteInfo = FSUIKitSwift;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		00529F62152FE0E9A82AF6D8EAAAE2E1 /* ConstraintMultiplierTarget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintMultiplierTarget.swift; path = Sources/ConstraintMultiplierTarget.swift; sourceTree = "<group>"; };
 		0072CC268C7456CC1DA6E8180975AB43 /* ConstraintViewDSL.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintViewDSL.swift; path = Sources/ConstraintViewDSL.swift; sourceTree = "<group>"; };
-		01F33FD26AFE8757ACE0272A65333A96 /* FSUIKitSwift-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FSUIKitSwift-prefix.pch"; sourceTree = "<group>"; };
+		0184D6B35D53E92585E6FA11954A20CD /* FSEmptyView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FSEmptyView.swift; sourceTree = "<group>"; };
+		0237CD5237BA8323C25659FC12FD1EC0 /* FSVisualEffectView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FSVisualEffectView.swift; sourceTree = "<group>"; };
 		02732995CB94C03CB83E1935B434AD74 /* ConstraintDSL.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintDSL.swift; path = Sources/ConstraintDSL.swift; sourceTree = "<group>"; };
-		06B9F678AD5A056A890297F4ECF8DE3A /* FSUIKitSwift.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = FSUIKitSwift.modulemap; sourceTree = "<group>"; };
-		08B35BFB81393A3C53960CD0F7914560 /* UIApplication+FSUIKitSwiftHook.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UIApplication+FSUIKitSwiftHook.h"; sourceTree = "<group>"; };
-		099BC283510714CE2F5C2606864FBD4E /* FSUIKitSwift-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "FSUIKitSwift-dummy.m"; sourceTree = "<group>"; };
 		0A4B3092297166519217A25AD70D5341 /* ConstraintMaker.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintMaker.swift; path = Sources/ConstraintMaker.swift; sourceTree = "<group>"; };
 		0AFDF096C3836F945945C9FFDB5090F5 /* Constraint.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Constraint.swift; path = Sources/Constraint.swift; sourceTree = "<group>"; };
-		0C955382028351DE50A7B3E33BF4CF25 /* FSUIKitSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FSUIKitSwift.debug.xcconfig; sourceTree = "<group>"; };
-		0D57C9CE62D11850FF2B06EBFE585C97 /* FSToastBackgroundEffect.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FSToastBackgroundEffect.swift; sourceTree = "<group>"; };
+		0DCC41DEBA28327DD56C79D2CF5EF713 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
 		0EE5F8CB92905AE76169A71226B44035 /* SnapKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SnapKit.debug.xcconfig; sourceTree = "<group>"; };
 		101730EB667B099EB50342B41447C3FA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		123C0CA78A4FDD7111773A8C3340609B /* Double+FSUIKitSwift.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "Double+FSUIKitSwift.swift"; sourceTree = "<group>"; };
-		12731F1A0B2CBAE63C06C41A834A20DF /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		10CC122E12D8FFB93D5BDD63ACA563CE /* FSCornerRoundingView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FSCornerRoundingView.swift; sourceTree = "<group>"; };
 		143498449916D71708A8AF2F96E7320A /* SnapKit-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SnapKit-dummy.m"; sourceTree = "<group>"; };
 		152EE8343B4F64CFDE73F65CEF14A13F /* UILayoutSupport+Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UILayoutSupport+Extensions.swift"; path = "Sources/UILayoutSupport+Extensions.swift"; sourceTree = "<group>"; };
-		19EAA3470C9741E7C5E74CEC624F1C0E /* FSToastContentConvertable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FSToastContentConvertable.swift; sourceTree = "<group>"; };
-		1A16C346030F378B15FCED9E9A2BB428 /* FSTextViewDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FSTextViewDelegate.swift; sourceTree = "<group>"; };
-		1A73653B7B6D56AE64152722C58BC0A8 /* FSUIKitSwift-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "FSUIKitSwift-Info.plist"; sourceTree = "<group>"; };
-		1BD8E5B5F14FFFF9F60FCD03CD5F2902 /* Assets.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Sources/Assets/Assets.xcassets; sourceTree = "<group>"; };
-		1F353AD923E951D69B7A3762DC84FBF8 /* CGFloatConvertible.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CGFloatConvertible.swift; sourceTree = "<group>"; };
-		245BFF2446B609E9C76D542BEE10FE9C /* FSFlexibleItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FSFlexibleItem.swift; sourceTree = "<group>"; };
-		2545658D2134C34895AB5E687F51CD01 /* Collection+FSUIKitSwift.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "Collection+FSUIKitSwift.swift"; sourceTree = "<group>"; };
+		174CBF52F36910BB1F4A9560CB98ED29 /* FSTextViewDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FSTextViewDelegate.swift; sourceTree = "<group>"; };
+		1AD0ABC27C01F0140802F44E1FB6537F /* CALayer+FSUIKitSwift.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "CALayer+FSUIKitSwift.swift"; sourceTree = "<group>"; };
+		1B5843612D1322294580E3FF7A514FA7 /* FSUIKitSwift-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FSUIKitSwift-umbrella.h"; sourceTree = "<group>"; };
+		1D9F9AAF83692FEC54A147FD2FD87AD3 /* PublicNamespace.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PublicNamespace.swift; path = Sources/Classes/PublicNamespace.swift; sourceTree = "<group>"; };
+		20656F7DB9694C153BBC14E23D2513EA /* _InternalTextViewDelegator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = _InternalTextViewDelegator.swift; sourceTree = "<group>"; };
+		23762E6EA21FA04B976754C3B003D23C /* UIApplication+FSUIKitSwift.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UIApplication+FSUIKitSwift.swift"; sourceTree = "<group>"; };
+		24D94B69ACDC57CBCA16CEE466BAA299 /* FSCollectionViewWaterfallLayout.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FSCollectionViewWaterfallLayout.swift; sourceTree = "<group>"; };
+		251F9C3D17B88644ABE86AA3BD46B454 /* FSTextView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FSTextView.swift; sourceTree = "<group>"; };
 		26E5BB7E9F99F41E937A7E2CCEF178BE /* ConstraintItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintItem.swift; path = Sources/ConstraintItem.swift; sourceTree = "<group>"; };
-		284792D62D4BDFD9DFFB88769D4142DB /* FSUIKitSwift.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = FSUIKitSwift.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		2A3579D2F096437489D239BD98DCF678 /* FSToast.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FSToast.swift; sourceTree = "<group>"; };
-		303D1D7941424CB1C4BAEE6D059F9625 /* FSToastView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FSToastView.swift; sourceTree = "<group>"; };
-		30CC8A8972B8ECFA88DD7FF6E9E9A87B /* UIStackView+FSUIKitSwift.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UIStackView+FSUIKitSwift.swift"; sourceTree = "<group>"; };
-		311ACAF45D17371AC9C57D80377730DA /* FSFlexibleView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FSFlexibleView.swift; sourceTree = "<group>"; };
-		33D20A6DFFAD45BC9214D7ED2306FE97 /* FSKeyboardListener.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FSKeyboardListener.swift; sourceTree = "<group>"; };
+		27175038096E8A7E7277C910BD3771A1 /* FSFlexibleView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FSFlexibleView.swift; sourceTree = "<group>"; };
+		27D3847F8FECA2C71380493503BAB587 /* FSCollectionViewAnimatedFlowLayout.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FSCollectionViewAnimatedFlowLayout.swift; sourceTree = "<group>"; };
+		27DA1BCEBEADF3D31815ED8C6F323598 /* UIView+FSUIKitSwift.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UIView+FSUIKitSwift.swift"; sourceTree = "<group>"; };
+		2973A80EFFFAB3F415D4285A59A59EE6 /* FSUIKitSwift.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = FSUIKitSwift.modulemap; sourceTree = "<group>"; };
+		2ADE158E8C6312A781A70544F8F1AE0B /* CGFloatConvertible.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CGFloatConvertible.swift; sourceTree = "<group>"; };
+		2AE30B9A93C59297CE4A13163E4802EA /* Collection+FSUIKitSwift.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "Collection+FSUIKitSwift.swift"; sourceTree = "<group>"; };
+		2CEB1CC959510B6198F98C0494F02826 /* UIStackView+FSUIKitSwift.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UIStackView+FSUIKitSwift.swift"; sourceTree = "<group>"; };
+		34B4DA158EE7D0BA68CC5907EADCF0A7 /* UIApplication+FSUIKitSwiftHook.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UIApplication+FSUIKitSwiftHook.h"; sourceTree = "<group>"; };
+		36FDBB8AA2688F7223C8BAFD8F954E67 /* FSTextViewInputViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FSTextViewInputViewController.swift; sourceTree = "<group>"; };
+		3746C3A764AD5A0151CD9AA144D932D3 /* InternalNamespace.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = InternalNamespace.swift; sourceTree = "<group>"; };
 		385994136B2BD110C038B9DD5F9A2D0D /* FSUIKitSwift-FSUIKitSwift */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "FSUIKitSwift-FSUIKitSwift"; path = FSUIKitSwift.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
-		38859CFD8374B397768BFCCFA2A8230F /* FSUIKitSwift-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FSUIKitSwift-umbrella.h"; sourceTree = "<group>"; };
 		38A6A462E0F0B040B83C8763773533FE /* LayoutConstraint.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LayoutConstraint.swift; path = Sources/LayoutConstraint.swift; sourceTree = "<group>"; };
-		38D44585DF8E967083F4B4A8F6742A99 /* UIScreen+FSUIKitSwift.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UIScreen+FSUIKitSwift.swift"; sourceTree = "<group>"; };
 		3AF34962F54DAA8DEB0A1D7D4F3FC09A /* ConstraintRelatableTarget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintRelatableTarget.swift; path = Sources/ConstraintRelatableTarget.swift; sourceTree = "<group>"; };
+		3FBB080B59B18F59FDC7E70797C9E059 /* String+FSUIKitSwift.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "String+FSUIKitSwift.swift"; sourceTree = "<group>"; };
 		401F4A192D3443889E0036AFAF37948D /* Pods-FSUIKit_Example */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-FSUIKit_Example"; path = Pods_FSUIKit_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		412D51A2BEEF78C262C4B3F3798D1702 /* ConstraintMakerFinalizable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintMakerFinalizable.swift; path = Sources/ConstraintMakerFinalizable.swift; sourceTree = "<group>"; };
-		4289A1C7A2E75B3A5474C49EF2F99BDA /* NSAttributedString+FSUIKitSwift.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+FSUIKitSwift.swift"; sourceTree = "<group>"; };
-		441522F270070D88BA7CA5B80BD5E595 /* FSToastAnimation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FSToastAnimation.swift; sourceTree = "<group>"; };
+		428948E9E96073A263AE0547F34B3089 /* FSToastContent.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FSToastContent.swift; sourceTree = "<group>"; };
 		458867733779570F7398C76B46AEAF5E /* ConstraintView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintView.swift; path = Sources/ConstraintView.swift; sourceTree = "<group>"; };
-		4673D0B70BAD78B8D5AC9B924C98E8AE /* FSCollectionViewWaterfallLayout.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FSCollectionViewWaterfallLayout.swift; sourceTree = "<group>"; };
-		4837D0863A8AD4A280FC38E0306B1E3B /* PublicNamespace.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PublicNamespace.swift; path = Sources/Classes/PublicNamespace.swift; sourceTree = "<group>"; };
-		486BDD0E38EAC63F76DF519414168F4E /* DateFormatter+FSUIKitSwift.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "DateFormatter+FSUIKitSwift.swift"; sourceTree = "<group>"; };
-		48F0E7311DB84737D97BC1F45285DA1B /* FSVisualEffectView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FSVisualEffectView.swift; sourceTree = "<group>"; };
-		4A0A1F457BA28895DA00D8E1D87CD075 /* FSKeyboardManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FSKeyboardManager.swift; sourceTree = "<group>"; };
+		46BAEC66FD2397930C4B64DC9A9A1FC0 /* UIColor+FSUIKitSwift.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UIColor+FSUIKitSwift.swift"; sourceTree = "<group>"; };
+		4ABFFB61BA89449E34D5954CE3C374E4 /* FSToastTapticEffect.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FSToastTapticEffect.swift; sourceTree = "<group>"; };
+		4C15BDFB9A60F300FCFDD525AB65DCAF /* CoreGraphics+FSUIKitSwift.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "CoreGraphics+FSUIKitSwift.swift"; sourceTree = "<group>"; };
 		4C8251A08ED8E6CF34420BBF858126F7 /* ConstraintMakerRelatable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintMakerRelatable.swift; path = Sources/ConstraintMakerRelatable.swift; sourceTree = "<group>"; };
-		4FFB6451427404D913D7543FC18D2F98 /* FSFormatter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FSFormatter.swift; sourceTree = "<group>"; };
+		4DDB0FD008011E0D1740882BF596A765 /* UIEdgeInsets+FSUIKitSwift.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UIEdgeInsets+FSUIKitSwift.swift"; sourceTree = "<group>"; };
 		5032FD34D5BB9A1F925C649B43CC02DC /* ConstraintLayoutSupportDSL.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintLayoutSupportDSL.swift; path = Sources/ConstraintLayoutSupportDSL.swift; sourceTree = "<group>"; };
-		52C7F447B7CAD754273EBEBC9D41AF6F /* FSTextViewTextParseable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FSTextViewTextParseable.swift; sourceTree = "<group>"; };
+		547661D0322BFAB44919CCC52F624079 /* FSEmptyViewDataSource.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FSEmptyViewDataSource.swift; sourceTree = "<group>"; };
 		54A0BC61944B3E89515CACB83BB1B976 /* ConstraintDescription.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintDescription.swift; path = Sources/ConstraintDescription.swift; sourceTree = "<group>"; };
 		54EA39CB5C896D20E322A138EA66EB60 /* Pods-FSUIKit_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-FSUIKit_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
-		56AE8F80A8BEE40802A70A7805E1BAB8 /* FSPageControl.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FSPageControl.swift; sourceTree = "<group>"; };
-		57AD97515B17D19F9F282BB29827D84F /* UIColor+FSUIKitSwift.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UIColor+FSUIKitSwift.swift"; sourceTree = "<group>"; };
+		563C9192B5665BDD0C71F868747F8D26 /* FSToolBar.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FSToolBar.swift; sourceTree = "<group>"; };
+		57C46A76331FAC5CC5529BC879DC7E17 /* FSToastAnimatedTransitioning.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FSToastAnimatedTransitioning.swift; sourceTree = "<group>"; };
 		583BBF75085D255E27A5F9EF9EC203A5 /* ConstraintMakerRelatable+Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "ConstraintMakerRelatable+Extensions.swift"; path = "Sources/ConstraintMakerRelatable+Extensions.swift"; sourceTree = "<group>"; };
-		5AFC9223168CBC0BF3DC4AC04834A223 /* FSViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FSViewController.swift; sourceTree = "<group>"; };
-		5C5B374FCD57183FDD3000AADDAFD701 /* FSToastContent.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FSToastContent.swift; sourceTree = "<group>"; };
-		5E757ECD88371A81C4B930CAA06738AF /* UIViewController+FSToast.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UIViewController+FSToast.swift"; sourceTree = "<group>"; };
+		5C0E520E550451968E5D8D67883C3FF9 /* FSToastView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FSToastView.swift; sourceTree = "<group>"; };
+		5CBCC19A9B8B161BDCDBE79FDCDCF7A0 /* UIImage+FSUIKit_Private.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UIImage+FSUIKit_Private.swift"; sourceTree = "<group>"; };
+		5EF3F5A88690C6CF8B32A8EC963E441C /* FSUIKitSwift-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FSUIKitSwift-prefix.pch"; sourceTree = "<group>"; };
 		5F2DCDFF2011C08759407B4E2038CA11 /* ConstraintAttributes.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintAttributes.swift; path = Sources/ConstraintAttributes.swift; sourceTree = "<group>"; };
-		60A494AE762CC7DD5673B76E08A6B433 /* String+FSUIKitSwift.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "String+FSUIKitSwift.swift"; sourceTree = "<group>"; };
-		63A0B9EAA2D247F2B054B90C560503E7 /* FSUIApplicationLoader.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FSUIApplicationLoader.swift; sourceTree = "<group>"; };
-		6AB1443C492C2CD9682B5F714C1787D0 /* _InternalTextFieldDelegator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = _InternalTextFieldDelegator.swift; sourceTree = "<group>"; };
-		6AECEEB94B2FBA927DE6467166E5406B /* FSButton.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FSButton.swift; sourceTree = "<group>"; };
-		6D44CED3150734F307373896468270AC /* Date+FSUIKitSwift.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "Date+FSUIKitSwift.swift"; sourceTree = "<group>"; };
+		6398B4AA5EE7D2A35297D6CBC0ADF973 /* FSToastBackgroundEffect.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FSToastBackgroundEffect.swift; sourceTree = "<group>"; };
+		6746C0CD28248702E43E8B01CEF80E22 /* FSTimer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FSTimer.swift; sourceTree = "<group>"; };
+		6A0D9BEA703943515B289B8B73A1529F /* UIImage+FSUIKitSwift.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UIImage+FSUIKitSwift.swift"; sourceTree = "<group>"; };
+		6D3846F0720E338F605E23F882B7EE8B /* FSReloadableView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FSReloadableView.swift; sourceTree = "<group>"; };
+		700568291C02B57ED93E6D62BF467E6D /* FSUIKitSwift-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "FSUIKitSwift-dummy.m"; sourceTree = "<group>"; };
 		7096225ED146E16EC168C99FEDD215B5 /* ConstraintPriorityTarget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintPriorityTarget.swift; path = Sources/ConstraintPriorityTarget.swift; sourceTree = "<group>"; };
-		71EA173B72B405B0C3418612BA8F2E1B /* InternalNamespace.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = InternalNamespace.swift; sourceTree = "<group>"; };
-		72E9A8F44A939BAB167A4F00B2C5F8E0 /* FSCollectionViewAnimatedFlowLayout.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FSCollectionViewAnimatedFlowLayout.swift; sourceTree = "<group>"; };
+		70F31D1D56400F099E339903B55861CA /* _InternalTextFieldDelegator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = _InternalTextFieldDelegator.swift; sourceTree = "<group>"; };
+		73D666BECB7C44E02ED35FEB9C5357B1 /* FSTextViewTextParseable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FSTextViewTextParseable.swift; sourceTree = "<group>"; };
 		751D5202E1F291CC13F7AE0CD669B831 /* ConstraintOffsetTarget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintOffsetTarget.swift; path = Sources/ConstraintOffsetTarget.swift; sourceTree = "<group>"; };
 		75D7A50344D966FA75CC5D78A22D530B /* Pods-FSUIKit_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-FSUIKit_Example-frameworks.sh"; sourceTree = "<group>"; };
 		782C19B041349DED0C47AC71C798375C /* SnapKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SnapKit.release.xcconfig; sourceTree = "<group>"; };
-		78FFE414524058FA213215E1A466141E /* UIView+FSToast.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UIView+FSToast.swift"; sourceTree = "<group>"; };
 		7BC84DB0CD86A51B4B66E0450CBF40DE /* ConstraintDirectionalInsetTarget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintDirectionalInsetTarget.swift; path = Sources/ConstraintDirectionalInsetTarget.swift; sourceTree = "<group>"; };
-		7F507CC798BF2E2721F0B8FD854C9E65 /* FSKeyboardObserver.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FSKeyboardObserver.swift; sourceTree = "<group>"; };
-		818F334E5D3697A0324CF8556F21D330 /* CGSize+FSUIKitSwift.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "CGSize+FSUIKitSwift.swift"; sourceTree = "<group>"; };
+		8000642C050EF133C538B2D7F61CE5F0 /* CGSize+FSUIKitSwift.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "CGSize+FSUIKitSwift.swift"; sourceTree = "<group>"; };
+		8124922A72C076AE56C9D99CE9F3B3FB /* FSFormatter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FSFormatter.swift; sourceTree = "<group>"; };
+		83F33000A783C73B77CFC28D006B8997 /* ResourceBundle-FSUIKitSwift-FSUIKitSwift-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-FSUIKitSwift-FSUIKitSwift-Info.plist"; sourceTree = "<group>"; };
+		841D277CD1ACBD026E854DB89A4DE5F6 /* FSEmptyContent.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FSEmptyContent.swift; sourceTree = "<group>"; };
 		85AEFB9797F73F445F5F8FDC0FCA8F1C /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/CoreText.framework; sourceTree = DEVELOPER_DIR; };
-		85BCCEC72BCECB0E1D721C5068FCC827 /* UIEdgeInsets+FSUIKitSwift.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UIEdgeInsets+FSUIKitSwift.swift"; sourceTree = "<group>"; };
-		8698520F041B64276764E99019BA38B9 /* FSToolBar.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FSToolBar.swift; sourceTree = "<group>"; };
-		8B1BA2EFE412CF160490F166EE1F744E /* FSNavigationBar.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FSNavigationBar.swift; sourceTree = "<group>"; };
+		86410C967BCFEFFD4001D9EA0BB36CBB /* FSFlexibleItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FSFlexibleItem.swift; sourceTree = "<group>"; };
+		8C76AC94BBC14AB54F7DEEADEEAA32F3 /* Array+FSUIKitSwift.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "Array+FSUIKitSwift.swift"; sourceTree = "<group>"; };
 		8CB5F0F0E43705797C7A606F16F6943F /* Pods-FSUIKit_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-FSUIKit_Example-acknowledgements.plist"; sourceTree = "<group>"; };
-		9166F948D26B3C2BB73D9E077EE5DC41 /* Decimal+FSUIKitSwift.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "Decimal+FSUIKitSwift.swift"; sourceTree = "<group>"; };
 		9292ADAFD66A11EA3B2334A0EF1BD508 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
 		932076048BB79360F50A76C2C738DFC8 /* SnapKit-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SnapKit-umbrella.h"; sourceTree = "<group>"; };
-		937500348328421258E8A260D60408E6 /* UIImage+FSUIKit_Private.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UIImage+FSUIKit_Private.swift"; sourceTree = "<group>"; };
+		948308596FB2BDB29AC905946EFA4F9A /* FSUIKitSwift.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = FSUIKitSwift.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		94C22E4B8D26672E9E83D7AFEA8D38AA /* Pods-FSUIKit_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-FSUIKit_Example.release.xcconfig"; sourceTree = "<group>"; };
 		94E42FA589867A878EC039323DA40B7F /* SnapKit.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = SnapKit.modulemap; sourceTree = "<group>"; };
 		960E2E91424D9428F311B73888D8E927 /* Typealiases.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Typealiases.swift; path = Sources/Typealiases.swift; sourceTree = "<group>"; };
-		973E0B80AD6BDD6EF4D8D397284222F7 /* UIViewEffectViewiOS14.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = UIViewEffectViewiOS14.swift; sourceTree = "<group>"; };
+		973059B51ECD619FD9896FF3F32CBF5E /* FSEmptyViewDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FSEmptyViewDelegate.swift; sourceTree = "<group>"; };
+		9734AB8C3081F2C70C847508B9354EB9 /* UIViewController+FSUIKitSwift.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UIViewController+FSUIKitSwift.swift"; sourceTree = "<group>"; };
+		974EF805BC376408922DC11EC3EDD156 /* UIViewController+FSToast.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UIViewController+FSToast.swift"; sourceTree = "<group>"; };
 		979486118B3E90C08386079D57962701 /* SnapKit */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SnapKit; path = SnapKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9C23219C79B29CCCD89B38EFF03CB177 /* UIApplication+FSUIKitSwiftHook.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+FSUIKitSwiftHook.m"; sourceTree = "<group>"; };
+		9CCA3D0A730FDB7BCA18F9FCBB262D35 /* FSToastAnimation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FSToastAnimation.swift; sourceTree = "<group>"; };
 		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9DCEADA75A282AA829D18595D3536337 /* FSKeyboardManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FSKeyboardManager.swift; sourceTree = "<group>"; };
 		9F0A527ED8F0A719FF610D743A87DAD3 /* ConstraintMakerPrioritizable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintMakerPrioritizable.swift; path = Sources/ConstraintMakerPrioritizable.swift; sourceTree = "<group>"; };
-		9F165B624FFB1BF8350CD80DC2D55405 /* _InternalTextViewDelegator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = _InternalTextViewDelegator.swift; sourceTree = "<group>"; };
+		9F2895CE036C7AE37FDF004C6DC35F7F /* FSToastContentConvertable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FSToastContentConvertable.swift; sourceTree = "<group>"; };
 		A244866299A55766B9895B33E4C8FC5B /* Pods-FSUIKit_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-FSUIKit_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		A7203704F0CE6B18CF1ECC90AB95D9DE /* FSUIKitSwift */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = FSUIKitSwift; path = FSUIKitSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		AC54799A07D389B088B708661416ABD1 /* FSTextFieldInputViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FSTextFieldInputViewController.swift; sourceTree = "<group>"; };
-		B0F4BE569FCB2EE749C8EE9873355DB1 /* UIControl+FSUIKitSwift.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UIControl+FSUIKitSwift.swift"; sourceTree = "<group>"; };
+		A807AEA502BC87B9F92160F7EC348EC5 /* Float+FSUIKitSwift.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "Float+FSUIKitSwift.swift"; sourceTree = "<group>"; };
+		A93B067DE711B22DBB3A7B0297F0EC61 /* UIScreen+FSUIKitSwift.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UIScreen+FSUIKitSwift.swift"; sourceTree = "<group>"; };
+		A9713B8A440401866721CD3F376426AC /* FSButton.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FSButton.swift; sourceTree = "<group>"; };
+		AD8DC4B23630E77211C180D8D1DDC19F /* FSViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FSViewController.swift; sourceTree = "<group>"; };
+		B20ED412EED9FD3743AF25E421118740 /* NSAttributedString+FSUIKitSwift.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+FSUIKitSwift.swift"; sourceTree = "<group>"; };
 		B217352CAC5FAE339509269F8E426AD2 /* Pods-FSUIKit_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-FSUIKit_Example-dummy.m"; sourceTree = "<group>"; };
-		B498E2A031CFFA047BCEBA09AB48CDA7 /* FSTextViewInputViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FSTextViewInputViewController.swift; sourceTree = "<group>"; };
-		B569ADE9E5A3A73B581994E018C1246B /* UIView+FSUIKitSwift.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UIView+FSUIKitSwift.swift"; sourceTree = "<group>"; };
 		B57B4B15AAC3AB24B43306829FAA77A0 /* ConstraintPriority.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintPriority.swift; path = Sources/ConstraintPriority.swift; sourceTree = "<group>"; };
-		B5AFC3BCD204D6B8F9580BDDABE2A473 /* FSReloadableView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FSReloadableView.swift; sourceTree = "<group>"; };
+		B72E6CB50E88B8E347915A5EE495E186 /* FSUIKitSwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FSUIKitSwift.release.xcconfig; sourceTree = "<group>"; };
 		BA50A49AB14A27B030EF455D9943EB8B /* ConstraintLayoutSupport.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintLayoutSupport.swift; path = Sources/ConstraintLayoutSupport.swift; sourceTree = "<group>"; };
-		BA81AB3672F0B657C30238BEDCDA2610 /* NSAttributedString+FSToast.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+FSToast.swift"; sourceTree = "<group>"; };
-		BC34AAC86DF752F4257438FAF343DDED /* FSFlexibleCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FSFlexibleCell.swift; sourceTree = "<group>"; };
+		BB94ECD9BEFCDD25F22A992215847F33 /* FSFlexibleCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FSFlexibleCell.swift; sourceTree = "<group>"; };
 		BC8DFD8FEE78807F86F0544749C80450 /* ConstraintDirectionalInsets.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintDirectionalInsets.swift; path = Sources/ConstraintDirectionalInsets.swift; sourceTree = "<group>"; };
 		BDF6E18B5372A4BBE8507FE4B9F165C0 /* SnapKit-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SnapKit-prefix.pch"; sourceTree = "<group>"; };
-		BDFB91FF399BA230625D0705115137D1 /* Array+FSUIKitSwift.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "Array+FSUIKitSwift.swift"; sourceTree = "<group>"; };
-		C0B861380EF5A1DA4B10DFCC9739A4D3 /* FSSeparatorView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FSSeparatorView.swift; sourceTree = "<group>"; };
-		C14C7B22DB99F8DBE26B7755140086BA /* UIImage+FSUIKitSwift.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UIImage+FSUIKitSwift.swift"; sourceTree = "<group>"; };
+		BF9ED171405A8B6D16A1C6BAB927816E /* FSCollectionViewWaterfallLayoutDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FSCollectionViewWaterfallLayoutDelegate.swift; sourceTree = "<group>"; };
+		C036BDFC758B46C21F176881544E8CD6 /* Assets.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Sources/Assets/Assets.xcassets; sourceTree = "<group>"; };
 		C282AEDFB53BD2F6B277738727FF116D /* ConstraintConstantTarget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintConstantTarget.swift; path = Sources/ConstraintConstantTarget.swift; sourceTree = "<group>"; };
-		C4B9CA7FBBE700095B8B057F2762D9F2 /* FSCollectionViewWaterfallLayoutDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FSCollectionViewWaterfallLayoutDelegate.swift; sourceTree = "<group>"; };
-		C4D125942B69668307B24F502F209858 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
+		C4EAC9FD57B86909FEBF6ABC24B894F6 /* FSUIKitSwift-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "FSUIKitSwift-Info.plist"; sourceTree = "<group>"; };
 		C5D52A60BF41010F680313572B051598 /* ConstraintInsets.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintInsets.swift; path = Sources/ConstraintInsets.swift; sourceTree = "<group>"; };
+		C6F8A3CDB3452345647888C0878CCBF4 /* FSSeparatorView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FSSeparatorView.swift; sourceTree = "<group>"; };
 		C83141A7BA266489296BCBEF99AC5412 /* ConstraintView+Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "ConstraintView+Extensions.swift"; path = "Sources/ConstraintView+Extensions.swift"; sourceTree = "<group>"; };
 		C8F83FE9C4B5C437024512B014590DED /* Pods-FSUIKit_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-FSUIKit_Example-umbrella.h"; sourceTree = "<group>"; };
 		C91F91B010D4991E838DAC578595BA7A /* ConstraintLayoutGuideDSL.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintLayoutGuideDSL.swift; path = Sources/ConstraintLayoutGuideDSL.swift; sourceTree = "<group>"; };
-		CDE5868939384D224EB34E92FCD28D6F /* FSCornerRoundingView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FSCornerRoundingView.swift; sourceTree = "<group>"; };
-		CE37A93FA8A7955AB845BD0A0AC8A7ED /* FSToastTapticEffect.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FSToastTapticEffect.swift; sourceTree = "<group>"; };
-		CF15CAE2353C82E39C2037BF0F04F00F /* UIViewController+FSUIKitSwift.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UIViewController+FSUIKitSwift.swift"; sourceTree = "<group>"; };
-		D146F813DBF85853D49A4B01C0F5DF48 /* UIApplication+FSUIKitSwiftHook.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+FSUIKitSwiftHook.m"; sourceTree = "<group>"; };
-		D19796A4D117093F137F25DC699807AE /* FSTimer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FSTimer.swift; sourceTree = "<group>"; };
+		C952DE2190B3DFC8269C804D25B993B7 /* FSEmptyContentProxy.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FSEmptyContentProxy.swift; sourceTree = "<group>"; };
+		CB70C77116AB1F9BC60742677EE3F2DE /* FSTextFieldInputViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FSTextFieldInputViewController.swift; sourceTree = "<group>"; };
+		CCEB718DFF96A8DDFE3E724C43441434 /* UIControl+FSUIKitSwift.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UIControl+FSUIKitSwift.swift"; sourceTree = "<group>"; };
+		CD5E263328AC22359D1604FB696594BA /* Decimal+FSUIKitSwift.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "Decimal+FSUIKitSwift.swift"; sourceTree = "<group>"; };
+		CDE206060AC07CF19606AC6D262A708B /* FSNavigationBar.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FSNavigationBar.swift; sourceTree = "<group>"; };
+		CE463CCAE47F528CBC2B23009D843880 /* FSToast.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FSToast.swift; sourceTree = "<group>"; };
+		CF7957F6155A79BE43357A6D8F770D26 /* FSKeyboardObserver.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FSKeyboardObserver.swift; sourceTree = "<group>"; };
+		CF8231708FAFCA8B961F8CCB3154BE0C /* FSPageControl.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FSPageControl.swift; sourceTree = "<group>"; };
+		CFE3ACD3229D313A4052CEC60DE50B43 /* FSKeyboardTransition.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FSKeyboardTransition.swift; sourceTree = "<group>"; };
+		D1BC839EC1BB03D42BB068EB6478400F /* BinaryInteger+FSUIKitSwift.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "BinaryInteger+FSUIKitSwift.swift"; sourceTree = "<group>"; };
 		D2FD9EFCFC3AA452137876B761FFB621 /* SnapKit-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "SnapKit-Info.plist"; sourceTree = "<group>"; };
-		D36E4F21917B7918030449AE68BBE5EC /* FSUIKitSwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FSUIKitSwift.release.xcconfig; sourceTree = "<group>"; };
+		D33266F468705F7A82C236ECD7B5566E /* UIView+FSToast.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UIView+FSToast.swift"; sourceTree = "<group>"; };
+		D4A2ED570D0E4E60E4E68B40851EECBE /* FSKeyboardListener.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FSKeyboardListener.swift; sourceTree = "<group>"; };
+		DC2BC6E1A029902D2AAD8D229BA86A1F /* Date+FSUIKitSwift.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "Date+FSUIKitSwift.swift"; sourceTree = "<group>"; };
 		DD101E65ADCCC341BCD3BFF777CA947C /* ConstraintConfig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintConfig.swift; path = Sources/ConstraintConfig.swift; sourceTree = "<group>"; };
 		DDFBBDB0D11D15EA3C0D640EF407F700 /* ConstraintMakerExtendable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintMakerExtendable.swift; path = Sources/ConstraintMakerExtendable.swift; sourceTree = "<group>"; };
-		DE9ADBF750310B8CD1D8AD88C8358A3D /* CALayer+FSUIKitSwift.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "CALayer+FSUIKitSwift.swift"; sourceTree = "<group>"; };
+		DEA51DCE012AF6FAEE3263A5D844013A /* FSUIKitSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FSUIKitSwift.debug.xcconfig; sourceTree = "<group>"; };
 		DF1BB047E91923255D11E78344BBCCAF /* Pods-FSUIKit_Example-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-FSUIKit_Example-Info.plist"; sourceTree = "<group>"; };
+		DFE44F16C55085EC9C68B640ABA2E2D5 /* NSAttributedString+FSToast.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+FSToast.swift"; sourceTree = "<group>"; };
 		E04B678C00268C9CF7E410145D6F78AA /* ConstraintLayoutGuide+Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "ConstraintLayoutGuide+Extensions.swift"; path = "Sources/ConstraintLayoutGuide+Extensions.swift"; sourceTree = "<group>"; };
-		E10CF974B744DE236FE95325F4F1CEDB /* FSTextView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FSTextView.swift; sourceTree = "<group>"; };
 		E30E74C9EDB065D2E76B3EDCCB6E2153 /* ConstraintRelation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintRelation.swift; path = Sources/ConstraintRelation.swift; sourceTree = "<group>"; };
-		E7F89FFCF2841853AB75560BB2428873 /* CoreGraphics+FSUIKitSwift.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "CoreGraphics+FSUIKitSwift.swift"; sourceTree = "<group>"; };
-		ED2ADF84B8875ED6D4C09483F3D81F16 /* UIApplication+FSUIKitSwift.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UIApplication+FSUIKitSwift.swift"; sourceTree = "<group>"; };
+		E334916A0C7228E79FAAD257CE3C62BA /* FSTapticEngine.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FSTapticEngine.swift; sourceTree = "<group>"; };
+		E50A95D828110A12B7D5F45FDD2A74C3 /* FSUIApplicationLoader.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FSUIApplicationLoader.swift; sourceTree = "<group>"; };
+		EE2E2581F517955BE4EFB0B6C855DC37 /* UIViewEffectViewiOS14.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = UIViewEffectViewiOS14.swift; sourceTree = "<group>"; };
 		EEE15C12D4B2736CB1D1B07F4838FCA7 /* LayoutConstraintItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LayoutConstraintItem.swift; path = Sources/LayoutConstraintItem.swift; sourceTree = "<group>"; };
-		F05C3EF90675B26D4BCAABA3777092E8 /* FSKeyboardTransition.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FSKeyboardTransition.swift; sourceTree = "<group>"; };
-		F2B2BA1EB7BBDE47E536BA6DFD142EA0 /* FSToastAnimatedTransitioning.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FSToastAnimatedTransitioning.swift; sourceTree = "<group>"; };
-		F359C18DEDCAEAD7D45A83F62F14E4E4 /* FSTapticEngine.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FSTapticEngine.swift; sourceTree = "<group>"; };
 		F4CBE69DD3B611E4180FCBDD8CDE8814 /* Debugging.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Debugging.swift; path = Sources/Debugging.swift; sourceTree = "<group>"; };
+		F50B8D08CB69CFBCBC06F995EC0E74CA /* DateFormatter+FSUIKitSwift.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "DateFormatter+FSUIKitSwift.swift"; sourceTree = "<group>"; };
 		F55D2A11C17BBCE3C9F7F0BA9555B5AE /* ConstraintLayoutGuide.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintLayoutGuide.swift; path = Sources/ConstraintLayoutGuide.swift; sourceTree = "<group>"; };
 		F57C38722D9F65992CF2200038C8651E /* ConstraintMakerEditable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintMakerEditable.swift; path = Sources/ConstraintMakerEditable.swift; sourceTree = "<group>"; };
-		F5E01D29480503235BD8EC5A9256EEC6 /* ResourceBundle-FSUIKitSwift-FSUIKitSwift-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-FSUIKitSwift-FSUIKitSwift-Info.plist"; sourceTree = "<group>"; };
-		F672DC8B1A40A876D8C93FA973717145 /* BinaryInteger+FSUIKitSwift.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "BinaryInteger+FSUIKitSwift.swift"; sourceTree = "<group>"; };
-		FA085528930FECC4082D89ECA9840F55 /* Float+FSUIKitSwift.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "Float+FSUIKitSwift.swift"; sourceTree = "<group>"; };
+		F5C42CACB0E0523420E65702948AE3A8 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
 		FB394471201D56E6D2D184EB78A1B38B /* Pods-FSUIKit_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-FSUIKit_Example.modulemap"; sourceTree = "<group>"; };
 		FBD01C36D7C465A1C603CAF2F519C687 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		FCFF979086DCAF368C4CB100B9EA8781 /* Double+FSUIKitSwift.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "Double+FSUIKitSwift.swift"; sourceTree = "<group>"; };
 		FE5693124BFA9269D2085EC1ADFAAD76 /* ConstraintInsetTarget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintInsetTarget.swift; path = Sources/ConstraintInsetTarget.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		751B51183D295774814CA2477AD34E9B /* Frameworks */ = {
+		3B39D7153C81A82B5025AEF5112C880E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F2A7F5475ECAA4F9EDFF770B855D9902 /* CoreGraphics.framework in Frameworks */,
-				706F3DCF44D82806E4389F4C87BB5326 /* CoreText.framework in Frameworks */,
-				E6090250292987CDAF11D9D8D1B137BF /* Foundation.framework in Frameworks */,
-				B22886A9FB087166B3231A56326096F0 /* UIKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		53DA593A681D036DF7FBE3C790C62ACE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E976836415532516ACA1D0E8C285F151 /* CoreGraphics.framework in Frameworks */,
+				E4AC5D62A94ACAE96969FB7BBE8A3995 /* CoreText.framework in Frameworks */,
+				BC5B7E17261DED4F9855453DECBA7946 /* Foundation.framework in Frameworks */,
+				2CE99E4AFBAEE1FBDB35AA50CFF3C561 /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -318,13 +335,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				0833E66E7F19849322305D67777B77DB /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		EB186D744EF5B679FFE6DF44C47AD1A4 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -339,13 +349,54 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		05A9F990B56BEEA646FA33A6CBD962B1 /* Extensions */ = {
+		05CEA10459F8375EE8BD25FF795449BC /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				937500348328421258E8A260D60408E6 /* UIImage+FSUIKit_Private.swift */,
+				5CBCC19A9B8B161BDCDBE79FDCDCF7A0 /* UIImage+FSUIKit_Private.swift */,
 			);
 			name = Extensions;
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		06F6CD7018A340E6D6137818A12AF865 /* Private */ = {
+			isa = PBXGroup;
+			children = (
+				3746C3A764AD5A0151CD9AA144D932D3 /* InternalNamespace.swift */,
+				05CEA10459F8375EE8BD25FF795449BC /* Extensions */,
+				C7542C3CEC1BCB17DFD9475F01D1CC80 /* InternalDelegators */,
+			);
+			name = Private;
+			path = Sources/Classes/Private;
+			sourceTree = "<group>";
+		};
+		0981DE96EA1E71B5C07D98DC80FD6C44 /* Hook */ = {
+			isa = PBXGroup;
+			children = (
+				34B4DA158EE7D0BA68CC5907EADCF0A7 /* UIApplication+FSUIKitSwiftHook.h */,
+				9C23219C79B29CCCD89B38EFF03CB177 /* UIApplication+FSUIKitSwiftHook.m */,
+			);
+			name = Hook;
+			path = Hook;
+			sourceTree = "<group>";
+		};
+		0E2AEB4481631A040243DCBE534DC623 /* FSFlexibleView */ = {
+			isa = PBXGroup;
+			children = (
+				BB94ECD9BEFCDD25F22A992215847F33 /* FSFlexibleCell.swift */,
+				86410C967BCFEFFD4001D9EA0BB36CBB /* FSFlexibleItem.swift */,
+				27175038096E8A7E7277C910BD3771A1 /* FSFlexibleView.swift */,
+			);
+			name = FSFlexibleView;
+			path = Sources/Classes/FSFlexibleView;
+			sourceTree = "<group>";
+		};
+		10C23E66088A05A295E9F769875F9D61 /* FSFormatter */ = {
+			isa = PBXGroup;
+			children = (
+				8124922A72C076AE56C9D99CE9F3B3FB /* FSFormatter.swift */,
+			);
+			name = FSFormatter;
+			path = Sources/Classes/FSFormatter;
 			sourceTree = "<group>";
 		};
 		12188524E4868A3FC03E0F2BC555301D /* Targets Support Files */ = {
@@ -356,13 +407,15 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		1D468EAB922F763CFD3839EA48883EF3 /* FSTimer */ = {
+		1F2419751F4BA18D6166BEF76F47A262 /* FSTextView */ = {
 			isa = PBXGroup;
 			children = (
-				D19796A4D117093F137F25DC699807AE /* FSTimer.swift */,
+				251F9C3D17B88644ABE86AA3BD46B454 /* FSTextView.swift */,
+				174CBF52F36910BB1F4A9560CB98ED29 /* FSTextViewDelegate.swift */,
+				73D666BECB7C44E02ED35FEB9C5357B1 /* FSTextViewTextParseable.swift */,
 			);
-			name = FSTimer;
-			path = Sources/Classes/FSTimer;
+			name = FSTextView;
+			path = Sources/Classes/FSTextView;
 			sourceTree = "<group>";
 		};
 		21A46C4FEE3D24D598B216D1036178C1 /* Pods-FSUIKit_Example */ = {
@@ -382,71 +435,23 @@
 			path = "Target Support Files/Pods-FSUIKit_Example";
 			sourceTree = "<group>";
 		};
-		28880113E19AB739126AF98FEB4FD7EB /* TapticEngine */ = {
+		239352902E1527E43E744A9A37B03355 /* Pod */ = {
 			isa = PBXGroup;
 			children = (
-				F359C18DEDCAEAD7D45A83F62F14E4E4 /* FSTapticEngine.swift */,
+				948308596FB2BDB29AC905946EFA4F9A /* FSUIKitSwift.podspec */,
+				0DCC41DEBA28327DD56C79D2CF5EF713 /* LICENSE */,
+				F5C42CACB0E0523420E65702948AE3A8 /* README.md */,
 			);
-			name = TapticEngine;
-			path = Sources/Classes/TapticEngine;
+			name = Pod;
 			sourceTree = "<group>";
 		};
-		2B9CE2FE6EE30B45590C12A1FCA83FCD /* Development Pods */ = {
+		2850544B56C97E058D493A8CE7E083A3 /* FSTextFieldInputViewController */ = {
 			isa = PBXGroup;
 			children = (
-				6C2B06BDF22916A6BB6DECA4B1489B84 /* FSUIKitSwift */,
+				CB70C77116AB1F9BC60742677EE3F2DE /* FSTextFieldInputViewController.swift */,
 			);
-			name = "Development Pods";
-			sourceTree = "<group>";
-		};
-		2C4FA2A27BB1C1CDE084C31936EFAF08 /* UIApplication */ = {
-			isa = PBXGroup;
-			children = (
-				EA47D6C880394B8873367013BA31BA12 /* Hook */,
-				AE6091BAF9A746AD0130045C0DF4E304 /* Loader */,
-			);
-			name = UIApplication;
-			path = Sources/Classes/UIApplication;
-			sourceTree = "<group>";
-		};
-		310D750808013D01DB905A8652E489BD /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				BDFB91FF399BA230625D0705115137D1 /* Array+FSUIKitSwift.swift */,
-				F672DC8B1A40A876D8C93FA973717145 /* BinaryInteger+FSUIKitSwift.swift */,
-				DE9ADBF750310B8CD1D8AD88C8358A3D /* CALayer+FSUIKitSwift.swift */,
-				1F353AD923E951D69B7A3762DC84FBF8 /* CGFloatConvertible.swift */,
-				818F334E5D3697A0324CF8556F21D330 /* CGSize+FSUIKitSwift.swift */,
-				2545658D2134C34895AB5E687F51CD01 /* Collection+FSUIKitSwift.swift */,
-				E7F89FFCF2841853AB75560BB2428873 /* CoreGraphics+FSUIKitSwift.swift */,
-				6D44CED3150734F307373896468270AC /* Date+FSUIKitSwift.swift */,
-				486BDD0E38EAC63F76DF519414168F4E /* DateFormatter+FSUIKitSwift.swift */,
-				9166F948D26B3C2BB73D9E077EE5DC41 /* Decimal+FSUIKitSwift.swift */,
-				123C0CA78A4FDD7111773A8C3340609B /* Double+FSUIKitSwift.swift */,
-				FA085528930FECC4082D89ECA9840F55 /* Float+FSUIKitSwift.swift */,
-				4289A1C7A2E75B3A5474C49EF2F99BDA /* NSAttributedString+FSUIKitSwift.swift */,
-				60A494AE762CC7DD5673B76E08A6B433 /* String+FSUIKitSwift.swift */,
-				ED2ADF84B8875ED6D4C09483F3D81F16 /* UIApplication+FSUIKitSwift.swift */,
-				57AD97515B17D19F9F282BB29827D84F /* UIColor+FSUIKitSwift.swift */,
-				B0F4BE569FCB2EE749C8EE9873355DB1 /* UIControl+FSUIKitSwift.swift */,
-				85BCCEC72BCECB0E1D721C5068FCC827 /* UIEdgeInsets+FSUIKitSwift.swift */,
-				C14C7B22DB99F8DBE26B7755140086BA /* UIImage+FSUIKitSwift.swift */,
-				38D44585DF8E967083F4B4A8F6742A99 /* UIScreen+FSUIKitSwift.swift */,
-				30CC8A8972B8ECFA88DD7FF6E9E9A87B /* UIStackView+FSUIKitSwift.swift */,
-				B569ADE9E5A3A73B581994E018C1246B /* UIView+FSUIKitSwift.swift */,
-				CF15CAE2353C82E39C2037BF0F04F00F /* UIViewController+FSUIKitSwift.swift */,
-			);
-			name = Extensions;
-			path = Sources/Classes/Extensions;
-			sourceTree = "<group>";
-		};
-		34B09436AF65870E6C073B6BB0195E37 /* FSTextViewInputViewController */ = {
-			isa = PBXGroup;
-			children = (
-				B498E2A031CFFA047BCEBA09AB48CDA7 /* FSTextViewInputViewController.swift */,
-			);
-			name = FSTextViewInputViewController;
-			path = Sources/Classes/FSTextViewInputViewController;
+			name = FSTextFieldInputViewController;
+			path = Sources/Classes/FSTextFieldInputViewController;
 			sourceTree = "<group>";
 		};
 		3506ADF0812F16E8D3821E7B5F902D0C /* Products */ = {
@@ -458,6 +463,18 @@
 				979486118B3E90C08386079D57962701 /* SnapKit */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		35E120476C7671568793278E6B0F9961 /* FSKeyboardManager */ = {
+			isa = PBXGroup;
+			children = (
+				D4A2ED570D0E4E60E4E68B40851EECBE /* FSKeyboardListener.swift */,
+				9DCEADA75A282AA829D18595D3536337 /* FSKeyboardManager.swift */,
+				CF7957F6155A79BE43357A6D8F770D26 /* FSKeyboardObserver.swift */,
+				CFE3ACD3229D313A4052CEC60DE50B43 /* FSKeyboardTransition.swift */,
+			);
+			name = FSKeyboardManager;
+			path = Sources/Classes/FSKeyboardManager;
 			sourceTree = "<group>";
 		};
 		403EB05A3920652EED411213C52E3AC2 /* Support Files */ = {
@@ -475,163 +492,182 @@
 			path = "../Target Support Files/SnapKit";
 			sourceTree = "<group>";
 		};
-		6B4B65B5D0FEA71527F3915F8524123D /* Support Files */ = {
+		42A41C3E02217E59F02430C3E5B585BC /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				06B9F678AD5A056A890297F4ECF8DE3A /* FSUIKitSwift.modulemap */,
-				099BC283510714CE2F5C2606864FBD4E /* FSUIKitSwift-dummy.m */,
-				1A73653B7B6D56AE64152722C58BC0A8 /* FSUIKitSwift-Info.plist */,
-				01F33FD26AFE8757ACE0272A65333A96 /* FSUIKitSwift-prefix.pch */,
-				38859CFD8374B397768BFCCFA2A8230F /* FSUIKitSwift-umbrella.h */,
-				0C955382028351DE50A7B3E33BF4CF25 /* FSUIKitSwift.debug.xcconfig */,
-				D36E4F21917B7918030449AE68BBE5EC /* FSUIKitSwift.release.xcconfig */,
-				F5E01D29480503235BD8EC5A9256EEC6 /* ResourceBundle-FSUIKitSwift-FSUIKitSwift-Info.plist */,
+				2973A80EFFFAB3F415D4285A59A59EE6 /* FSUIKitSwift.modulemap */,
+				700568291C02B57ED93E6D62BF467E6D /* FSUIKitSwift-dummy.m */,
+				C4EAC9FD57B86909FEBF6ABC24B894F6 /* FSUIKitSwift-Info.plist */,
+				5EF3F5A88690C6CF8B32A8EC963E441C /* FSUIKitSwift-prefix.pch */,
+				1B5843612D1322294580E3FF7A514FA7 /* FSUIKitSwift-umbrella.h */,
+				DEA51DCE012AF6FAEE3263A5D844013A /* FSUIKitSwift.debug.xcconfig */,
+				B72E6CB50E88B8E347915A5EE495E186 /* FSUIKitSwift.release.xcconfig */,
+				83F33000A783C73B77CFC28D006B8997 /* ResourceBundle-FSUIKitSwift-FSUIKitSwift-Info.plist */,
 			);
 			name = "Support Files";
 			path = "Example/Pods/Target Support Files/FSUIKitSwift";
 			sourceTree = "<group>";
 		};
-		6C2B06BDF22916A6BB6DECA4B1489B84 /* FSUIKitSwift */ = {
+		4BA0E5F79C62FDE496F11169E356E712 /* FSEmptyView */ = {
 			isa = PBXGroup;
 			children = (
-				1BD8E5B5F14FFFF9F60FCD03CD5F2902 /* Assets.xcassets */,
-				4837D0863A8AD4A280FC38E0306B1E3B /* PublicNamespace.swift */,
-				8B5EADC280245EEA707C7EE6B69A8FED /* Controls */,
-				310D750808013D01DB905A8652E489BD /* Extensions */,
-				8526F4FF5B72921B66B88D4C5F5BD577 /* FSFlexibleView */,
-				A2F6D3E9AED68445293462CBD561DA79 /* FSFormatter */,
-				A6D0F3AFD3A670BE368267844E169D7E /* FSKeyboardManager */,
-				893D33FC03C839F397E7DD7EDFB0E0E3 /* FSTextFieldInputViewController */,
-				E1060E85481420ECC3D532092270E64F /* FSTextView */,
-				34B09436AF65870E6C073B6BB0195E37 /* FSTextViewInputViewController */,
-				1D468EAB922F763CFD3839EA48883EF3 /* FSTimer */,
-				D790016187CAE1579E315DFCD92803E9 /* FSToast */,
-				B6F050F993FE9887EAE7618632D091C3 /* FSVisualEffectView */,
-				77A4DA38300468FFB94E4CB611D984D4 /* Pod */,
-				A8CFDFAF67EE151A40A927E39E49B7A6 /* Private */,
-				6B4B65B5D0FEA71527F3915F8524123D /* Support Files */,
-				28880113E19AB739126AF98FEB4FD7EB /* TapticEngine */,
-				2C4FA2A27BB1C1CDE084C31936EFAF08 /* UIApplication */,
-				7B11D6FD4CF31A1927A30E4E8EE9C67C /* UICollectionViewLayouts */,
-				983276E3B86FE9D74FB90F832CE3B1AC /* UIViewController */,
+				841D277CD1ACBD026E854DB89A4DE5F6 /* FSEmptyContent.swift */,
+				C952DE2190B3DFC8269C804D25B993B7 /* FSEmptyContentProxy.swift */,
+				0184D6B35D53E92585E6FA11954A20CD /* FSEmptyView.swift */,
+				547661D0322BFAB44919CCC52F624079 /* FSEmptyViewDataSource.swift */,
+				973059B51ECD619FD9896FF3F32CBF5E /* FSEmptyViewDelegate.swift */,
+			);
+			name = FSEmptyView;
+			path = Sources/Classes/FSEmptyView;
+			sourceTree = "<group>";
+		};
+		503016FC95A854995BE8BD0429D52FEE /* FSUIKitSwift */ = {
+			isa = PBXGroup;
+			children = (
+				C036BDFC758B46C21F176881544E8CD6 /* Assets.xcassets */,
+				1D9F9AAF83692FEC54A147FD2FD87AD3 /* PublicNamespace.swift */,
+				67F17C1BFFD48F3E59983B7D2AB530E9 /* Controls */,
+				B0C7806CE80268C5406981D6C3755B0A /* Extensions */,
+				4BA0E5F79C62FDE496F11169E356E712 /* FSEmptyView */,
+				0E2AEB4481631A040243DCBE534DC623 /* FSFlexibleView */,
+				10C23E66088A05A295E9F769875F9D61 /* FSFormatter */,
+				35E120476C7671568793278E6B0F9961 /* FSKeyboardManager */,
+				2850544B56C97E058D493A8CE7E083A3 /* FSTextFieldInputViewController */,
+				1F2419751F4BA18D6166BEF76F47A262 /* FSTextView */,
+				B059EB69332699507EF84A5287753D46 /* FSTextViewInputViewController */,
+				EE052E138AC0F834D7E67D1A90E28D02 /* FSTimer */,
+				56144CE7FF5DC884FDBCAAAF75038417 /* FSToast */,
+				D736E15BE9AAF72F4A2799EBB6367EA8 /* FSVisualEffectView */,
+				239352902E1527E43E744A9A37B03355 /* Pod */,
+				06F6CD7018A340E6D6137818A12AF865 /* Private */,
+				42A41C3E02217E59F02430C3E5B585BC /* Support Files */,
+				7E655C3B8872300EF9B6C6F7A0DC1034 /* TapticEngine */,
+				CCAD461C936AE7C3316DC4C98DEAE85F /* UIApplication */,
+				8D48C74DF81D814683DFD5359B239DE0 /* UICollectionViewLayouts */,
+				A228F1494A02B9C08404E92981F6259D /* UIViewController */,
 			);
 			name = FSUIKitSwift;
 			path = ../..;
 			sourceTree = "<group>";
 		};
-		77A4DA38300468FFB94E4CB611D984D4 /* Pod */ = {
+		56144CE7FF5DC884FDBCAAAF75038417 /* FSToast */ = {
 			isa = PBXGroup;
 			children = (
-				284792D62D4BDFD9DFFB88769D4142DB /* FSUIKitSwift.podspec */,
-				C4D125942B69668307B24F502F209858 /* LICENSE */,
-				12731F1A0B2CBAE63C06C41A834A20DF /* README.md */,
+				CE463CCAE47F528CBC2B23009D843880 /* FSToast.swift */,
+				57C46A76331FAC5CC5529BC879DC7E17 /* FSToastAnimatedTransitioning.swift */,
+				9CCA3D0A730FDB7BCA18F9FCBB262D35 /* FSToastAnimation.swift */,
+				6398B4AA5EE7D2A35297D6CBC0ADF973 /* FSToastBackgroundEffect.swift */,
+				428948E9E96073A263AE0547F34B3089 /* FSToastContent.swift */,
+				9F2895CE036C7AE37FDF004C6DC35F7F /* FSToastContentConvertable.swift */,
+				4ABFFB61BA89449E34D5954CE3C374E4 /* FSToastTapticEffect.swift */,
+				5C0E520E550451968E5D8D67883C3FF9 /* FSToastView.swift */,
+				DFE44F16C55085EC9C68B640ABA2E2D5 /* NSAttributedString+FSToast.swift */,
+				D33266F468705F7A82C236ECD7B5566E /* UIView+FSToast.swift */,
+				974EF805BC376408922DC11EC3EDD156 /* UIViewController+FSToast.swift */,
 			);
-			name = Pod;
+			name = FSToast;
+			path = Sources/Classes/FSToast;
 			sourceTree = "<group>";
 		};
-		7B11D6FD4CF31A1927A30E4E8EE9C67C /* UICollectionViewLayouts */ = {
+		64667010FB70FB7DD72A69ABE6C80B9E /* WaterfallLayout */ = {
 			isa = PBXGroup;
 			children = (
-				72E9A8F44A939BAB167A4F00B2C5F8E0 /* FSCollectionViewAnimatedFlowLayout.swift */,
-				EE287170ABE95B827957F41E3C095041 /* WaterfallLayout */,
+				24D94B69ACDC57CBCA16CEE466BAA299 /* FSCollectionViewWaterfallLayout.swift */,
+				BF9ED171405A8B6D16A1C6BAB927816E /* FSCollectionViewWaterfallLayoutDelegate.swift */,
 			);
-			name = UICollectionViewLayouts;
-			path = Sources/Classes/UICollectionViewLayouts;
+			name = WaterfallLayout;
+			path = WaterfallLayout;
 			sourceTree = "<group>";
 		};
-		8526F4FF5B72921B66B88D4C5F5BD577 /* FSFlexibleView */ = {
+		67F17C1BFFD48F3E59983B7D2AB530E9 /* Controls */ = {
 			isa = PBXGroup;
 			children = (
-				BC34AAC86DF752F4257438FAF343DDED /* FSFlexibleCell.swift */,
-				245BFF2446B609E9C76D542BEE10FE9C /* FSFlexibleItem.swift */,
-				311ACAF45D17371AC9C57D80377730DA /* FSFlexibleView.swift */,
-			);
-			name = FSFlexibleView;
-			path = Sources/Classes/FSFlexibleView;
-			sourceTree = "<group>";
-		};
-		893D33FC03C839F397E7DD7EDFB0E0E3 /* FSTextFieldInputViewController */ = {
-			isa = PBXGroup;
-			children = (
-				AC54799A07D389B088B708661416ABD1 /* FSTextFieldInputViewController.swift */,
-			);
-			name = FSTextFieldInputViewController;
-			path = Sources/Classes/FSTextFieldInputViewController;
-			sourceTree = "<group>";
-		};
-		8B5EADC280245EEA707C7EE6B69A8FED /* Controls */ = {
-			isa = PBXGroup;
-			children = (
-				6AECEEB94B2FBA927DE6467166E5406B /* FSButton.swift */,
-				CDE5868939384D224EB34E92FCD28D6F /* FSCornerRoundingView.swift */,
-				8B1BA2EFE412CF160490F166EE1F744E /* FSNavigationBar.swift */,
-				56AE8F80A8BEE40802A70A7805E1BAB8 /* FSPageControl.swift */,
-				B5AFC3BCD204D6B8F9580BDDABE2A473 /* FSReloadableView.swift */,
-				C0B861380EF5A1DA4B10DFCC9739A4D3 /* FSSeparatorView.swift */,
-				8698520F041B64276764E99019BA38B9 /* FSToolBar.swift */,
+				A9713B8A440401866721CD3F376426AC /* FSButton.swift */,
+				10CC122E12D8FFB93D5BDD63ACA563CE /* FSCornerRoundingView.swift */,
+				CDE206060AC07CF19606AC6D262A708B /* FSNavigationBar.swift */,
+				CF8231708FAFCA8B961F8CCB3154BE0C /* FSPageControl.swift */,
+				6D3846F0720E338F605E23F882B7EE8B /* FSReloadableView.swift */,
+				C6F8A3CDB3452345647888C0878CCBF4 /* FSSeparatorView.swift */,
+				563C9192B5665BDD0C71F868747F8D26 /* FSToolBar.swift */,
 			);
 			name = Controls;
 			path = Sources/Classes/Controls;
 			sourceTree = "<group>";
 		};
-		983276E3B86FE9D74FB90F832CE3B1AC /* UIViewController */ = {
+		7BCA3F714F06EF07FFAA5057A55E1EBF /* Development Pods */ = {
 			isa = PBXGroup;
 			children = (
-				5AFC9223168CBC0BF3DC4AC04834A223 /* FSViewController.swift */,
+				503016FC95A854995BE8BD0429D52FEE /* FSUIKitSwift */,
+			);
+			name = "Development Pods";
+			sourceTree = "<group>";
+		};
+		7E655C3B8872300EF9B6C6F7A0DC1034 /* TapticEngine */ = {
+			isa = PBXGroup;
+			children = (
+				E334916A0C7228E79FAAD257CE3C62BA /* FSTapticEngine.swift */,
+			);
+			name = TapticEngine;
+			path = Sources/Classes/TapticEngine;
+			sourceTree = "<group>";
+		};
+		8D48C74DF81D814683DFD5359B239DE0 /* UICollectionViewLayouts */ = {
+			isa = PBXGroup;
+			children = (
+				27D3847F8FECA2C71380493503BAB587 /* FSCollectionViewAnimatedFlowLayout.swift */,
+				64667010FB70FB7DD72A69ABE6C80B9E /* WaterfallLayout */,
+			);
+			name = UICollectionViewLayouts;
+			path = Sources/Classes/UICollectionViewLayouts;
+			sourceTree = "<group>";
+		};
+		A228F1494A02B9C08404E92981F6259D /* UIViewController */ = {
+			isa = PBXGroup;
+			children = (
+				AD8DC4B23630E77211C180D8D1DDC19F /* FSViewController.swift */,
 			);
 			name = UIViewController;
 			path = Sources/Classes/UIViewController;
 			sourceTree = "<group>";
 		};
-		A2F6D3E9AED68445293462CBD561DA79 /* FSFormatter */ = {
+		B059EB69332699507EF84A5287753D46 /* FSTextViewInputViewController */ = {
 			isa = PBXGroup;
 			children = (
-				4FFB6451427404D913D7543FC18D2F98 /* FSFormatter.swift */,
+				36FDBB8AA2688F7223C8BAFD8F954E67 /* FSTextViewInputViewController.swift */,
 			);
-			name = FSFormatter;
-			path = Sources/Classes/FSFormatter;
+			name = FSTextViewInputViewController;
+			path = Sources/Classes/FSTextViewInputViewController;
 			sourceTree = "<group>";
 		};
-		A6D0F3AFD3A670BE368267844E169D7E /* FSKeyboardManager */ = {
+		B0C7806CE80268C5406981D6C3755B0A /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				33D20A6DFFAD45BC9214D7ED2306FE97 /* FSKeyboardListener.swift */,
-				4A0A1F457BA28895DA00D8E1D87CD075 /* FSKeyboardManager.swift */,
-				7F507CC798BF2E2721F0B8FD854C9E65 /* FSKeyboardObserver.swift */,
-				F05C3EF90675B26D4BCAABA3777092E8 /* FSKeyboardTransition.swift */,
+				8C76AC94BBC14AB54F7DEEADEEAA32F3 /* Array+FSUIKitSwift.swift */,
+				D1BC839EC1BB03D42BB068EB6478400F /* BinaryInteger+FSUIKitSwift.swift */,
+				1AD0ABC27C01F0140802F44E1FB6537F /* CALayer+FSUIKitSwift.swift */,
+				2ADE158E8C6312A781A70544F8F1AE0B /* CGFloatConvertible.swift */,
+				8000642C050EF133C538B2D7F61CE5F0 /* CGSize+FSUIKitSwift.swift */,
+				2AE30B9A93C59297CE4A13163E4802EA /* Collection+FSUIKitSwift.swift */,
+				4C15BDFB9A60F300FCFDD525AB65DCAF /* CoreGraphics+FSUIKitSwift.swift */,
+				DC2BC6E1A029902D2AAD8D229BA86A1F /* Date+FSUIKitSwift.swift */,
+				F50B8D08CB69CFBCBC06F995EC0E74CA /* DateFormatter+FSUIKitSwift.swift */,
+				CD5E263328AC22359D1604FB696594BA /* Decimal+FSUIKitSwift.swift */,
+				FCFF979086DCAF368C4CB100B9EA8781 /* Double+FSUIKitSwift.swift */,
+				A807AEA502BC87B9F92160F7EC348EC5 /* Float+FSUIKitSwift.swift */,
+				B20ED412EED9FD3743AF25E421118740 /* NSAttributedString+FSUIKitSwift.swift */,
+				3FBB080B59B18F59FDC7E70797C9E059 /* String+FSUIKitSwift.swift */,
+				23762E6EA21FA04B976754C3B003D23C /* UIApplication+FSUIKitSwift.swift */,
+				46BAEC66FD2397930C4B64DC9A9A1FC0 /* UIColor+FSUIKitSwift.swift */,
+				CCEB718DFF96A8DDFE3E724C43441434 /* UIControl+FSUIKitSwift.swift */,
+				4DDB0FD008011E0D1740882BF596A765 /* UIEdgeInsets+FSUIKitSwift.swift */,
+				6A0D9BEA703943515B289B8B73A1529F /* UIImage+FSUIKitSwift.swift */,
+				A93B067DE711B22DBB3A7B0297F0EC61 /* UIScreen+FSUIKitSwift.swift */,
+				2CEB1CC959510B6198F98C0494F02826 /* UIStackView+FSUIKitSwift.swift */,
+				27DA1BCEBEADF3D31815ED8C6F323598 /* UIView+FSUIKitSwift.swift */,
+				9734AB8C3081F2C70C847508B9354EB9 /* UIViewController+FSUIKitSwift.swift */,
 			);
-			name = FSKeyboardManager;
-			path = Sources/Classes/FSKeyboardManager;
-			sourceTree = "<group>";
-		};
-		A8CFDFAF67EE151A40A927E39E49B7A6 /* Private */ = {
-			isa = PBXGroup;
-			children = (
-				71EA173B72B405B0C3418612BA8F2E1B /* InternalNamespace.swift */,
-				05A9F990B56BEEA646FA33A6CBD962B1 /* Extensions */,
-				D8A10D5164852DE6B63477D913B63148 /* InternalDelegators */,
-			);
-			name = Private;
-			path = Sources/Classes/Private;
-			sourceTree = "<group>";
-		};
-		AE6091BAF9A746AD0130045C0DF4E304 /* Loader */ = {
-			isa = PBXGroup;
-			children = (
-				63A0B9EAA2D247F2B054B90C560503E7 /* FSUIApplicationLoader.swift */,
-			);
-			name = Loader;
-			path = Loader;
-			sourceTree = "<group>";
-		};
-		B6F050F993FE9887EAE7618632D091C3 /* FSVisualEffectView */ = {
-			isa = PBXGroup;
-			children = (
-				48F0E7311DB84737D97BC1F45285DA1B /* FSVisualEffectView.swift */,
-				973E0B80AD6BDD6EF4D8D397284222F7 /* UIViewEffectViewiOS14.swift */,
-			);
-			name = FSVisualEffectView;
-			path = Sources/Classes/FSVisualEffectView;
+			name = Extensions;
+			path = Sources/Classes/Extensions;
 			sourceTree = "<group>";
 		};
 		BA4F31F07263C99FC76E66D632A59F09 /* Frameworks */ = {
@@ -642,11 +678,31 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		C7542C3CEC1BCB17DFD9475F01D1CC80 /* InternalDelegators */ = {
+			isa = PBXGroup;
+			children = (
+				70F31D1D56400F099E339903B55861CA /* _InternalTextFieldDelegator.swift */,
+				20656F7DB9694C153BBC14E23D2513EA /* _InternalTextViewDelegator.swift */,
+			);
+			name = InternalDelegators;
+			path = InternalDelegators;
+			sourceTree = "<group>";
+		};
+		CCAD461C936AE7C3316DC4C98DEAE85F /* UIApplication */ = {
+			isa = PBXGroup;
+			children = (
+				0981DE96EA1E71B5C07D98DC80FD6C44 /* Hook */,
+				DEDDC4086054F8B08731A892A978CCC2 /* Loader */,
+			);
+			name = UIApplication;
+			path = Sources/Classes/UIApplication;
+			sourceTree = "<group>";
+		};
 		CF1408CF629C7361332E53B88F7BD30C = {
 			isa = PBXGroup;
 			children = (
 				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
-				2B9CE2FE6EE30B45590C12A1FCA83FCD /* Development Pods */,
+				7BCA3F714F06EF07FFAA5057A55E1EBF /* Development Pods */,
 				BA4F31F07263C99FC76E66D632A59F09 /* Frameworks */,
 				FBE859397B27E4FC4D81B6F5DD24B6F6 /* Pods */,
 				3506ADF0812F16E8D3821E7B5F902D0C /* Products */,
@@ -700,44 +756,23 @@
 			path = SnapKit;
 			sourceTree = "<group>";
 		};
-		D790016187CAE1579E315DFCD92803E9 /* FSToast */ = {
+		D736E15BE9AAF72F4A2799EBB6367EA8 /* FSVisualEffectView */ = {
 			isa = PBXGroup;
 			children = (
-				2A3579D2F096437489D239BD98DCF678 /* FSToast.swift */,
-				F2B2BA1EB7BBDE47E536BA6DFD142EA0 /* FSToastAnimatedTransitioning.swift */,
-				441522F270070D88BA7CA5B80BD5E595 /* FSToastAnimation.swift */,
-				0D57C9CE62D11850FF2B06EBFE585C97 /* FSToastBackgroundEffect.swift */,
-				5C5B374FCD57183FDD3000AADDAFD701 /* FSToastContent.swift */,
-				19EAA3470C9741E7C5E74CEC624F1C0E /* FSToastContentConvertable.swift */,
-				CE37A93FA8A7955AB845BD0A0AC8A7ED /* FSToastTapticEffect.swift */,
-				303D1D7941424CB1C4BAEE6D059F9625 /* FSToastView.swift */,
-				BA81AB3672F0B657C30238BEDCDA2610 /* NSAttributedString+FSToast.swift */,
-				78FFE414524058FA213215E1A466141E /* UIView+FSToast.swift */,
-				5E757ECD88371A81C4B930CAA06738AF /* UIViewController+FSToast.swift */,
+				0237CD5237BA8323C25659FC12FD1EC0 /* FSVisualEffectView.swift */,
+				EE2E2581F517955BE4EFB0B6C855DC37 /* UIViewEffectViewiOS14.swift */,
 			);
-			name = FSToast;
-			path = Sources/Classes/FSToast;
+			name = FSVisualEffectView;
+			path = Sources/Classes/FSVisualEffectView;
 			sourceTree = "<group>";
 		};
-		D8A10D5164852DE6B63477D913B63148 /* InternalDelegators */ = {
+		DEDDC4086054F8B08731A892A978CCC2 /* Loader */ = {
 			isa = PBXGroup;
 			children = (
-				6AB1443C492C2CD9682B5F714C1787D0 /* _InternalTextFieldDelegator.swift */,
-				9F165B624FFB1BF8350CD80DC2D55405 /* _InternalTextViewDelegator.swift */,
+				E50A95D828110A12B7D5F45FDD2A74C3 /* FSUIApplicationLoader.swift */,
 			);
-			name = InternalDelegators;
-			path = InternalDelegators;
-			sourceTree = "<group>";
-		};
-		E1060E85481420ECC3D532092270E64F /* FSTextView */ = {
-			isa = PBXGroup;
-			children = (
-				E10CF974B744DE236FE95325F4F1CEDB /* FSTextView.swift */,
-				1A16C346030F378B15FCED9E9A2BB428 /* FSTextViewDelegate.swift */,
-				52C7F447B7CAD754273EBEBC9D41AF6F /* FSTextViewTextParseable.swift */,
-			);
-			name = FSTextView;
-			path = Sources/Classes/FSTextView;
+			name = Loader;
+			path = Loader;
 			sourceTree = "<group>";
 		};
 		E86A9C348467FBC87AF5092E6F0F49CA /* iOS */ = {
@@ -751,24 +786,13 @@
 			name = iOS;
 			sourceTree = "<group>";
 		};
-		EA47D6C880394B8873367013BA31BA12 /* Hook */ = {
+		EE052E138AC0F834D7E67D1A90E28D02 /* FSTimer */ = {
 			isa = PBXGroup;
 			children = (
-				08B35BFB81393A3C53960CD0F7914560 /* UIApplication+FSUIKitSwiftHook.h */,
-				D146F813DBF85853D49A4B01C0F5DF48 /* UIApplication+FSUIKitSwiftHook.m */,
+				6746C0CD28248702E43E8B01CEF80E22 /* FSTimer.swift */,
 			);
-			name = Hook;
-			path = Hook;
-			sourceTree = "<group>";
-		};
-		EE287170ABE95B827957F41E3C095041 /* WaterfallLayout */ = {
-			isa = PBXGroup;
-			children = (
-				4673D0B70BAD78B8D5AC9B924C98E8AE /* FSCollectionViewWaterfallLayout.swift */,
-				C4B9CA7FBBE700095B8B057F2762D9F2 /* FSCollectionViewWaterfallLayoutDelegate.swift */,
-			);
-			name = WaterfallLayout;
-			path = WaterfallLayout;
+			name = FSTimer;
+			path = Sources/Classes/FSTimer;
 			sourceTree = "<group>";
 		};
 		FBE859397B27E4FC4D81B6F5DD24B6F6 /* Pods */ = {
@@ -790,12 +814,12 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		68A9C48F02B9453CB631DFE502F8E989 /* Headers */ = {
+		91339FD8C7EC6E61E8F3AA681D26BBC4 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				40DD0E3396820DB86E3A91B994698DF5 /* FSUIKitSwift-umbrella.h in Headers */,
-				8E00C69D7F6494D1FEB37C0FE2349FF6 /* UIApplication+FSUIKitSwiftHook.h in Headers */,
+				448B1F6FF3F3169E5B3A67C764AA95FA /* FSUIKitSwift-umbrella.h in Headers */,
+				B281FA16488328903EB486821526DA47 /* UIApplication+FSUIKitSwiftHook.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -840,8 +864,8 @@
 			buildRules = (
 			);
 			dependencies = (
-				83381BDF83303D26176843AA821D07C6 /* PBXTargetDependency */,
-				08E612F819CE76E475937308DA5C3048 /* PBXTargetDependency */,
+				B5BAAFE07B171A86A9C68416C7DD510A /* PBXTargetDependency */,
+				B267398DE31DE2F3FC3B4C5497040537 /* PBXTargetDependency */,
 			);
 			name = "Pods-FSUIKit_Example";
 			productName = Pods_FSUIKit_Example;
@@ -850,11 +874,11 @@
 		};
 		A69F2BD3E2A1D5E5DE6816A06D57A7C1 /* FSUIKitSwift-FSUIKitSwift */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = EF9B92CC1C8A05C6C4BB13C836FCC297 /* Build configuration list for PBXNativeTarget "FSUIKitSwift-FSUIKitSwift" */;
+			buildConfigurationList = 57C3F50CF8A13C0FED5C971C3BFDBF67 /* Build configuration list for PBXNativeTarget "FSUIKitSwift-FSUIKitSwift" */;
 			buildPhases = (
-				9EF5CCFE1600D3614D25E62C09E9B027 /* Sources */,
-				EB186D744EF5B679FFE6DF44C47AD1A4 /* Frameworks */,
-				FB8E47DF708F3DCC61727C1EA334ED06 /* Resources */,
+				CD4F88A500925B04ACD9EA0749026281 /* Sources */,
+				3B39D7153C81A82B5025AEF5112C880E /* Frameworks */,
+				97DFEFFEE4FD95F470009FBD602D49AF /* Resources */,
 			);
 			buildRules = (
 			);
@@ -867,17 +891,17 @@
 		};
 		DDDE61E66D18F4CA02AF50F4F0E4DBB6 /* FSUIKitSwift */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 959E6BE72CAE6C00B127CD83CC9BB534 /* Build configuration list for PBXNativeTarget "FSUIKitSwift" */;
+			buildConfigurationList = A318C9B398993AF8859089EAF720CDBF /* Build configuration list for PBXNativeTarget "FSUIKitSwift" */;
 			buildPhases = (
-				68A9C48F02B9453CB631DFE502F8E989 /* Headers */,
-				8BA0C25018024CEB9504818708696C68 /* Sources */,
-				751B51183D295774814CA2477AD34E9B /* Frameworks */,
-				9DC45C4D3BFE1DDC15F4F9F8A6C06D7D /* Resources */,
+				91339FD8C7EC6E61E8F3AA681D26BBC4 /* Headers */,
+				F2BF54FEB85DFF3A21CEEB8ECF3968D8 /* Sources */,
+				53DA593A681D036DF7FBE3C790C62ACE /* Frameworks */,
+				2C1932BF9EA94F28B08D7E2DA5EA995A /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				8489BBECE88D8F176182569B9227DE0D /* PBXTargetDependency */,
+				1F4FBD5EC9C1983329987A89E9FE9F86 /* PBXTargetDependency */,
 			);
 			name = FSUIKitSwift;
 			productName = FSUIKitSwift;
@@ -916,6 +940,14 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		2C1932BF9EA94F28B08D7E2DA5EA995A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D576B64FBCD4594C5DDCC7BE44439F7F /* FSUIKitSwift-FSUIKitSwift in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		820C67429A90336F5AF1C850DF03B1B9 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -923,11 +955,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9DC45C4D3BFE1DDC15F4F9F8A6C06D7D /* Resources */ = {
+		97DFEFFEE4FD95F470009FBD602D49AF /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E1DA0EA4DEE516BA93C812C872BFDD9B /* FSUIKitSwift-FSUIKitSwift in Resources */,
+				C06E2919AF8C4F588726BDDA43BFDED6 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -935,14 +967,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		FB8E47DF708F3DCC61727C1EA334ED06 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				920AB6408D1477778B736714F434D16F /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -994,87 +1018,92 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		8BA0C25018024CEB9504818708696C68 /* Sources */ = {
+		CD4F88A500925B04ACD9EA0749026281 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4C846EFF7F11F3B4F43E9CCE9E32197E /* _InternalTextFieldDelegator.swift in Sources */,
-				C25C695226FF561FE99892F371FF75D2 /* _InternalTextViewDelegator.swift in Sources */,
-				717DCA2B598AB2A5DB65236881FBFF57 /* Array+FSUIKitSwift.swift in Sources */,
-				018C77AA211CC90C31493C6AAF163730 /* BinaryInteger+FSUIKitSwift.swift in Sources */,
-				998E3F8F71E2CB9D9718520CE87E3EFF /* CALayer+FSUIKitSwift.swift in Sources */,
-				E7C750C1FF8E4E7639EC13A0157380C5 /* CGFloatConvertible.swift in Sources */,
-				2887AEF759F33AC3FE850C4436F3FB2B /* CGSize+FSUIKitSwift.swift in Sources */,
-				86C165888EB87EE7B6ED9E450711EAB6 /* Collection+FSUIKitSwift.swift in Sources */,
-				1A512131A896ACD9E8ED4F771B11C308 /* CoreGraphics+FSUIKitSwift.swift in Sources */,
-				F61DD9A513508D737E80FB96E919D66D /* Date+FSUIKitSwift.swift in Sources */,
-				97E6472A5ACD773AACBC1BC8D971E779 /* DateFormatter+FSUIKitSwift.swift in Sources */,
-				597632C792B6E0D2AEBA407FB8FED8C4 /* Decimal+FSUIKitSwift.swift in Sources */,
-				94859B2BA243D26D6F82F26E1379BE4A /* Double+FSUIKitSwift.swift in Sources */,
-				832429438A5E6E2EF2FCC3B626FFCE04 /* Float+FSUIKitSwift.swift in Sources */,
-				633A9ACE4B11E7035CDAC1294DD9B180 /* FSButton.swift in Sources */,
-				F9839740CA635F8CB0100A060916AAE3 /* FSCollectionViewAnimatedFlowLayout.swift in Sources */,
-				80082842FCD56CEEDA528D8FDAF8E9B5 /* FSCollectionViewWaterfallLayout.swift in Sources */,
-				9D748FD841DA2D6D69462E718E9EAA40 /* FSCollectionViewWaterfallLayoutDelegate.swift in Sources */,
-				EBD1D4ACB9233ACCCB295928E9F5DD06 /* FSCornerRoundingView.swift in Sources */,
-				1E0F33EBEE1F14A0F7D572C0B2C1FE33 /* FSFlexibleCell.swift in Sources */,
-				DD9A39EF6ED692C5362AD3EC96E2E040 /* FSFlexibleItem.swift in Sources */,
-				27591BA0B9DB3C31F5F7939F56C274CE /* FSFlexibleView.swift in Sources */,
-				3A94D8873BC2A829DF63D7D6BF753279 /* FSFormatter.swift in Sources */,
-				A520C86266436D58CCC503967E75AFC3 /* FSKeyboardListener.swift in Sources */,
-				2EB82AB6EF032C8E75E4328631C469A4 /* FSKeyboardManager.swift in Sources */,
-				78B68B521C01F84DD951693EB329B071 /* FSKeyboardObserver.swift in Sources */,
-				F4E81DF615A12C27AA9F732DC4DD8F2A /* FSKeyboardTransition.swift in Sources */,
-				2916AFD210154F5BA9A189F7019DE896 /* FSNavigationBar.swift in Sources */,
-				4935C27BBA5DF04D476DAC520449333A /* FSPageControl.swift in Sources */,
-				CA015643F8AEFE81404C161DE20314F1 /* FSReloadableView.swift in Sources */,
-				17452D91E7A68B375861F35E49D7556B /* FSSeparatorView.swift in Sources */,
-				D602DA3949A014D73F1533781DE3D8C3 /* FSTapticEngine.swift in Sources */,
-				5F24B1F78C093FC3A2C946BF04628281 /* FSTextFieldInputViewController.swift in Sources */,
-				74D2458F400535188E641F34800F51DD /* FSTextView.swift in Sources */,
-				4EEF709343A5E0E96ABC7C0CEBF5A14B /* FSTextViewDelegate.swift in Sources */,
-				13A552183EBEDDCF1AA3E76963B6C8E6 /* FSTextViewInputViewController.swift in Sources */,
-				F12A14A28149449478516BDFF2C9D1A9 /* FSTextViewTextParseable.swift in Sources */,
-				D1BD66743E23499EAFB6D6521B950838 /* FSTimer.swift in Sources */,
-				A60379455D8A7ACBC3FEE49D412612F2 /* FSToast.swift in Sources */,
-				73A4D9E679BFF8FFDED3AB0F30F98B3A /* FSToastAnimatedTransitioning.swift in Sources */,
-				2233CCF8D4313C3E342DFBD9CACD3A78 /* FSToastAnimation.swift in Sources */,
-				681B1598C74BF63AEC11186C888F784A /* FSToastBackgroundEffect.swift in Sources */,
-				4BC622C0F660152322E5B34F1A04A720 /* FSToastContent.swift in Sources */,
-				01C245A059FE6828EE3AFB6C60D3CF67 /* FSToastContentConvertable.swift in Sources */,
-				CF0B6CA7D21AA23F19C70B5E7C2B167B /* FSToastTapticEffect.swift in Sources */,
-				2EF0F5F3918F518F737D7A01473E722A /* FSToastView.swift in Sources */,
-				D53974D8B605AA954F48750363DE039A /* FSToolBar.swift in Sources */,
-				A563DFA3CC97E5D1D7ECD690787E8003 /* FSUIApplicationLoader.swift in Sources */,
-				F9A766FA65050F6DB7FFA28EBE327FE7 /* FSUIKitSwift-dummy.m in Sources */,
-				D3D440CF232E8A7665375E122E7EE062 /* FSViewController.swift in Sources */,
-				86A48CB5A163763AE295708A170CF3AE /* FSVisualEffectView.swift in Sources */,
-				EA28089E9766CEFA85DB464D361F68C1 /* InternalNamespace.swift in Sources */,
-				6C03FDFA49AA2D7E7B08BC347CB66296 /* NSAttributedString+FSToast.swift in Sources */,
-				DFD13F7D58844F37E1534D4AF2495968 /* NSAttributedString+FSUIKitSwift.swift in Sources */,
-				354588B57A803955C506D6B126B83E87 /* PublicNamespace.swift in Sources */,
-				468E56D0EF3C6279D3439AA244FCC24D /* String+FSUIKitSwift.swift in Sources */,
-				EE108BC3EC2CA169CB6F47ADEE1F8952 /* UIApplication+FSUIKitSwift.swift in Sources */,
-				B4A745376C85B8A9DA231E1A4CD601BD /* UIApplication+FSUIKitSwiftHook.m in Sources */,
-				87DCE6F3AFB88B85A0C91D8B2678EDCC /* UIColor+FSUIKitSwift.swift in Sources */,
-				7310AF98FE1AABDB67DC81BF41531C4B /* UIControl+FSUIKitSwift.swift in Sources */,
-				31A3ECF24A9C02661801DBCADC4B42DB /* UIEdgeInsets+FSUIKitSwift.swift in Sources */,
-				625656ACC22E9A621C88A68EDA8D5B94 /* UIImage+FSUIKit_Private.swift in Sources */,
-				EBB5D13614EBB248D80DEE5D82E7E710 /* UIImage+FSUIKitSwift.swift in Sources */,
-				D6CE15805755A5720DCD9FEB234132D8 /* UIScreen+FSUIKitSwift.swift in Sources */,
-				7AAF6E6C390C66E5E87D19B8F11A1C89 /* UIStackView+FSUIKitSwift.swift in Sources */,
-				03F4DBBF979EE4227C0683A5414D5B99 /* UIView+FSToast.swift in Sources */,
-				40500FC80906B4C849395531000131C6 /* UIView+FSUIKitSwift.swift in Sources */,
-				D4C7933BE79D6443447A2AE890606C2D /* UIViewController+FSToast.swift in Sources */,
-				6F8CF2B13EED6D318CD6ABFEC34F20B4 /* UIViewController+FSUIKitSwift.swift in Sources */,
-				D2D60E8F2A9C5D91A6006C1F995DC17C /* UIViewEffectViewiOS14.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9EF5CCFE1600D3614D25E62C09E9B027 /* Sources */ = {
+		F2BF54FEB85DFF3A21CEEB8ECF3968D8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F58FE83E77EEEF4D682A1703353292FA /* _InternalTextFieldDelegator.swift in Sources */,
+				035A8FFE43BF45FDBE344DDBD68040BD /* _InternalTextViewDelegator.swift in Sources */,
+				0BE1119B137F4F7327DD96B4EFFADC82 /* Array+FSUIKitSwift.swift in Sources */,
+				BC09F83F1EF22B3DAB4807B4B7A7B32F /* BinaryInteger+FSUIKitSwift.swift in Sources */,
+				F95117E6ED51AC1AA5F0D2B8599AB483 /* CALayer+FSUIKitSwift.swift in Sources */,
+				1873A1B68E9A0F1214D1418389269FF0 /* CGFloatConvertible.swift in Sources */,
+				A191BCDEB49EE5A3FAF0A519F4E86B19 /* CGSize+FSUIKitSwift.swift in Sources */,
+				FE636DDAC61883107E7CFF9EC6C98E16 /* Collection+FSUIKitSwift.swift in Sources */,
+				2AF638704CD790A8A543BFF5048AF286 /* CoreGraphics+FSUIKitSwift.swift in Sources */,
+				8C48A6CDFA4F1F610748F98D1F6C8CD5 /* Date+FSUIKitSwift.swift in Sources */,
+				1CA187A4B86F9C14F0D4174CB223F15C /* DateFormatter+FSUIKitSwift.swift in Sources */,
+				B60D2122A8D288DE4F582935C19C4424 /* Decimal+FSUIKitSwift.swift in Sources */,
+				AE318C52FB4C394DFBDB59484652F64A /* Double+FSUIKitSwift.swift in Sources */,
+				8A615FA3A41C4B876B85692D3D3FCAC7 /* Float+FSUIKitSwift.swift in Sources */,
+				8C1BD78DC7A65DE0FD1D61BCF14B32CB /* FSButton.swift in Sources */,
+				05A7926E9F8603CC3E2BCF9127FDB1F8 /* FSCollectionViewAnimatedFlowLayout.swift in Sources */,
+				485024345939650682318EFFCD48AC09 /* FSCollectionViewWaterfallLayout.swift in Sources */,
+				ACEB68026B7D3D475E63348D0843D571 /* FSCollectionViewWaterfallLayoutDelegate.swift in Sources */,
+				E2EF68EC7CA5BA10C747A541985DA9FE /* FSCornerRoundingView.swift in Sources */,
+				75274F7994A62509077F737B0DCB4168 /* FSEmptyContent.swift in Sources */,
+				A7E077FA363C40B3A1958C347A09F886 /* FSEmptyContentProxy.swift in Sources */,
+				664ABD03A278686CBCE610D7F731FA0F /* FSEmptyView.swift in Sources */,
+				2E8896149BBA11E644F1CEFC8B02504E /* FSEmptyViewDataSource.swift in Sources */,
+				AA9EF369CA9204C9FA89E2700D66A93E /* FSEmptyViewDelegate.swift in Sources */,
+				EB23A46DA0A564CBEE9990645AA9EAC2 /* FSFlexibleCell.swift in Sources */,
+				FB789CD3A8EA5E18BB56025885908762 /* FSFlexibleItem.swift in Sources */,
+				B336FD78A50ED3C5C1E66661443819C8 /* FSFlexibleView.swift in Sources */,
+				8E1D1D0ED15EB0BA16A900980CE1A684 /* FSFormatter.swift in Sources */,
+				37935A3844152B9E798013EA3ED6C592 /* FSKeyboardListener.swift in Sources */,
+				52D5448FEBFAADA70107C546EBB0F682 /* FSKeyboardManager.swift in Sources */,
+				1658093232E22150E97428017AC6EA2D /* FSKeyboardObserver.swift in Sources */,
+				B75A6804E2297A4AED13240D0C305891 /* FSKeyboardTransition.swift in Sources */,
+				B31F4DD30697A4A31E90A329902C0A0A /* FSNavigationBar.swift in Sources */,
+				2A5C418B0EAC11EF599C64222301A82D /* FSPageControl.swift in Sources */,
+				BFB03CD4C31A36842302453091DC2D85 /* FSReloadableView.swift in Sources */,
+				CD484A69383F83BC198F0AE1748B9D5D /* FSSeparatorView.swift in Sources */,
+				15087018A75E7E31D65FA25D9B3598B8 /* FSTapticEngine.swift in Sources */,
+				16C45450F50CABBECCCE2AD13FE2DCCB /* FSTextFieldInputViewController.swift in Sources */,
+				82AD98DE9FC2AC11AF1F497463A2F630 /* FSTextView.swift in Sources */,
+				702C3117D7FFABC4325819B1420C4A7C /* FSTextViewDelegate.swift in Sources */,
+				8F02614C4752F8F3EEDB7636D7EBE103 /* FSTextViewInputViewController.swift in Sources */,
+				F42C816175B8D02221466A6A2181ABE8 /* FSTextViewTextParseable.swift in Sources */,
+				44CE20B2FB000CB36D50F1E6DB774F34 /* FSTimer.swift in Sources */,
+				9C67661476B9A5D408987EE6DC303284 /* FSToast.swift in Sources */,
+				4CEF4A7F0F7F5153C4983FD89D65C216 /* FSToastAnimatedTransitioning.swift in Sources */,
+				C118F27E5DCE5A0F260FB54E9F7278E2 /* FSToastAnimation.swift in Sources */,
+				18CF0FA1FC421499B3AE376909B51D9C /* FSToastBackgroundEffect.swift in Sources */,
+				8F24A2D5D6FEC871A33479B36DDE5206 /* FSToastContent.swift in Sources */,
+				C2715A36833B437567A031724C655B9F /* FSToastContentConvertable.swift in Sources */,
+				7ED5320A10CD7A575537F3A212641CAF /* FSToastTapticEffect.swift in Sources */,
+				A6E290B04F484DBB6DF27B937C55F561 /* FSToastView.swift in Sources */,
+				A4EF25A8282163122F55DB509A830247 /* FSToolBar.swift in Sources */,
+				33BA22783E02E421BBD321F7F3474921 /* FSUIApplicationLoader.swift in Sources */,
+				A66F65C459E3A60203619D929B4718FC /* FSUIKitSwift-dummy.m in Sources */,
+				BF3D97F6441B81EDF53F9954CD110FF8 /* FSViewController.swift in Sources */,
+				6B2B10CCF8856C5FB19ED686025ABB0E /* FSVisualEffectView.swift in Sources */,
+				0E3BC04EDA265ECA82173DBD4E8B17FB /* InternalNamespace.swift in Sources */,
+				B011A6A42CCDE8423D67F1FE4D50EC65 /* NSAttributedString+FSToast.swift in Sources */,
+				40E4C3B89155DC5021A2FB593A4DFF56 /* NSAttributedString+FSUIKitSwift.swift in Sources */,
+				CE65BBCB6D5EA5FBED55DD6BE603454B /* PublicNamespace.swift in Sources */,
+				7A118408220E2B4AE1C76C0C34A34FD6 /* String+FSUIKitSwift.swift in Sources */,
+				094BB95E5E3ECBBFC35C2E7EA8CDAA44 /* UIApplication+FSUIKitSwift.swift in Sources */,
+				E93271A0A7EA454F9AE12E07C0C08DDC /* UIApplication+FSUIKitSwiftHook.m in Sources */,
+				F10F42CC09C4894E9B0C97DBD5D39721 /* UIColor+FSUIKitSwift.swift in Sources */,
+				353153E23D0F90D7B401F823A10C34FD /* UIControl+FSUIKitSwift.swift in Sources */,
+				E631F98BC3AE0C2F4C00C125589DBE81 /* UIEdgeInsets+FSUIKitSwift.swift in Sources */,
+				E91D4EE0D84CC25B7D0D11C92D1D0027 /* UIImage+FSUIKit_Private.swift in Sources */,
+				EBEB94AA3627F18FB351ACA8825CC2B1 /* UIImage+FSUIKitSwift.swift in Sources */,
+				5883FEB44F0E1173A9F020678D6FD395 /* UIScreen+FSUIKitSwift.swift in Sources */,
+				2125C47691F52226D2E41E8E4A960F8E /* UIStackView+FSUIKitSwift.swift in Sources */,
+				CA191A880F6EF330727DD727DC0DE0A4 /* UIView+FSToast.swift in Sources */,
+				A860F85771DE1A770298CFD7111AE86B /* UIView+FSUIKitSwift.swift in Sources */,
+				B029588C33F44574C5A58FFF03CB76E1 /* UIViewController+FSToast.swift in Sources */,
+				D805006AFA852CD5C6D7248176719241 /* UIViewController+FSUIKitSwift.swift in Sources */,
+				FA4DC6ECF490711D6822450337EF2360 /* UIViewEffectViewiOS14.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1089,23 +1118,23 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		08E612F819CE76E475937308DA5C3048 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = SnapKit;
-			target = 19622742EBA51E823D6DAE3F8CDBFAD4 /* SnapKit */;
-			targetProxy = 3BBCF9D3FE34F23C0D94D61FD453D6AC /* PBXContainerItemProxy */;
-		};
-		83381BDF83303D26176843AA821D07C6 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = FSUIKitSwift;
-			target = DDDE61E66D18F4CA02AF50F4F0E4DBB6 /* FSUIKitSwift */;
-			targetProxy = 3B3371F6FBE98885D9BC2C2DD720D4DD /* PBXContainerItemProxy */;
-		};
-		8489BBECE88D8F176182569B9227DE0D /* PBXTargetDependency */ = {
+		1F4FBD5EC9C1983329987A89E9FE9F86 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "FSUIKitSwift-FSUIKitSwift";
 			target = A69F2BD3E2A1D5E5DE6816A06D57A7C1 /* FSUIKitSwift-FSUIKitSwift */;
-			targetProxy = A7C227D661C222F8FD0EE466E564A8F6 /* PBXContainerItemProxy */;
+			targetProxy = 16F37B6F37C2F3D6A310AC7D0E4482C9 /* PBXContainerItemProxy */;
+		};
+		B267398DE31DE2F3FC3B4C5497040537 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SnapKit;
+			target = 19622742EBA51E823D6DAE3F8CDBFAD4 /* SnapKit */;
+			targetProxy = 40B0981274DE498DEBE800DA7F96C7AC /* PBXContainerItemProxy */;
+		};
+		B5BAAFE07B171A86A9C68416C7DD510A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = FSUIKitSwift;
+			target = DDDE61E66D18F4CA02AF50F4F0E4DBB6 /* FSUIKitSwift */;
+			targetProxy = 5C9FFE253950B7104479A3FAA6EACDCD /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1176,6 +1205,24 @@
 			};
 			name = Debug;
 		};
+		3C25B8CA0E5B4882D371766A12736913 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = DEA51DCE012AF6FAEE3263A5D844013A /* FSUIKitSwift.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGNING_ALLOWED = NO;
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/FSUIKitSwift";
+				ENABLE_BITCODE = NO;
+				IBSC_MODULE = FSUIKitSwift;
+				INFOPLIST_FILE = "Target Support Files/FSUIKitSwift/ResourceBundle-FSUIKitSwift-FSUIKitSwift-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				PRODUCT_NAME = FSUIKitSwift;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
 		49E664B8E9373B811CD911C8E7A80DFB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A244866299A55766B9895B33E4C8FC5B /* Pods-FSUIKit_Example.debug.xcconfig */;
@@ -1214,9 +1261,27 @@
 			};
 			name = Debug;
 		};
-		5E8729853D9679B573613A3744AE1B21 /* Debug */ = {
+		53510EC5463D5A67B62C80734F379CA5 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0C955382028351DE50A7B3E33BF4CF25 /* FSUIKitSwift.debug.xcconfig */;
+			baseConfigurationReference = B72E6CB50E88B8E347915A5EE495E186 /* FSUIKitSwift.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGNING_ALLOWED = NO;
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/FSUIKitSwift";
+				ENABLE_BITCODE = NO;
+				IBSC_MODULE = FSUIKitSwift;
+				INFOPLIST_FILE = "Target Support Files/FSUIKitSwift/ResourceBundle-FSUIKitSwift-FSUIKitSwift-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				PRODUCT_NAME = FSUIKitSwift;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
+		};
+		5A1620FBEFBBC08E276D5BE153CE6E48 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = DEA51DCE012AF6FAEE3263A5D844013A /* FSUIKitSwift.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1388,6 +1453,43 @@
 			};
 			name = Release;
 		};
+		9C434DA2DD2D59819566C57FBAB180DE /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B72E6CB50E88B8E347915A5EE495E186 /* FSUIKitSwift.release.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_BITCODE = NO;
+				GCC_PREFIX_HEADER = "Target Support Files/FSUIKitSwift/FSUIKitSwift-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/FSUIKitSwift/FSUIKitSwift-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/FSUIKitSwift/FSUIKitSwift.modulemap";
+				PRODUCT_MODULE_NAME = FSUIKitSwift;
+				PRODUCT_NAME = FSUIKitSwift;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		A6F0173BAEB974532D93E05E5A94E50A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0EE5F8CB92905AE76169A71226B44035 /* SnapKit.debug.xcconfig */;
@@ -1424,79 +1526,6 @@
 			};
 			name = Debug;
 		};
-		AD279928F8A81E179809DCF5E0F990C7 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0C955382028351DE50A7B3E33BF4CF25 /* FSUIKitSwift.debug.xcconfig */;
-			buildSettings = {
-				CODE_SIGNING_ALLOWED = NO;
-				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/FSUIKitSwift";
-				ENABLE_BITCODE = NO;
-				IBSC_MODULE = FSUIKitSwift;
-				INFOPLIST_FILE = "Target Support Files/FSUIKitSwift/ResourceBundle-FSUIKitSwift-FSUIKitSwift-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				PRODUCT_NAME = FSUIKitSwift;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				WRAPPER_EXTENSION = bundle;
-			};
-			name = Debug;
-		};
-		DC46E553777B3F333D2D7B946C1AC067 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = D36E4F21917B7918030449AE68BBE5EC /* FSUIKitSwift.release.xcconfig */;
-			buildSettings = {
-				CODE_SIGNING_ALLOWED = NO;
-				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/FSUIKitSwift";
-				ENABLE_BITCODE = NO;
-				IBSC_MODULE = FSUIKitSwift;
-				INFOPLIST_FILE = "Target Support Files/FSUIKitSwift/ResourceBundle-FSUIKitSwift-FSUIKitSwift-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				PRODUCT_NAME = FSUIKitSwift;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				WRAPPER_EXTENSION = bundle;
-			};
-			name = Release;
-		};
-		E152D97D5D3032A79099EFA88F4B689F /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = D36E4F21917B7918030449AE68BBE5EC /* FSUIKitSwift.release.xcconfig */;
-			buildSettings = {
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_BITCODE = NO;
-				GCC_PREFIX_HEADER = "Target Support Files/FSUIKitSwift/FSUIKitSwift-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/FSUIKitSwift/FSUIKitSwift-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MODULEMAP_FILE = "Target Support Files/FSUIKitSwift/FSUIKitSwift.modulemap";
-				PRODUCT_MODULE_NAME = FSUIKitSwift;
-				PRODUCT_NAME = FSUIKitSwift;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 5;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1518,6 +1547,15 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		57C3F50CF8A13C0FED5C971C3BFDBF67 /* Build configuration list for PBXNativeTarget "FSUIKitSwift-FSUIKitSwift" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3C25B8CA0E5B4882D371766A12736913 /* Debug */,
+				53510EC5463D5A67B62C80734F379CA5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		58EAA7FF29EA237538F747F2AF468203 /* Build configuration list for PBXNativeTarget "SnapKit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -1527,20 +1565,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		959E6BE72CAE6C00B127CD83CC9BB534 /* Build configuration list for PBXNativeTarget "FSUIKitSwift" */ = {
+		A318C9B398993AF8859089EAF720CDBF /* Build configuration list for PBXNativeTarget "FSUIKitSwift" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				5E8729853D9679B573613A3744AE1B21 /* Debug */,
-				E152D97D5D3032A79099EFA88F4B689F /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		EF9B92CC1C8A05C6C4BB13C836FCC297 /* Build configuration list for PBXNativeTarget "FSUIKitSwift-FSUIKitSwift" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				AD279928F8A81E179809DCF5E0F990C7 /* Debug */,
-				DC46E553777B3F333D2D7B946C1AC067 /* Release */,
+				5A1620FBEFBBC08E276D5BE153CE6E48 /* Debug */,
+				9C434DA2DD2D59819566C57FBAB180DE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
