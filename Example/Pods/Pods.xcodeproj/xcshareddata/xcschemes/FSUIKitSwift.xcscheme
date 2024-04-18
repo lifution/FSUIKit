@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B28DC042F2F340B4048F76D19AE58F76"
-               BuildableName = "FSUIKit.framework"
-               BlueprintName = "FSUIKit"
+               BlueprintIdentifier = "DDDE61E66D18F4CA02AF50F4F0E4DBB6"
+               BuildableName = "FSUIKitSwift.framework"
+               BlueprintName = "FSUIKitSwift"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

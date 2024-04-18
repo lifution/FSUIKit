@@ -1,14 +1,12 @@
-# FSUIKit
+# FSUIKitSwift
 
-[![Version Status](https://img.shields.io/cocoapods/v/FSCollectionKit.svg)](https://cocoapods.org/pods/FSCollectionKit)
-[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
-[![license MIT](https://img.shields.io/cocoapods/l/FSCollectionKit.svg)](https://github.com/lifution/FSUIKit/blob/main/LICENSE)
-[![Platform](https://img.shields.io/cocoapods/p/FSCollectionKit.svg)](https://github.com/lifution/FSUIKit/blob/main/README.md)
-[![Swift 5.0](https://img.shields.io/badge/Swift-5.0-orange.svg?style=flat)](https://developer.apple.com/swift/)
+[![Version Status](https://img.shields.io/cocoapods/v/FSUIKitSwift.svg)](https://cocoapods.org/pods/FSUIKitSwift)
+[![license MIT](https://img.shields.io/cocoapods/l/FSUIKitSwift.svg)](https://github.com/lifution/FSUIKit/blob/main/LICENSE)
+[![Platform](https://img.shields.io/cocoapods/p/FSUIKitSwift.svg)](https://github.com/lifution/FSUIKit/blob/main/README.md)
+[![Swift 5.x](https://img.shields.io/badge/Swift-5.x-orange.svg?style=flat)](https://developer.apple.com/swift/)
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)]()
 
-## Important
-
-<span style="color: red">**This library is not yet finished, and cannot be used for the time being.**</span>
+A collection of iOS components written in Swift.
 
 ## Requirements
 
