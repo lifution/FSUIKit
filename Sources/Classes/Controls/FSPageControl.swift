@@ -224,7 +224,7 @@ private extension FSPageControl {
             dispose()
             CATransaction.commit()
         } else {
-            UIView.animate(withDuration: 0.25, delay: 0.0, options: .curveEaseOut) {
+            UIView.animate(withDuration: 0.38, delay: 0.0, options: .curveEaseOut) {
                 dispose()
                 self.stackView.layoutIfNeeded()
             }

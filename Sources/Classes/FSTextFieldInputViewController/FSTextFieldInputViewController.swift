@@ -116,6 +116,24 @@ private extension FSTextFieldInputViewController {
         modalTransitionStyle = .crossDissolve
         modalPresentationStyle = .overFullScreen
         
+        textField.delegate = textFieldDelegator
+        textField.font = .systemFont(ofSize: 16.0)
+        textField.textColor = .fs.color(light: .black, dark: .fs.color(hexed: "ECECEC")!)
+        textField.placeholder = "请输入..."
+        textField.returnKeyType = .done
+        textField.clipsToBounds = true
+        textField.clearButtonMode = .always
+        textField.backgroundColor = .fs.color(light: .white, dark: .fs.color(hexed: "#2f2f2e")!)
+        textField.layer.cornerRadius = 6.0
+        textField.enablesReturnKeyAutomatically = true
+        textField.addTarget(self, action: #selector(p_textDidChange), for: .editingChanged)
+        do {
+            let leftView = UIView()
+            leftView.frame.size.width = 6.0
+            textField.leftView = leftView
+            textField.leftViewMode = .always
+        }
+        
         keyboardObserver.onKeyboardDidChange = { [weak self] transition in
             guard let self = self else { return }
             self.p_keyboardChanged(transition)
@@ -167,25 +185,6 @@ private extension FSTextFieldInputViewController {
             summaryLabel.font = .systemFont(ofSize: 14.0)
             summaryLabel.textColor = .fs.subtitle
             summaryLabel.numberOfLines = 0
-        }
-        do {
-            textField.delegate = textFieldDelegator
-            textField.font = .systemFont(ofSize: 16.0)
-            textField.textColor = .fs.color(light: .black, dark: .fs.color(hexed: "ECECEC")!)
-            textField.placeholder = "请输入..."
-            textField.returnKeyType = .done
-            textField.clipsToBounds = true
-            textField.clearButtonMode = .always
-            textField.backgroundColor = .fs.color(light: .white, dark: .fs.color(hexed: "#2f2f2e")!)
-            textField.layer.cornerRadius = 6.0
-            textField.enablesReturnKeyAutomatically = true
-            textField.addTarget(self, action: #selector(p_textDidChange), for: .editingChanged)
-            do {
-                let leftView = UIView()
-                leftView.frame.size.width = 6.0
-                textField.leftView = leftView
-                textField.leftViewMode = .always
-            }
         }
         do {
             confirmButton.isEnabled = false

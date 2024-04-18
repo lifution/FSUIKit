@@ -61,10 +61,11 @@ open class FSTextViewInputViewController: FSViewController {
     private var toolBarHeightConstraint: NSLayoutConstraint!
     private var toolBarBottomConstraint: NSLayoutConstraint!
     private var textViewHeightConstraint: NSLayoutConstraint!
-    private var textViewTopSummaryConstraint: NSLayoutConstraint!
-    private var textViewTopToolBarConstraint: NSLayoutConstraint!
+//    private var textViewTopSummaryConstraint: NSLayoutConstraint!
+//    private var textViewTopToolBarConstraint: NSLayoutConstraint!
     
-    private let textViewMinimalHeight = 35.0
+    private var textViewHeight = 38.0
+    private let textViewMinimalHeight = 38.0
     
     // MARK: Initialization
     
@@ -118,6 +119,20 @@ private extension FSTextViewInputViewController {
     func p_didInitialize() {
         modalTransitionStyle = .crossDissolve
         modalPresentationStyle = .overFullScreen
+        
+        textView.delegate = textViewDelegator
+        textView.font = .systemFont(ofSize: 16.0)
+        textView.textColor = .fs.color(light: .black, dark: .fs.color(hexed: "ECECEC")!)
+        textView.placeholder = "请输入..."
+        textView.returnKeyType = .done
+        textView.clipsToBounds = true
+        textView.backgroundColor = .fs.color(light: .white, dark: .fs.color(hexed: "#2f2f2e")!)
+        textView.layer.cornerRadius = 6.0
+        textView.enablesReturnKeyAutomatically = true
+        textView.maximumHeight = 150.0
+        textView.heightDidChangeHandler = { [unowned self] height in
+            self.p_textViewPrefersUpdateTo(height: height)
+        }
         
         keyboardObserver.onKeyboardDidChange = { [weak self] transition in
             guard let self = self else { return }
@@ -173,21 +188,6 @@ private extension FSTextViewInputViewController {
             summaryLabel.numberOfLines = 0
         }
         do {
-            textView.delegate = textViewDelegator
-            textView.font = .systemFont(ofSize: 16.0)
-            textView.textColor = .fs.color(light: .black, dark: .fs.color(hexed: "ECECEC")!)
-            textView.placeholder = "请输入..."
-            textView.returnKeyType = .done
-            textView.clipsToBounds = true
-            textView.backgroundColor = .fs.color(light: .white, dark: .fs.color(hexed: "#2f2f2e")!)
-            textView.layer.cornerRadius = 6.0
-            textView.enablesReturnKeyAutomatically = true
-            textView.maximumHeight = 100.0
-            textView.heightDidChangeHandler = { [unowned self] height in
-                self.p_textViewPrefersUpdateTo(height: height)
-            }
-        }
-        do {
             confirmButton.isEnabled = false
             confirmButton.backgroundColor = .fs.color(hexed: "#387bfb")
             confirmButton.titleLabel?.font = .boldSystemFont(ofSize: 16.0)
@@ -197,7 +197,7 @@ private extension FSTextViewInputViewController {
             confirmButton.addTarget(self, action: #selector(p_didPressConfirmButton), for: .touchUpInside)
             NSLayoutConstraint.activate([
                 confirmButton.widthAnchor.constraint(equalToConstant: 60.0),
-                confirmButton.heightAnchor.constraint(equalToConstant: 35.0)
+                confirmButton.heightAnchor.constraint(equalToConstant: 38.0)
             ])
         }
         do {
@@ -225,7 +225,7 @@ private extension FSTextViewInputViewController {
                                             toItem: nil,
                                             attribute: .notAnAttribute,
                                             multiplier: 1.0,
-                                            constant: 100.0)
+                                            constant: 500.0)
             toolBarHeightConstraint = height
             view.addConstraint(height)
             let bottom = NSLayoutConstraint(item: toolBar,
@@ -275,7 +275,7 @@ private extension FSTextViewInputViewController {
                                                                       views: ["view": textView, "button": confirmButton]))
                 toolBar.addConstraint(NSLayoutConstraint(item: textView,
                                                          attribute: .bottom,
-                                                         relatedBy: .lessThanOrEqual,
+                                                         relatedBy: .equal,
                                                          toItem: toolBar,
                                                          attribute: .bottom,
                                                          multiplier: 1,
@@ -291,24 +291,6 @@ private extension FSTextViewInputViewController {
                     toolBar.addConstraint(constraint)
                     textViewHeightConstraint = constraint
                 }
-                do {
-                    let constraint = NSLayoutConstraint(item: textView,
-                                                        attribute: .top,
-                                                        relatedBy: .equal,
-                                                        toItem: summaryLabel,
-                                                        attribute: .bottom,
-                                                        multiplier: 1,
-                                                        constant: 8)
-                    toolBar.addConstraint(constraint)
-                    textViewTopSummaryConstraint = constraint
-                }
-                textViewTopToolBarConstraint = NSLayoutConstraint(item: textView,
-                                                                  attribute: .top,
-                                                                  relatedBy: .equal,
-                                                                  toItem: toolBar,
-                                                                  attribute: .top,
-                                                                  multiplier: 1,
-                                                                  constant: 8)
             }
             do {
                 toolBar.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[view]-12-|",
@@ -326,8 +308,12 @@ private extension FSTextViewInputViewController {
     }
     
     func p_textViewPrefersUpdateTo(height: CGFloat) {
-        textViewHeightConstraint.constant = max(textViewMinimalHeight, height)
+        guard isViewLoaded else {
+            return
+        }
+        textViewHeight = max(textViewMinimalHeight, height)
         p_updateToolBarLayout()
+        self.textViewHeightConstraint.constant = self.textViewHeight
         UIView.animate(withDuration: 0.25) {
             self.view.layoutIfNeeded()
         }
@@ -337,11 +323,20 @@ private extension FSTextViewInputViewController {
         guard isViewLoaded else {
             return
         }
-        if !summaryLabel.isHidden {
+        if !summaryLabel.isHidden, toolBar.frame.width > 0 {
             summaryLabel.preferredMaxLayoutWidth = toolBar.frame.width - 24.0
         }
-        let size = toolBar.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
-        toolBarHeightConstraint.constant = FSFlat(size.height)
+        toolBar.layoutIfNeeded()
+        var height = 0.0
+        if !summaryLabel.isHidden {
+            height = summaryLabel.frame.maxY
+        } else {
+            height = 0.0
+        }
+        height += 8.0
+        height += textViewHeight
+        height += 8.0
+        toolBarHeightConstraint.constant = height
     }
     
     func p_updateSummary() {
@@ -350,13 +345,6 @@ private extension FSTextViewInputViewController {
         }
         summaryLabel.text = summary
         summaryLabel.isHidden = summary?.isEmpty ?? true
-        if summaryLabel.isHidden {
-            toolBar.removeConstraint(textViewTopSummaryConstraint)
-            toolBar.addConstraint(textViewTopToolBarConstraint)
-        } else {
-            toolBar.removeConstraint(textViewTopToolBarConstraint)
-            toolBar.addConstraint(textViewTopSummaryConstraint)
-        }
     }
     
     func p_updateConfirmKeyStatus() {

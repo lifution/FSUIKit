@@ -393,8 +393,12 @@ extension FSTextView {
         }
         do {
             if viewSize != frame.size {
+                let old = viewSize
                 viewSize = frame.size
                 p_viewSizeDidChange()
+                if old == .zero {
+                    p_recalculateViewHeight()
+                }
             }
         }
     }
@@ -425,13 +429,7 @@ private extension FSTextView {
     }
     
     func p_viewSizeDidChange() {
-        defer {
-            viewSizeDidChange()
-        }
-        guard viewSize.height > 0, viewSize.width > 0 else {
-            return
-        }
-        
+        viewSizeDidChange()
     }
     
     func p_count(of string: String?) -> Int {
@@ -445,18 +443,14 @@ private extension FSTextView {
     }
     
     func p_isCurrentTextDifferent(to text: String?) -> Bool {
-        ///
-        /// - Note:
-        ///   UITextView 如果文字为空，self.text 永远返回 "" 而不是 nil（即便你设置为 nil 后立即 get 出来也是）。
-        ///
+        // UITextView 如果文字为空，self.text 永远返回 "" 而不是 nil（即便你设置为 nil 后立即 get 出来也是）。
         guard let text = text else {
             return !self.text.isEmpty
         }
         return (self.text != text)
     }
     
-    // ⚠️ 此处需要考虑外部修改了高度后导致 view size 更新后的递归回调。
-    func p_refreshViewHeightIfNeeded() {
+    func p_recalculateViewHeight() {
         let height = FSFlat(sizeThatFits(.init(width: viewSize.width, height: CGFloat.greatestFiniteMagnitude)).height)
         // 通知 delegate 去更新 textView 的高度。
         if height != FSFlat(viewSize.height) {
@@ -498,12 +492,10 @@ private extension FSTextView {
         if !rect.fs.isValidated {
             return
         }
-        
         if rect.minY == (contentOffset.y + textContainerInset.top) {
             // 命中这个条件说明已经不用调整了，直接 return，避免继续走下面的判断，会重复调整，导致光标跳动。
             return
         }
-        
         var contentOffsetY = contentOffset.y
         if rect.minY < (contentOffset.y + textContainerInset.top) {
             // 光标在可视区域上方，往下滚动。
@@ -536,7 +528,7 @@ private extension FSTextView {
         p_updatePlaceholderHiddenStatus()
         
         // 计算高度
-        
+        p_recalculateViewHeight()
         
         // textView 尚未被展示到界面上时，此时过早进行光标调整会计算错误。
         if window == nil {
