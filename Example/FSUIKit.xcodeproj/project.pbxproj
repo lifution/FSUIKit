@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		041102552B72AA2200E243D2 /* ToastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041102542B72AA2200E243D2 /* ToastViewController.swift */; };
+		043541502BD128DB00CC7208 /* GradientViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0435414F2BD128DB00CC7208 /* GradientViewController.swift */; };
 		0482E20D2BC7E85D00681954 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0482E20C2BC7E85D00681954 /* LaunchScreen.storyboard */; };
 		048C86842BCA064E0080322D /* TextInputAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048C86832BCA064E0080322D /* TextInputAlertViewController.swift */; };
 		04F52B112BA1D4AE000AC4BE /* FlexibleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F52B102BA1D4AE000AC4BE /* FlexibleViewController.swift */; };
@@ -20,6 +21,7 @@
 
 /* Begin PBXFileReference section */
 		041102542B72AA2200E243D2 /* ToastViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastViewController.swift; sourceTree = "<group>"; };
+		0435414F2BD128DB00CC7208 /* GradientViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientViewController.swift; sourceTree = "<group>"; };
 		0482E20C2BC7E85D00681954 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		048C86832BCA064E0080322D /* TextInputAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInputAlertViewController.swift; sourceTree = "<group>"; };
 		04F52B102BA1D4AE000AC4BE /* FlexibleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexibleViewController.swift; sourceTree = "<group>"; };
@@ -58,6 +60,7 @@
 				041102542B72AA2200E243D2 /* ToastViewController.swift */,
 				04F52B102BA1D4AE000AC4BE /* FlexibleViewController.swift */,
 				048C86832BCA064E0080322D /* TextInputAlertViewController.swift */,
+				0435414F2BD128DB00CC7208 /* GradientViewController.swift */,
 			);
 			path = Examples;
 			sourceTree = "<group>";
@@ -254,6 +257,7 @@
 			files = (
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
 				04F52B112BA1D4AE000AC4BE /* FlexibleViewController.swift in Sources */,
+				043541502BD128DB00CC7208 /* GradientViewController.swift in Sources */,
 				041102552B72AA2200E243D2 /* ToastViewController.swift in Sources */,
 				048C86842BCA064E0080322D /* TextInputAlertViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
