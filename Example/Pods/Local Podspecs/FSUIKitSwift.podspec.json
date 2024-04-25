@@ -1,6 +1,6 @@
 {
   "name": "FSUIKitSwift",
-  "version": "1.0.5",
+  "version": "1.0.4",
   "summary": "A collection of iOS components written in Swift.",
   "homepage": "https://github.com/lifution/FSUIKit",
   "license": {
@@ -10,7 +10,7 @@
   "authors": "Sheng",
   "source": {
     "git": "https://github.com/lifution/FSUIKit.git",
-    "tag": "1.0.5"
+    "tag": "1.0.4"
   },
   "requires_arc": true,
   "swift_versions": "5",

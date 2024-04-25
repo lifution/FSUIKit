@@ -1,5 +1,5 @@
 PODS:
-  - FSUIKitSwift (1.0.5)
+  - FSUIKitSwift (1.0.4)
   - SnapKit (5.6.0)
 
 DEPENDENCIES:
@@ -15,7 +15,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  FSUIKitSwift: dab428684859dae40779cd959c27f62430b736ff
+  FSUIKitSwift: 6640c309ff6f6683e743d1db07cf0f1e9d0b0cdc
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
 
 PODFILE CHECKSUM: 9ba51f58a80ca408f3de8f3e253c94cdc3782f1f
