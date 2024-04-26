@@ -38,4 +38,4 @@ Download or clone the repository, drag the folder `Sources` into your project, a
 
 ## License
 
-FSUIKit is available under the MIT license. [See the LICENSE](https://github.com/lifution/FSUIKit/blob/main/LICENSE) file for more info.
+FSUIKitSwift is available under the MIT license. [See the LICENSE](https://github.com/lifution/FSUIKit/blob/main/LICENSE) file for more info.
