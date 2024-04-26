@@ -9,7 +9,9 @@ let package = Package(name: "FSUIKitSwift",
                           .library(name: "FSUIKitSwift", targets: ["FSUIKitSwift"])
                       ],
 	                    targets: [
-	                        .target(name: "FSUIKitSwift", path: "Sources")
+	                        .target(name: "FSUIKitSwift", 
+	                                path: "Sources/Classes",
+	                                resources: [.process("Sources/Assets")])
                     	],
                       swiftLanguageVersions: [.v5]
 )
