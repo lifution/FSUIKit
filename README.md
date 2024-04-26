@@ -5,10 +5,8 @@
 [![ObjC incompatible](https://img.shields.io/badge/ObjC-incompatible-red)](https://img.shields.io/badge/ObjC-incompatible-red)
 [![Pod Version](https://img.shields.io/cocoapods/v/FSUIKitSwift.svg)](https://cocoapods.org/pods/FSUIKitSwift)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
-[![Swift Package Manager](https://img.shields.io/badge/Swift_Package_Manager-compatible-orange)](https://img.shields.io/badge/Swift_Package_Manager-compatible-orange)
+[![Swift Package Manager](https://img.shields.io/badge/Swift_Package_Manager-incompatible-red)](https://img.shields.io/badge/Swift_Package_Manager-incompatible-red)
 [![license MIT](https://img.shields.io/cocoapods/l/FSUIKitSwift.svg)](https://github.com/lifution/FSUIKit/blob/main/LICENSE)
-
-> NOT READY! DON'T USE!
 
 A collection of iOS components written in Swift.
 
