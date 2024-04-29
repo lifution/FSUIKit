@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import Foundation
 
-/// - Warning: 🛑 This object is only used internally in FSUIKit.
+/// - Warning: 🛑 This object is only used internally in FSUIKitSwift.
 public final class FSUIApplicationLoader: NSObject {
     
     private static var isLoaded = false
