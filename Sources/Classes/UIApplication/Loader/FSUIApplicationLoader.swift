@@ -21,6 +21,9 @@ public final class FSUIApplicationLoader: NSObject {
         do {
             // activate keyboard manager
             let _ = FSKeyboardManager.shared
+            // method swizzling
+            UIViewController.fullscreenPop_swizzling()
+            UINavigationController.nc_fullscreenPop_swizzling()
         }
     }
 }
