@@ -15,9 +15,9 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '11.0'
   
   s.frameworks = 'UIKit', 'Foundation', 'CoreGraphics', 'CoreText'
-  s.source_files = 'Sources/Classes/**/*'
+  s.source_files = 'Source/Classes/**/*'
   
   s.resource_bundles = {
-    'FSUIKitSwift' => ['Sources/Assets/**/*']
+    'FSUIKitSwift' => ['Source/Assets/**/*']
   }
 end
