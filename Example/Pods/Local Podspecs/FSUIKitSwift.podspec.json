@@ -23,10 +23,10 @@
     "CoreGraphics",
     "CoreText"
   ],
-  "source_files": "Sources/Classes/**/*",
+  "source_files": "Source/Classes/**/*",
   "resource_bundles": {
     "FSUIKitSwift": [
-      "Sources/Assets/**/*"
+      "Source/Assets/**/*"
     ]
   },
   "swift_version": "5"

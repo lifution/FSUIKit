@@ -11,6 +11,7 @@
 		043541502BD128DB00CC7208 /* GradientViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0435414F2BD128DB00CC7208 /* GradientViewController.swift */; };
 		0482E20D2BC7E85D00681954 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0482E20C2BC7E85D00681954 /* LaunchScreen.storyboard */; };
 		048C86842BCA064E0080322D /* TextInputAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048C86832BCA064E0080322D /* TextInputAlertViewController.swift */; };
+		0495CD132BF20C36008DDEB8 /* CollectionInsetGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0495CD122BF20C36008DDEB8 /* CollectionInsetGroupViewController.swift */; };
 		04F52B112BA1D4AE000AC4BE /* FlexibleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F52B102BA1D4AE000AC4BE /* FlexibleViewController.swift */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
@@ -24,6 +25,7 @@
 		0435414F2BD128DB00CC7208 /* GradientViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientViewController.swift; sourceTree = "<group>"; };
 		0482E20C2BC7E85D00681954 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		048C86832BCA064E0080322D /* TextInputAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInputAlertViewController.swift; sourceTree = "<group>"; };
+		0495CD122BF20C36008DDEB8 /* CollectionInsetGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionInsetGroupViewController.swift; sourceTree = "<group>"; };
 		04F52B102BA1D4AE000AC4BE /* FlexibleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexibleViewController.swift; sourceTree = "<group>"; };
 		0E5C54A5FC366BAB9992D07A /* Pods-FSUIKit_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FSUIKit_Example.release.xcconfig"; path = "Target Support Files/Pods-FSUIKit_Example/Pods-FSUIKit_Example.release.xcconfig"; sourceTree = "<group>"; };
 		1B99EBA78898161DBF9957D1 /* FSUIKit.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = FSUIKit.podspec; path = ../FSUIKit.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
@@ -61,6 +63,7 @@
 				04F52B102BA1D4AE000AC4BE /* FlexibleViewController.swift */,
 				048C86832BCA064E0080322D /* TextInputAlertViewController.swift */,
 				0435414F2BD128DB00CC7208 /* GradientViewController.swift */,
+				0495CD122BF20C36008DDEB8 /* CollectionInsetGroupViewController.swift */,
 			);
 			path = Examples;
 			sourceTree = "<group>";
@@ -260,6 +263,7 @@
 				04F52B112BA1D4AE000AC4BE /* FlexibleViewController.swift in Sources */,
 				043541502BD128DB00CC7208 /* GradientViewController.swift in Sources */,
 				041102552B72AA2200E243D2 /* ToastViewController.swift in Sources */,
+				0495CD132BF20C36008DDEB8 /* CollectionInsetGroupViewController.swift in Sources */,
 				048C86842BCA064E0080322D /* TextInputAlertViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 			);
