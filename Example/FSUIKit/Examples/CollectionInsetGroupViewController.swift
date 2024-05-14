@@ -20,7 +20,7 @@ final class CollectionInsetGroupViewController: FSViewController {
         let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collection.delegate = self
         collection.dataSource = self
-        collection.backgroundColor = .fs.sectionSeparator
+        collection.backgroundColor = .fs.groupBackground
         collection.register(Cell.self, forCellWithReuseIdentifier: "cell")
         return collection
     }()

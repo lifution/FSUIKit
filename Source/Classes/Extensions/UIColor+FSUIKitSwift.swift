@@ -141,6 +141,11 @@ public extension FSUIKitWrapper where Base: UIColor {
     static var warning: UIColor {
         return _FSUIColorConsts.warning
     }
+    
+    /// Color for group background.
+    static var groupBackground: UIColor {
+        return _FSUIColorConsts.groupBackground
+    }
 }
 
 private struct _FSUIColorConsts {
@@ -150,4 +155,5 @@ private struct _FSUIColorConsts {
     static let separator: UIColor = .fs.color(light: .fs.color(hexed: "#CFCFCF")!, dark: .fs.color(hexed: "#343742")!)
     static let sectionSeparator: UIColor = .fs.color(light: .fs.color(hexed: "#F7F7F7")!, dark: .fs.color(hexed: "#181B24")!)
     static let warning: UIColor = .fs.color(hexed: "#d9001b") ?? .red
+    static let groupBackground: UIColor = .fs.color(light: .fs.color(hexed: "#f2f2f7")!, dark: .fs.color(hexed: "#181B24")!)
 }
