@@ -14,14 +14,6 @@ open class FSCollectionInsetGroupLayout: UICollectionViewFlowLayout {
     
     public weak var delegate: FSCollectionInsetGroupLayoutDelegate?
     
-    /// background color of group.
-    /// Collection view needs reload when this property is changed.
-    public var color: UIColor? = .white
-    
-    /// corner radius of group.
-    /// Collection view needs reload when this property is changed.
-    public var cornerRadius: CGFloat = 10.0
-    
     // MARK: Properties/Private
     
     private var decorations = [Int: FSInsetGroupDecorationAttributes]()
@@ -57,34 +49,57 @@ extension FSCollectionInsetGroupLayout {
         defer {
             decorations = attributeses
         }
-        guard let collectionView = collectionView else {
+        guard
+            let collectionView = collectionView,
+            let delegate = delegate
+        else {
             return
         }
         let numberOfSections = collectionView.numberOfSections
         for section in 0..<numberOfSections {
-            if let delegate = delegate, !delegate.collectionView(collectionView, shouldShowGroupAt: section) {
+            if !delegate.collectionView(collectionView, shouldShowGroupAt: section) {
+                continue
+            }
+            if delegate.collectionView(collectionView, groupBackgroundColorAt: section) == nil {
                 continue
             }
             let numberOfItems = collectionView.numberOfItems(inSection: section)
             if numberOfItems <= 0 {
                 continue
             }
-            let firstItemIndexPath = IndexPath(item: 0, section: section)
-            let lastItemIndexPath = IndexPath(item: numberOfItems - 1, section: section)
-            if let firstItemAttributes = layoutAttributesForItem(at: firstItemIndexPath),
-               let lastItemAttributes = layoutAttributesForItem(at: lastItemIndexPath) {
-                let x = firstItemAttributes.frame.minX
-                let y = firstItemAttributes.frame.minY
-                let w = firstItemAttributes.frame.width
-                let h = lastItemAttributes.frame.maxY - y
-                let indexPath = IndexPath(item: 0, section: section)
-                let attributes = FSInsetGroupDecorationAttributes(forDecorationViewOfKind: cornerDecorationViewKind, with: indexPath)
-                attributes.frame = .init(x: x, y: y, width: w, height: h)
-                attributes.zIndex = -1
-                attributes.color = color ?? .clear
-                attributes.cornerRadius = cornerRadius
-                attributeses[section] = attributes
+            var x: CGFloat = 0
+            var y: CGFloat = 0
+            var w: CGFloat = 0
+            var h: CGFloat = 0
+            let containerSize = collectionView.frame.size
+            var inset = sectionInset
+            if let flow = collectionView.delegate as? UICollectionViewDelegateFlowLayout {
+                inset = flow.collectionView?(collectionView, layout: self, insetForSectionAt: section) ?? .zero
             }
+            let first = layoutAttributesForItem(at: .init(item: 0, section: section))?.frame ?? .zero
+            let last = layoutAttributesForItem(at: .init(item: numberOfItems - 1, section: section))?.frame ?? .zero
+            let sectionFrame = first.union(last)
+            if sectionFrame.size == .zero {
+                continue
+            }
+            if scrollDirection == .horizontal {
+                x = sectionFrame.minX
+                y = inset.top
+                w = sectionFrame.width
+                h = containerSize.height - inset.fs.verticalValue()
+            } else {
+                x = inset.left
+                y = sectionFrame.minY
+                w = containerSize.width - inset.fs.horizontalValue()
+                h = sectionFrame.height
+            }
+            let attributes = FSInsetGroupDecorationAttributes(forDecorationViewOfKind: cornerDecorationViewKind,
+                                                              with: .init(item: 0, section: section))
+            attributes.frame = .init(x: x, y: y, width: w, height: h)
+            attributes.zIndex = -1
+            attributes.color = delegate.collectionView(collectionView, groupBackgroundColorAt: section) ?? .clear
+            attributes.cornerRadius = delegate.collectionView(collectionView, groupCornerRadiusAt: section)
+            attributeses[section] = attributes
         }
     }
     
