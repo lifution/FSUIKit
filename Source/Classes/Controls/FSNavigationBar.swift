@@ -242,6 +242,7 @@ open class FSNavigationBar: UIView {
     private weak var titleLabelRightConstraint: NSLayoutConstraint?
     private weak var titleViewLeftConstraint: NSLayoutConstraint?
     private weak var titleViewRightConstraint: NSLayoutConstraint?
+    private weak var backgroundTopConstraint: NSLayoutConstraint?
     
     // MARK: Initialization
     
@@ -287,6 +288,19 @@ open class FSNavigationBar: UIView {
     
     open override func sizeToFit() {
         frame.size = sizeThatFits(.init(width: CGFloat(Int16.max), height: CGFloat(Int16.max)))
+    }
+    
+    open override func willMove(toWindow newWindow: UIWindow?) {
+        super.willMove(toWindow: newWindow)
+        if let window = newWindow {
+            let height: CGFloat
+            if #available(iOS 13.0, *) {
+                height = window.windowScene?.statusBarManager?.statusBarFrame.height ?? 0.0
+            } else {
+                height = UIApplication.shared.statusBarFrame.height
+            }
+            backgroundTopConstraint?.constant = -height
+        }
     }
     
     open override func layoutSubviews() {
@@ -337,13 +351,17 @@ open class FSNavigationBar: UIView {
             addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[view]|",
                                                           metrics: nil,
                                                           views: ["view": backgroundView]))
-            addConstraint(.init(item: backgroundView,
-                                attribute: .top,
-                                relatedBy: .equal,
-                                toItem: self,
-                                attribute: .top,
-                                multiplier: 1.0,
-                                constant: -UIApplication.shared.statusBarFrame.height))
+            do {
+                let constraint = NSLayoutConstraint(item: backgroundView,
+                                                    attribute: .top,
+                                                    relatedBy: .equal,
+                                                    toItem: self,
+                                                    attribute: .top,
+                                                    multiplier: 1.0,
+                                                    constant: 0)
+                addConstraint(constraint)
+                backgroundTopConstraint = constraint
+            }
         }
         do {
             contentView.translatesAutoresizingMaskIntoConstraints = false
@@ -476,7 +494,6 @@ open class FSNavigationBar: UIView {
                                 constant: UIScreen.fs.pixelOne))
         }
         do {
-            resetDefaultBackButton()
             titleColor = .black
             titleLabel.textColor = titleColor
             setDefaultBackButton(tintColor: titleColor)
