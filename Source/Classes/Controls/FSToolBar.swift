@@ -62,6 +62,8 @@ open class FSToolBar: UIView {
         return separator
     }()
     
+    private weak var backgroundBottomConstraint: NSLayoutConstraint?
+    
     // MARK: Initialization
     
     public override init(frame: CGRect) {
@@ -92,6 +94,13 @@ open class FSToolBar: UIView {
         super.layoutSubviews()
         sendSubviewToBack(backgroundView)
     }
+    
+    open override func willMove(toWindow newWindow: UIWindow?) {
+        super.willMove(toWindow: newWindow)
+        if let window = newWindow {
+            backgroundBottomConstraint?.constant = window.safeAreaInsets.bottom
+        }
+    }
 }
 
 // MARK: - Private
@@ -113,13 +122,17 @@ private extension FSToolBar {
             addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[view]",
                                                           metrics: nil,
                                                           views: ["view": backgroundView]))
-            addConstraint(.init(item: backgroundView,
-                                attribute: .bottom,
-                                relatedBy: .equal,
-                                toItem: self,
-                                attribute: .bottom,
-                                multiplier: 1.0,
-                                constant: UIScreen.fs.safeAreaInsets.bottom))
+            do {
+                let constraint = NSLayoutConstraint(item: backgroundView,
+                                                    attribute: .bottom,
+                                                    relatedBy: .equal,
+                                                    toItem: self,
+                                                    attribute: .bottom,
+                                                    multiplier: 1.0,
+                                                    constant: 0)
+                addConstraint(constraint)
+                backgroundBottomConstraint = constraint
+            }
         }
         do {
             addSubview(topSeparator)

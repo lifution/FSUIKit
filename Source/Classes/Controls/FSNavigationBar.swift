@@ -544,7 +544,8 @@ public extension FSNavigationBar {
     /// 设置默认的返回按钮的颜色。
     /// 该方法内部会自动创建一个高亮时的颜色。
     ///
-    /// - Note: 如果 isFollowingTheme 为 true 的话，该方法所设置的颜色有可能会被覆盖。
+    /// - Note: 调用该方法前必须先调用 `resetDefaultBackButton()` 方法，否则无效。
+    ///
     func setDefaultBackButton(tintColor: UIColor?) {
         guard let button = backButton, let tintColor = tintColor else {
             return
