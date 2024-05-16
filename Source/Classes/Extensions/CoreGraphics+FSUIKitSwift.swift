@@ -9,7 +9,7 @@
 import UIKit
 import Foundation
 
-/// 基于当前设备的屏幕缩放倍数，对传进来的 float 数值进行像素取整。
+/// 基于当前设备的屏幕缩放倍数，对传进来的 float 数值进行**向上**像素取整。
 /// 例如传进来 "2.1"，在 2x 倍数下会返回 2.5（0.5pt 对应 1px），在 3x 倍数下会返回 2.333（0.333pt 对应 1px）。
 public func FSFlat<T: FloatingPoint>(_ x: T) -> T {
     guard
@@ -21,6 +21,21 @@ public func FSFlat<T: FloatingPoint>(_ x: T) -> T {
     }
     let scale: T = T(Int(UIScreen.main.scale))
     let flattedValue = ceil(x * scale) / scale
+    return flattedValue
+}
+
+/// 基于当前设备的屏幕缩放倍数，对传进来的 float 数值进行**向下**像素取整。
+/// 例如传进来 "2.6"，在 2x 倍数下会返回 2.5（0.5pt 对应 1px），在 3x 倍数下会返回 2.333（0.333pt 对应 1px）。
+public func FSFloorFlat<T: FloatingPoint>(_ x: T) -> T {
+    guard
+        x != T.leastNormalMagnitude,
+        x != T.leastNonzeroMagnitude,
+        x != T.greatestFiniteMagnitude
+    else {
+        return x
+    }
+    let scale: T = T(Int(UIScreen.main.scale))
+    let flattedValue = floor(x * scale) / scale
     return flattedValue
 }
 
