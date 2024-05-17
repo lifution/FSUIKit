@@ -72,6 +72,7 @@ private extension CollectionInsetGroupViewController {
         itemSize.height = 44.0
         numberOfItems = Array(0..<10).map { _ in Int(arc4random() % 5) + 1 }
         layout.delegate = self
+        navigationItem.title = "Group Collection"
     }
     
     /// Called in the `viewDidLoad` method.
@@ -130,6 +131,14 @@ extension CollectionInsetGroupViewController: UICollectionViewDelegateFlowLayout
 // MARK: - FSCollectionInsetGroupLayoutDelegate
 
 extension CollectionInsetGroupViewController: FSCollectionInsetGroupLayoutDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, groupCornerRadiusAt section: Int) -> CGFloat {
+        return section % 2 == 0 ? 10.0 : 5.0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, groupBackgroundColorAt section: Int) -> UIColor? {
+        return section % 2 == 0 ? .white : .cyan.withAlphaComponent(0.1)
+    }
     
     func collectionView(_ collectionView: UICollectionView, shouldShowGroupAt section: Int) -> Bool {
 //        if section == 0 {
