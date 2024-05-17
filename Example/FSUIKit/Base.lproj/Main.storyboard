@@ -140,6 +140,26 @@
                                             <segue destination="PUb-27-rMt" kind="show" id="C7w-YL-PBO"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="o7X-zv-vUJ" style="IBUITableViewCellStyleDefault" id="FP7-8I-VW2">
+                                        <rect key="frame" x="0.0" y="282" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="FP7-8I-VW2" id="vYy-Bj-CIb">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Fullscreen Pop" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="o7X-zv-vUJ">
+                                                    <rect key="frame" x="16" y="0.0" width="343" height="44"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="qau-N9-7jG" kind="show" id="9mD-tT-KKK"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -482,6 +502,55 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="US2-OK-cYu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="716" y="1434"/>
+        </scene>
+        <!--Fullscreen Pop View Controller-->
+        <scene sceneID="mHx-qS-fih">
+            <objects>
+                <viewController storyboardIdentifier="FullscreenPopViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="qau-N9-7jG" customClass="FullscreenPopViewController" customModule="FSUIKit_Example" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="QZE-80-M27">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zaf-fP-laZ">
+                                <rect key="frame" x="153" y="316.5" width="69.5" height="34.5"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="PUSH"/>
+                                <connections>
+                                    <action selector="push:" destination="qau-N9-7jG" eventType="touchUpInside" id="G1s-uk-aVW"/>
+                                </connections>
+                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Olp-IM-Sle">
+                                <rect key="frame" x="69.5" y="225.5" width="236" height="31"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hide bavigation bar on next" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3g7-nK-X8e">
+                                        <rect key="frame" x="0.0" y="0.0" width="177" height="31"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="XFh-bR-q74">
+                                        <rect key="frame" x="187" y="0.0" width="51" height="31"/>
+                                    </switch>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="QYF-rN-wng"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="zaf-fP-laZ" firstAttribute="centerY" secondItem="QZE-80-M27" secondAttribute="centerY" id="EE7-rW-snB"/>
+                            <constraint firstItem="Olp-IM-Sle" firstAttribute="centerX" secondItem="QZE-80-M27" secondAttribute="centerX" id="I9L-ou-gDj"/>
+                            <constraint firstItem="zaf-fP-laZ" firstAttribute="centerX" secondItem="QZE-80-M27" secondAttribute="centerX" id="QgE-Gd-Whx"/>
+                            <constraint firstItem="zaf-fP-laZ" firstAttribute="top" secondItem="Olp-IM-Sle" secondAttribute="bottom" constant="60" id="xeS-bZ-wdb"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="mLi-T7-VqS"/>
+                    <connections>
+                        <outlet property="stateControl" destination="XFh-bR-q74" id="VW1-zH-99M"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="onD-td-Ap6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1564" y="1433"/>
         </scene>
         <!--Gradient View Controller-->
         <scene sceneID="wV0-Wd-9am">
