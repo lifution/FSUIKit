@@ -42,6 +42,14 @@ public func FSFloorFlat<T: FloatingPoint>(_ x: T) -> T {
 
 public extension FSUIKitWrapper where Base == CGRect {
     
+    var center: CGPoint {
+        get { return .init(x: base.midX, y: base.midY) }
+        set {
+            base.origin.x = newValue.x - base.width * 0.5
+            base.origin.y = newValue.y - base.height * 0.5
+        }
+    }
+    
     /// Whether CGRect contains NaN value.
     var isNaN: Bool {
         return (base.origin.x.isNaN || base.origin.y.isNaN || base.width.isNaN || base.height.isNaN)
