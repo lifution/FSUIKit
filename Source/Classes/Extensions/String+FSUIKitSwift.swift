@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CryptoKit
 import CommonCrypto
 
 public extension FSUIKitWrapper where Base == String {
@@ -72,23 +73,36 @@ public extension FSUIKitWrapper where Base == String {
     
     /// 对当前字符串计算 md5。
     func toMD5() -> String {
-        let md5Data: Data = {
-            let length = Int(CC_MD5_DIGEST_LENGTH)
-            let messageData = base.data(using:.utf8)!
-            var digestData = Data(count: length)
-            _ = digestData.withUnsafeMutableBytes { digestBytes -> UInt8 in
-                messageData.withUnsafeBytes { messageBytes -> UInt8 in
-                    if let messageBytesBaseAddress = messageBytes.baseAddress, let digestBytesBlindMemory = digestBytes.bindMemory(to: UInt8.self).baseAddress {
-                        let messageLength = CC_LONG(messageData.count)
-                        CC_MD5(messageBytesBaseAddress, messageLength, digestBytesBlindMemory)
-                    }
-                    return 0
-                }
+        if #available(iOS 13.0, *) {
+            guard let messageData = base.data(using: .utf8) else {
+                #if DEBUG
+                fatalError()
+                #else
+                return ""
+                #endif
             }
-            return digestData
-        }()
-        let md5Hex = md5Data.map { String(format: "%02hhx", $0) }.joined()
-        return md5Hex
+            let digestData = Insecure.MD5.hash (data: messageData)
+            let digestHex = String(digestData.map { String(format: "%02hhx", $0) }.joined().prefix(32))
+            return digestHex
+        } else {
+            let md5Data: Data = {
+                let length = Int(CC_MD5_DIGEST_LENGTH)
+                let messageData = base.data(using:.utf8)!
+                var digestData = Data(count: length)
+                _ = digestData.withUnsafeMutableBytes { digestBytes -> UInt8 in
+                    messageData.withUnsafeBytes { messageBytes -> UInt8 in
+                        if let messageBytesBaseAddress = messageBytes.baseAddress, let digestBytesBlindMemory = digestBytes.bindMemory(to: UInt8.self).baseAddress {
+                            let messageLength = CC_LONG(messageData.count)
+                            CC_MD5(messageBytesBaseAddress, messageLength, digestBytesBlindMemory)
+                        }
+                        return 0
+                    }
+                }
+                return digestData
+            }()
+            let md5Hex = md5Data.map { String(format: "%02hhx", $0) }.joined()
+            return md5Hex
+        }
     }
     
     /// 按照「中文 2 个字符、英文 1 个字符」的方式来计算文本长度。

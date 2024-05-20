@@ -91,8 +91,9 @@ open class FSToastContent: FSToastContentConvertable {
                     let view = UIActivityIndicatorView(style: {
                         if #available(iOS 13, *) {
                             return .large
+                        } else {
+                            return .whiteLarge
                         }
-                        return .whiteLarge
                     }())
                     view.color = {
                         if #available(iOS 13, *) {
