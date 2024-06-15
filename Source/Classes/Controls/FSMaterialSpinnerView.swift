@@ -116,7 +116,7 @@ extension FSMaterialSpinnerView {
         didSet {
             if isHidden {
                 stopAnimating()
-            } else if autostartsAnimating {
+            } else if !isAnimating, autostartsAnimating {
                 startAnimating()
             }
         }
@@ -174,6 +174,10 @@ private extension FSMaterialSpinnerView {
         guard !isAnimating else {
             return
         }
+        isAnimating = true
+        defer {
+            isHidden = false
+        }
         do {
             // rotation
             let animation = CABasicAnimation(keyPath: "transform.rotation")
@@ -218,10 +222,6 @@ private extension FSMaterialSpinnerView {
             animations.repeatCount = HUGE
             animations.isRemovedOnCompletion = false
             progressLayer.add(animations, forKey: AnimationKey.Stroke)
-        }
-        isAnimating = true
-        if hidesWhenStopped {
-            isHidden = false
         }
     }
     
