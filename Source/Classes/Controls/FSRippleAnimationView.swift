@@ -40,6 +40,12 @@ open class FSRippleAnimationView: UIView {
     private var isStartingAnimation = false
     private var isStoppingAnimation = false
     
+    // MARK: Deinitialization
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     // MARK: Initialization
     
     public override init(frame: CGRect) {
@@ -121,6 +127,7 @@ private extension FSRippleAnimationView {
     /// Invoked after initialization.
     func p_didInitialize() {
         layer.addSublayer(rippleAnimationLayer)
+        NotificationCenter.default.addObserver(self, selector: #selector(p_receive(notification:)), name: UIApplication.didBecomeActiveNotification, object: nil)
     }
     
     func p_startAnimatingIfNeeded() {
@@ -192,6 +199,13 @@ private extension FSRippleAnimationView {
         isAnimating = false
         if hidesWhenStopped {
             isHidden = true
+        }
+    }
+    
+    @objc
+    func p_receive(notification: Notification) {
+        if notification.name == UIApplication.didBecomeActiveNotification {
+            p_startAnimatingIfNeeded()
         }
     }
 }
