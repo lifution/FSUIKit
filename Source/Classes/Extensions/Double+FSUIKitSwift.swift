@@ -3,6 +3,7 @@
 //  FSUIKitSwift
 //
 //  Created by Sheng on 2024/2/1.
+//  Copyright © 2023 Sheng. All rights reserved.
 //
 
 import Foundation

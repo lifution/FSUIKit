@@ -99,6 +99,8 @@ extension FSCollectionInsetGroupLayout {
             attributes.zIndex = -1
             attributes.color = delegate.collectionView(collectionView, groupBackgroundColorAt: section) ?? .clear
             attributes.cornerRadius = delegate.collectionView(collectionView, groupCornerRadiusAt: section)
+            attributes.borderWidth = delegate.collectionView(collectionView, groupBorderWidthAt: section)
+            attributes.borderColor = delegate.collectionView(collectionView, groupBorderColorAt: section)
             attributeses[section] = attributes
         }
     }
@@ -121,11 +123,15 @@ private final class FSInsetGroupDecorationAttributes: UICollectionViewLayoutAttr
     
     var color: UIColor = .white
     var cornerRadius: CGFloat = 10.0
+    var borderWidth: CGFloat = 0
+    var borderColor: UIColor?
     
     override func copy(with zone: NSZone? = nil) -> Any {
         let copy = super.copy(with: zone) as! FSInsetGroupDecorationAttributes
         copy.color = color
         copy.cornerRadius = cornerRadius
+        copy.borderWidth = borderWidth
+        copy.borderColor = borderColor
         return copy
     }
     
@@ -139,11 +145,33 @@ private final class FSInsetGroupDecorationAttributes: UICollectionViewLayoutAttr
         if cornerRadius != rhs.cornerRadius {
             return false
         }
+        if borderWidth != rhs.borderWidth {
+            return false
+        }
+        if let color = borderColor, let rhsColor = rhs.borderColor {
+            if !color.isEqual(rhsColor) {
+                return false
+            }
+        }
         return super.isEqual(object)
     }
 }
 
 private final class FSInsetGroupDecorationView: UICollectionReusableView {
+    
+    // MARK: Initialization
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        p_didInitialize()
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        p_didInitialize()
+    }
+    
+    // MARK: Override
     
     override func apply(_ layoutAttributes: UICollectionViewLayoutAttributes) {
         super.apply(layoutAttributes)
@@ -152,5 +180,13 @@ private final class FSInsetGroupDecorationView: UICollectionReusableView {
         }
         backgroundColor = attributes.color
         layer.cornerRadius = attributes.cornerRadius
+        layer.borderWidth = attributes.borderWidth
+        layer.borderColor = attributes.borderColor?.cgColor
+    }
+    
+    // MARK: Private
+    
+    private func p_didInitialize() {
+//        clipsToBounds = true
     }
 }

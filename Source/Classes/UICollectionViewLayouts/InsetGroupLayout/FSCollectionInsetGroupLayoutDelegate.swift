@@ -14,6 +14,10 @@ public protocol FSCollectionInsetGroupLayoutDelegate: AnyObject {
     
     func collectionView(_ collectionView: UICollectionView, groupBackgroundColorAt section: Int) -> UIColor?
     
+    func collectionView(_ collectionView: UICollectionView, groupBorderWidthAt section: Int) -> CGFloat
+    
+    func collectionView(_ collectionView: UICollectionView, groupBorderColorAt section: Int) -> UIColor?
+    
     func collectionView(_ collectionView: UICollectionView, shouldShowGroupAt section: Int) -> Bool
 }
 
@@ -24,6 +28,14 @@ public extension FSCollectionInsetGroupLayoutDelegate {
     }
     
     func collectionView(_ collectionView: UICollectionView, groupBackgroundColorAt section: Int) -> UIColor? {
+        return nil
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, groupBorderWidthAt section: Int) -> CGFloat {
+        return 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, groupBorderColorAt section: Int) -> UIColor? {
         return nil
     }
     
