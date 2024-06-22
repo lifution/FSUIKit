@@ -4,6 +4,8 @@
 //
 //  Created by VincentLee on 2024/6/23.
 //
+//  Source: https://stackoverflow.com/a/26962452/6164381
+//
 
 import UIKit
 
