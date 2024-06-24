@@ -14,7 +14,7 @@ Pod::Spec.new do |s|
   s.swift_version = '5'
   s.ios.deployment_target = '11.0'
   
-  s.frameworks = 'UIKit', 'Foundation', 'CoreGraphics', 'CoreText'
+  s.frameworks = 'UIKit', 'Foundation', 'CoreGraphics', 'CoreText', 'WebKit'
   s.source_files = 'Source/Classes/**/*'
   
   s.resource_bundles = {
