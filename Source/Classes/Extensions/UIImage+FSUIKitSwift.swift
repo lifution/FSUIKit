@@ -68,7 +68,7 @@ public extension FSUIKitWrapper where Base: UIImage {
                     let sideScale = fmin(targetSize.width / extent.size.width, targetSize.width / extent.size.height) * UIScreen.main.scale
                     let width : size_t = size_t(ceilf(Float(sideScale) * Float(extent.width)))
                     let height : size_t = size_t(ceilf(Float(sideScale) * Float(extent.height)))
-             
+                    
                     //  CGColorSpaceCreateDeviceGray 灰度、CGImageAlphaInfo.none 不透明
                     if let contextRef = CGContext.init(data: nil, width: width, height: height, bitsPerComponent: 8, bytesPerRow: 0, space: CGColorSpaceCreateDeviceGray(), bitmapInfo: CGImageAlphaInfo.none.rawValue) {
                         // 设置上下文无插值
@@ -181,28 +181,28 @@ public extension FSUIKitWrapper where Base: UIImage {
         return image.resizableImage(withCapInsets: capInsets, resizingMode: .stretch)
     }
     
-    static func image(with color: UIColor, size: CGSize, alpha: CGFloat? = nil, cornerRadius: CGFloat? = nil) -> UIImage? {
+    static func image(with color: UIColor,
+                      size: CGSize,
+                      alpha: Float = 1.0,
+                      cornerRadius: CGFloat = 0,
+                      borderWidth: CGFloat = 0,
+                      borderColor: UIColor? = nil) -> UIImage? {
         guard size != .zero else {
             return nil
         }
-        UIGraphicsBeginImageContextWithOptions(size, false, UIScreen.fs.scale)
-        do {
-            let rect = CGRect(origin: .zero, size: size)
-            let context = UIGraphicsGetCurrentContext()
-            context?.setFillColor(color.cgColor)
-            if var a = alpha {
-                a = max(0.0, min(1.0, a))
-                context?.setAlpha(a)
-            }
-            if let r = cornerRadius, r > 0.0 {
-                let path = UIBezierPath(roundedRect: rect, cornerRadius: r)
-                path.addClip()
-            }
-            context?.fill(rect)
+        let format = UIGraphicsImageRendererFormat()
+        format.opaque = false
+        format.scale = UIScreen.fs.scale
+        return UIGraphicsImageRenderer(size: size, format: format).image { context in
+            let layer = CAShapeLayer()
+            layer.frame = .init(origin: .zero, size: size)
+            layer.opacity = max(0.0, min(1.0, alpha))
+            layer.borderWidth = borderWidth
+            layer.borderColor = borderColor?.cgColor
+            layer.cornerRadius = cornerRadius
+            layer.backgroundColor = color.cgColor
+            layer.render(in: context.cgContext)
         }
-        let image = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        return image
     }
     
     /// 以当前 UIImage 为蓝本，创建一个带透明度的新 UIImage。
