@@ -86,7 +86,7 @@ extension FSRippleAnimationView {
             }
             if isHidden {
                 p_stopAnimating()
-            } else if !isAnimating, autostartsAnimating {
+            } else if !isAnimating, autostartsAnimating, rippleAnimationLayer.frame != .zero {
                 p_startAnimating()
             }
         }
@@ -127,7 +127,7 @@ private extension FSRippleAnimationView {
     /// Invoked after initialization.
     func p_didInitialize() {
         layer.addSublayer(rippleAnimationLayer)
-        NotificationCenter.default.addObserver(self, selector: #selector(p_receive(notification:)), name: UIApplication.didBecomeActiveNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(p_receive(notification:)), name: UIApplication.willEnterForegroundNotification, object: nil)
     }
     
     func p_startAnimatingIfNeeded() {
@@ -204,7 +204,7 @@ private extension FSRippleAnimationView {
     
     @objc
     func p_receive(notification: Notification) {
-        if notification.name == UIApplication.didBecomeActiveNotification {
+        if notification.name == UIApplication.willEnterForegroundNotification {
             p_startAnimatingIfNeeded()
         }
     }
