@@ -18,6 +18,10 @@ public protocol FSEmptyContentProxy {
     
     var detailTextBottomSpace: CGFloat { get set }
     
+    var textPreferredMaxLayoutWidth: CGFloat { get set }
+    
+    var detailTextPreferredMaxLayoutWidth: CGFloat { get set }
+    
     var isScrollEnabled: Bool { get set }
     
     var image: UIImage? { get set }
@@ -53,6 +57,8 @@ public extension FSEmptyContentProxy {
     var imageBottomSpace: CGFloat { get { return 10.0 } set {} }
     var textBottomSpace: CGFloat { get { return 10.0 } set {} }
     var detailTextBottomSpace: CGFloat { get { return 10.0 } set {} }
+    var textPreferredMaxLayoutWidth: CGFloat { get { return 0.0 } set {} }
+    var detailTextPreferredMaxLayoutWidth: CGFloat { get { return 0.0 } set {} }
     var isScrollEnabled: Bool { get { return false } set {} }
     var image: UIImage? { get { return nil } set {} }
     var customView: UIView? { get { return nil } set {} }

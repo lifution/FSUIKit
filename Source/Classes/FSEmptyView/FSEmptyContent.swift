@@ -84,6 +84,14 @@ public final class FSEmptyContent: FSEmptyViewDelegate, FSEmptyViewDataSource {
         return contentProxy.detailTextBottomSpace
     }
     
+    public func textPreferredMaxLayoutWidth(for emptyView: FSEmptyView) -> CGFloat {
+        return contentProxy.textPreferredMaxLayoutWidth
+    }
+    
+    public func detailTextPreferredMaxLayoutWidth(for emptyView: FSEmptyView) -> CGFloat {
+        return contentProxy.detailTextPreferredMaxLayoutWidth
+    }
+    
     public func emptyViewShouldAllowScroll(_ emptyView: FSEmptyView) -> Bool {
         return contentProxy.isScrollEnabled
     }
@@ -163,11 +171,13 @@ public final class FSEmptyContent: FSEmptyViewDelegate, FSEmptyViewDataSource {
 /// 该类默认没有实现任何的内容，外部可使用该类做自定义。
 public struct FSEmptyContentTemplate: FSEmptyContentProxy {
     
-    public var contentOffset: CGPoint          = .zero
-    public var imageBottomSpace: CGFloat       = 10.0
-    public var textBottomSpace: CGFloat        = 10.0
-    public var detailTextBottomSpace: CGFloat  = 10.0
-    public var isScrollEnabled: Bool           = false
+    public var contentOffset: CGPoint = .zero
+    public var imageBottomSpace: CGFloat = 10.0
+    public var textBottomSpace: CGFloat = 10.0
+    public var detailTextBottomSpace: CGFloat = 10.0
+    public var textPreferredMaxLayoutWidth: CGFloat = 0.0
+    public var detailTextPreferredMaxLayoutWidth: CGFloat = 0.0
+    public var isScrollEnabled: Bool = false
     public var image: UIImage?
     public var customView: UIView?
     public var title: String?
