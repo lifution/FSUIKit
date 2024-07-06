@@ -24,6 +24,14 @@ public extension FSUIKitWrapper where Base == String {
         return predicate.evaluate(with: base)
     }
     
+    var firstUppercased: String { 
+        return base.prefix(1).uppercased() + base.dropFirst()
+    }
+    
+    var firstCapitalized: String { 
+        return base.prefix(1).capitalized + base.dropFirst()
+    }
+    
     subscript(integerIndex: Int) -> Character? {
         guard integerIndex >= 0, integerIndex < base.count else {
             return nil
