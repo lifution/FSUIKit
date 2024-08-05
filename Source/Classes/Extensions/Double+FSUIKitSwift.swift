@@ -15,4 +15,9 @@ public extension FSUIKitWrapper where Base == Double {
     var nonDecimalLastZeroText: String {
         return base.truncatingRemainder(dividingBy: 1) == 0 ? String(format: "%.0f", base) : String(base)
     }
+    
+    func round(to places: Int) -> Double {
+        let divisor = pow(10.0, Double(places))
+        return (base * divisor).rounded() / divisor
+    }
 }
