@@ -208,4 +208,9 @@ public extension FSUIKitWrapper where Base == String {
         }
         return result
     }
+    
+    /// Remove all non-numeric characters.
+    func removeNonnumeric() -> String {
+        return base.replacingOccurrences(of: "[^0-9]", with: "", options: .regularExpression)
+    }
 }
