@@ -21,7 +21,8 @@
     "UIKit",
     "Foundation",
     "CoreGraphics",
-    "CoreText"
+    "CoreText",
+    "WebKit"
   ],
   "source_files": "Source/Classes/**/*",
   "resource_bundles": {
