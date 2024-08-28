@@ -81,6 +81,60 @@ extension FSUIKitWrapper where Base: NSAttributedString {
             return .zero
         }
         
+//        let constraints: CGSize = {
+//            if let size = limitedSize, size != .zero {
+//                return size
+//            }
+//            return CGSize(width: CGFloat.greatestFiniteMagnitude, height: CGFloat.greatestFiniteMagnitude)
+//        }()
+//        let size = att_string.boundingRect(with: constraints, options: .usesLineFragmentOrigin, context: nil)
+//        return .init(width: ceil(size.width), height: ceil(size.height))
+        
+        /** 以下方法计算多行时没问题，但是计算单行时出错了，单行返回的高度太高。
+        let constraints: CGSize = {
+            if let size = limitedSize, size != .zero {
+                return size
+            }
+            return CGSize(width: CGFloat.greatestFiniteMagnitude, height: CGFloat.greatestFiniteMagnitude)
+        }()
+        let framesetter = CTFramesetterCreateWithAttributedString(att_string)
+        let frame = CTFramesetterCreateFrame(framesetter, .init(location: 0, length: 0), .init(rect: .init(origin: .zero, size: constraints), transform: nil), nil)
+        let lines = CTFrameGetLines(frame)
+        let numberOfLines = CFArrayGetCount(lines)
+        var maxWidth: Double = 0
+        for index in 0..<numberOfLines {
+            let line: CTLine = unsafeBitCast(CFArrayGetValueAtIndex(lines, index), to: CTLine.self)
+            var ascent: CGFloat = 0
+            var descent: CGFloat = 0
+            var leading: CGFloat = 0
+            let width = CTLineGetTypographicBounds(line, &ascent, &descent, &leading)
+            if(width > maxWidth) {
+                maxWidth = width
+            }
+        }
+        
+        var ascent: CGFloat = 0
+        var descent: CGFloat = 0
+        var leading: CGFloat = 0
+        
+        CTLineGetTypographicBounds(unsafeBitCast(CFArrayGetValueAtIndex(lines, 0), to: CTLine.self), &ascent, &descent, &leading)
+        let firstLineHeight = ascent + descent + leading
+        
+        CTLineGetTypographicBounds(unsafeBitCast(CFArrayGetValueAtIndex(lines, numberOfLines - 1), to: CTLine.self), &ascent, &descent, &leading)
+        let lastLineHeight = ascent + descent + leading
+        
+        var firstLineOrigin: CGPoint = CGPoint(x: 0, y: 0)
+        CTFrameGetLineOrigins(frame, CFRangeMake(0, 1), &firstLineOrigin);
+        
+        var lastLineOrigin: CGPoint = CGPoint(x: 0, y: 0)
+        CTFrameGetLineOrigins(frame, CFRangeMake(numberOfLines - 1, 1), &lastLineOrigin);
+        
+        let textHeight = abs(firstLineOrigin.y - lastLineOrigin.y) + firstLineHeight + lastLineHeight
+        
+        return .init(width: ceil(maxWidth), height: ceil(textHeight))
+         */
+        
+        /// 以下方法计算多行时返回的高度偶尔会小一些导致内容显示不全
         var range = CFRangeMake(0, att_string.length)
         let numberOfLines = max(limitedNumberOfLines, 0)
         let constraints: CGSize = {
