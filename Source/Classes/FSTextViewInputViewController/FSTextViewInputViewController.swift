@@ -398,9 +398,7 @@ private extension FSTextViewInputViewController {
     
     @objc
     func p_didPressConfirmButton() {
-        if let text = textView.text, !text.isEmpty {
-            onDidConfirmText?(text)
-            p_didTapBlankArea()
-        }
+        onDidConfirmText?(textView.text ?? "")
+        p_didTapBlankArea()
     }
 }
