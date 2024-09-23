@@ -16,4 +16,16 @@ public extension FSUIKitWrapper where Base == CGSize {
         let height = base.height - vertical
         return .init(width: max(0, width), height: max(0, height))
     }
+    
+    func ceiled() -> CGSize {
+        return .init(width: ceil(base.width), height: ceil(base.height))
+    }
+    
+    func flatted() -> CGSize {
+        return .init(width: FSFlat(base.width), height: FSFlat(base.height))
+    }
+    
+    func floorFlatted() -> CGSize {
+        return .init(width: FSFloorFlat(base.width), height: FSFloorFlat(base.height))
+    }
 }
