@@ -11,10 +11,26 @@ public extension FSUIKitWrapper where Base: UIViewController {
     
     /// 查找 application.rootViewController 最顶层的 UIViewController。
     static var rootTopViewController: UIViewController? {
-        guard let rootVC = UIApplication.shared.delegate?.window??.rootViewController else {
-            return nil
+        if let rootVC = UIApplication.shared.delegate?.window??.rootViewController {
+            return UIViewController.fs.visibleViewController(of: rootVC)
         }
-        return UIViewController.fs.visibleViewController(of: rootVC)
+        var firstKeyWindow: UIWindow?
+        if #available(iOS 15.0, *) {
+            firstKeyWindow = UIApplication.shared.connectedScenes
+                .compactMap { $0 as? UIWindowScene }
+                .filter { $0.activationState == .foregroundActive }
+                .first?.keyWindow
+        } else if #available(iOS 13, *) {
+            firstKeyWindow = UIApplication.shared.connectedScenes
+                .compactMap { $0 as? UIWindowScene }
+                .filter { $0.activationState == .foregroundActive }
+                .first?.windows
+                .first(where: \.isKeyWindow)
+        }
+        if let rootVC = firstKeyWindow?.rootViewController {
+            return UIViewController.fs.visibleViewController(of: rootVC)
+        }
+        return nil
     }
     
     /// 查找指定的控制器正在显示中的那层控制器。
