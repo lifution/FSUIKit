@@ -21,8 +21,6 @@ import UIKit
 /// - Note: FSButton 重新定义了 titleEdgeInests、imageEdgeInsets、contentEdgeInsets 这三者的布局逻辑，
 ///         sizeThatFits: 里会把 titleEdgeInests 和 imageEdgeInsets 也考虑在内（UIButton 不会），以使这三个接口的使用更符合直觉。
 ///
-/// - Warning: 本控件暂不适配 IB，因此不建议在 IB 中使用本控件。
-///
 
 import UIKit
 
