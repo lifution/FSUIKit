@@ -335,6 +335,11 @@ open class FSNavigationBar: UIView {
         super.backgroundColor = .cyan.withAlphaComponent(0.15)
     }
     
+    open override func awakeFromNib() {
+        super.awakeFromNib()
+        super.backgroundColor = .clear
+    }
+    
     // MARK: Private
     
     /// Invoked after initialization.
