@@ -22,6 +22,7 @@ import UIKit
  
  - Note: FSNavigationBar 有默认的高度：44pt，如果外部不设置高度的话，会使用默认高度。
  */
+@IBDesignable
 open class FSNavigationBar: UIView {
     
     open var title: String? {
@@ -293,13 +294,7 @@ open class FSNavigationBar: UIView {
     open override func willMove(toWindow newWindow: UIWindow?) {
         super.willMove(toWindow: newWindow)
         if let window = newWindow {
-            let height: CGFloat
-            if #available(iOS 13.0, *) {
-                height = window.windowScene?.statusBarManager?.statusBarFrame.height ?? 0.0
-            } else {
-                height = UIApplication.shared.statusBarFrame.height
-            }
-            backgroundTopConstraint?.constant = -height
+            backgroundTopConstraint?.constant = -window.safeAreaInsets.top
         }
     }
     
@@ -333,6 +328,11 @@ open class FSNavigationBar: UIView {
                 titleViewRightConstraint?.constant = -FSNavigationBarConst.horizontalMargin
             }
         }
+    }
+    
+    open override func prepareForInterfaceBuilder() {
+        super.prepareForInterfaceBuilder()
+        super.backgroundColor = .cyan.withAlphaComponent(0.15)
     }
     
     // MARK: Private

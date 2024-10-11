@@ -98,7 +98,7 @@ private struct _AssociatedKey {
     static var handlersKey = 0
 }
 
-private class UIControlHandlerTarget: Equatable {
+private class UIControlHandlerTarget: Hashable {
     
     var handler: ((_ sender: Any) -> Void)?
     var events: UIControl.Event
@@ -113,6 +113,10 @@ private class UIControlHandlerTarget: Equatable {
     }
     
     static func == (lhs: UIControlHandlerTarget, rhs: UIControlHandlerTarget) -> Bool {
-        return lhs === rhs
+        return ObjectIdentifier(lhs) == ObjectIdentifier(rhs)
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(ObjectIdentifier(self))
     }
 }
