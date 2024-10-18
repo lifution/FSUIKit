@@ -169,6 +169,10 @@ public extension FSUIKitWrapper where Base: UIDevice {
             "iPhone15,5" : .iPhone15Plus,
             "iPhone16,1" : .iPhone15Pro,
             "iPhone16,2" : .iPhone15ProMax,
+            "iPhone17,3" : .iPhone16,
+            "iPhone17,4" : .iPhone16Plus,
+            "iPhone17,1" : .iPhone16Pro,
+            "iPhone17,2" : .iPhone16ProMax,
             
             // Apple Watch
             "Watch1,1" : .AppleWatch1,
@@ -316,6 +320,10 @@ public enum DeviceModel: String {
     iPhone15Plus       = "iPhone 15 Plus",
     iPhone15Pro        = "iPhone 15 Pro",
     iPhone15ProMax     = "iPhone 15 Pro Max",
+    iPhone16           = "iPhone 16" ,
+    iPhone16Plus       = "iPhone 16 Plus",
+    iPhone16Pro        = "iPhone 16 Pro",
+    iPhone16ProMax     = "iPhone 16 Pro Max",
 
     // Apple Watch
     AppleWatch1         = "Apple Watch 1gen",
