@@ -81,7 +81,7 @@ open class FSToastContent: FSToastContentConvertable {
         switch style {
         case .hint:
             do {
-                duration = 1.5
+                duration = 3.0
                 animation = FSToastAnimation(kind: .slideUp)
                 contentInset = .init(top: 10.0, left: 12.0, bottom: 10.0, right: 12.0)
             }
@@ -128,7 +128,7 @@ open class FSToastContent: FSToastContentConvertable {
                     }()
                     return UIImageView(image: .inner.image(named: name))
                 }()
-                duration = 1.5
+                duration = 3.0
                 animation = FSToastAnimation(kind: .fade)
                 if style == .success {
                     tapticEffect = .notification(.success)
