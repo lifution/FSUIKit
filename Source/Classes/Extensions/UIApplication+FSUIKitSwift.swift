@@ -14,6 +14,23 @@ extension FSUIKitWrapper where Base: UIApplication {
     public static var isAppExtension: Bool {
         return _UIApplicationConsts.isAppExtension
     }
+    
+    public var keyWindow: UIWindow? {
+        var window: UIWindow?
+        if #available(iOS 15.0, *) {
+            window = UIApplication.shared.connectedScenes
+                .compactMap { $0 as? UIWindowScene }
+                .filter { $0.activationState == .foregroundActive }
+                .first?.keyWindow
+        } else if #available(iOS 13, *) {
+            window = UIApplication.shared.connectedScenes
+                .compactMap { $0 as? UIWindowScene }
+                .filter { $0.activationState == .foregroundActive }
+                .first?.windows
+                .first(where: \.isKeyWindow)
+        }
+        return window
+    }
 }
 
 private struct _UIApplicationConsts {
