@@ -74,6 +74,17 @@ public extension FSUIKitWrapper where Base == String {
         return String(data: data, encoding: .utf8)
     }
     
+    /// 简化 `#if DEBUG` 的操作，传入两个环境下的字符串，该方法内部会
+    /// 根据当前应用的环境返回对应的那个字符串。
+    /// 该方法只判断 debug 和 release 两种模式。
+    static func string(debug: String, release: String) -> String {
+        #if DEBUG
+        return debug
+        #else
+        return release
+        #endif
+    }
+    
     /// 把当前字符串使用 base64 编码并返回编码结果。
     func toBase64() -> String {
         return Data(base.utf8).base64EncodedString()
