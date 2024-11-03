@@ -10,9 +10,14 @@ import Foundation
 
 public extension FSUIKitWrapper where Base == Date {
     
+    /// Convert date to local date.
     var localDate: Base? {
         let string = base.fs.string(of: .yyyyMMddHHmmss)
         return Date.fs.localDate(from: string, of: .yyyyMMddHHmmss)
+    }
+    
+    static var localDate: Base? {
+        return Date().fs.localDate
     }
     
     var year: Int {
@@ -45,8 +50,19 @@ public extension FSUIKitWrapper where Base == Date {
         return string
     }
     
+    func string(with format: String) -> String {
+        let formatter = DateFormatter.fs.localDateFormatterOfFormat(format)
+        let string = formatter.string(from: base)
+        return string
+    }
+    
     static func localDate(from string: String, of format: FSDateFormat = .yyyyMMddHHmmss) -> Date? {
         let formatter = DateFormatter.fs.localDateFormatter(of: format)
+        return formatter.date(from: string)
+    }
+    
+    static func localDate(from string: String, with format: String) -> Date? {
+        let formatter = DateFormatter.fs.localDateFormatterOfFormat(format)
         return formatter.date(from: string)
     }
 }
