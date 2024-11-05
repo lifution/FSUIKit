@@ -95,9 +95,7 @@ open class FSEmptyView: UIView {
         scroll.alwaysBounceVertical = true
         scroll.showsVerticalScrollIndicator = false
         scroll.showsHorizontalScrollIndicator = false
-        if #available(iOS 11.0, *) {
-            scroll.contentInsetAdjustmentBehavior = .never
-        }
+        scroll.contentInsetAdjustmentBehavior = .never
         return scroll
     }()
     
@@ -137,6 +135,10 @@ open class FSEmptyView: UIView {
     private weak var _dataSource: FSEmptyViewDataSource?
     
     private var viewSize: CGSize = .zero
+    
+    private var isImageHidden = true
+    private var isTextHidden = true
+    private var isDetailHidden = true
     
     // MARK: Initialization
     
@@ -211,13 +213,16 @@ private extension FSEmptyView {
         
         do {
             scrollView.isScrollEnabled = _delegate?.emptyViewShouldAllowScroll(self) ?? true
-            
             if let color = _delegate?.backgroundColor(for: self) {
                 backgroundColor = color
             } else {
                 backgroundColor = .clear
             }
         }
+        
+        isImageHidden = true
+        isTextHidden = true
+        isDetailHidden = true
         
         // 优先判断是否有自定义 view。
         var isCustomViewInvalid = true // 标记自定义 view 是否有效，以便 UIImageView 的设置。
@@ -249,6 +254,7 @@ private extension FSEmptyView {
                 if let image = _dataSource?.image(for: self), image.size != .zero {
                     imageView.image = image
                     imageView.isHidden = false
+                    isImageHidden = false
                 }
             }
         }
@@ -259,11 +265,11 @@ private extension FSEmptyView {
             if let text = _dataSource?.attributedText(for: self), !text.string.isEmpty {
                 textLabel.isHidden = false
                 textLabel.attributedText = text
-            } else {
-                if let text = _dataSource?.text(for: self), !text.isEmpty {
-                    textLabel.text = text
-                    textLabel.isHidden = false
-                }
+                isTextHidden = false
+            } else if let text = _dataSource?.text(for: self), !text.isEmpty {
+                textLabel.text = text
+                textLabel.isHidden = false
+                isTextHidden = false
             }
         }
         
@@ -273,11 +279,11 @@ private extension FSEmptyView {
             if let text = _dataSource?.attributedDetailText(for: self), !text.string.isEmpty {
                 detailTextLabel.isHidden = false
                 detailTextLabel.attributedText = text
-            } else {
-                if let text = _dataSource?.detailText(for: self), !text.isEmpty {
-                    detailTextLabel.text = text
-                    detailTextLabel.isHidden = false
-                }
+                isDetailHidden = false
+            } else if let text = _dataSource?.detailText(for: self), !text.isEmpty {
+                detailTextLabel.text = text
+                detailTextLabel.isHidden = false
+                isDetailHidden = false
             }
         }
         
@@ -340,6 +346,7 @@ private extension FSEmptyView {
         p_contentSizeToFit()
         scrollView.frame = .init(origin: .zero, size: viewSize)
         var scrollContentSize = contentSize
+        fs_print("scrollContentSize: [\(scrollContentSize)]")
         do {
             var contentX = abs(viewSize.width - contentSize.width) / 2.0
             var contentY = abs(viewSize.height - contentSize.height) / 2.0
@@ -347,7 +354,7 @@ private extension FSEmptyView {
                 contentX -= offset.x
                 contentY -= offset.y
             }
-            containerView.frame = .init(x: contentX, y: contentY, width: scrollContentSize.width, height: scrollContentSize.height)
+            containerView.frame = .init(origin: .init(x: contentX, y: contentY), size: scrollContentSize)
         }
         do {
             scrollContentSize.width += (abs(containerView.frame.minX) * 2.0)
@@ -393,7 +400,7 @@ private extension FSEmptyView {
                 }
                 customView.bounds = .init(x: 0.0, y: 0.0, width: customViewSize.width, height: customViewSize.height)
             } else {
-                if !imageView.isHidden {
+                if !isImageHidden {
                     topView = imageView
                     imageView.sizeToFit()
                 }
@@ -410,7 +417,7 @@ private extension FSEmptyView {
         
         // 文本
         do {
-            if !textLabel.isHidden {
+            if !isTextHidden {
                 var textMaxWidth: CGFloat = 0.0
                 if let width = _delegate?.textPreferredMaxLayoutWidth(for: self), width > 0.1 {
                     textMaxWidth = width
@@ -439,7 +446,7 @@ private extension FSEmptyView {
         
         // 详细文本
         do {
-            if !detailTextLabel.isHidden {
+            if !isDetailHidden {
                 var textMaxWidth: CGFloat = 0.0
                 if let width = _delegate?.detailTextPreferredMaxLayoutWidth(for: self), width > 0.1 {
                     textMaxWidth = width
@@ -458,7 +465,7 @@ private extension FSEmptyView {
                 let textSize = detailTextLabel.sizeThatFits(CGSize(width: textMaxWidth, height: CGFloat(Int16.max)))
                 detailTextLabel.bounds = .init(x: 0.0, y: 0.0, width: textSize.width, height: textSize.height)
                 contentWidth = max(contentWidth, textSize.width)
-                if !textLabel.isHidden {
+                if !isTextHidden {
                     contentHeight += textBottomSpace
                 } else {
                     contentHeight += imageBottomSpace
@@ -480,10 +487,10 @@ private extension FSEmptyView {
                     buttonBounds = button.bounds
                 }
                 contentWidth = max(contentWidth, buttonBounds.width)
-                if !detailTextLabel.isHidden {
+                if !isDetailHidden {
                     contentHeight += detailTextBottomSpace
                 } else {
-                    if !textLabel.isHidden {
+                    if !isTextHidden {
                         contentHeight += textBottomSpace
                     } else {
                         contentHeight += imageBottomSpace
@@ -502,18 +509,18 @@ private extension FSEmptyView {
                 view.frame = .init(x: x, y: 0.0, width: size.width, height: size.height)
                 maxY = view.frame.maxY
             }
-            if !textLabel.isHidden {
+            if !isTextHidden {
                 let size = textLabel.bounds.size
                 let x = (contentWidth - size.width) / 2.0
                 let y = (maxY == 0.0) ? 0.0 : (maxY + imageBottomSpace)
                 textLabel.frame = .init(x: x, y: y, width: size.width, height: size.height)
                 maxY = textLabel.frame.maxY
             }
-            if !detailTextLabel.isHidden {
+            if !isDetailHidden {
                 let size = detailTextLabel.bounds.size
                 let x = (contentWidth - size.width) / 2.0
                 let y: CGFloat = {
-                    return (maxY == 0.0) ? 0.0 : (maxY + (textLabel.isHidden ? imageBottomSpace : textBottomSpace))
+                    return (maxY == 0.0) ? 0.0 : (maxY + (isTextHidden ? imageBottomSpace : textBottomSpace))
                 }()
                 detailTextLabel.frame = .init(x: x, y: y, width: size.width, height: size.height)
                 maxY = detailTextLabel.frame.maxY
@@ -522,7 +529,7 @@ private extension FSEmptyView {
                 let size = button.bounds.size
                 let x = (contentWidth - size.width) / 2.0
                 let y: CGFloat = {
-                    return (maxY == 0.0) ? 0.0 : (maxY + (detailTextLabel.isHidden ? (textLabel.isHidden ? imageBottomSpace : textBottomSpace) : detailTextBottomSpace))
+                    return (maxY == 0.0) ? 0.0 : (maxY + (isDetailHidden ? (isTextHidden ? imageBottomSpace : textBottomSpace) : detailTextBottomSpace))
                 }()
                 button.frame = .init(x: x, y: y, width: size.width, height: size.height)
             }
