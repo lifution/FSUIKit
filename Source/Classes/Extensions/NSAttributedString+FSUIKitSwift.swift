@@ -81,14 +81,14 @@ extension FSUIKitWrapper where Base: NSAttributedString {
             return .zero
         }
         
-//        let constraints: CGSize = {
-//            if let size = limitedSize, size != .zero {
-//                return size
-//            }
-//            return CGSize(width: CGFloat.greatestFiniteMagnitude, height: CGFloat.greatestFiniteMagnitude)
-//        }()
-//        let size = att_string.boundingRect(with: constraints, options: .usesLineFragmentOrigin, context: nil)
-//        return .init(width: ceil(size.width), height: ceil(size.height))
+        let constraints: CGSize = {
+            if let size = limitedSize, size != .zero {
+                return size
+            }
+            return CGSize(width: CGFloat.greatestFiniteMagnitude, height: CGFloat.greatestFiniteMagnitude)
+        }()
+        let size = att_string.boundingRect(with: constraints, options: .usesLineFragmentOrigin, context: nil).size
+        return size.fs.ceiled()
         
         /** 以下方法计算多行时没问题，但是计算单行时出错了，单行返回的高度太高。
         let constraints: CGSize = {
@@ -135,6 +135,7 @@ extension FSUIKitWrapper where Base: NSAttributedString {
          */
         
         /// 以下方法计算多行时返回的高度偶尔会小一些导致内容显示不全
+        /**
         var range = CFRangeMake(0, att_string.length)
         let numberOfLines = max(limitedNumberOfLines, 0)
         let constraints: CGSize = {
@@ -198,6 +199,7 @@ extension FSUIKitWrapper where Base: NSAttributedString {
         result.height = ceil(result.height)
         
         return result
+         */
     }
 }
 
