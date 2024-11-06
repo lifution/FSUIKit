@@ -346,7 +346,6 @@ private extension FSEmptyView {
         p_contentSizeToFit()
         scrollView.frame = .init(origin: .zero, size: viewSize)
         var scrollContentSize = contentSize
-        fs_print("scrollContentSize: [\(scrollContentSize)]")
         do {
             var contentX = abs(viewSize.width - contentSize.width) / 2.0
             var contentY = abs(viewSize.height - contentSize.height) / 2.0
