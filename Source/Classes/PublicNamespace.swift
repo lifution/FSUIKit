@@ -9,6 +9,9 @@
 import UIKit
 
 public struct FSUIKitWrapper<Base> {
+    public var raw: Base {
+        return base
+    }
     var base: Base
     fileprivate init(_ base: Base) {
         self.base = base
