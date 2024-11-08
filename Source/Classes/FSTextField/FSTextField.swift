@@ -329,7 +329,6 @@ private final class _FSTextFieldDelegator: NSObject, FSTextFieldDelegate, UIScro
                         DispatchQueue.main.async {
                             textField.fs.selectedRange = .init(location: range.location + allowedText.count, length: 0)
                         }
-                        
                         if !textField.shouldResponseToProgrammaticallyTextChanges {
                             textField.p_fireTextDidChangeEvent(for: textField)
                         }
