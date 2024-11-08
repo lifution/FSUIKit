@@ -56,15 +56,8 @@ open class FSTextView: UITextView {
     /// placeholder 在默认位置上的偏移（默认位置会自动根据 textContainerInset、contentInset 来调整）。
     public var placeholderMargins: UIEdgeInsets = .zero
     
-    /// 显示允许输入的最大文字长度，默认为 UInt.max，也即不限制长度，
-    /// 当该属性为 0 时同样表示不限制长度。
-    public var maximumTextCount: UInt = UInt.max {
-        didSet {
-            if maximumTextCount <= 0 {
-                maximumTextCount = UInt.max
-            }
-        }
-    }
+    /// 显示允许输入的最大文字长度，默认为 0，即不限制长度，
+    public var maximumTextCount = 0
     
     /// 最大高度，当设置了这个属性后，超过这个高度值的 frame 是不生效的。默认为 CGFloat.greatestFiniteMagnitude，也即无限制。
     /// 设置为 0 也表示不限制。
@@ -639,7 +632,7 @@ extension _FSTextViewDelegator: UITextViewDelegate {
             }
         }
         
-        if textView.maximumTextCount < UInt.max {
+        if textView.maximumTextCount > 0 {
             
             /// 如果是中文输入法正在输入拼音的过程中（markedTextRange 不为 nil），
             /// 是不应该限制字数的（例如输入 "huang" 这5个字符，其实只是为了输入 "黄" 这一个字符），
@@ -679,7 +672,7 @@ extension _FSTextViewDelegator: UITextViewDelegate {
                 }
                 
                 // 将要插入的文字裁剪成多长，就可以让它插入了。
-                let substringLength = Int(textView.maximumTextCount) - textView.p_count(of: textView.text) + rangeLength
+                let substringLength = textView.maximumTextCount - textView.p_count(of: textView.text) + rangeLength
                 
                 if substringLength > 0, textView.p_count(of: text) > substringLength {
                     let allowedText = text.fs.substringAvoidBreakingUpCharacterSequences(range: .init(location: 0, length: substringLength), lessValue: true, countingNonASCIICharacterAsTwo: textView.shouldCountingNonASCIICharacterAsTwo)
@@ -698,18 +691,24 @@ extension _FSTextViewDelegator: UITextViewDelegate {
             }
         }
         
-        return (externalDelegate?.textView?(textView, shouldChangeTextIn: range, replacementText: text) ?? true)
+        return externalDelegate?.textView?(textView, shouldChangeTextIn: range, replacementText: text) ?? true
     }
     
     /// 1、iOS 10 以下的版本，从中文输入法的候选词里选词输入，是不会走到 `textView(:shouldChangeTextIn:replacementText:)` 的，所以要在这里截断文字。
     /// 2、如果是中文输入法正在输入拼音的过程中（markedTextRange 不为 nil），是不应该限制字数的（例如输入 "huang" 这5个字符，其实只是为了输入 "黄" 这一个字符），
     ///    所以在 shouldChange 那边不会限制，而是放在 didChange 这里限制。
     func textViewDidChange(_ textView: UITextView) {
+        defer {
+            externalDelegate?.textViewDidChange?(textView)
+        }
         if let range = textView.markedTextRange, let _ = textView.position(from: range.start, offset: 0) {
             // 正处于输入中文拼音还未点确定的中间状态，直接返回。
             return
         }
-        guard let textView = textView as? FSTextView else {
+        guard
+            let textView = textView as? FSTextView,
+            textView.maximumTextCount > 0
+        else {
             return
         }
         do {
@@ -717,12 +716,11 @@ extension _FSTextViewDelegator: UITextViewDelegate {
             textView.fp_parseText()
         }
         if textView.p_count(of: textView.text) > textView.maximumTextCount {
-            let range = NSRange(location: 0, length: Int(textView.maximumTextCount))
+            let range = NSRange(location: 0, length: textView.maximumTextCount)
             textView.text = textView.text.fs.substringAvoidBreakingUpCharacterSequences(range: range, lessValue: true, countingNonASCIICharacterAsTwo: textView.shouldCountingNonASCIICharacterAsTwo)
             /// 如果是在这里被截断，是无法得知截断前光标所处的位置及要输入的文本的，所以只能将当前的 selectedRange 传过去，而 replacementText 为 `""`。
             self.textView(textView, didPreventTextChangeIn: textView.selectedRange, replacementText: "")
         }
-        externalDelegate?.textViewDidChange?(textView)
     }
     
     func textViewDidChangeSelection(_ textView: UITextView) {
