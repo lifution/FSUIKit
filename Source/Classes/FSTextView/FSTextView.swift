@@ -5,6 +5,7 @@
 //  Created by Sheng on 2024/1/13.
 //  Copyright © 2023 Sheng. All rights reserved.
 //
+//  代码参考于: https://github.com/Tencent/QMUI_iOS
 
 import UIKit
 
@@ -437,7 +438,7 @@ private extension FSTextView {
             return 0
         }
         if shouldCountingNonASCIICharacterAsTwo {
-            return s.fs.countWhenCountingNonASCIICharacterAsTwo()
+            return s.fs.countOfNonASCIICharacterAsTwo
         }
         return s.count
     }
@@ -664,7 +665,7 @@ extension _FSTextViewDelegator: UITextViewDelegate {
                 if textView.shouldCountingNonASCIICharacterAsTwo {
                     if let r = Range(range, in: textView.text) {
                         let substring = String(textView.text[r])
-                        return substring.fs.countWhenCountingNonASCIICharacterAsTwo()
+                        return substring.fs.countOfNonASCIICharacterAsTwo
                     }
                 }
                 return range.length

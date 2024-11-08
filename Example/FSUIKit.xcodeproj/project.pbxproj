@@ -20,6 +20,8 @@
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		909C26E3DAC0C761621B5C40 /* Pods_FSUIKit_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB8AC0D06D3CAA2E913F5277 /* Pods_FSUIKit_Example.framework */; };
+		BF54E9882CDCEDB200154198 /* TextFieldViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF54E9872CDCEDB200154198 /* TextFieldViewController.swift */; };
+		BF98BBEC2CDDBBCE0096FA56 /* TextViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF98BBEB2CDDBBCE0096FA56 /* TextViewViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +47,8 @@
 		897595C6F685B51925EDD910 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		992426277C68CE93C0F8E96A /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		B10089CBD10B14D1CBE3D49A /* Pods-FSUIKit_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FSUIKit_Tests.debug.xcconfig"; path = "Target Support Files/Pods-FSUIKit_Tests/Pods-FSUIKit_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		BF54E9872CDCEDB200154198 /* TextFieldViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldViewController.swift; sourceTree = "<group>"; };
+		BF98BBEB2CDDBBCE0096FA56 /* TextViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewViewController.swift; sourceTree = "<group>"; };
 		EB8AC0D06D3CAA2E913F5277 /* Pods_FSUIKit_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FSUIKit_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -70,6 +74,8 @@
 				0495CD122BF20C36008DDEB8 /* CollectionInsetGroupViewController.swift */,
 				049363C02BF5A4EB00CD98C3 /* CustomBarViewController.swift */,
 				04B54AA92BF7058D00D12C0F /* FullscreenPopViewController.swift */,
+				BF54E9872CDCEDB200154198 /* TextFieldViewController.swift */,
+				BF98BBEB2CDDBBCE0096FA56 /* TextViewViewController.swift */,
 			);
 			path = Examples;
 			sourceTree = "<group>";
@@ -265,11 +271,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF54E9882CDCEDB200154198 /* TextFieldViewController.swift in Sources */,
 				04B54AAA2BF7058D00D12C0F /* FullscreenPopViewController.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
 				04F52B112BA1D4AE000AC4BE /* FlexibleViewController.swift in Sources */,
 				043541502BD128DB00CC7208 /* GradientViewController.swift in Sources */,
 				041102552B72AA2200E243D2 /* ToastViewController.swift in Sources */,
+				BF98BBEC2CDDBBCE0096FA56 /* TextViewViewController.swift in Sources */,
 				0495CD132BF20C36008DDEB8 /* CollectionInsetGroupViewController.swift in Sources */,
 				048C86842BCA064E0080322D /* TextInputAlertViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
@@ -417,6 +425,7 @@
 				INFOPLIST_KEY_UIRequiredDeviceCapabilities = armv7;
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -454,6 +463,7 @@
 				INFOPLIST_KEY_UIRequiredDeviceCapabilities = armv7;
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
