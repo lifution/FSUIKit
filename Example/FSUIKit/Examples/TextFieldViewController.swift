@@ -11,14 +11,15 @@ import FSUIKitSwift
 
 final class TextFieldViewController: FSViewController {
     
+    private let textField = FSTextField()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let textField = FSTextField()
         textField.font = .systemFont(ofSize: 16.0)
-//        textField.fs_delegate = self
-        textField.placeholder = "请输入(限制 5 个字符)"
-        textField.maximumTextCount = 5
+        textField.delegate = self
+        textField.placeholder = "请输入(限制 10 个字符)"
+        textField.maximumTextCount = 10
         textField.onDidHitMaximumTextCountHandler = { _ in
             FSToast.show(hint: "达到限制字数")
         }
@@ -37,5 +38,16 @@ final class TextFieldViewController: FSViewController {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
         view.endEditing(true)
+    }
+}
+
+extension TextFieldViewController: FSTextFieldDelegate {
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        fs_print("did begin editing")
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
+        fs_print("did end editing: [\(reason)]")
     }
 }

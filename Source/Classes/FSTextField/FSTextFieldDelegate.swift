@@ -8,6 +8,7 @@
 
 import UIKit
 
+@objc
 public protocol FSTextFieldDelegate: UITextFieldDelegate {
     
     /// 由于 `maximumTextLength` 的实现方式导致业务无法再重写自己的 shouldChangeCharacters，否则会丢失 `maximumTextLength` 的功能。
@@ -15,6 +16,7 @@ public protocol FSTextFieldDelegate: UITextFieldDelegate {
     /// 去限制自己的输入内容。如果 FSTextField 内部逻辑本身就返回 false（例如超过了 maximumTextLength 的长度），则不会触发这个方法。
     /// 当输入被这个方法拦截时，由于拦截逻辑是业务自己写的，业务能轻松获取到这个拦截的时机，所以此时不会调用
     /// ``textField(_:didPreventTextChangeIn:replacementString:)``。如果有类似 tips 之类的操作，可以直接在 return false 之前处理。
+    @objc optional
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String, originalValue: Bool) -> Bool
     
     /// 配合 `maximumTextLength` 属性使用，在输入文字超过限制时被调用。
@@ -27,12 +29,6 @@ public protocol FSTextFieldDelegate: UITextFieldDelegate {
     ///   range: 要变化的文字的位置，如果在 UIControlEventEditingChanged 里，这里的 range 也即文字变化后的 range，所以可能比最大长度要大。
     ///   string: 要变化的文字，如果在 UIControlEventEditingChanged 里，这里永远传入 nil。
     ///
+    @objc optional
     func textField(_ textField: UITextField, didPreventTextChangeIn range: NSRange, replacementString string: String?)
-}
-
-public extension FSTextFieldDelegate {
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String, originalValue: Bool) -> Bool {
-        return true
-    }
-    func textField(_ textField: UITextField, didPreventTextChangeIn range: NSRange, replacementString string: String?) {}
 }

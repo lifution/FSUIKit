@@ -11,22 +11,16 @@ import UIKit
 import Foundation
 import ObjectiveC
 
- /// 支持的特性包括：
- /// 1. 自定义 placeholderColor。
- /// 2. 自定义 UITextField 的文字 padding。
- /// 3. 支持限制输入的文字的长度。
- /// 4. 修复 iOS 10 之后 UITextField 输入中文超过文本框宽度后再删除，文字往下掉的 bug。
- ///
-open class FSTextField: UITextField {
+///
+/// 支持的特性包括：
+/// 1. 自定义 placeholderColor。
+/// 2. 自定义 UITextField 的文字 padding。
+/// 3. 支持限制输入的文字的长度。
+/// 4. 修复 iOS 10 之后 UITextField 输入中文超过文本框宽度后再删除，文字往下掉的 bug。
+///
+open class FSTextField: _TempTextField {
     
     // MARK: Properties/Override
-    
-    /// 使用 ``fs_delegate``
-    @available(*, unavailable)
-    weak open override var delegate: (any UITextFieldDelegate)? {
-        get { return nil }
-        set {}
-    }
     
     open override var text: String? {
         didSet {
@@ -63,8 +57,7 @@ open class FSTextField: UITextField {
     
     // MARK: Properties/Open
     
-    /// 替代原 delegate 的所有功能
-    weak open var fs_delegate: (any FSTextFieldDelegate)?
+    weak open var delegate: (any FSTextFieldDelegate)?
     
     /// placeholder 的颜色，默认是 ``UIColor.fs.placeholder``。
     open var placeholderColor: UIColor? = .fs.placeholder {
@@ -188,7 +181,7 @@ private extension FSTextField {
         textColor = .black
         tintColor = nil
         delegator.textField = self
-        super.delegate = delegator
+        set(delegate: delegator)
         addTarget(delegator, action: #selector(delegator.handleTextChangeEvent(of:)), for: .editingChanged)
     }
     
@@ -250,7 +243,7 @@ private final class _FSTextFieldDelegator: NSObject, FSTextFieldDelegate, UIScro
         }
         textField.text = newText
         textField.fs.selectedRange = .init(location: text.count - lastLength, length: 0)
-        textField.fs_delegate?.textField(textField, didPreventTextChangeIn: textField.fs.selectedRange, replacementString: nil)
+        textField.delegate?.textField?(textField, didPreventTextChangeIn: textField.fs.selectedRange, replacementString: nil)
         textField.onDidHitMaximumTextCountHandler?(textField)
     }
     
@@ -287,12 +280,16 @@ private final class _FSTextFieldDelegator: NSObject, FSTextFieldDelegate, UIScro
             }
             
             var range = range
-            if NSMaxRange(range) > (textField.text?.count ?? 0) {
+            
+            /// String 的 count 是把 emoji 表情当作一个计算的，但是 emoji 表情所占的字符数量有 1、2、4、8 等，
+            /// 而此处的 range 是按照实际字符数量计算的，如果和 String 的 count 相比较肯定不准确，
+            /// 所以此处把 String 转成 utf16 计算整个字符串的长度。
+            if NSMaxRange(range) > (textField.text?.utf16.count ?? 0) {
                 // 如果 range 越界了，继续返回 true 会造成 crash
                 // https://github.com/Tencent/QMUI_iOS/issues/377
                 // https://github.com/Tencent/QMUI_iOS/issues/1170
                 // 这里的做法是本次返回 false，并将越界的 range 缩减到没有越界的范围，再手动做该范围的替换。
-                range = NSMakeRange(range.location, range.length - (NSMaxRange(range) - (textField.text?.count ?? 0)))
+                range = NSMakeRange(range.location, range.length - (NSMaxRange(range) - (textField.text?.utf16.count ?? 0)))
                 if range.length > 0, let textRange = textField.fs.convertUITextRangeFromNSRange(range) {
                     textField.replace(textRange, withText: string)
                 }
@@ -319,8 +316,8 @@ private final class _FSTextFieldDelegator: NSObject, FSTextFieldDelegate, UIScro
                                                                                            countingNonASCIICharacterAsTwo: textField.shouldCountingNonASCIICharacterAsTwo) ?? ""
                     if textField.p_count(of: allowedText) <= substringLength {
                         var shouldChange = true
-                        if let delegate = textField.fs_delegate {
-                            shouldChange = delegate.textField(textField, shouldChangeCharactersIn: range, replacementString: allowedText, originalValue: true)
+                        if let delegate = textField.delegate {
+                            shouldChange = delegate.textField?(textField, shouldChangeCharactersIn: range, replacementString: allowedText, originalValue: true) ?? true
                         }
                         if !shouldChange {
                             return false
@@ -339,8 +336,8 @@ private final class _FSTextFieldDelegator: NSObject, FSTextFieldDelegate, UIScro
                     }
                 }
                 
-                if let delegate = textField.fs_delegate {
-                    delegate.textField(textField, didPreventTextChangeIn: range, replacementString: string)
+                if let delegate = textField.delegate {
+                    delegate.textField?(textField, didPreventTextChangeIn: range, replacementString: string)
                 }
                 
                 textField.onDidHitMaximumTextCountHandler?(textField)
@@ -348,60 +345,60 @@ private final class _FSTextFieldDelegator: NSObject, FSTextFieldDelegate, UIScro
                 return false
             }
         }
-        if let delegate = textField.fs_delegate {
-            return delegate.textField(textField, shouldChangeCharactersIn: range, replacementString: string, originalValue: true)
+        if let delegate = textField.delegate {
+            return delegate.textField?(textField, shouldChangeCharactersIn: range, replacementString: string, originalValue: true) ?? true
         }
         return true
     }
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        if let delegate = self.textField?.fs_delegate {
+        if let delegate = self.textField?.delegate {
             return delegate.textFieldShouldBeginEditing?(textField) ?? true
         }
         return true
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        if let delegate = self.textField?.fs_delegate {
+        if let delegate = self.textField?.delegate {
             delegate.textFieldDidBeginEditing?(textField)
         }
     }
     
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-        if let delegate = self.textField?.fs_delegate {
+        if let delegate = self.textField?.delegate {
             return delegate.textFieldShouldEndEditing?(textField) ?? true
         }
         return true
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        if let delegate = self.textField?.fs_delegate {
+        if let delegate = self.textField?.delegate {
             delegate.textFieldDidEndEditing?(textField)
         }
     }
     
     func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
-        if let delegate = self.textField?.fs_delegate {
+        if let delegate = self.textField?.delegate {
             delegate.textFieldDidEndEditing?(textField, reason: reason)
         }
     }
 
     @available(iOS 13.0, *)
     func textFieldDidChangeSelection(_ textField: UITextField) {
-        if let delegate = self.textField?.fs_delegate {
+        if let delegate = self.textField?.delegate {
             delegate.textFieldDidChangeSelection?(textField)
         }
     }
     
     func textFieldShouldClear(_ textField: UITextField) -> Bool {
-        if let delegate = self.textField?.fs_delegate {
+        if let delegate = self.textField?.delegate {
             return delegate.textFieldShouldClear?(textField) ?? true
         }
         return true
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if let delegate = self.textField?.fs_delegate {
+        if let delegate = self.textField?.delegate {
             return delegate.textFieldShouldReturn?(textField) ?? true
         }
         return true
@@ -409,7 +406,7 @@ private final class _FSTextFieldDelegator: NSObject, FSTextFieldDelegate, UIScro
     
     @available(iOS 16.0, *)
     func textField(_ textField: UITextField, editMenuForCharactersIn range: NSRange, suggestedActions: [UIMenuElement]) -> UIMenu? {
-        if let delegate = self.textField?.fs_delegate {
+        if let delegate = self.textField?.delegate {
             return delegate.textField?(textField, editMenuForCharactersIn: range, suggestedActions: suggestedActions)
         }
         return nil
@@ -417,15 +414,29 @@ private final class _FSTextFieldDelegator: NSObject, FSTextFieldDelegate, UIScro
     
     @available(iOS 16.0, *)
     func textField(_ textField: UITextField, willPresentEditMenuWith animator: any UIEditMenuInteractionAnimating) {
-        if let delegate = self.textField?.fs_delegate {
+        if let delegate = self.textField?.delegate {
             delegate.textField?(textField, willPresentEditMenuWith: animator)
         }
     }
     
     @available(iOS 16.0, *)
     func textField(_ textField: UITextField, willDismissEditMenuWith animator: any UIEditMenuInteractionAnimating) {
-        if let delegate = self.textField?.fs_delegate {
+        if let delegate = self.textField?.delegate {
             delegate.textField?(textField, willDismissEditMenuWith: animator)
         }
+    }
+}
+
+/// Can not use.
+open class _TempTextField: UITextField {
+    
+    @available(*, unavailable)
+    weak open override var delegate: (any UITextFieldDelegate)? {
+        get { return super.delegate }
+        set { super.delegate = newValue }
+    }
+    
+    fileprivate func set(delegate: (any UITextFieldDelegate)?) {
+        super.delegate = delegate
     }
 }
