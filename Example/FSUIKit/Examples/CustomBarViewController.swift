@@ -61,6 +61,11 @@ final class CustomBarViewController: UIViewController {
         }
     }
     
+    override func viewSafeAreaInsetsDidChange() {
+        super.viewSafeAreaInsetsDidChange()
+        fs_print("view safe area: [\(view.safeAreaInsets)]")
+    }
+    
     // MARK: Private
     
     private func p_didInitialize() {

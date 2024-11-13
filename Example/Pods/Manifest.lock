@@ -1,13 +1,18 @@
 PODS:
   - FSUIKitSwift (1.0.4)
+  - LookinServer (1.2.8):
+    - LookinServer/Core (= 1.2.8)
+  - LookinServer/Core (1.2.8)
   - SnapKit (5.6.0)
 
 DEPENDENCIES:
   - FSUIKitSwift (from `../`)
+  - LookinServer
   - SnapKit
 
 SPEC REPOS:
   trunk:
+    - LookinServer
     - SnapKit
 
 EXTERNAL SOURCES:
@@ -16,8 +21,9 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   FSUIKitSwift: 03bafe538e3cdebff51e68a09ce81e6319384b63
+  LookinServer: 1b2b61c6402ae29fa22182d48f5cd067b4e99e80
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
 
-PODFILE CHECKSUM: 9f48507072ca793bd69decd57abafa0e700ecaa5
+PODFILE CHECKSUM: c67d9ae27dcbf9e551db3b3d2282a15a47793682
 
 COCOAPODS: 1.16.1
