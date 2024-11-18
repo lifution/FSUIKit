@@ -57,9 +57,20 @@ extension TextFieldViewController: FSTextFieldDelegate {
         guard predicate.evaluate(with: string) else {
             return false
         }
-        let text = ((textField.text ?? "") as NSString).replacingCharacters(in: range, with: string)
-        if text.hasPrefix("00") {
-            return false
+        let old = textField.text ?? ""
+        if string.first == "." {
+            if range.location == 0 {
+                return false
+            }
+            if old.contains(".") {
+                return false
+            }
+        }
+        let text = (old as NSString).replacingCharacters(in: range, with: string)
+        if text.first == "0" {
+            if text.count >= 2, text.fs.substring(at: 1) != "." {
+                return false
+            }
         }
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
