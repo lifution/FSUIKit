@@ -50,4 +50,31 @@ extension TextFieldViewController: FSTextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
         fs_print("did end editing: [\(reason)]")
     }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String, originalValue: Bool) -> Bool {
+        
+        let predicate = NSPredicate(format: "SELF MATCHES %@", "[0-9.]+")
+        guard predicate.evaluate(with: string) else {
+            return false
+        }
+        let currentText = textField.text ?? ""
+//        if currentText == "0", range.location != 0, string.first != "." {
+//            return false
+//        }
+//        if range.location == 0, string.first == "0", !currentText.isEmpty {
+//            return false
+//        }
+        let text = (currentText as NSString).replacingCharacters(in: range, with: string)
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        if let value = formatter.number(from: text)?.doubleValue {
+            if text.contains("."), let decimalComponent = text.components(separatedBy: ".").last {
+                if decimalComponent.count > 2 {
+                    return false
+                }
+            }
+            return true
+        }
+        return false
+    }
 }
