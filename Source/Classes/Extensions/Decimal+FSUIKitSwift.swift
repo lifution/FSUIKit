@@ -10,9 +10,11 @@ import Foundation
 
 public extension FSUIKitWrapper where Base == Decimal {
     
-    func formatted(withMaximumFractionDigits maximumFractionDigits: Int = 2) -> String {
+    func formatted(withMaximumFractionDigits maximumFractionDigits: Int = 2,
+                   roundingMode: NumberFormatter.RoundingMode = .down) -> String {
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
+        formatter.roundingMode = roundingMode
         formatter.maximumFractionDigits = maximumFractionDigits
         return formatter.string(from: base as NSDecimalNumber) ?? "0"
     }
