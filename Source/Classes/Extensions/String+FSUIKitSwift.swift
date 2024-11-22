@@ -60,6 +60,10 @@ public extension FSUIKitWrapper where Base == String {
         !base.isEmpty && !base.contains { !$0.fs.isEmoji }
     }
     
+    var nonEmojiString: String {
+        base.filter { !$0.fs.isEmoji }
+    }
+    
     var emojiString: String {
         emojis.map { String($0) }.reduce("", +)
     }
