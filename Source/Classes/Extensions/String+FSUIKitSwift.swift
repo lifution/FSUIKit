@@ -48,6 +48,30 @@ public extension FSUIKitWrapper where Base == String {
         return length
     }
     
+    var isSingleEmoji: Bool {
+        base.count == 1 && containsEmoji
+    }
+    
+    var containsEmoji: Bool {
+        base.contains { $0.fs.isEmoji }
+    }
+    
+    var containsOnlyEmoji: Bool {
+        !base.isEmpty && !base.contains { !$0.fs.isEmoji }
+    }
+    
+    var emojiString: String {
+        emojis.map { String($0) }.reduce("", +)
+    }
+    
+    var emojis: [Character] {
+        base.filter { $0.fs.isEmoji }
+    }
+    
+    var emojiScalars: [UnicodeScalar] {
+        base.filter { $0.fs.isEmoji }.flatMap { $0.unicodeScalars }
+    }
+    
     /// 把当前字符串使用 base64 编码并返回编码结果。
     func toBase64() -> String {
         return Data(base.utf8).base64EncodedString()

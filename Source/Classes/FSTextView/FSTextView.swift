@@ -90,7 +90,7 @@ open class FSTextView: UITextView {
     public var heightDidChangeHandler: ((_ newHeight: CGFloat) -> Void)?
     
     /// 达到最大限制数量时的回调，外部可实现该 closure 监听，也可实现 FSTextViewDelegate 监听。
-    public var onDidHitMaximumTextCountHandler: (() -> Void)?
+    public var onDidHitMaximumTextCountHandler: ((_ textView: FSTextView) -> Void)?
     
     /// 控制输入框是否要出现「粘贴」menu。
     ///
@@ -593,7 +593,7 @@ extension _FSTextViewDelegator: FSTextViewDelegate {
     
     func textView(_ textView: FSTextView, didPreventTextChangeIn range: NSRange, replacementText text: String) {
         do {
-            textView.onDidHitMaximumTextCountHandler?()
+            textView.onDidHitMaximumTextCountHandler?(textView)
         }
         if let delegate = externalDelegate as? FSTextViewDelegate {
             delegate.textView(textView, didPreventTextChangeIn: range, replacementText: text)
