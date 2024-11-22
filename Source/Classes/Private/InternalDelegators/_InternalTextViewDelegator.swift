@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class _InternalTextViewDelegator: NSObject, UITextViewDelegate {
+final class _InternalTextViewDelegator: NSObject, FSTextViewDelegate {
     
     var textDidChange: ((_ textView: UITextView) -> Void)?
     var shouldChangeText: ((_ textView: UITextView, _ range: NSRange, _ text: String) -> Bool)?

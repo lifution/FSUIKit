@@ -18,12 +18,10 @@ import UIKit
 /// 4. 支持限制输入的文本的最大长度，默认不限制。
 /// 5. 修正系统 UITextView 在输入时自然换行的时候，contentOffset 的滚动位置没有考虑 textContainerInset.bottom。
 ///
-/// - Important: ⚠️⚠️
-/// * FSTextView 内部已经实现了 delegate，外部设置 delegate 与平常无异，会正常接收到所有的代理方法回调，但有一点需要注意的, delegate 的 getter 返回的
-///   是 FSTextView 内部设置的代理对象，并非外部设置的代理对象，如果需要从 FSTextView 读取外部设置的代理对象，可读取 FSTextView 的 externalDelegate 属性。
-/// * 外部需要用到 FSTextViewDelegate 的时候，只需要在 delegate 对象中实现 FSTextViewDelegate 协议即可。
+/// - Note:
+/// * FSTextView 内部已经实现了 delegate，外部设置 ``delegate`` 不会影响内部的代码运行。
 ///
-open class FSTextView: UITextView {
+open class FSTextView: _TempTextView {
     
     // MARK: Properties/Public
     
@@ -70,9 +68,7 @@ open class FSTextView: UITextView {
     }
     
     /// 外部设置的代理对象，此处提供是为了方便外部从 FSTextView 读取外部设置的代理对象。
-    public var externalDelegate: UITextViewDelegate? {
-        return delegator.externalDelegate
-    }
+    open weak var delegate: (any FSTextViewDelegate)?
     
     /// 当通过 `text setter`、`attributedText setter` 等方式修改文字时，
     /// 是否应该自动触发 `UITextViewDelegate` 里的 `textView(:shouldChangeTextIn:replacementText:)`、`textViewDidChange(:)` 方法。
@@ -291,17 +287,6 @@ extension FSTextView {
         return "\(super.description); text.length: \(text.count) | \(p_count(of: text)); markedTextRange: \((markedTextRange != nil) ? "\(markedTextRange!)" : "nil")。"
     }
     
-    open override weak var delegate: UITextViewDelegate? {
-        get { return super.delegate }
-        set {
-            if newValue === delegator {
-                super.delegate = delegator
-            } else {
-                delegator.externalDelegate = newValue
-            }
-        }
-    }
-    
     open override func cut(_ sender: Any?) {
         guard let parser = textParser else {
             super.cut(sender)
@@ -405,10 +390,11 @@ private extension FSTextView {
     /// Invoked after initialization.
     func p_didInitialize() {
         do {
-            delegate = delegator
             scrollsToTop = false
             contentInsetAdjustmentBehavior = .never
             textDragInteraction?.isEnabled = false
+            delegator.textView = self
+            set(delegate: delegator)
         }
         do {
             placeholderLabel.textColor = placeholderDefaultColor
@@ -571,52 +557,37 @@ fileprivate extension FSTextView {
 
 // MARK: - _FSTextViewDelegator
 
-private class _FSTextViewDelegator: NSObject {
-    /// 外部设置的 FSTextView 的 delegate，_FSTextViewDelegator 通过该属性转发 UITextViewDelegate 的相关消息给外部 delegate。
-    fileprivate weak var externalDelegate: UITextViewDelegate?
-}
-
-extension _FSTextViewDelegator: FSTextViewDelegate {
+private class _FSTextViewDelegator: NSObject, FSTextViewDelegate {
+    
+    weak var textView: FSTextView?
     
     func textView(_ textView: FSTextView, heightDidChangeTo newHeight: CGFloat) {
-        if let delegate = externalDelegate as? FSTextViewDelegate {
-            delegate.textView(textView, heightDidChangeTo: newHeight)
-        }
+        self.textView?.delegate?.textView?(textView, heightDidChangeTo: newHeight)
     }
     
     func textViewShouldReturn(_ textView: FSTextView) -> Bool {
-        if let delegate = externalDelegate as? FSTextViewDelegate {
-            return delegate.textViewShouldReturn(textView)
-        }
-        return false
+        return self.textView?.delegate?.textViewShouldReturn?(textView) ?? true
     }
     
     func textView(_ textView: FSTextView, didPreventTextChangeIn range: NSRange, replacementText text: String) {
-        do {
-            textView.onDidHitMaximumTextCountHandler?(textView)
-        }
-        if let delegate = externalDelegate as? FSTextViewDelegate {
-            delegate.textView(textView, didPreventTextChangeIn: range, replacementText: text)
-        }
+        self.textView?.onDidHitMaximumTextCountHandler?(textView)
+        self.textView?.delegate?.textView?(textView, didPreventTextChangeIn: range, replacementText: text)
     }
-}
-
-extension _FSTextViewDelegator: UITextViewDelegate {
     
     func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
-        return (externalDelegate?.textViewShouldBeginEditing?(textView) ?? true)
+        return self.textView?.delegate?.textViewShouldBeginEditing?(textView) ?? true
     }
     
     func textViewShouldEndEditing(_ textView: UITextView) -> Bool {
-        return (externalDelegate?.textViewShouldEndEditing?(textView) ?? true)
+        return self.textView?.delegate?.textViewShouldEndEditing?(textView) ?? true
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
-        externalDelegate?.textViewDidBeginEditing?(textView)
+        self.textView?.delegate?.textViewDidBeginEditing?(textView)
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
-        externalDelegate?.textViewDidEndEditing?(textView)
+        self.textView?.delegate?.textViewDidEndEditing?(textView)
     }
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
@@ -680,7 +651,7 @@ extension _FSTextViewDelegator: UITextViewDelegate {
                         textView.text = textView.text.replacingCharacters(in: insertRange, with: allowedText)
                         textView.selectedRange = .init(location: range.location + substringLength, length: 0)
                         if !textView.shouldResponseToProgrammaticallyTextChanges {
-                            externalDelegate?.textViewDidChange?(textView)
+                            self.textView?.delegate?.textViewDidChange?(textView)
                         }
                     }
                 }
@@ -691,7 +662,7 @@ extension _FSTextViewDelegator: UITextViewDelegate {
             }
         }
         
-        return externalDelegate?.textView?(textView, shouldChangeTextIn: range, replacementText: text) ?? true
+        return self.textView?.delegate?.textView?(textView, shouldChangeTextIn: range, replacementText: text) ?? true
     }
     
     /// 1、iOS 10 以下的版本，从中文输入法的候选词里选词输入，是不会走到 `textView(:shouldChangeTextIn:replacementText:)` 的，所以要在这里截断文字。
@@ -699,7 +670,7 @@ extension _FSTextViewDelegator: UITextViewDelegate {
     ///    所以在 shouldChange 那边不会限制，而是放在 didChange 这里限制。
     func textViewDidChange(_ textView: UITextView) {
         defer {
-            externalDelegate?.textViewDidChange?(textView)
+            self.textView?.delegate?.textViewDidChange?(textView)
         }
         if let range = textView.markedTextRange, let _ = textView.position(from: range.start, offset: 0) {
             // 正处于输入中文拼音还未点确定的中间状态，直接返回。
@@ -724,26 +695,168 @@ extension _FSTextViewDelegator: UITextViewDelegate {
     }
     
     func textViewDidChangeSelection(_ textView: UITextView) {
-        externalDelegate?.textViewDidChangeSelection?(textView)
+        self.textView?.delegate?.textViewDidChangeSelection?(textView)
     }
     
     @available(iOS 10.0, *)
     func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
-        return (externalDelegate?.textView?(textView, shouldInteractWith: URL, in: characterRange, interaction: interaction) ?? true)
+        return self.textView?.delegate?.textView?(textView, shouldInteractWith: URL, in: characterRange, interaction: interaction) ?? true
     }
     
     @available(iOS 10.0, *)
     func textView(_ textView: UITextView, shouldInteractWith textAttachment: NSTextAttachment, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
-        return (externalDelegate?.textView?(textView, shouldInteractWith: textAttachment, in: characterRange, interaction: interaction) ?? true)
+        return self.textView?.delegate?.textView?(textView, shouldInteractWith: textAttachment, in: characterRange, interaction: interaction) ?? true
     }
     
     @available(iOS, introduced: 7.0, deprecated: 10.0)
     func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange) -> Bool {
-        return (externalDelegate?.textView?(textView, shouldInteractWith: URL, in: characterRange) ?? true)
+        return self.textView?.delegate?.textView?(textView, shouldInteractWith: URL, in: characterRange) ?? true
     }
 
     @available(iOS, introduced: 7.0, deprecated: 10.0)
     func textView(_ textView: UITextView, shouldInteractWith textAttachment: NSTextAttachment, in characterRange: NSRange) -> Bool {
-        return (externalDelegate?.textView?(textView, shouldInteractWith: textAttachment, in: characterRange) ?? true)
+        return self.textView?.delegate?.textView?(textView, shouldInteractWith: textAttachment, in: characterRange) ?? true
+    }
+    
+    @available(iOS 16.0, *)
+    func textView(_ textView: UITextView, editMenuForTextIn range: NSRange, suggestedActions: [UIMenuElement]) -> UIMenu? {
+        return self.textView?.delegate?.textView?(textView, editMenuForTextIn: range, suggestedActions: suggestedActions)
+    }
+    
+    @available(iOS 16.0, *)
+    func textView(_ textView: UITextView, willPresentEditMenuWith animator: any UIEditMenuInteractionAnimating) {
+        self.textView?.delegate?.textView?(textView, willPresentEditMenuWith: animator)
+    }
+    
+    @available(iOS 16.0, *)
+    func textView(_ textView: UITextView, willDismissEditMenuWith animator: any UIEditMenuInteractionAnimating) {
+        self.textView?.delegate?.textView?(textView, willDismissEditMenuWith: animator)
+    }
+    
+    @available(iOS 17.0, *)
+    func textView(_ textView: UITextView, primaryActionFor textItem: UITextItem, defaultAction: UIAction) -> UIAction? {
+        self.textView?.delegate?.textView?(textView, primaryActionFor: textItem, defaultAction: defaultAction)
+    }
+    
+    @available(iOS 17.0, *)
+    func textView(_ textView: UITextView, menuConfigurationFor textItem: UITextItem, defaultMenu: UIMenu) -> UITextItem.MenuConfiguration? {
+        self.textView?.delegate?.textView?(textView, menuConfigurationFor: textItem, defaultMenu: defaultMenu)
+    }
+    
+    @available(iOS 17.0, *)
+    func textView(_ textView: UITextView, textItemMenuWillDisplayFor textItem: UITextItem, animator: any UIContextMenuInteractionAnimating) {
+        self.textView?.delegate?.textView?(textView, textItemMenuWillDisplayFor: textItem, animator: animator)
+    }
+    
+    @available(iOS 17.0, *)
+    func textView(_ textView: UITextView, textItemMenuWillEndFor textItem: UITextItem, animator: any UIContextMenuInteractionAnimating) {
+        self.textView?.delegate?.textView?(textView, textItemMenuWillEndFor: textItem, animator: animator)
+    }
+    
+    @available(iOS 18.0, *)
+    func textViewWritingToolsWillBegin(_ textView: UITextView) {
+        self.textView?.delegate?.textViewWritingToolsWillBegin?(textView)
+    }
+    
+    @available(iOS 18.0, *)
+    func textViewWritingToolsDidEnd(_ textView: UITextView) {
+        self.textView?.delegate?.textViewWritingToolsDidEnd?(textView)
+    }
+    
+    @available(iOS 18.0, *)
+    func textView(_ textView: UITextView, writingToolsIgnoredRangesInEnclosingRange enclosingRange: NSRange) -> [NSValue] {
+        return self.textView?.delegate?.textView?(textView, writingToolsIgnoredRangesInEnclosingRange: enclosingRange) ?? []
+    }
+    
+    @available(iOS 18.0, *)
+    func textView(_ textView: UITextView, willBeginFormattingWith viewController: UITextFormattingViewController) {
+        self.textView?.delegate?.textView?(textView, willBeginFormattingWith: viewController)
+    }
+    
+    @available(iOS 18.0, *)
+    func textView(_ textView: UITextView, didBeginFormattingWith viewController: UITextFormattingViewController) {
+        self.textView?.delegate?.textView?(textView, didBeginFormattingWith: viewController)
+    }
+    
+    @available(iOS 18.0, *)
+    func textView(_ textView: UITextView, willEndFormattingWith viewController: UITextFormattingViewController) {
+        self.textView?.delegate?.textView?(textView, willEndFormattingWith: viewController)
+    }
+    
+    @available(iOS 18.0, *)
+    func textView(_ textView: UITextView, didEndFormattingWith viewController: UITextFormattingViewController) {
+        self.textView?.delegate?.textView?(textView, didEndFormattingWith: viewController)
+    }
+    
+    // MARK: UIScrollViewDelegate
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        textView?.delegate?.scrollViewDidScroll?(scrollView)
+    }
+    
+    func scrollViewDidZoom(_ scrollView: UIScrollView) {
+        textView?.delegate?.scrollViewDidZoom?(scrollView)
+    }
+    
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        textView?.delegate?.scrollViewWillBeginDragging?(scrollView)
+    }
+    
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        textView?.delegate?.scrollViewWillEndDragging?(scrollView, withVelocity: velocity, targetContentOffset: targetContentOffset)
+    }
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        textView?.delegate?.scrollViewDidEndDragging?(scrollView, willDecelerate: decelerate)
+    }
+    
+    func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
+        textView?.delegate?.scrollViewWillBeginDecelerating?(scrollView)
+    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        textView?.delegate?.scrollViewDidEndDecelerating?(scrollView)
+    }
+    
+    func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
+        textView?.delegate?.scrollViewDidEndScrollingAnimation?(scrollView)
+    }
+    
+    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+        textView?.delegate?.viewForZooming?(in: scrollView)
+    }
+    
+    func scrollViewWillBeginZooming(_ scrollView: UIScrollView, with view: UIView?) {
+        textView?.delegate?.scrollViewWillBeginZooming?(scrollView, with: view)
+    }
+    
+    func scrollViewDidEndZooming(_ scrollView: UIScrollView, with view: UIView?, atScale scale: CGFloat) {
+        textView?.delegate?.scrollViewDidEndZooming?(scrollView, with: view, atScale: scale)
+    }
+    
+    func scrollViewShouldScrollToTop(_ scrollView: UIScrollView) -> Bool {
+        return textView?.delegate?.scrollViewShouldScrollToTop?(scrollView) ?? true
+    }
+    
+    func scrollViewDidScrollToTop(_ scrollView: UIScrollView) {
+        textView?.delegate?.scrollViewDidScrollToTop?(scrollView)
+    }
+    
+    func scrollViewDidChangeAdjustedContentInset(_ scrollView: UIScrollView) {
+        textView?.delegate?.scrollViewDidChangeAdjustedContentInset?(scrollView)
+    }
+}
+
+/// Can not use.
+open class _TempTextView: UITextView {
+    
+    @available(*, unavailable)
+    open weak override var delegate: (any UITextViewDelegate)? {
+        get { return super.delegate }
+        set { super.delegate = newValue }
+    }
+    
+    fileprivate func set(delegate: (any UITextViewDelegate)?) {
+        super.delegate = delegate
     }
 }
