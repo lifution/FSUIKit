@@ -200,6 +200,26 @@
                                             <segue destination="dmu-HI-nRh" kind="show" id="W38-7Q-TVc"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="uEB-05-gBm" style="IBUITableViewCellStyleDefault" id="9Dd-kI-Aa6">
+                                        <rect key="frame" x="0.0" y="414" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9Dd-kI-Aa6" id="aS7-FC-dBx">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Downloader" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="uEB-05-gBm">
+                                                    <rect key="frame" x="16" y="0.0" width="343" height="44"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="GlC-wB-16D" kind="show" id="vCc-aH-LTH"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -474,6 +494,48 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YJW-jB-7tQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2310" y="25"/>
+        </scene>
+        <!--Downloader View Controller-->
+        <scene sceneID="Z8l-Zl-7YM">
+            <objects>
+                <viewController id="GlC-wB-16D" customClass="DownloaderViewController" customModule="FSUIKit_Example" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="U9F-fg-ZgJ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="awB-zE-CV0">
+                                <rect key="frame" x="117" y="316" width="141.5" height="35"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Start Download"/>
+                                <connections>
+                                    <action selector="startDownload:" destination="GlC-wB-16D" eventType="touchUpInside" id="ROH-hm-lDJ"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="progress" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7gA-RW-wm7">
+                                <rect key="frame" x="154" y="265" width="67.5" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="AEi-dX-dVT"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="7gA-RW-wm7" firstAttribute="centerX" secondItem="U9F-fg-ZgJ" secondAttribute="centerX" id="2d9-vt-TQE"/>
+                            <constraint firstItem="awB-zE-CV0" firstAttribute="top" secondItem="7gA-RW-wm7" secondAttribute="bottom" constant="30" id="M7K-wA-rPa"/>
+                            <constraint firstItem="awB-zE-CV0" firstAttribute="centerX" secondItem="U9F-fg-ZgJ" secondAttribute="centerX" id="Oxx-7W-xkQ"/>
+                            <constraint firstItem="awB-zE-CV0" firstAttribute="centerY" secondItem="U9F-fg-ZgJ" secondAttribute="centerY" id="ahz-kw-rbW"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="Jsl-st-oyk"/>
+                    <connections>
+                        <outlet property="progressLabel" destination="7gA-RW-wm7" id="w3a-tz-HAG"/>
+                        <outlet property="startButton" destination="awB-zE-CV0" id="U9N-Z1-i2b"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="H95-lG-E7V" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3058" y="25"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="adH-yu-Sh7">

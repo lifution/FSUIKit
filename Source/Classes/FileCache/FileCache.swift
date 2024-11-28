@@ -1,0 +1,158 @@
+//
+//  FileCache.swift
+//  FSUIKitSwift
+//
+//  Created by VincentLee on 2024/11/27.
+//  Copyright © 2024 VincentLee. All rights reserved.
+//
+
+import UIKit
+
+open class FileCache {
+    
+    /// 缓存所在路径
+    let path: String
+    
+    /// path: 缓存路径
+    /// 外部如果需要自定义路径可在初始化方法中传入对应的 path，
+    /// 如果 path 为 nil 则使用默认的路径。
+    public init(path: String?) {
+        if let value = path {
+            self.path = value
+        } else {
+            self.path = {
+                guard let path = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first else {
+                    #if DEBUG
+                    fatalError()
+                    #else
+                    return ""
+                    #endif
+                }
+                let folderPath = path + "/com_fsuikitswift_files"
+                do {
+                    try FileManager.default.createDirectory(atPath: folderPath, withIntermediateDirectories: true)
+                    return folderPath
+                } catch {
+                    #if DEBUG
+                    fatalError()
+                    #else
+                    return ""
+                    #endif
+                }
+            }()
+        }
+        #if DEBUG
+        if let _ = URL(string: self.path) {} else {
+            fatalError("Invalid path")
+        }
+        #endif
+    }
+    
+    /// 缓存文件在沙盒中的路径。
+    ///
+    /// - Parameters:
+    ///   - key: 与文件对应的唯一标识符，一般使用文件的下载链接。
+    ///   - format: 文件格式，可不传。
+    ///
+    /// - Returns:
+    ///   - key 无效的话直接返回 nil。
+    ///   - 如果存在对应的文件则返回对应的路径地址，否则返回 nil。
+    ///
+    open func filePath(for key: String, format: String? = nil) -> String? {
+        guard
+            let name = key.fs.toMD5(),
+            !name.isEmpty
+        else {
+            return nil
+        }
+        var path = path as NSString
+        path = path.appendingPathComponent(name) as NSString
+        if let format = format, !format.isEmpty, let result = path.appendingPathExtension(format) {
+            path = result as NSString
+        }
+        return path as String
+    }
+    
+    open func fileExists(for key: String, format: String? = nil) -> Bool {
+        guard let path = filePath(for: key, format: format) else {
+            return false
+        }
+        return FileManager.default.fileExists(atPath: path)
+    }
+    
+    open func fileName(for key: String, format: String? = nil) -> String? {
+        guard let name = key.fs.toMD5(), !name.isEmpty else {
+            return nil
+        }
+        if let format = format {
+            return (name as NSString).appendingPathExtension(format)
+        }
+        return name
+    }
+    
+    @discardableResult
+    open func deleteFile(of key: String, format: String? = nil) -> Bool {
+        guard let path = filePath(for: key, format: format) else {
+            return false
+        }
+        if !FileManager.default.fileExists(atPath: path) {
+            // 文件不存在，当作删除成功处理。
+            return true
+        }
+        do {
+            try FileManager.default.removeItem(atPath: path)
+            return true
+        } catch {
+            return false
+        }
+    }
+    
+    /// 清除所有缓存文件（仅限当前设定的路径下的缓存文件）
+    /// - Note: 删除操作暂时不放在异步线程，后续待考察。
+    open func deleteAll(completion: (() -> Void)? = nil) {
+        do {
+            let manager = FileManager.default
+            let names = try manager.contentsOfDirectory(atPath: path)
+            try names.forEach {
+                let filePath = (path as NSString).appendingPathComponent($0)
+                try manager.removeItem(atPath: filePath)
+            }
+            DispatchQueue.fs.asyncOnMainThread {
+                completion?()
+            }
+        } catch {
+            fs_print("FileCache deleteAll failed: [\(error.localizedDescription)]")
+            DispatchQueue.fs.asyncOnMainThread {
+                completion?()
+            }
+        }
+    }
+    
+    /// 缓存指定路径下的文件到 FileCache 设定的文件夹。
+    /// 该方法是移动本地沙盒文件所用，一般配合 ``FileDownloader`` 一起使用。
+    ///
+    /// - Parameters:
+    ///   - location:   文件所在沙盒路径。
+    ///   - key:        与文件对应的唯一标识符，一般使用文件的下载链接。
+    ///   - completion: 缓存结束回调，该 closure 始终会在主线程中回调。
+    ///
+    open func saveFile(at location: URL, for key: String, format: String? = nil, completion: ((_ path: String?, _ error: Error?) -> Void)?) {
+        guard let filePath = filePath(for: key, format: format) else {
+            let error = NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "Invalid key"])
+            DispatchQueue.fs.asyncOnMainThread {
+                completion?(nil, error)
+            }
+            return
+        }
+        do {
+            try FileManager.default.moveItem(atPath: location.path, toPath: filePath)
+            DispatchQueue.fs.asyncOnMainThread {
+                completion?(filePath, nil)
+            }
+        } catch {
+            DispatchQueue.fs.asyncOnMainThread {
+                completion?(nil, error)
+            }
+        }
+    }
+}

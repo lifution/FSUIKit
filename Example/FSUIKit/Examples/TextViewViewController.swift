@@ -19,7 +19,7 @@ final class TextViewViewController: FSViewController {
 //        textView.delegate = self
         textView.placeholder = "请输入(限制 5 个字符)"
         textView.maximumTextCount = 5
-        textView.onDidHitMaximumTextCountHandler = {
+        textView.onDidHitMaximumTextCountHandler = { _ in
             FSToast.show(hint: "达到限制字数")
         }
         textView.layer.borderWidth = 1.0

@@ -13,8 +13,7 @@ import Foundation
 /// 2. 如果两个都是 empty 则返回 true
 /// 3. 如果一个为 nil，另一个为 empty 则同样返回 true
 ///
-/// 该方法一般用于判断字符串是否改变的场景，这种场景下，
-/// 字符串为 empty 或 nil 都是表达一样的意思。
+/// 该方法一般用于特定的场景，字符串为 empty 或 nil 都是表达一样的意思。
 ///
 public func fs_isStringEqualIgnoringEmpty(_ lhs: String?, _ rhs: String?) -> Bool {
     if let l = lhs, l.isEmpty, rhs == nil {
