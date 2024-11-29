@@ -8,14 +8,14 @@
 
 import UIKit
 
-extension FSUIKitWrapper where Base: UIApplication {
+public extension FSUIKitWrapper where Base: UIApplication {
     
     /// Returns true in App Extension.
-    public static var isAppExtension: Bool {
+    static var isAppExtension: Bool {
         return _UIApplicationConsts.isAppExtension
     }
     
-    public var keyWindow: UIWindow? {
+    var keyWindow: UIWindow? {
         var window: UIWindow?
         if #available(iOS 15.0, *) {
             window = UIApplication.shared.connectedScenes
@@ -30,6 +30,10 @@ extension FSUIKitWrapper where Base: UIApplication {
                 .first(where: \.isKeyWindow)
         }
         return window
+    }
+    
+    var keyWindowScene: UIWindowScene? {
+        return keyWindow?.windowScene
     }
 }
 
