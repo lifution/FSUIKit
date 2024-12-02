@@ -15,9 +15,9 @@ open class FileCache {
     
     /// path: 缓存路径
     /// 外部如果需要自定义路径可在初始化方法中传入对应的 path，
-    /// 如果 path 为 nil 则使用默认的路径。
+    /// 如果 path 为 nil 或该路径不存在则使用默认的路径。
     public init(path: String?) {
-        if let value = path {
+        if let value = path, FileManager.default.fileExists(atPath: value) {
             self.path = value
         } else {
             self.path = {

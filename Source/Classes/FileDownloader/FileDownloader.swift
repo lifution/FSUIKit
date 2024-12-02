@@ -18,8 +18,8 @@ open class FileDownloader: NSObject {
     private let progressKeypath = "countOfBytesReceived"
     
     private var downloadTasks = [String: URLSessionDownloadTask]()
-    private var progressHandlers = [URLSessionDownloadTask: FileDownloaderProgress]()
-    private var completionHandlers = [String: FileDownloaderCompletion]()
+    private var progressHandlers = [String: [FileDownloaderProgress]]()
+    private var completionHandlers = [String: [FileDownloaderCompletion]]()
     
     private lazy var session = URLSession(configuration: URLSessionConfiguration.default)
     
@@ -36,10 +36,14 @@ open class FileDownloader: NSObject {
             super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
             return
         }
-        guard let task = object as? URLSessionDownloadTask else {
+        guard
+            let task = object as? URLSessionDownloadTask,
+            let url = task.currentRequest?.url?.absoluteString,
+            !url.isEmpty
+        else {
             return
         }
-        if let handler = progressHandlers[task] {
+        if let handlers = progressHandlers[url], !handlers.isEmpty {
             let total = task.countOfBytesExpectedToReceive
             let received = task.countOfBytesReceived
             var progress = Double(received) / Double(total)
@@ -47,7 +51,7 @@ open class FileDownloader: NSObject {
                 progress = 0.0
             }
             DispatchQueue.fs.asyncOnMainThread {
-                handler(total, received, progress)
+                handlers.forEach { $0(total, received, progress) }
             }
         }
     }
@@ -64,7 +68,7 @@ open class FileDownloader: NSObject {
         url: String,
         format: String? = nil,
         progress: FileDownloaderProgress? = nil,
-        completion: FileDownloaderCompletion?
+        completion: FileDownloaderCompletion? = nil
     ) {
         guard let downloadURL = URL(string: url) else {
             let error = NSError(domain: "com.fsuikitswift.filedownloader",
@@ -84,13 +88,15 @@ open class FileDownloader: NSObject {
             }
             return
         }
-        // 不存在缓存则开始下载。
-        completionHandlers[url] = completion
-        // 下载中
-        if let task = downloadTasks[url] {
-            // 更新 url 绑定的 progress 回调。
-            // TODO: 目前的 url-progress 绑定关系只支持一对一，后期需更新支持一对多。
-            progressHandlers[task] = progress
+        // 正在下载中，添加 progress 和 completion 的「一对多」绑定。
+        if let _ = downloadTasks[url] {
+            // 更新 url 绑定的 progress 和 completion 回调。
+            if let handler = completion {
+                completionHandlers[url]?.append(handler)
+            }
+            if let handler = progress {
+                progressHandlers[url]?.append(handler)
+            }
             return
         }
         // 开始下载
@@ -98,28 +104,27 @@ open class FileDownloader: NSObject {
             if let location = location {
                 // 下载成功，转移到指定的缓存文件夹。
                 self.cache.saveFile(at: location, for: url, format: format) { path, error in
-                    let handler = self.completionHandlers[url]
-                    if let path = path {
-                        // 缓存成功。
-                        handler?(path, nil)
-                    } else {
-                        // 缓存失败。
-                        handler?(nil, error)
-                    }
+                    self.completionHandlers[url]?.forEach { $0(path, error) }
                     // 缓存文件完成后再移除下载任务，否则下载的临时文件有可能在转移文件夹前就被删除了。
                     self.removeAllOperation(for: url)
                 }
             } else {
                 // 下载失败。
                 DispatchQueue.main.async {
-                    let handler = self.completionHandlers[url]
-                    handler?(nil, error)
+                    self.completionHandlers[url]?.forEach { $0(nil, error) }
                     self.removeAllOperation(for: url)
                 }
             }
         }
         downloadTasks[url] = task
-        progressHandlers[task] = progress
+        progressHandlers[url] = []
+        if let handler = progress {
+            progressHandlers[url]?.append(handler)
+        }
+        completionHandlers[url] = []
+        if let handler = completion {
+            completionHandlers[url]?.append(handler)
+        }
         startObservingProgress(for: url)
         task.resume()
     }
@@ -140,9 +145,9 @@ private extension FileDownloader {
         stopObservingProgress(for: url)
         if let task = downloadTasks[url] {
             task.cancel()
-            progressHandlers.removeValue(forKey: task)
         }
         downloadTasks.removeValue(forKey: url)
+        progressHandlers.removeValue(forKey: url)
         completionHandlers.removeValue(forKey: url)
     }
     
