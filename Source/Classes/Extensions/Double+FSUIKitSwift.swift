@@ -16,7 +16,8 @@ public extension FSUIKitWrapper where Base == Double {
         return base.truncatingRemainder(dividingBy: 1) == 0 ? String(format: "%.0f", base) : String(base)
     }
     
-    func round(to places: Int) -> Double {
+    /// 四舍五入保留指定数量的小数位
+    func rounded(to places: Int) -> Double {
         let divisor = pow(10.0, Double(places))
         return (base * divisor).rounded() / divisor
     }

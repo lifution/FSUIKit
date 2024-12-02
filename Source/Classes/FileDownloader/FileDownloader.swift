@@ -79,7 +79,7 @@ open class FileDownloader: NSObject {
             }
             return
         }
-        // 判断沙盒中是否有缓存，有缓存则直接回调完成 closure。
+        // 判断沙盒中是否有缓存，有缓存则直接回调完成的 closure。
         if cache.fileExists(for: url, format: format), let path = cache.filePath(for: url, format: format) {
             fs_print("有缓存，使用缓存: [\(path)]")
             DispatchQueue.fs.asyncOnMainThread {
