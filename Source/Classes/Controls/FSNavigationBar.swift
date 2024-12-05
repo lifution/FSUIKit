@@ -80,10 +80,10 @@ open class FSNavigationBar: UIView {
                                                     constant: 0.0))
                     do {
                         let constraint = NSLayoutConstraint(item: new,
-                                                            attribute: .left,
+                                                            attribute: .leading,
                                                             relatedBy: .greaterThanOrEqual,
                                                             toItem: leftItemsView,
-                                                            attribute: .right,
+                                                            attribute: .trailing,
                                                             multiplier: 1.0,
                                                             constant: 0.0)
                         contentView.addConstraint(constraint)
@@ -91,10 +91,10 @@ open class FSNavigationBar: UIView {
                     }
                     do {
                         let constraint = NSLayoutConstraint(item: new,
-                                                            attribute: .right,
+                                                            attribute: .trailing,
                                                             relatedBy: .lessThanOrEqual,
                                                             toItem: rightItemsView,
-                                                            attribute: .left,
+                                                            attribute: .leading,
                                                             multiplier: 1.0,
                                                             constant: 0.0)
                         contentView.addConstraint(constraint)
@@ -391,10 +391,10 @@ open class FSNavigationBar: UIView {
             contentView.addSubview(rightItemsView)
             do {
                 contentView.addConstraint(.init(item: leftItemsView,
-                                                attribute: .left,
+                                                attribute: .leading,
                                                 relatedBy: .equal,
                                                 toItem: contentView,
-                                                attribute: .left,
+                                                attribute: .leading,
                                                 multiplier: 1.0,
                                                 constant: 0.0))
                 contentView.addConstraint(.init(item: leftItemsView,
@@ -414,10 +414,10 @@ open class FSNavigationBar: UIView {
             }
             do {
                 contentView.addConstraint(.init(item: rightItemsView,
-                                                attribute: .right,
+                                                attribute: .trailing,
                                                 relatedBy: .equal,
                                                 toItem: contentView,
-                                                attribute: .right,
+                                                attribute: .trailing,
                                                 multiplier: 1.0,
                                                 constant: 0.0))
                 contentView.addConstraint(.init(item: rightItemsView,
@@ -445,10 +445,10 @@ open class FSNavigationBar: UIView {
                                                 constant: 0.0))
                 do {
                     let constraint = NSLayoutConstraint(item: titleLabel,
-                                                        attribute: .left,
+                                                        attribute: .leading,
                                                         relatedBy: .greaterThanOrEqual,
                                                         toItem: leftItemsView,
-                                                        attribute: .right,
+                                                        attribute: .trailing,
                                                         multiplier: 1.0,
                                                         constant: 0.0)
                     contentView.addConstraint(constraint)
@@ -456,10 +456,10 @@ open class FSNavigationBar: UIView {
                 }
                 do {
                     let constraint = NSLayoutConstraint(item: titleLabel,
-                                                        attribute: .right,
+                                                        attribute: .trailing,
                                                         relatedBy: .lessThanOrEqual,
                                                         toItem: rightItemsView,
-                                                        attribute: .left,
+                                                        attribute: .leading,
                                                         multiplier: 1.0,
                                                         constant: 0.0)
                     contentView.addConstraint(constraint)
@@ -540,7 +540,11 @@ public extension FSNavigationBar {
                                          bottom: 0.0,
                                          right: -FSNavigationBarConst.horizontalMargin)
         // 按钮的颜色会在 p_updateTintColor() 方法中配置，因此此处直接设置图片即可。
-        button.setImage(.inner.image(named: "icon_back"), for: .normal)
+        var image = UIImage.inner.image(named: "icon_back")
+        if UIView.appearance().semanticContentAttribute == .forceRightToLeft {
+            image = image?.fs.flippingHorizontally()
+        }
+        button.setImage(image, for: .normal)
         button.addTarget(self, action: #selector(p_didPressBackButton(_:)), for: .touchUpInside)
         backButton = button
         leftItemViews = [button]
