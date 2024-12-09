@@ -85,6 +85,37 @@ public class FSReachability {
                 return "No Connection"
             }
         }
+        
+        /// 蜂窝网络类型
+        /// 仅当当前网络连接为 `cellular` 时才有效，否则一律返回 `.unknown` 类型。
+        public var cellularType: CellularType {
+            switch self.description {
+            case "EDGE":
+                return .EDGE
+            case "3G":
+                return .G3
+            case "4G":
+                return .G4
+            case "5G":
+                return .G5
+            default:
+                return .unknown
+            }
+        }
+    }
+    
+    /// 蜂窝网络类型
+    public enum CellularType {
+        /// E网(2G)
+        case EDGE
+        /// 3G
+        case G3
+        /// 4G
+        case G4
+        /// 5G
+        case G5
+        /// 未知
+        case unknown
     }
     
     /// 网络连接状态更新后的回调 closure。
