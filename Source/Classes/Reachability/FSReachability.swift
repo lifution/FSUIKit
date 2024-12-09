@@ -167,7 +167,7 @@ public class FSReachability {
                          notificationQueue: DispatchQueue? = .main) {
         self.reachabilityRef = reachabilityRef
         self.notificationQueue = notificationQueue
-        self.reachabilitySerialQueue = DispatchQueue(label: "com.jinzhuan.reachability", qos: queueQoS, target: targetQueue)
+        self.reachabilitySerialQueue = DispatchQueue(label: "com.fsuikitswift.reachability", qos: queueQoS, target: targetQueue)
     }
     
     public convenience init(hostname: String,
