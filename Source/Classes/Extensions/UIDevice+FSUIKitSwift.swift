@@ -15,11 +15,6 @@ public extension FSUIKitWrapper where Base: UIDevice {
         return UIDevice.Storage()
     }
     
-    /// CPU 使用率（百分比）
-    var cpu_usage: Float {
-        return FSSystemInfoObjC.cpu_usage
-    }
-    
     static var model: DeviceModel {
         var systemInfo = utsname()
         uname(&systemInfo)
