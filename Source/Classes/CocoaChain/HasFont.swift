@@ -4,6 +4,8 @@
 //
 //  Created by VincentLee on 2024/11/6.
 //
+//  Inspired by https://github.com/Pircate/CocoaChainKit
+//
 
 import UIKit
 
