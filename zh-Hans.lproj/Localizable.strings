@@ -1,0 +1,6 @@
+"FSUIKit.FileDownloader.Error.InvalidURL" = "无效的URL地址";
+"FSUIKit.FileDownloader.Error.DownloadFailed" = "下载失败: %@";
+"FSUIKit.FileDownloader.Error.SaveFailed" = "文件保存失败: %@";
+"FSUIKit.FileDownloader.Error.Cancelled" = "下载已取消";
+"FSUIKit.FileDownloader.Error.DiskSpaceLow" = "设备存储空间不足";
+"FSUIKit.FileDownloader.Error.Unknown" = "未知错误"; 

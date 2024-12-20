@@ -1,0 +1,6 @@
+"FSUIKit.FileDownloader.Error.InvalidURL" = "Invalid URL";
+"FSUIKit.FileDownloader.Error.DownloadFailed" = "Download failed: %@";
+"FSUIKit.FileDownloader.Error.SaveFailed" = "Failed to save file: %@";
+"FSUIKit.FileDownloader.Error.Cancelled" = "Download cancelled";
+"FSUIKit.FileDownloader.Error.DiskSpaceLow" = "Insufficient disk space";
+"FSUIKit.FileDownloader.Error.Unknown" = "Unknown error"; 

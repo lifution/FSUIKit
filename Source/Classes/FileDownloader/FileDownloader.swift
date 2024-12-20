@@ -10,16 +10,22 @@ import UIKit
 
 public typealias FileDownloaderProgress = (_ total: Int64, _ received: Int64, _ progress: Double) -> Void
 public typealias FileDownloaderCompletion = (_ path: String?, _ error: Error?) -> Void
+// 错误上报处理器
+public typealias FileDownloaderErrorReporter = (_ error: FileDownloaderError, _ url: String, _ debugInfo: [String: Any]) -> Void
 
 open class FileDownloader: NSObject {
     
     public let cache: FileCache
+    
+    // 错误上报处理器
+    public var errorReporter: FileDownloaderErrorReporter?
     
     private let progressKeypath = "countOfBytesReceived"
     
     private var downloadTasks = [String: URLSessionDownloadTask]()
     private var progressHandlers = [String: [FileDownloaderProgress]]()
     private var completionHandlers = [String: [FileDownloaderCompletion]]()
+    private var progressObservations = [String: NSKeyValueObservation]()
     
     private lazy var session = URLSession(configuration: URLSessionConfiguration.default)
     
@@ -29,31 +35,6 @@ open class FileDownloader: NSObject {
     public init(path: String?) {
         cache = FileCache(path: path)
         super.init()
-    }
-    
-    open override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        guard keyPath == progressKeypath else {
-            super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
-            return
-        }
-        guard
-            let task = object as? URLSessionDownloadTask,
-            let url = task.currentRequest?.url?.absoluteString,
-            !url.isEmpty
-        else {
-            return
-        }
-        if let handlers = progressHandlers[url], !handlers.isEmpty {
-            let total = task.countOfBytesExpectedToReceive
-            let received = task.countOfBytesReceived
-            var progress = Double(received) / Double(total)
-            if progress.isNaN {
-                progress = 0.0
-            }
-            DispatchQueue.fs.asyncOnMainThread {
-                handlers.forEach { $0(total, received, progress) }
-            }
-        }
     }
     
     /// 下载文件并缓存到本地沙盒，如果 URL 对应的文件已经存在缓存中则会直接回调。
@@ -71,10 +52,9 @@ open class FileDownloader: NSObject {
         completion: FileDownloaderCompletion? = nil
     ) {
         guard let downloadURL = URL(string: url) else {
-            let error = NSError(domain: "com.fsuikitswift.filedownloader",
-                                code: -1,
-                                userInfo: [NSLocalizedDescriptionKey: "Invalid url"])
+            let error = FileDownloaderError.invalidURL
             DispatchQueue.fs.asyncOnMainThread {
+                self.report(error: error, url: url)
                 completion?(nil, error)
             }
             return
@@ -104,14 +84,20 @@ open class FileDownloader: NSObject {
             if let location = location {
                 // 下载成功，转移到指定的缓存文件夹。
                 self.cache.saveFile(at: location, for: url, format: format) { path, error in
-                    self.completionHandlers[url]?.forEach { $0(path, error) }
-                    // 缓存文件完成后再移除下载任务，否则下载的临时文件有可能在转移文件夹前就被删除了。
+                    if let error = error {
+                        let finalError = FileDownloaderError.saveFailed(error)
+                        self.report(error: finalError, url: url)
+                        self.completionHandlers[url]?.forEach { $0(path, finalError) }
+                    } else {
+                        self.completionHandlers[url]?.forEach { $0(path, nil) }
+                    }
                     self.removeAllOperation(for: url)
                 }
             } else {
-                // 下载失败。
                 DispatchQueue.main.async {
-                    self.completionHandlers[url]?.forEach { $0(nil, error) }
+                    let finalError = error.map { FileDownloaderError.downloadFailed($0) } ?? FileDownloaderError.unknown
+                    self.report(error: finalError, url: url)
+                    self.completionHandlers[url]?.forEach { $0(nil, finalError) }
                     self.removeAllOperation(for: url)
                 }
             }
@@ -137,6 +123,21 @@ open class FileDownloader: NSObject {
         let urls = downloadTasks.keys
         urls.forEach { removeAllOperation(for: $0) }
     }
+    
+   @available(iOS 13.0, *)
+   open func download(url: String, format: String? = nil) async throws -> String {
+       return try await withCheckedThrowingContinuation { continuation in
+           download(url: url, format: format, completion: { path, error in
+               if let error = error {
+                   continuation.resume(throwing: FileDownloaderError.downloadFailed(error))
+               } else if let path = path {
+                   continuation.resume(returning: path)
+               } else {
+                   continuation.resume(throwing: FileDownloaderError.downloadFailed(NSError(domain: "Unknown", code: -1)))
+               }
+           })
+       }
+   }
 }
 
 private extension FileDownloader {
@@ -152,21 +153,40 @@ private extension FileDownloader {
     }
     
     func startObservingProgress(for url: String) {
-        guard let task = downloadTasks[url] else {
-            return
+        guard let task = downloadTasks[url] else { return }
+        let observation = task.observe(\.countOfBytesReceived, options: [.initial, .new]) { [weak self] task, _ in
+            guard 
+                let self = self,
+                let url = task.currentRequest?.url?.absoluteString,
+                !url.isEmpty,
+                let handlers = self.progressHandlers[url], 
+                !handlers.isEmpty 
+            else { return }
+            
+            let total = task.countOfBytesExpectedToReceive
+            let received = task.countOfBytesReceived
+            let progress = Double(received) / Double(total)
+            
+            DispatchQueue.fs.asyncOnMainThread {
+                handlers.forEach { $0(total, received, progress.isNaN ? 0.0 : progress) }
+            }
         }
-        if let _ = task.observationInfo {
-            task.removeObserver(self, forKeyPath: progressKeypath)
-        }
-        task.addObserver(self, forKeyPath: progressKeypath, options: [.initial, .new], context: nil)
+        progressObservations[url] = observation
     }
     
     func stopObservingProgress(for url: String) {
-        guard let task = downloadTasks[url] else {
-            return
-        }
-        if let _ = task.observationInfo {
-            task.removeObserver(self, forKeyPath: progressKeypath)
-        }
+        progressObservations.removeValue(forKey: url)
+    }
+    
+    // 错误上报方法
+    func report(error: FileDownloaderError, url: String) {
+        guard let reporter = errorReporter else { return }
+        
+        var debugInfo: [String: Any] = error.debugInfo
+        debugInfo["url"] = url
+        debugInfo["device_model"] = UIDevice.current.model
+        debugInfo["system_version"] = UIDevice.current.systemVersion
+        
+        reporter(error, url, debugInfo)
     }
 }

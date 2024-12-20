@@ -22,7 +22,9 @@
     "Foundation",
     "CoreGraphics",
     "CoreText",
-    "WebKit"
+    "WebKit",
+    "CoreTelephony",
+    "SystemConfiguration"
   ],
   "source_files": "Source/Classes/**/*",
   "resource_bundles": {
