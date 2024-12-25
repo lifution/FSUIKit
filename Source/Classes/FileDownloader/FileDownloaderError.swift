@@ -53,37 +53,37 @@ public enum FileDownloaderError: LocalizedError {
     private enum Localized {
         static let invalidURL = NSLocalizedString(
             "FSUIKit.FileDownloader.Error.InvalidURL",
-            value: "无效的URL地址",
+            value: "Invalid URL address",
             comment: "Invalid URL error message"
         )
         
         static let downloadFailed = NSLocalizedString(
             "FSUIKit.FileDownloader.Error.DownloadFailed",
-            value: "下载失败: %@",
+            value: "Download failed: %@",
             comment: "Download failed error message"
         )
         
         static let saveFailed = NSLocalizedString(
             "FSUIKit.FileDownloader.Error.SaveFailed",
-            value: "文件保存失败: %@",
+            value: "File save failed: %@",
             comment: "Save failed error message"
         )
         
         static let cancelled = NSLocalizedString(
             "FSUIKit.FileDownloader.Error.Cancelled",
-            value: "下载已取消",
+            value: "Download cancelled",
             comment: "Download cancelled message"
         )
         
         static let diskSpaceLow = NSLocalizedString(
             "FSUIKit.FileDownloader.Error.DiskSpaceLow",
-            value: "设备存储空间不足",
+            value: "Insufficient device storage space",
             comment: "Disk space low error message"
         )
         
         static let unknown = NSLocalizedString(
             "FSUIKit.FileDownloader.Error.Unknown",
-            value: "未知错误",
+            value: "Unknown error",
             comment: "Unknown error message"
         )
     }
@@ -108,34 +108,34 @@ public enum FileDownloaderError: LocalizedError {
     public var failureReason: String? {
         switch self {
         case .invalidURL:
-            return "提供的URL格式不正确或为空"
+            return "The provided URL is either in an incorrect format or empty."
         case .downloadFailed(let error):
-            return "网络请求失败: \(error.localizedDescription)"
+            return "Network request failed: \(error.localizedDescription)"
         case .saveFailed(let error):
-            return "文件系统操作失败: \(error.localizedDescription)"
+            return "File system operation failed: \(error.localizedDescription)"
         case .cancelled:
-            return "用户取消了下载操作"
+            return "The download operation was cancelled by the user."
         case .diskSpaceLow:
-            return "设备剩余存储空间不足以保存文件"
+            return "Insufficient storage space on the device to save the file."
         case .unknown:
-            return "发生了未知错误"
+            return "An unknown error occurred."
         }
     }
     
     public var recoverySuggestion: String? {
         switch self {
         case .invalidURL:
-            return "请检查URL地址是否正确"
+            return "Please check if the URL is correct."
         case .downloadFailed:
-            return "请检查网络连接后重试"
+            return "Please check your network connection and try again."
         case .saveFailed:
-            return "请检查设备存储空间或文件访问权限"
+            return "Please check your device's storage space or file access permissions."
         case .cancelled:
-            return "如需下载，请重新开始下载任务"
+            return "If you need to download, please restart the download task."
         case .diskSpaceLow:
-            return "请清理设备存储空间后重试"
+            return "Please clear your device's storage space and try again."
         case .unknown:
-            return "请稍后重试"
+            return "Please try again later."
         }
     }
 } 

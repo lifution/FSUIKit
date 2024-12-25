@@ -20,8 +20,6 @@ open class FileDownloader: NSObject {
     // 错误上报处理器
     public var errorReporter: FileDownloaderErrorReporter?
     
-    private let progressKeypath = "countOfBytesReceived"
-    
     private var downloadTasks = [String: URLSessionDownloadTask]()
     private var progressHandlers = [String: [FileDownloaderProgress]]()
     private var completionHandlers = [String: [FileDownloaderCompletion]]()
