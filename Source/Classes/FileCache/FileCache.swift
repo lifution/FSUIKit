@@ -95,11 +95,9 @@ open class FileCache {
         guard let path = filePath(for: key, format: format) else {
             return false
         }
-        if !FileManager.default.fileExists(atPath: path) {
-            // 文件不存在，当作删除成功处理。
-            return true
-        }
         do {
+            /// 不用判断文件路径是否有效，如果该路径无效，会抛出异常进入 catch 方法。
+            /// 不用预先判断文件是否存在，避免不必要的 I/O 操作。
             try FileManager.default.removeItem(atPath: path)
             return true
         } catch {
