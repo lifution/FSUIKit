@@ -59,10 +59,8 @@ open class FileCache {
     ///   - 如果存在对应的文件则返回对应的路径地址，否则返回 nil。
     ///
     open func filePath(for key: String, format: String? = nil) -> String? {
-        guard
-            let name = key.fs.toMD5(),
-            !name.isEmpty
-        else {
+        let name = key.fs.toMD5()
+        guard !name.isEmpty else {
             return nil
         }
         var path = path as NSString
@@ -81,7 +79,8 @@ open class FileCache {
     }
     
     open func fileName(for key: String, format: String? = nil) -> String? {
-        guard let name = key.fs.toMD5(), !name.isEmpty else {
+        let name = key.fs.toMD5()
+        guard !name.isEmpty else {
             return nil
         }
         if let format = format {

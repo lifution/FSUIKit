@@ -82,13 +82,13 @@ public extension FSUIKitWrapper where Base == String {
     }
     
     /// 对当前字符串计算 md5。
-    func toMD5() -> String? {
+    func toMD5() -> String {
         if #available(iOS 13.0, *) {
             guard let messageData = base.data(using: .utf8) else {
                 #if DEBUG
                 fatalError()
                 #else
-                return nil
+                return ""
                 #endif
             }
             let digestData = Insecure.MD5.hash (data: messageData)
