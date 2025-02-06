@@ -35,11 +35,11 @@ public func fs_isStringEqualIgnoringEmpty(_ lhs: String?, _ rhs: String?) -> Boo
 /// 3. 如果一个为 nil，另一个为 empty 则同样返回 false
 ///
 public func fs_isStringValueEqual(_ lhs: String?, _ rhs: String?) -> Bool {
-    if let l = lhs, l.isEmpty, rhs == nil {
-        return true
+    // 只有当 userId 非空时才比较
+    let lhsValid = lhs?.isEmpty == false  // 确保 lhs 非空
+    let rhsValid = rhs?.isEmpty == false  // 确保 rhs 非空
+    if lhsValid && rhsValid {
+        return lhs == rhs
     }
-    if let r = rhs, r.isEmpty, lhs == nil {
-        return true
-    }
-    return lhs == rhs
+    return false // 如果有任何一个是 nil 或 ""，返回 false
 }
