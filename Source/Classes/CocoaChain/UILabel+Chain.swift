@@ -38,4 +38,10 @@ public extension FSUIKitWrapper where Base: UILabel {
         base.adjustsFontSizeToFitWidth = adjustsFontSizeToFitWidth
         return self
     }
+    
+    @discardableResult
+    func minimumScaleFactor(_ minimumScaleFactor: CGFloat) -> FSUIKitWrapper {
+        base.minimumScaleFactor = minimumScaleFactor
+        return self
+    }
 }
