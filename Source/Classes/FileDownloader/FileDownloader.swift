@@ -173,7 +173,10 @@ private extension FileDownloader {
     }
     
     func stopObservingProgress(for url: String) {
-        progressObservations.removeValue(forKey: url)
+        if let observation = progressObservations[url] {
+            observation.invalidate()
+            progressObservations.removeValue(forKey: url)
+        }
     }
     
     // 错误上报方法
