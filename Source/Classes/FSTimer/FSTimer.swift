@@ -39,16 +39,8 @@ public final class FSTimer {
     
     // MARK: Properties/Private
     
+    private let timer: DispatchSourceTimer
     private var state: State = .suspended
-    
-    private lazy var timer: DispatchSourceTimer = {
-        let timer = DispatchSource.makeTimerSource(queue: queue)
-        timer.schedule(deadline: .now() + timeInterval, repeating: timeInterval)
-        timer.setEventHandler(handler: { [weak self] in
-            self?.eventHandler?()
-        })
-        return timer
-    }()
     
     // MARK: Deinitialization
     
@@ -66,6 +58,11 @@ public final class FSTimer {
     public init(timeInterval: TimeInterval, queue: DispatchQueue = DispatchQueue.main) {
         self.queue = queue
         self.timeInterval = timeInterval
+        timer = DispatchSource.makeTimerSource(queue: queue)
+        timer.schedule(deadline: .now() + timeInterval, repeating: timeInterval)
+        timer.setEventHandler(handler: { [weak self] in
+            self?.eventHandler?()
+        })
     }
     
     // MARK: Public
