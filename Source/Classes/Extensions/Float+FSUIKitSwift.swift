@@ -9,6 +9,10 @@ import Foundation
 
 public extension FSUIKitWrapper where Base == Float {
     
+    static var pixelOne: Float {
+        Float(UIScreen.fs.pixelOne)
+    }
+    
     /// Remove last zero of decimal part.
     /// e.g. 1.0 return "1".
     var nonDecimalLastZeroText: String {
