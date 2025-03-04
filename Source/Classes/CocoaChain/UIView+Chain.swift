@@ -170,4 +170,16 @@ public extension FSUIKitWrapper where Base: UIView {
         base.addConstraints(constraints)
         return self
     }
+    
+    @discardableResult
+    func setContentCompressionResistancePriority(_ priority: UILayoutPriority, for axis: NSLayoutConstraint.Axis) -> FSUIKitWrapper {
+        base.setContentCompressionResistancePriority(priority, for: axis)
+        return self
+    }
+    
+    @discardableResult
+    func setContentHuggingPriority(_ priority: UILayoutPriority, for axis: NSLayoutConstraint.Axis) -> FSUIKitWrapper {
+        base.setContentHuggingPriority(priority, for: axis)
+        return self
+    }
 }
