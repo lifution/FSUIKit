@@ -330,6 +330,8 @@ private class _ToastHelper: FSKeyboardListener {
         
         self.isUserInteractionEnabled = isUserInteractionEnabled
         
+        centerYConstraint = nil
+        
         // remove previous
         if let view = toastView {
             view.removeFromSuperview()

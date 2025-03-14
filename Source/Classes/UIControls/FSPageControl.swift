@@ -13,6 +13,7 @@ open class FSPageControl: UIView {
     // MARK: Properties/Public
     
     /// 页码总数，默认为 0。
+    @objc
     public var numberOfPages: Int = 0 {
         didSet {
             if numberOfPages != oldValue {
@@ -25,6 +26,7 @@ open class FSPageControl: UIView {
     }
     
     /// 当前页码，默认为 0。
+    @objc
     public var currentPage: Int {
         get { return p_currentPage }
         set {
@@ -37,6 +39,7 @@ open class FSPageControl: UIView {
     }
     
     /// 当只有一页时是否隐藏当前控件，默认为 false。
+    @objc
     public var hidesForSinglePage: Bool = false {
         didSet {
             p_updateIndicatorHiddenStatus()
@@ -44,6 +47,7 @@ open class FSPageControl: UIView {
     }
     
     /// 未选中页码指示器的颜色。
+    @objc
     public var pageIndicatorColor: UIColor? = .fs.separator.withAlphaComponent(0.5) {
         didSet {
             p_updatePageIndicatorColor()
@@ -51,6 +55,7 @@ open class FSPageControl: UIView {
     }
     
     /// 选中页码指示器的颜色。
+    @objc
     public var currentPageIndicatorColor: UIColor? = .fs.separator {
         didSet {
             p_updateCurrentPageIndicatorColor()
@@ -58,6 +63,7 @@ open class FSPageControl: UIView {
     }
     
     /// 页码指示器之间的间隔。
+    @objc
     public var pageIndicatorSpacing: CGFloat = 4.0 {
         didSet {
             if pageIndicatorSpacing != oldValue {
@@ -69,6 +75,7 @@ open class FSPageControl: UIView {
     }
     
     /// 未选中页码指示器的大小。
+    @objc
     public var pageIndicatorSize: CGSize = .init(width: 6.0, height: 6.0) {
         didSet {
             if pageIndicatorSize != oldValue {
@@ -78,6 +85,7 @@ open class FSPageControl: UIView {
     }
     
     /// 选中页码指示器的大小。
+    @objc
     public var currentPageIndicatorSize: CGSize = .init(width: 12.0, height: 6.0) {
         didSet {
             if currentPageIndicatorSize != oldValue {
@@ -298,6 +306,7 @@ private extension FSPageControl {
 
 public extension FSPageControl {
     
+    @objc
     func selectPage(at page: Int, animated: Bool = false) {
         if needsReload {
             if page >= 0, page < numberOfPages {
