@@ -89,14 +89,14 @@ open class FileDownloader: NSObject {
                     } else {
                         self.completionHandlers[url]?.forEach { $0(path, nil) }
                     }
-                    self.removeAllOperation(for: url)
+                    self.cleanupTask(for: url)
                 }
             } else {
                 DispatchQueue.main.async {
                     let finalError = error.map { FileDownloaderError.downloadFailed($0) } ?? FileDownloaderError.unknown
                     self.report(error: finalError, url: url)
                     self.completionHandlers[url]?.forEach { $0(nil, finalError) }
-                    self.removeAllOperation(for: url)
+                    self.cleanupTask(for: url)
                 }
             }
         }
@@ -114,12 +114,12 @@ open class FileDownloader: NSObject {
     }
     
     open func cancelMission(for url: String) {
-        removeAllOperation(for: url)
+        cleanupTask(for: url)
     }
     
     open func cancelAll() {
         let urls = downloadTasks.keys
-        urls.forEach { removeAllOperation(for: $0) }
+        urls.forEach { cleanupTask(for: $0) }
     }
     
    @available(iOS 13.0, *)
@@ -140,11 +140,9 @@ open class FileDownloader: NSObject {
 
 private extension FileDownloader {
     
-    func removeAllOperation(for url: String) {
+    func cleanupTask(for url: String) {
         stopObservingProgress(for: url)
-        if let task = downloadTasks[url] {
-            task.cancel()
-        }
+        downloadTasks[url]?.cancel()
         downloadTasks.removeValue(forKey: url)
         progressHandlers.removeValue(forKey: url)
         completionHandlers.removeValue(forKey: url)
@@ -152,24 +150,33 @@ private extension FileDownloader {
     
     func startObservingProgress(for url: String) {
         guard let task = downloadTasks[url] else { return }
-        let observation = task.observe(\.countOfBytesReceived, options: [.initial, .new]) { [weak self] task, _ in
-            guard 
+        // 确保先移除可能存在的旧观察者
+        stopObservingProgress(for: url)
+        // 使用 options: [.initial, .new] 可能在某些情况下导致崩溃
+        // 改为仅观察新值，并添加错误处理
+        progressObservations[url] = task.observe(\.countOfBytesReceived, options: [.new]) { [weak self] task, _ in
+            guard
                 let self = self,
                 let url = task.currentRequest?.url?.absoluteString,
                 !url.isEmpty,
-                let handlers = self.progressHandlers[url], 
-                !handlers.isEmpty 
-            else { return }
-            
+                let handlers = self.progressHandlers[url],
+                !handlers.isEmpty
+            else {
+                return
+            }
             let total = task.countOfBytesExpectedToReceive
             let received = task.countOfBytesReceived
+            guard total > 0 else {
+                DispatchQueue.fs.asyncOnMainThread {
+                    handlers.forEach { $0(0, 0, 0.0) }
+                }
+                return
+            }
             let progress = Double(received) / Double(total)
-            
             DispatchQueue.fs.asyncOnMainThread {
                 handlers.forEach { $0(total, received, progress.isNaN ? 0.0 : progress) }
             }
         }
-        progressObservations[url] = observation
     }
     
     func stopObservingProgress(for url: String) {
