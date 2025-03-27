@@ -12,9 +12,16 @@ import FSUIKitSwift
 
 class ViewController: UITableViewController {
     
+//    private let timer = FSTimer(timeInterval: 1.0)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         p_setupViews()
+//        timer.autoSuspendInBackground = false
+//        timer.eventHandler = {
+//            print("timer callback")
+//        }
+//        timer.resume()
     }
 }
 

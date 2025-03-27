@@ -45,7 +45,7 @@ public final class FSTimer {
     /// app 重新进入前台时，timer 是不会自动重启的。
     /// 默认为 true
     ///
-    @objc var autoSuspendInBackground = true
+    public var autoSuspendInBackground = true
     
     // MARK: Properties/Private
     
