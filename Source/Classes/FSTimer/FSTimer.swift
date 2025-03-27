@@ -27,20 +27,35 @@ public final class FSTimer {
     }
     
     // MARK: Properties/Public
-    
+    ///
     /// 定时器回调 closure。
+    ///
     public var eventHandler: (() -> Void)?
-    
+    ///
     /// 定时器间隔。
+    ///
     public let timeInterval: TimeInterval
-    
+    ///
     /// 定时器回调所在线程，默认为 `DispathQueue.main`。
+    ///
     public let queue: DispatchQueue
+    ///
+    /// 当 app 进入后台时是否自动暂停
+    /// 如果 app 进入后台时，timer 处于 ``.suspended`` 状态，则在
+    /// app 重新进入前台时，timer 是不会自动重启的。
+    /// 默认为 true
+    ///
+    @objc var autoSuspendInBackground = true
     
     // MARK: Properties/Private
     
     private let timer: DispatchSourceTimer
     private var state: State = .suspended
+    ///
+    /// 是否正处于自动后台暂停中
+    /// 用于 app 进入前台时判断是否需要自动调用 ``resume()``
+    ///
+    private var isSuspendingForBackground = false
     
     // MARK: Deinitialization
     
@@ -59,10 +74,32 @@ public final class FSTimer {
         self.queue = queue
         self.timeInterval = timeInterval
         timer = DispatchSource.makeTimerSource(queue: queue)
-        timer.schedule(deadline: .now() + timeInterval, repeating: timeInterval)
         timer.setEventHandler(handler: { [weak self] in
             self?.eventHandler?()
         })
+        NotificationCenter.default.fs
+            .addObserver(self,
+                         selector: #selector(didReceive(notification:)),
+                         name: UIApplication.willResignActiveNotification)
+            .addObserver(self,
+                         selector: #selector(didReceive(notification:)),
+                         name: UIApplication.didBecomeActiveNotification)
+    }
+    
+    // MARK: Private
+    
+    @objc
+    private func didReceive(notification: Notification) {
+        if notification.name == UIApplication.willResignActiveNotification {
+            guard state == .resumed else { return }
+            isSuspendingForBackground = true
+            suspend()
+        }
+        if notification.name == UIApplication.didBecomeActiveNotification {
+            guard isSuspendingForBackground else { return }
+            isSuspendingForBackground = false
+            resume()
+        }
     }
     
     // MARK: Public
@@ -73,6 +110,8 @@ public final class FSTimer {
             return
         }
         state = .resumed
+        /// fix: 当 timer 从 suspend 恢复到 resume 时，有时候会连续回调两次 event handler。
+        timer.schedule(deadline: .now() + timeInterval, repeating: timeInterval)
         timer.resume()
     }
     
