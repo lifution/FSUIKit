@@ -22,6 +22,23 @@ public extension Array {
             Array(self[$0 ..< Swift.min($0 + size, count)])
         }
     }
+    
+    ///
+    /// 移除集合中的元素，并返回被移除的元素集合。
+    ///
+    @discardableResult
+    mutating func fs_remove(where shouldBeRemoved: (Element) -> Bool) -> [Element] {
+        var removedElements = [Element]()
+        self = filter {
+            if shouldBeRemoved($0) {
+                removedElements.append($0)
+                return false
+            } else {
+                return true
+            }
+        }
+        return removedElements
+    }
 }
 
 public extension Sequence {
