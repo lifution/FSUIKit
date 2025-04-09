@@ -9,7 +9,7 @@
 import UIKit
 
 /// 带刷新机制的 UIView 封装。
-open class FSReloadableView: UIView {
+open class FSReloadableView: FSView {
     
     private var needsReload: Bool = false
 

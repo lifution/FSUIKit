@@ -21,6 +21,10 @@ open class FSView: UIView {
         p_didInitialize()
     }
     
+    private func p_didInitialize() {
+        didInitialize()
+    }
+    
     open override func layoutSubviews() {
         super.layoutSubviews()
         if viewSize != frame.size {
@@ -34,11 +38,6 @@ open class FSView: UIView {
     }
     
     open func viewSizeDidChange() {
-        
-    }
-    
-    private func p_didInitialize() {
-        didInitialize()
         
     }
 }
