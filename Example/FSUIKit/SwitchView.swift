@@ -80,7 +80,7 @@ class SwitchView: FSView {
         tap.delegate = delegater
         tap.rx.event.subscribe(onNext: { [weak self] _ in
             guard let self else { return }
-            self.p_setOn(!self.p_isOn, animated: true)
+            self.gesture_setOn(!self.p_isOn, animated: true)
         }).disposed(by: disposeBag)
         
         rightSwipe.require(toFail: tap)
@@ -88,7 +88,7 @@ class SwitchView: FSView {
         rightSwipe.delegate = delegater
         rightSwipe.rx.event.subscribe(onNext: { [weak self] _ in
             guard let self, !self.p_isOn else { return }
-            self.p_setOn(true, animated: true)
+            self.gesture_setOn(true, animated: true)
         }).disposed(by: disposeBag)
         
         leftSwipe.require(toFail: tap)
@@ -96,7 +96,7 @@ class SwitchView: FSView {
         leftSwipe.delegate = delegater
         leftSwipe.rx.event.subscribe(onNext: { [weak self] _ in
             guard let self, self.p_isOn else { return }
-            self.p_setOn(false, animated: true)
+            self.gesture_setOn(false, animated: true)
         }).disposed(by: disposeBag)
     }
     
@@ -139,6 +139,13 @@ class SwitchView: FSView {
 }
 
 private extension SwitchView {
+    
+    func gesture_setOn(_ on: Bool, animated: Bool) {
+        if p_isOn != on {
+            FSTapticEngine.impact.feedback(.rigid)
+        }
+        p_setOn(on, animated: true)
+    }
     
     func p_setOn(_ on: Bool, animated: Bool) {
         isAnimating = true
