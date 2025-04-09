@@ -25,16 +25,16 @@ class ViewController: UITableViewController {
 //        }
 //        timer.resume()
         
-        do {
-            let view = SwitchView()
-            view.isOn = true
-            view.onColor = .green
-            view.hitInsets = .fs.create(with: -10.0)
-            canvasView.addSubview(view)
-            view.snp.makeConstraints { make in
-                make.center.equalTo(canvasView)
-            }
-        }
+//        do {
+//            let view = SwitchView()
+//            view.isOn = true
+//            view.onColor = .green
+//            view.hitInsets = .fs.create(with: -10.0)
+//            canvasView.addSubview(view)
+//            view.snp.makeConstraints { make in
+//                make.center.equalTo(canvasView)
+//            }
+//        }
         
         do {
 //            let label = UILabel()
