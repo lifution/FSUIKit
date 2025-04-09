@@ -23,7 +23,7 @@ class SwitchView: FSView {
         }
     }
     
-    @objc var onColor: UIColor = .white {
+    @objc var onColor: UIColor = .blue {
         didSet {
             p_setOn(p_isOn, animated: false)
         }
@@ -43,6 +43,11 @@ class SwitchView: FSView {
     ///
     @objc var hitInsets: UIEdgeInsets = .zero
     
+    /// 提供给外部的 on/off 值改变的回调
+    var valueDriver: Driver<Bool> {
+        valuePublisher.asDriver(onErrorJustReturn: false)
+    }
+    
     private let borderLayer = CAShapeLayer()
     private let knobLayer = CAShapeLayer()
     
@@ -60,6 +65,8 @@ class SwitchView: FSView {
     private let delegater = _Delegater()
     
     private var p_isOn = false
+    
+    private let valuePublisher = PublishSubject<Bool>()
     
     override func didInitialize() {
         super.didInitialize()
@@ -153,7 +160,10 @@ private extension SwitchView {
         if viewSize.width <= 0.1 || viewSize.height <= 0.1 {
             animated = false
         }
-        p_isOn = on
+        if p_isOn != on {
+            p_isOn = on
+            valuePublisher.onNext(on)
+        }
         if !animated {
             let color = p_isOn ? onColor.cgColor : offColor.cgColor
             borderLayer.borderColor = color
