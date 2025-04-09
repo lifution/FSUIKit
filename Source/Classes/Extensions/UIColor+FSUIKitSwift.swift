@@ -27,6 +27,15 @@ public extension FSUIKitWrapper where Base: UIColor {
                        alpha: 1.0)
     }
     
+    /// 将十六进制数值转化为 UIColor 对象
+    /// 传入的 hex 值必须是十六进制的，否则结果会不符预期
+    static func colorWithHex(_ hex: Int, alpha: CGFloat = 1.0) -> UIColor {
+        return UIColor(red: CGFloat((hex & 0xFF0000) >> 16) / 255.0,
+                       green: CGFloat((hex & 0xFF00) >> 8) / 255.0,
+                       blue: CGFloat(hex & 0xFF) / 255.0,
+                       alpha: alpha)
+    }
+    
     /// Create color from hex string.
     ///
     /// #RGB      #f0f == #ffff00ff，RGBA(255, 0, 255, 1)
