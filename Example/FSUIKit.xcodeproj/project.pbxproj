@@ -20,6 +20,7 @@
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		909C26E3DAC0C761621B5C40 /* Pods_FSUIKit_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB8AC0D06D3CAA2E913F5277 /* Pods_FSUIKit_Example.framework */; };
+		BF5297C12DA61BE9004D2374 /* SwitchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5297C02DA61BE9004D2374 /* SwitchView.swift */; };
 		BF54E9882CDCEDB200154198 /* TextFieldViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF54E9872CDCEDB200154198 /* TextFieldViewController.swift */; };
 		BF98BBEC2CDDBBCE0096FA56 /* TextViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF98BBEB2CDDBBCE0096FA56 /* TextViewViewController.swift */; };
 		BFD7F6222CF81F3000098446 /* DownloaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD7F6212CF81F3000098446 /* DownloaderViewController.swift */; };
@@ -48,6 +49,7 @@
 		897595C6F685B51925EDD910 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		992426277C68CE93C0F8E96A /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		B10089CBD10B14D1CBE3D49A /* Pods-FSUIKit_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FSUIKit_Tests.debug.xcconfig"; path = "Target Support Files/Pods-FSUIKit_Tests/Pods-FSUIKit_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		BF5297C02DA61BE9004D2374 /* SwitchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchView.swift; sourceTree = "<group>"; };
 		BF54E9872CDCEDB200154198 /* TextFieldViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldViewController.swift; sourceTree = "<group>"; };
 		BF98BBEB2CDDBBCE0096FA56 /* TextViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewViewController.swift; sourceTree = "<group>"; };
 		BFD7F6212CF81F3000098446 /* DownloaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloaderViewController.swift; sourceTree = "<group>"; };
@@ -108,6 +110,7 @@
 				041102532B72AA0E00E243D2 /* Examples */,
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
+				BF5297C02DA61BE9004D2374 /* SwitchView.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				0482E20C2BC7E85D00681954 /* LaunchScreen.storyboard */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
@@ -277,6 +280,7 @@
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
 				04F52B112BA1D4AE000AC4BE /* FlexibleViewController.swift in Sources */,
 				043541502BD128DB00CC7208 /* GradientViewController.swift in Sources */,
+				BF5297C12DA61BE9004D2374 /* SwitchView.swift in Sources */,
 				041102552B72AA2200E243D2 /* ToastViewController.swift in Sources */,
 				BF98BBEC2CDDBBCE0096FA56 /* TextViewViewController.swift in Sources */,
 				BFD7F6222CF81F3000098446 /* DownloaderViewController.swift in Sources */,

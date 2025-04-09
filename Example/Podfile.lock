@@ -3,16 +3,27 @@ PODS:
   - LookinServer (1.2.8):
     - LookinServer/Core (= 1.2.8)
   - LookinServer/Core (1.2.8)
+  - RxCocoa (6.9.0):
+    - RxRelay (= 6.9.0)
+    - RxSwift (= 6.9.0)
+  - RxRelay (6.9.0):
+    - RxSwift (= 6.9.0)
+  - RxSwift (6.9.0)
   - SnapKit (5.6.0)
 
 DEPENDENCIES:
   - FSUIKitSwift (from `../`)
   - LookinServer
+  - RxCocoa
+  - RxSwift
   - SnapKit
 
 SPEC REPOS:
   trunk:
     - LookinServer
+    - RxCocoa
+    - RxRelay
+    - RxSwift
     - SnapKit
 
 EXTERNAL SOURCES:
@@ -22,8 +33,11 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   FSUIKitSwift: 039dc2be7095be3e81de5d5a1be1b7a9d52785c8
   LookinServer: 1b2b61c6402ae29fa22182d48f5cd067b4e99e80
+  RxCocoa: ac16414696ae706516be3e1ab00fcce5bdc9be8a
+  RxRelay: 6b0c930e5cef57d5fe2032571e5e65b78e3cbdb1
+  RxSwift: 31649ace6aceeb422e16ff71c60804f9c3281ed9
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
 
-PODFILE CHECKSUM: c67d9ae27dcbf9e551db3b3d2282a15a47793682
+PODFILE CHECKSUM: 21f1e19394f51b6d9073a3af4a06c2d9fdfb411a
 
 COCOAPODS: 1.16.2

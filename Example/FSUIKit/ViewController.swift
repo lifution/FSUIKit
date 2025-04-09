@@ -14,23 +14,25 @@ class ViewController: UITableViewController {
     
 //    private let timer = FSTimer(timeInterval: 1.0)
     
+    @IBOutlet weak var canvasView: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        p_setupViews()
+        
 //        timer.autoSuspendInBackground = false
 //        timer.eventHandler = {
 //            print("timer callback")
 //        }
 //        timer.resume()
-    }
-}
-
-// MARK: - Private
-
-private extension ViewController {
-    
-    /// Invoked in the `viewDidLoad` method.
-    func p_setupViews() {
+        
+        do {
+            let view = SwitchView()
+            canvasView.addSubview(view)
+            view.snp.makeConstraints { make in
+                make.center.equalTo(canvasView)
+            }
+        }
+        
         do {
 //            let label = UILabel()
 //            label.text = "😂😂😂😂😂😂😂😂😂😂😂😂😂😂😂😂😂😂😂"

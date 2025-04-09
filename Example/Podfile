@@ -5,6 +5,8 @@ platform :ios, '13.0'
 target 'FSUIKit_Example' do
   pod 'FSUIKitSwift', :path => '../'
   pod 'SnapKit'
+  pod 'RxSwift'
+  pod 'RxCocoa'
   pod 'LookinServer', :configurations => ['Debug']
 end
 
