@@ -36,6 +36,22 @@ class ViewController: UITableViewController {
 //            }
 //        }
         
+//        do {
+//            UIView.appearance().semanticContentAttribute = .forceRightToLeft
+//
+//            let button = FSButton()
+//            button.setImage(UIImage(named: "gift"), for: .normal)
+//            button.setTitle("Gifts", for: .normal)
+//            button.setTitleColor(.black, for: .normal)
+//            button.imagePosition = .left
+//            button.spacingBetweenImageAndTitle = 5.0
+//            button.backgroundColor = .cyan.withAlphaComponent(0.15)
+//            canvasView.addSubview(button)
+//            button.snp.makeConstraints { make in
+//                make.center.equalToSuperview()
+//            }
+//        }
+        
         do {
 //            let label = UILabel()
 //            label.text = "😂😂😂😂😂😂😂😂😂😂😂😂😂😂😂😂😂😂😂"

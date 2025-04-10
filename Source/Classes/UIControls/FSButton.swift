@@ -17,6 +17,7 @@ import UIKit
 /// 5. 支持设置图片相对于 titleLabel 的位置（imagePosition）。
 /// 6. 支持设置图片和 titleLabel 之间的间距，无需自行调整 titleEdgeInests、imageEdgeInsets（spacingBetweenImageAndTitle）。
 /// 7. 可调整控件的响应范围。
+/// 8. 支持 RightToLeft 自动适应。
 ///
 /// - Note: FSButton 重新定义了 titleEdgeInests、imageEdgeInsets、contentEdgeInsets 这三者的布局逻辑，
 ///         sizeThatFits: 里会把 titleEdgeInests 和 imageEdgeInsets 也考虑在内（UIButton 不会），以使这三个接口的使用更符合直觉。
@@ -191,6 +192,14 @@ open class FSButton: UIButton {
     
     open override var intrinsicContentSize: CGSize {
         return sizeThatFits(CGSize(width: CGFloat.greatestFiniteMagnitude, height: CGFloat.greatestFiniteMagnitude))
+    }
+    
+    open override var semanticContentAttribute: UISemanticContentAttribute {
+        didSet {
+            if semanticContentAttribute != oldValue {
+                setNeedsLayout()
+            }
+        }
     }
     
     open override func setImage(_ image: UIImage?, for state: UIControl.State) {
@@ -568,109 +577,124 @@ open class FSButton: UIButton {
                 break
             }
             
-            if imagePosition == .left {
-                switch contentHorizontalAlignment {
+            let leftOperation: () -> Void = {
+                switch self.contentHorizontalAlignment {
                 case .left:
                     if isImageViewShowing {
-                        imageFrame.origin.x = contentEdgeInsets.left + imageEdgeInsets.left
+                        imageFrame.origin.x = contentEdgeInsets.left + self.imageEdgeInsets.left
                     }
                     if isTitleLabelShowing {
-                        titleFrame.origin.x = contentEdgeInsets.left + imageTotalSize.width + spacingBetweenImageAndTitle + titleEdgeInsets.left
+                        titleFrame.origin.x = contentEdgeInsets.left + imageTotalSize.width + spacingBetweenImageAndTitle + self.titleEdgeInsets.left
                     }
                 case .center:
                     let contentWidth = imageTotalSize.width + spacingBetweenImageAndTitle + titleTotalSize.width
-                    let minX = contentEdgeInsets.left + p_CGFloatGetCenter(contentSize.width, contentWidth)
+                    let minX = contentEdgeInsets.left + self.p_CGFloatGetCenter(contentSize.width, contentWidth)
                     if isImageViewShowing {
-                        imageFrame.origin.x = minX + imageEdgeInsets.left
+                        imageFrame.origin.x = minX + self.imageEdgeInsets.left
                     }
                     if isTitleLabelShowing {
-                        titleFrame.origin.x = minX + imageTotalSize.width + spacingBetweenImageAndTitle + titleEdgeInsets.left
+                        titleFrame.origin.x = minX + imageTotalSize.width + spacingBetweenImageAndTitle + self.titleEdgeInsets.left
                     }
                 case .right:
                     if (imageTotalSize.width + spacingBetweenImageAndTitle + titleTotalSize.width) > contentSize.width {
                         // 图片和文字总宽超过按钮宽度，则优先完整显示图片。
                         if isImageViewShowing {
-                            imageFrame.origin.x = contentEdgeInsets.left + imageEdgeInsets.left
+                            imageFrame.origin.x = contentEdgeInsets.left + self.imageEdgeInsets.left
                         }
                         if isTitleLabelShowing {
-                            titleFrame.origin.x = contentEdgeInsets.left + imageTotalSize.width + spacingBetweenImageAndTitle + titleEdgeInsets.left
+                            titleFrame.origin.x = contentEdgeInsets.left + imageTotalSize.width + spacingBetweenImageAndTitle + self.titleEdgeInsets.left
                         }
                     } else {
                         // 内容不超过按钮宽度，则靠右布局即可。
                         if isImageViewShowing {
-                            imageFrame.origin.x = bounds.width - contentEdgeInsets.right - titleTotalSize.width - spacingBetweenImageAndTitle - imageTotalSize.width + imageEdgeInsets.left
+                            imageFrame.origin.x = self.bounds.width - contentEdgeInsets.right - titleTotalSize.width - spacingBetweenImageAndTitle - imageTotalSize.width + self.imageEdgeInsets.left
                         }
                         if isTitleLabelShowing {
-                            titleFrame.origin.x = bounds.width - contentEdgeInsets.right - titleEdgeInsets.right - titleFrame.width
+                            titleFrame.origin.x = self.bounds.width - contentEdgeInsets.right - self.titleEdgeInsets.right - titleFrame.width
                         }
                     }
                 case .fill:
                     if isImageViewShowing && isTitleLabelShowing {
                         // 同时显示图片和 label 的情况下，图片按本身宽度显示，剩余空间留给 label。
-                        imageFrame.origin.x = contentEdgeInsets.left + imageEdgeInsets.left
-                        titleFrame.origin.x = contentEdgeInsets.left + imageTotalSize.width + spacingBetweenImageAndTitle + titleEdgeInsets.left
-                        titleFrame.size.width = bounds.width - contentEdgeInsets.right - titleEdgeInsets.right - titleFrame.minX
+                        imageFrame.origin.x = contentEdgeInsets.left + self.imageEdgeInsets.left
+                        titleFrame.origin.x = contentEdgeInsets.left + imageTotalSize.width + spacingBetweenImageAndTitle + self.titleEdgeInsets.left
+                        titleFrame.size.width = self.bounds.width - contentEdgeInsets.right - self.titleEdgeInsets.right - titleFrame.minX
                     } else if isImageViewShowing {
-                        imageFrame.origin.x = contentEdgeInsets.left + imageEdgeInsets.left
-                        imageFrame.size.width = contentSize.width - (imageEdgeInsets.left + imageEdgeInsets.right)
+                        imageFrame.origin.x = contentEdgeInsets.left + self.imageEdgeInsets.left
+                        imageFrame.size.width = contentSize.width - (self.imageEdgeInsets.left + self.imageEdgeInsets.right)
                     } else {
-                        titleFrame.origin.x = contentEdgeInsets.left + titleEdgeInsets.left
-                        titleFrame.size.width = contentSize.width - (titleEdgeInsets.left + titleEdgeInsets.right)
+                        titleFrame.origin.x = contentEdgeInsets.left + self.titleEdgeInsets.left
+                        titleFrame.size.width = contentSize.width - (self.titleEdgeInsets.left + self.titleEdgeInsets.right)
                     }
                 default:
                     break
                 }
-            } else {
-                switch contentHorizontalAlignment {
+            }
+            let rightOperation: () -> Void = {
+                switch self.contentHorizontalAlignment {
                 case .left:
                     if (imageTotalSize.width + spacingBetweenImageAndTitle + titleTotalSize.width) > contentSize.width {
                         // 图片和文字总宽超过按钮宽度，则优先完整显示图片。
                         if isImageViewShowing {
-                            imageFrame.origin.x = bounds.width - contentEdgeInsets.right - imageEdgeInsets.right - imageFrame.width
+                            imageFrame.origin.x = self.bounds.width - contentEdgeInsets.right - self.imageEdgeInsets.right - imageFrame.width
                         }
                         if isTitleLabelShowing {
-                            titleFrame.origin.x = bounds.width - contentEdgeInsets.right - imageTotalSize.width - spacingBetweenImageAndTitle - titleTotalSize.width + titleEdgeInsets.left
+                            titleFrame.origin.x = self.bounds.width - contentEdgeInsets.right - imageTotalSize.width - spacingBetweenImageAndTitle - titleTotalSize.width + self.titleEdgeInsets.left
                         }
                     } else {
                         // 内容不超过按钮宽度，则靠左布局即可。
                         if isImageViewShowing {
-                            imageFrame.origin.x = contentEdgeInsets.left + titleTotalSize.width + spacingBetweenImageAndTitle + imageEdgeInsets.left
+                            imageFrame.origin.x = contentEdgeInsets.left + titleTotalSize.width + spacingBetweenImageAndTitle + self.imageEdgeInsets.left
                         }
                         if isTitleLabelShowing {
-                            titleFrame.origin.x = contentEdgeInsets.left + titleEdgeInsets.left
+                            titleFrame.origin.x = contentEdgeInsets.left + self.titleEdgeInsets.left
                         }
                     }
                 case .center:
                     let contentWidth = imageTotalSize.width + spacingBetweenImageAndTitle + titleTotalSize.width
-                    let minX = contentEdgeInsets.left + p_CGFloatGetCenter(contentSize.width, contentWidth)
+                    let minX = contentEdgeInsets.left + self.p_CGFloatGetCenter(contentSize.width, contentWidth)
                     if isImageViewShowing {
-                        imageFrame.origin.x = minX + titleTotalSize.width + spacingBetweenImageAndTitle + imageEdgeInsets.left
+                        imageFrame.origin.x = minX + titleTotalSize.width + spacingBetweenImageAndTitle + self.imageEdgeInsets.left
                     }
                     if isTitleLabelShowing {
-                        titleFrame.origin.x = minX + titleEdgeInsets.left
+                        titleFrame.origin.x = minX + self.titleEdgeInsets.left
                     }
                 case .right:
                     if isImageViewShowing {
-                        imageFrame.origin.x = bounds.width - contentEdgeInsets.right - imageEdgeInsets.right - imageFrame.width
+                        imageFrame.origin.x = self.bounds.width - contentEdgeInsets.right - self.imageEdgeInsets.right - imageFrame.width
                     }
                     if isTitleLabelShowing {
-                        titleFrame.origin.x = bounds.width - contentEdgeInsets.right - imageTotalSize.width - spacingBetweenImageAndTitle - titleEdgeInsets.right - titleFrame.width
+                        titleFrame.origin.x = self.bounds.width - contentEdgeInsets.right - imageTotalSize.width - spacingBetweenImageAndTitle - self.titleEdgeInsets.right - titleFrame.width
                     }
                 case .fill:
                     if isImageViewShowing && isTitleLabelShowing {
                         // 图片按自身大小显示，剩余空间由标题占满。
-                        imageFrame.origin.x = bounds.width - contentEdgeInsets.right - imageEdgeInsets.right - imageFrame.width
-                        titleFrame.origin.x = contentEdgeInsets.left + titleEdgeInsets.left
-                        titleFrame.size.width = imageFrame.minX - imageEdgeInsets.left - spacingBetweenImageAndTitle - titleEdgeInsets.right - titleFrame.minX
+                        imageFrame.origin.x = self.bounds.width - contentEdgeInsets.right - self.imageEdgeInsets.right - imageFrame.width
+                        titleFrame.origin.x = contentEdgeInsets.left + self.titleEdgeInsets.left
+                        titleFrame.size.width = imageFrame.minX - self.imageEdgeInsets.left - spacingBetweenImageAndTitle - self.titleEdgeInsets.right - titleFrame.minX
                     } else if isImageViewShowing {
-                        imageFrame.origin.x = contentEdgeInsets.left + imageEdgeInsets.left
-                        imageFrame.size.width = contentSize.width - (imageEdgeInsets.left + imageEdgeInsets.right)
+                        imageFrame.origin.x = contentEdgeInsets.left + self.imageEdgeInsets.left
+                        imageFrame.size.width = contentSize.width - (self.imageEdgeInsets.left + self.imageEdgeInsets.right)
                     } else {
-                        titleFrame.origin.x = contentEdgeInsets.left + titleEdgeInsets.left
-                        titleFrame.size.width = contentSize.width - (titleEdgeInsets.left + titleEdgeInsets.right)
+                        titleFrame.origin.x = contentEdgeInsets.left + self.titleEdgeInsets.left
+                        titleFrame.size.width = contentSize.width - (self.titleEdgeInsets.left + self.titleEdgeInsets.right)
                     }
                 default:
                     break
+                }
+            }
+            
+            if semanticContentAttribute == .forceRightToLeft {
+                if imagePosition == .left {
+                    rightOperation()
+                } else {
+                    leftOperation()
+                }
+            } else {
+                if imagePosition == .left {
+                    leftOperation()
+                } else {
+                    rightOperation()
                 }
             }
             
