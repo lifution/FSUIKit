@@ -29,7 +29,10 @@ open class FSView: UIView {
         super.layoutSubviews()
         if viewSize != frame.size {
             viewSize = frame.size
-            viewSizeDidChange()
+            /// 将该方法放到下一个 update cycle，以免被当前的 update cycle 影响。
+            DispatchQueue.main.async {
+                self.viewSizeDidChange()
+            }
         }
     }
     

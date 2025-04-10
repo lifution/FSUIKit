@@ -146,8 +146,6 @@ class SwitchView: FSView {
             let knobSize = CGSize(width: knobFrame.height, height: knobFrame.height).fs.floorFlatted()
             leftKnobFrame = .init(origin: knobFrame.origin, size: knobSize)
             rightKnobFrame = .init(origin: .init(x: knobFrame.maxX - knobSize.width, y: leftKnobFrame.minY), size: knobSize)
-            
-            knobLayer.frame = p_isOn ? rightKnobFrame : leftKnobFrame
             knobLayer.cornerRadius = knobSize.height / 2
         }
         p_setOn(p_isOn, animated: false)
