@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RxSwift
 import SnapKit
 import FSUIKitSwift
 
@@ -15,6 +16,8 @@ class ViewController: UITableViewController {
 //    private let timer = FSTimer(timeInterval: 1.0)
     
     @IBOutlet weak var canvasView: UIView!
+    
+    private let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,13 +29,15 @@ class ViewController: UITableViewController {
 //        timer.resume()
         
 //        do {
+//            UIView.appearance().semanticContentAttribute = .forceRightToLeft
+//            
 //            let view = SwitchView()
 //            view.isOn = true
 //            view.onColor = .green
 //            view.hitInsets = .fs.create(with: -10.0)
 //            canvasView.addSubview(view)
 //            view.snp.makeConstraints { make in
-//                make.center.equalTo(canvasView)
+//                make.center.equalToSuperview()
 //            }
 //        }
         
