@@ -303,7 +303,7 @@ private class _ToastHelper: FSKeyboardListener {
         let keyboardFrame = manager.keyboardFrame
         let toastFrameInWindow = toastView.superview?.convert(toastView.frame, to: window) ?? .zero
         let toastOriginalMaxY = toastFrameInWindow.maxY - (centerYConstraint?.constant ?? 0.0)
-        let spacing = p_fixNanNumber(toastOriginalMaxY - keyboardFrame.minY)
+        let spacing = FSRemoveInvalidNumber(toastOriginalMaxY - keyboardFrame.minY)
         if spacing <= -20.0 {
             return
         }
@@ -314,13 +314,6 @@ private class _ToastHelper: FSKeyboardListener {
                 toastView.superview?.layoutIfNeeded()
             }
         }
-    }
-    
-    private func p_fixNanNumber(_ number: CGFloat) -> CGFloat {
-        if number.isNaN || number.isSignalingNaN || number.isInfinite {
-            return 0.0
-        }
-        return number
     }
     
     private func p_show(content: FSToastContentConvertable?, isUserInteractionEnabled: Bool = true) {

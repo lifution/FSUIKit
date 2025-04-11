@@ -8,6 +8,7 @@
 import UIKit
 import Foundation
 
+///
 /// 判断两个字符串在「忽略 empty 的情况下」是否还相等
 ///
 /// 1. 如果两个都是 nil 则返回 true
@@ -25,7 +26,7 @@ public func fs_isStringEqualIgnoringEmpty(_ lhs: String?, _ rhs: String?) -> Boo
     }
     return lhs == rhs
 }
-
+///
 /// 判断两个字符串的内容是否相等，只判断字符串的内容，如果内容无效则表示不相等，
 /// Swift.String 的 ``==`` 方法，如果两个比较的 String 都为 nil 也会返回 true，
 /// 在一些特定场景下，只有内容有效才表示相等，该方法就是为了这些场景而设计的。
@@ -42,4 +43,45 @@ public func fs_isStringValueEqual(_ lhs: String?, _ rhs: String?) -> Bool {
         return lhs == rhs
     }
     return false // 如果有任何一个是 nil 或 ""，返回 false
+}
+///
+/// 基于当前设备的屏幕缩放倍数，对传进来的 float 数值进行**向上**像素取整。
+/// 例如传进来 "2.1"，在 2x 倍数下会返回 2.5（0.5pt 对应 1px），在 3x 倍数下会返回 2.333（0.333pt 对应 1px）。
+///
+public func FSFlat<T: FloatingPoint>(_ x: T) -> T {
+    guard
+        x != T.leastNormalMagnitude,
+        x != T.leastNonzeroMagnitude,
+        x != T.greatestFiniteMagnitude
+    else {
+        return x
+    }
+    let scale: T = T(Int(UIScreen.main.scale))
+    let flattedValue = ceil(x * scale) / scale
+    return flattedValue
+}
+///
+/// 基于当前设备的屏幕缩放倍数，对传进来的 float 数值进行**向下**像素取整。
+/// 例如传进来 "2.6"，在 2x 倍数下会返回 2.5（0.5pt 对应 1px），在 3x 倍数下会返回 2.333（0.333pt 对应 1px）。
+///
+public func FSFloorFlat<T: FloatingPoint>(_ x: T) -> T {
+    guard
+        x != T.leastNormalMagnitude,
+        x != T.leastNonzeroMagnitude,
+        x != T.greatestFiniteMagnitude
+    else {
+        return x
+    }
+    let scale: T = T(Int(UIScreen.main.scale))
+    let flattedValue = floor(x * scale) / scale
+    return flattedValue
+}
+///
+/// 检查传入的数值是否为有效数值，如果是无效的，则返回 0
+///
+public func FSRemoveInvalidNumber<T: FloatingPoint>(_ x: T) -> T {
+    if x.isNaN || x.isSignalingNaN || x.isInfinite {
+        return 0
+    }
+    return x
 }
