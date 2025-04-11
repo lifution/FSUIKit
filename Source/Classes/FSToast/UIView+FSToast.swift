@@ -167,7 +167,7 @@ private class _ToastHelper: FSKeyboardListener {
     
     private var toastView: FSToastView?
     
-    private var centerYConstraint: NSLayoutConstraint?
+    private weak var centerYConstraint: NSLayoutConstraint?
     
     private lazy var containerView: UIView = {
         let view = UIView()
