@@ -9,50 +9,6 @@
 import UIKit
 import Foundation
 
-// MARK: - FSUIImageTextDrawingStyle
-public struct FSUIImageTextDrawingStyle {
-    
-    public enum VerticalAlignment {
-        case top
-        case center
-        case bottom
-    }
-    
-    public enum HorizontalAlignment {
-        case left
-        case center
-        case right
-    }
-    
-    public var text: String?
-    public var font: UIFont?
-    public var textColor: UIColor?
-    public var lineSpacing: CGFloat = 0.0
-    public var kernSpacing: CGFloat = 0.0
-    public var numberOfLines: Int = 1
-    public var size: CGSize = .zero
-    /// 自动适配 text 的 size。
-    /// 当该属性为 ture 时会忽略 size 属性。
-    public var adjustsSize = false
-    /// 该属性仅当 adjustsSize 为 ture 时才有效。
-    /// 该属性表示的是 text 的最大 size，并非表示最后生成的 image 的 size。
-    public var maximumSize: CGSize = .init(width: CGFloat(Int16.max), height: CGFloat(Int16.max))
-    public var borderWidth: CGFloat = 0.0
-    public var borderColor: UIColor?
-    public var cornerRadius: CGFloat = 0.0
-    public var roundingCorners: UIRectCorner = .allCorners
-    public var backgroundColor: UIColor?
-    /// 该属性仅当 adjustsSize 为 ture 时才有效。
-    /// 该属性表示的是文本四边的内切间距。
-    public var contentInset: UIEdgeInsets = .zero
-    public var textAlignment: NSTextAlignment = .left
-    public var verticalAlignment: FSUIImageTextDrawingStyle.VerticalAlignment = .top
-    public var horizontalAlignment: FSUIImageTextDrawingStyle.HorizontalAlignment = .left
-    
-    public init() {}
-}
-
-// MARK: -
 public extension FSUIKitWrapper where Base: UIImage {
     
     /// 生成二维码图片
@@ -359,4 +315,47 @@ public extension FSUIKitWrapper where Base: UIImage {
         }
         return image
     }
+}
+
+
+public struct FSUIImageTextDrawingStyle {
+    
+    public enum VerticalAlignment {
+        case top
+        case center
+        case bottom
+    }
+    
+    public enum HorizontalAlignment {
+        case left
+        case center
+        case right
+    }
+    
+    public var text: String?
+    public var font: UIFont?
+    public var textColor: UIColor?
+    public var lineSpacing: CGFloat = 0.0
+    public var kernSpacing: CGFloat = 0.0
+    public var numberOfLines: Int = 1
+    public var size: CGSize = .zero
+    /// 自动适配 text 的 size。
+    /// 当该属性为 ture 时会忽略 size 属性。
+    public var adjustsSize = false
+    /// 该属性仅当 adjustsSize 为 ture 时才有效。
+    /// 该属性表示的是 text 的最大 size，并非表示最后生成的 image 的 size。
+    public var maximumSize: CGSize = .init(width: CGFloat(Int16.max), height: CGFloat(Int16.max))
+    public var borderWidth: CGFloat = 0.0
+    public var borderColor: UIColor?
+    public var cornerRadius: CGFloat = 0.0
+    public var roundingCorners: UIRectCorner = .allCorners
+    public var backgroundColor: UIColor?
+    /// 该属性仅当 adjustsSize 为 ture 时才有效。
+    /// 该属性表示的是文本四边的内切间距。
+    public var contentInset: UIEdgeInsets = .zero
+    public var textAlignment: NSTextAlignment = .left
+    public var verticalAlignment: FSUIImageTextDrawingStyle.VerticalAlignment = .top
+    public var horizontalAlignment: FSUIImageTextDrawingStyle.HorizontalAlignment = .left
+    
+    public init() {}
 }

@@ -109,6 +109,21 @@ class ViewController: UITableViewController {
 //                make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
 //            }
 //        }
+        
+//        do {
+//            let view = UIImageView()
+//            canvasView.addSubview(view)
+//            view.snp.makeConstraints { make in
+//                make.size.equalTo(CGSize(width: 300.0, height: 150.0))
+//                make.center.equalToSuperview()
+//            }
+//            view.image = GradientImageRenderer.render(.init(
+//                size: .init(width: 300.0, height: 150.0),
+//                colors: [.fs.colorWithHex(0xFC308C), .fs.colorWithHex(0x8771DE)],
+//                locations: [0, 1],
+//                direction: .leftToRight,
+//                cornerRadius: 20.0))
+//        }
     }
 }
 
