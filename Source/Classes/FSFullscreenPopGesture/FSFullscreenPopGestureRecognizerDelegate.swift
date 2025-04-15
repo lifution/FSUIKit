@@ -22,7 +22,7 @@ public final class FSFullscreenPopGestureRecognizerDelegate: NSObject, UIGesture
     
     // MARK: Properties/Fileprivate
     
-    let navigationController: UINavigationController
+    weak var navigationController: UINavigationController?
     
     // MARK: Initialization
     
@@ -36,6 +36,10 @@ public final class FSFullscreenPopGestureRecognizerDelegate: NSObject, UIGesture
     public func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
         
         guard let panGestureRecognizer = gestureRecognizer as? UIPanGestureRecognizer else {
+            return false
+        }
+        
+        guard let navigationController else {
             return false
         }
         
