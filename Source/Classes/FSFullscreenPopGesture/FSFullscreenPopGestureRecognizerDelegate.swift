@@ -57,6 +57,11 @@ public final class FSFullscreenPopGestureRecognizerDelegate: NSObject, UIGesture
             return false
         }
         
+        // Ignore pan gesture when the navigation controller is currently in transition.
+        if let isTransitioning = navigationController.value(forKey: "_isTransitioning") as? Bool, isTransitioning {
+            return false
+        }
+        
         let isRightToLeft = navigationController.view.semanticContentAttribute == .forceRightToLeft
         
         // Ignore when the beginning location is beyond max allowed initial distance to left edge.
@@ -66,11 +71,6 @@ public final class FSFullscreenPopGestureRecognizerDelegate: NSObject, UIGesture
         }
         let maxAllowedInitialDistance = topViewController.fs.interactivePopMaxAllowedInitialDistanceToLeftEdge
         if maxAllowedInitialDistance > 0, beginningLocationX > maxAllowedInitialDistance {
-            return false
-        }
-        
-        // Ignore pan gesture when the navigation controller is currently in transition.
-        if let isTransitioning = navigationController.value(forKey: "_isTransitioning") as? Bool, isTransitioning {
             return false
         }
         
