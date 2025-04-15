@@ -57,10 +57,15 @@ public final class FSFullscreenPopGestureRecognizerDelegate: NSObject, UIGesture
             return false
         }
         
+        let isRightToLeft = navigationController.view.semanticContentAttribute == .forceRightToLeft
+        
         // Ignore when the beginning location is beyond max allowed initial distance to left edge.
-        let beginningLocation = panGestureRecognizer.location(in: panGestureRecognizer.view)
+        var beginningLocationX = panGestureRecognizer.location(in: panGestureRecognizer.view).x
+        if isRightToLeft {
+            beginningLocationX = navigationController.view.frame.width - beginningLocationX
+        }
         let maxAllowedInitialDistance = topViewController.fs.interactivePopMaxAllowedInitialDistanceToLeftEdge
-        if maxAllowedInitialDistance > 0, beginningLocation.x > maxAllowedInitialDistance {
+        if maxAllowedInitialDistance > 0, beginningLocationX > maxAllowedInitialDistance {
             return false
         }
         
@@ -71,10 +76,14 @@ public final class FSFullscreenPopGestureRecognizerDelegate: NSObject, UIGesture
         
         // Prevent calling the handler when the gesture begins in an opposite direction.
         let translation = panGestureRecognizer.translation(in: panGestureRecognizer.view)
-        let isLeftToRight = UIApplication.shared.userInterfaceLayoutDirection == .leftToRight
-        let multiplier: CGFloat = isLeftToRight ? 1 : -1
-        if translation.x * multiplier <= 0 {
-            return false
+        if isRightToLeft {
+            if translation.x >= 0 {
+                return false
+            }
+        } else {
+            if translation.x <= 0 {
+                return false
+            }
         }
         
         return true

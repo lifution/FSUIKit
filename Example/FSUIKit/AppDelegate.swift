@@ -15,6 +15,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+        
+//        UIView.appearance().semanticContentAttribute = .forceRightToLeft
+        
         if #available(iOS 13, *) {
             // 从 iOS13 开始，通过 UINavigationBarAppearance 配置状态栏样式。
             let appearance = UINavigationBarAppearance()
