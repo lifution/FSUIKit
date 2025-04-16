@@ -132,11 +132,17 @@ open class FSButton: UIButton {
     ///
     open var hitTestEdgeInsets: UIEdgeInsets = .zero
     
+    ///
+    /// 点击响应的间隔（秒），默认 0.5 秒。
+    /// 用于防止用户暴力点击。
+    ///
+    open var clickInterval: TimeInterval = 0.5
+    
     // MARK: Properties/Private
     
     private var originalBorderColor: UIColor?
-    
     private var highlightedBackgroundLayer: CALayer?
+    private var isFreezing = false
     
     // MARK: Initialization
     
@@ -705,6 +711,19 @@ open class FSButton: UIButton {
                 titleLabel?.frame = titleFrame.fs.flatted()
             }
         }
+    }
+    
+    open override func sendAction(_ action: Selector, to target: Any?, for event: UIEvent?) {
+        guard !isFreezing else {
+            return
+        }
+        if clickInterval > 0.0 {
+            isFreezing = true
+            DispatchQueue.main.asyncAfter(deadline: .now() + clickInterval) {
+                self.isFreezing = false
+            }
+        }
+        super.sendAction(action, to: target, for: event)
     }
     
     // MARK: - Open

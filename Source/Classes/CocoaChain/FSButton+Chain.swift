@@ -68,4 +68,10 @@ public extension FSUIKitWrapper where Base: FSButton {
         base.hitTestEdgeInsets = hitTestEdgeInsets
         return self
     }
+    
+    @discardableResult
+    func clickInterval(_ clickInterval: TimeInterval) -> FSUIKitWrapper {
+        base.clickInterval = clickInterval
+        return self
+    }
 }
