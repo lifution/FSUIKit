@@ -58,57 +58,48 @@ public final class GradientImageRenderer {
     }
     
     public static func render(_ config: Configuration) -> UIImage? {
-        
-        let scale = UIScreen.main.scale
-        let colorSpace = CGColorSpaceCreateDeviceRGB()
-        let bitmapInfo = CGImageAlphaInfo.premultipliedLast.rawValue
-        
-        guard let context = CGContext(
-            data: nil,
-            width: Int(config.size.width * scale),
-            height: Int(config.size.height * scale),
-            bitsPerComponent: 8,
-            bytesPerRow: 0,
-            space: colorSpace,
-            bitmapInfo: bitmapInfo
-        ) else {
-            return nil
+        let format = UIGraphicsImageRendererFormat()
+        format.scale = UIScreen.main.scale
+        format.opaque = false
+        let size = config.size
+        let renderer = UIGraphicsImageRenderer(size: size, format: format)
+        return renderer.image { context in
+            let ctx = context.cgContext
+            ctx.setAllowsAntialiasing(true)
+            ctx.setShouldAntialias(true)
+            
+            // 使用手动构造的 capsule 路径
+            let path: UIBezierPath
+            if config.cornerRadius >= size.height/2 {
+                path = capsulePath(size: size)
+            } else {
+                path = UIBezierPath(roundedRect: CGRect(origin: .zero, size: size),
+                                    cornerRadius: config.cornerRadius)
+            }
+            
+            ctx.saveGState()
+            path.addClip()
+            
+            // 构造渐变
+            let colorSpace = CGColorSpaceCreateDeviceRGB()
+            let cgColors = config.colors.map { $0.cgColor } as CFArray
+            var locations = config.locations
+            if locations == nil {
+                let step = 1.0 / CGFloat(config.colors.count - 1)
+                locations = (0..<config.colors.count).map { CGFloat($0) * step }
+            }
+            
+            guard let gradient = CGGradient(colorsSpace: colorSpace, colors: cgColors, locations: locations) else {
+                return
+            }
+            
+            let (start, end) = config.direction.points
+            let from = CGPoint(x: start.x * size.width, y: start.y * size.height)
+            let to = CGPoint(x: end.x * size.width, y: end.y * size.height)
+            
+            ctx.drawLinearGradient(gradient, start: from, end: to, options: [])
+            ctx.restoreGState()
         }
-        
-        context.scaleBy(x: scale, y: scale)
-        context.setAllowsAntialiasing(true)
-        context.setShouldAntialias(true)
-        
-        if config.cornerRadius > 0 {
-            let path = UIBezierPath(
-                roundedRect: CGRect(origin: .zero, size: config.size),
-                cornerRadius: config.cornerRadius
-            ).cgPath
-            context.addPath(path)
-            context.clip()
-        }
-        
-        let cgColors = config.colors.map { $0.cgColor } as CFArray
-        var locations = config.locations
-        if locations == nil {
-            let step = 1.0 / CGFloat(config.colors.count - 1)
-            locations = (0..<config.colors.count).map { CGFloat($0) * step }
-        }
-        
-        guard let gradient = CGGradient(colorsSpace: colorSpace, colors: cgColors, locations: locations) else {
-            return nil
-        }
-        
-        let (start, end) = config.direction.points
-        let from = CGPoint(x: start.x * config.size.width, y: start.y * config.size.height)
-        let to = CGPoint(x: end.x * config.size.width, y: end.y * config.size.height)
-        
-        context.drawLinearGradient(gradient, start: from, end: to, options: [])
-        
-        guard let cgImage = context.makeImage() else {
-            return nil
-        }
-        return UIImage(cgImage: cgImage, scale: scale, orientation: .up)
     }
     
     public static func renderAsync(_ config: Configuration, completion: @escaping (UIImage?) -> Void) {
@@ -118,5 +109,23 @@ public final class GradientImageRenderer {
                 completion(image)
             }
         }
+    }
+    
+    private static func capsulePath(size: CGSize) -> UIBezierPath {
+        let width = size.width
+        let height = size.height
+        let radius = height/2
+        
+        let centerLeft = CGPoint(x: radius, y: radius)
+        let centerRight = CGPoint(x: width - radius, y: radius)
+        
+        let path = UIBezierPath()
+        path.move(to: .init(x: radius, y: height))
+        path.addArc(withCenter: centerLeft, radius: radius, startAngle: .pi/2, endAngle: .pi * 1.5, clockwise: true)
+        path.addLine(to: CGPoint(x: width - radius, y: 0.0))
+        path.addArc(withCenter: centerRight, radius: radius, startAngle: .pi * 1.5, endAngle: .pi/2, clockwise: true)
+        path.close()
+        
+        return path
     }
 }
