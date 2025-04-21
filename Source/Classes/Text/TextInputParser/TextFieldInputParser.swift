@@ -11,15 +11,15 @@ public struct TextFieldInputParser {
     
     /// 文本处理类型
     /// 该属性的优先级比 ``shouldChangeCharactersHandler`` 低
-    var kind: TextInputKind = .default
+    public var kind: TextInputKind = .default
     
     /// 判断是否允许输入，完全把输入的控制交由外部。
     /// 当该 closure 有效时，``kind`` 属性不会再生效。
-    var shouldChangeCharactersHandler: ((_ textField: UITextField, _ range: NSRange, _ string: String) -> Bool)?
+    public var shouldChangeCharactersHandler: ((_ textField: UITextField, _ range: NSRange, _ string: String) -> Bool)?
     
-    init() {}
+    public init() {}
     
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+    public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         // Prvents keyboard new line.
         if string == "\n\u{07}" || string == "\n" {
             return false
