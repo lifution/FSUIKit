@@ -17,7 +17,10 @@ public struct TextFieldInputParser {
     /// 当该 closure 有效时，``kind`` 属性不会再生效。
     public var shouldChangeCharactersHandler: ((_ textField: UITextField, _ range: NSRange, _ string: String) -> Bool)?
     
-    public init() {}
+    public init(kind: TextInputKind = .default, shouldChangeCharactersHandler: ((_ textField: UITextField, _ range: NSRange, _ string: String) -> Bool)? = nil) {
+        self.kind = kind
+        self.shouldChangeCharactersHandler = shouldChangeCharactersHandler
+    }
     
     public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         // Prvents keyboard new line.
