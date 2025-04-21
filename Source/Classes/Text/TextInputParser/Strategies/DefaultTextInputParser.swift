@@ -8,23 +8,23 @@
 import UIKit
 import Foundation
 
-struct DefaultTextInputParser: TextInputParsable {
+public struct DefaultTextInputParser: TextInputParsable {
     
-    typealias ValueType = String
+    public typealias ValueType = String
     
     /// 是否允许输入 emoji，默认为 false。
-    var allowsEmoji = false
+    public var allowsEmoji = false
     
-    init() {}
+    public init() {}
     
-    func text(_ text: String, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+    public func text(_ text: String, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if !allowsEmoji, string.fs.containsEmoji {
             return false
         }
         return true
     }
     
-    func formatting(_ text: String) -> String {
+    public func formatting(_ text: String) -> String {
         var text = text
         if !allowsEmoji {
             text = text.fs.nonEmojiString
@@ -32,7 +32,7 @@ struct DefaultTextInputParser: TextInputParsable {
         return text.trimmingCharacters(in: .whitespacesAndNewlines)
     }
     
-    func value(for text: String) -> String {
+    public func value(for text: String) -> String {
         return formatting(text)
     }
 }

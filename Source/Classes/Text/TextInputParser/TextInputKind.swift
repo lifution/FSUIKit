@@ -8,7 +8,7 @@
 import UIKit
 import Foundation
 
-enum TextInputKind {
+public enum TextInputKind {
     
     /// 默认
     case `default`
@@ -34,7 +34,7 @@ enum TextInputKind {
     /// 密码，只能输入`0-9 a-z A-Z @ . & _`这些字符
     case password
     
-    var keyboardType: UIKeyboardType {
+    public var keyboardType: UIKeyboardType {
         switch self {
         case .integer:
             return .numberPad
@@ -49,7 +49,7 @@ enum TextInputKind {
         }
     }
     
-    var parser: any TextInputParsable {
+    public var parser: any TextInputParsable {
         switch self {
         case .default:
             return DefaultTextInputParser()

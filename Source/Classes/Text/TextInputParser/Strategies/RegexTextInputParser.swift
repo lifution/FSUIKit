@@ -8,22 +8,22 @@
 import UIKit
 import Foundation
 
-struct RegexTextInputParser: TextInputParsable {
+public struct RegexTextInputParser: TextInputParsable {
     
-    typealias ValueType = String
+    public typealias ValueType = String
     
-    var regex: String
+    public var regex: String
     
-    init(regex: String) {
+    public init(regex: String) {
         self.regex = regex
     }
     
-    func text(_ text: String, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+    public func text(_ text: String, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let predicate = NSPredicate(format: "SELF MATCHES %@", regex)
         return predicate.evaluate(with: string)
     }
     
-    func formatting(_ text: String) -> String {
+    public func formatting(_ text: String) -> String {
         let predicate = NSPredicate(format: "SELF MATCHES %@", regex)
         guard predicate.evaluate(with: text) else {
             return ""
@@ -31,7 +31,7 @@ struct RegexTextInputParser: TextInputParsable {
         return text
     }
     
-    func value(for text: String) -> String {
+    public func value(for text: String) -> String {
         return formatting(text)
     }
 }

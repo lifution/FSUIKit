@@ -7,19 +7,22 @@
 
 import UIKit
 
-struct TextViewInputParser {
+public struct TextViewInputParser {
     
     /// 文本处理类型
     /// 该属性的优先级比 ``shouldChangeCharactersHandler`` 低
-    var kind: TextInputKind = .default
+    public var kind: TextInputKind = .default
     
     /// 判断是否允许输入，完全把输入的控制交由外部。
     /// 当该 closure 有效时，``kind`` 属性不会再生效。
-    var shouldChangeCharactersHandler: ((_ textView: UITextView, _ range: NSRange, _ string: String) -> Bool)?
+    public var shouldChangeCharactersHandler: ((_ textView: UITextView, _ range: NSRange, _ string: String) -> Bool)?
     
-    init() {}
+    public init(kind: TextInputKind = .default, shouldChangeCharactersHandler: ((_ textView: UITextView, _ range: NSRange, _ string: String) -> Bool)? = nil) {
+        self.kind = kind
+        self.shouldChangeCharactersHandler = shouldChangeCharactersHandler
+    }
     
-    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+    public func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         if let handler = shouldChangeCharactersHandler {
             return handler(textView, range, text)
         } else if !text.isEmpty {

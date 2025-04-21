@@ -8,7 +8,7 @@
 import UIKit
 import Foundation
 
-protocol TextInputParsable {
+public protocol TextInputParsable {
     associatedtype ValueType
     /// 判断是否应该插入新字符
     func text(_ text: String, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool

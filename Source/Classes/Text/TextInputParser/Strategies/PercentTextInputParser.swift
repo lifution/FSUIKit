@@ -8,13 +8,13 @@
 import UIKit
 import Foundation
 
-struct PercentTextInputParser: TextInputParsable {
+public struct PercentTextInputParser: TextInputParsable {
     
-    typealias ValueType = Decimal
+    public typealias ValueType = Decimal
     
-    init() {}
+    public init() {}
     
-    func text(_ text: String, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+    public func text(_ text: String, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let predicate = NSPredicate(format: "SELF MATCHES %@", "[0-9.]+")
         guard predicate.evaluate(with: string) else {
             return false
@@ -49,7 +49,7 @@ struct PercentTextInputParser: TextInputParsable {
         return false
     }
     
-    func formatting(_ text: String) -> String {
+    public func formatting(_ text: String) -> String {
         guard let value = Double(text), value >= 0, value <= 100 else {
             return "0"
         }
@@ -60,7 +60,7 @@ struct PercentTextInputParser: TextInputParsable {
         return formatter.string(from: Decimal(value) as NSDecimalNumber) ?? "0"
     }
     
-    func value(for text: String) -> Decimal {
+    public func value(for text: String) -> Decimal {
         let text = formatting(text)
         guard let value = Double(text) else {
             return 0.0

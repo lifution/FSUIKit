@@ -7,7 +7,7 @@
 
 import UIKit
 
-struct TextFieldInputParser {
+public struct TextFieldInputParser {
     
     /// 文本处理类型
     /// 该属性的优先级比 ``shouldChangeCharactersHandler`` 低

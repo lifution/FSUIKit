@@ -8,17 +8,17 @@
 import UIKit
 import Foundation
 
-struct DecimalTextInputParser: TextInputParsable {
+public struct DecimalTextInputParser: TextInputParsable {
     
-    typealias ValueType = Decimal
+    public typealias ValueType = Decimal
     
-    var maximumFractionDigits: Int
+    public var maximumFractionDigits: Int
     
-    init(maximumFractionDigits: Int = 2) {
+    public init(maximumFractionDigits: Int = 2) {
         self.maximumFractionDigits = maximumFractionDigits
     }
     
-    func text(_ text: String, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+    public func text(_ text: String, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let predicate = NSPredicate(format: "SELF MATCHES %@", "[0-9.]+")
         guard predicate.evaluate(with: string) else {
             return false
@@ -45,7 +45,7 @@ struct DecimalTextInputParser: TextInputParsable {
         return true
     }
     
-    func formatting(_ text: String) -> String {
+    public func formatting(_ text: String) -> String {
         guard let value = Double(text) else {
             return "0"
         }
@@ -57,7 +57,7 @@ struct DecimalTextInputParser: TextInputParsable {
         return formatter.string(from: Decimal(value) as NSDecimalNumber) ?? "0"
     }
     
-    func value(for text: String) -> Decimal {
+    public func value(for text: String) -> Decimal {
         let text = formatting(text)
         guard let value = Double(text) else {
             return 0.0
