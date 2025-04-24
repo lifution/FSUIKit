@@ -11,11 +11,19 @@ open class FSAnimatableView: FSView {
     
     public private(set) var isAnimating = false
     
+    ///
+    /// 当动画停止时是否自动隐藏视图，默认为 true
+    ///
+    open var hidesWhenStopped = true
+    
     open override var isHidden: Bool {
-        get { return super.isHidden }
-        set {
-            super.isHidden = newValue
-            if newValue {
+        didSet {
+            // 如果是因为 hidesWhenStopped 导致的隐藏，不处理动画
+            if isHidden, hidesWhenStopped, !isAnimating {
+                return
+            }
+            
+            if isHidden {
                 if isAnimating {
                     p_removeAnimation()
                 }
@@ -53,6 +61,9 @@ open class FSAnimatableView: FSView {
             return
         }
         isAnimating = true
+        if hidesWhenStopped, isHidden {
+            isHidden = false
+        }
         if window == nil || isHidden {
             // 还未显示，只是标记，暂时未开始动画
             return
@@ -63,6 +74,9 @@ open class FSAnimatableView: FSView {
     public final func stopAnimating() {
         isAnimating = false
         p_removeAnimation()
+        if hidesWhenStopped {
+            isHidden = true
+        }
     }
     
     private func p_addAnimation() {
