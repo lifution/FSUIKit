@@ -8,11 +8,17 @@
 
 import UIKit
 
-@MainActor
+/// 文件缓存管理类
+///
+/// - Note:
+///     * 该类仅适用于**同磁盘**下的操作，**夸磁盘**操作不建议使用该类。
+///     * 该类仅适用于小量的操作，如果操作量特别大，比如成千上万，那么也不建议使用该类。
+///     * 建议外部在主线程上调用该类的所有方法。
+///
 open class FileCache {
     
     /// 缓存所在路径
-    let path: String
+    public let path: String
     
     /// path: 缓存路径
     /// 外部如果需要自定义路径可在初始化方法中传入对应的 path，
@@ -108,17 +114,19 @@ open class FileCache {
     /// 清除所有缓存文件（仅限当前设定的路径下的缓存文件）
     ///
     open func deleteAll(completion: (() -> Void)? = nil) {
-        do {
-            let manager = FileManager.default
-            let names = try manager.contentsOfDirectory(atPath: path)
-            try names.forEach {
-                let filePath = (path as NSString).appendingPathComponent($0)
-                try manager.removeItem(atPath: filePath)
+        DispatchQueue.fs.asyncOnMainThread {
+            do {
+                let manager = FileManager.default
+                let names = try manager.contentsOfDirectory(atPath: self.path)
+                try names.forEach {
+                    let filePath = (self.path as NSString).appendingPathComponent($0)
+                    try manager.removeItem(atPath: filePath)
+                }
+                completion?()
+            } catch {
+                fs_print("FileCache deleteAll failed: [\(error.localizedDescription)]")
+                completion?()
             }
-            completion?()
-        } catch {
-            fs_print("FileCache deleteAll failed: [\(error.localizedDescription)]")
-            completion?()
         }
     }
     
@@ -130,17 +138,19 @@ open class FileCache {
     ///   - key:        与文件对应的唯一标识符，一般使用文件的下载链接。
     ///   - completion: 缓存结束回调，该 closure 始终会在主线程中回调。
     ///
-    open func saveFile(at location: URL, for key: String, format: String? = nil, completion: (@MainActor (_ path: String?, _ error: Error?) -> Void)?) {
-        guard let filePath = filePath(for: key, format: format) else {
-            let error = NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "Invalid key"])
-            completion?(nil, error)
-            return
-        }
-        do {
-            try FileManager.default.moveItem(atPath: location.path, toPath: filePath)
-            completion?(filePath, nil)
-        } catch {
-            completion?(nil, error)
+    open func saveFile(at location: URL, for key: String, format: String? = nil, completion: ((_ path: String?, _ error: Error?) -> Void)?) {
+        DispatchQueue.fs.asyncOnMainThread {
+            guard let filePath = self.filePath(for: key, format: format) else {
+                let error = NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "Invalid key"])
+                completion?(nil, error)
+                return
+            }
+            do {
+                try FileManager.default.moveItem(atPath: location.path, toPath: filePath)
+                completion?(filePath, nil)
+            } catch {
+                completion?(nil, error)
+            }
         }
     }
 }

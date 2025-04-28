@@ -13,7 +13,11 @@ public typealias FileDownloaderCompletion = (_ path: String?, _ error: Error?) -
 // 错误上报处理器
 public typealias FileDownloaderErrorReporter = (_ error: FileDownloaderError, _ url: String, _ debugInfo: [String: Any]) -> Void
 
-@MainActor
+/// 文件下载类
+///
+/// - Note:
+///     * 该类不能配置带宽、并发数量限制等参数，如需配置这些参数，则不适合使用该类。
+///
 open class FileDownloader: NSObject {
     
     public let cache: FileCache
@@ -92,6 +96,31 @@ open class FileDownloader: NSObject {
         progress: FileDownloaderProgress? = nil,
         completion: FileDownloaderCompletion? = nil
     ) {
+        DispatchQueue.fs.asyncOnMainThread {
+            self.p_download(url: url, format: format, progress: progress, completion: completion)
+        }
+    }
+    
+    open func cancelMission(for url: String) {
+        cleanupTask(of: url)
+    }
+    
+    open func cancelAll() {
+        DispatchQueue.fs.asyncOnMainThread {
+            let urls = self.downloadTasks.keys
+            urls.forEach { self.cleanupTask(of: $0) }
+        }
+    }
+}
+
+private extension FileDownloader {
+    
+    func p_download(
+        url: String,
+        format: String? = nil,
+        progress: FileDownloaderProgress? = nil,
+        completion: FileDownloaderCompletion? = nil
+    ) {
         guard let downloadURL = URL(string: url) else {
             let error = FileDownloaderError.invalidURL
             report(error: error, url: url)
@@ -119,20 +148,20 @@ open class FileDownloader: NSObject {
         // 开始下载
         let task = session.downloadTask(with: downloadURL) { [weak self] (location, response, error) in
             guard let self else { return }
-            DispatchQueue.main.async {
-                if let location = location {
-                    // 下载成功，转移到指定的缓存文件夹。
-                    self.cache.saveFile(at: location, for: url, format: format) { path, error in
-                        if let error {
-                            let finalError = FileDownloaderError.saveFailed(error)
-                            self.report(error: finalError, url: url)
-                            self.completionHandlers[url]?.forEach { $0(path, finalError) }
-                        } else {
-                            self.completionHandlers[url]?.forEach { $0(path, nil) }
-                        }
-                        self.cleanupTask(of: url)
+            if let location = location {
+                // 下载成功，转移到指定的缓存文件夹。
+                self.cache.saveFile(at: location, for: url, format: format) { path, error in
+                    if let error {
+                        let finalError = FileDownloaderError.saveFailed(error)
+                        self.report(error: finalError, url: url)
+                        self.completionHandlers[url]?.forEach { $0(path, finalError) }
+                    } else {
+                        self.completionHandlers[url]?.forEach { $0(path, nil) }
                     }
-                } else {
+                    self.cleanupTask(of: url)
+                }
+            } else {
+                DispatchQueue.main.async {
                     let finalError = error.map { FileDownloaderError.downloadFailed($0) } ?? FileDownloaderError.unknown
                     self.report(error: finalError, url: url)
                     self.completionHandlers[url]?.forEach { $0(nil, finalError) }
@@ -153,53 +182,51 @@ open class FileDownloader: NSObject {
         task.resume()
     }
     
-    open func cancelMission(for url: String) {
-        cleanupTask(of: url)
-    }
-    
-    open func cancelAll() {
-        let urls = downloadTasks.keys
-        urls.forEach { cleanupTask(of: $0) }
-    }
-}
-
-private extension FileDownloader {
-    
     func cleanupTask(of url: String) {
-        stopObservingProgress(for: url)
-        downloadTasks[url]?.cancel()
-        downloadTasks.removeValue(forKey: url)
-        progressHandlers.removeValue(forKey: url)
-        completionHandlers.removeValue(forKey: url)
+        DispatchQueue.fs.asyncOnMainThread {
+            self.stopObservingProgress(for: url)
+            self.downloadTasks[url]?.cancel()
+            self.downloadTasks.removeValue(forKey: url)
+            self.progressHandlers.removeValue(forKey: url)
+            self.completionHandlers.removeValue(forKey: url)
+        }
     }
     
     func startObservingProgress(for url: String) {
-        stopObservingProgress(for: url)
-        guard let task = downloadTasks[url] else {
-            return
+        DispatchQueue.fs.asyncOnMainThread {
+            self.stopObservingProgress(for: url)
+            guard let task = self.downloadTasks[url] else {
+                return
+            }
+            task.addObserver(self, forKeyPath: self.progressKeypath, options: [.initial, .new], context: nil)
         }
-        task.addObserver(self, forKeyPath: progressKeypath, options: [.initial, .new], context: nil)
     }
     
     func stopObservingProgress(for url: String) {
-        guard
-            let task = downloadTasks[url],
-            let _ = task.observationInfo
-        else {
-            return
+        DispatchQueue.fs.asyncOnMainThread {
+            guard
+                let task = self.downloadTasks[url],
+                let _ = task.observationInfo
+            else {
+                return
+            }
+            task.removeObserver(self, forKeyPath: self.progressKeypath)
         }
-        task.removeObserver(self, forKeyPath: progressKeypath)
     }
     
     // 错误上报方法
     func report(error: FileDownloaderError, url: String) {
-        guard let reporter = errorReporter else { return }
-        
-        var debugInfo: [String: Any] = error.debugInfo
-        debugInfo["url"] = url
-        debugInfo["device_model"] = UIDevice.current.model
-        debugInfo["system_version"] = UIDevice.current.systemVersion
-        
-        reporter(error, url, debugInfo)
+        DispatchQueue.fs.asyncOnMainThread {
+            guard let reporter = self.errorReporter else {
+                return
+            }
+            
+            var debugInfo: [String: Any] = error.debugInfo
+            debugInfo["url"] = url
+            debugInfo["device_model"] = UIDevice.current.model
+            debugInfo["system_version"] = UIDevice.current.systemVersion
+            
+            reporter(error, url, debugInfo)
+        }
     }
 }
