@@ -13,6 +13,7 @@ public typealias FileDownloaderCompletion = (_ path: String?, _ error: Error?) -
 // 错误上报处理器
 public typealias FileDownloaderErrorReporter = (_ error: FileDownloaderError, _ url: String, _ debugInfo: [String: Any]) -> Void
 
+@MainActor
 open class FileDownloader: NSObject {
     
     public let cache: FileCache
@@ -118,24 +119,24 @@ open class FileDownloader: NSObject {
         // 开始下载
         let task = session.downloadTask(with: downloadURL) { [weak self] (location, response, error) in
             guard let self else { return }
-            if let location = location {
-                // 下载成功，转移到指定的缓存文件夹。
-                self.cache.saveFile(at: location, for: url, format: format) { path, error in
-                    if let error {
-                        let finalError = FileDownloaderError.saveFailed(error)
-                        self.report(error: finalError, url: url)
-                        self.completionHandlers[url]?.forEach { $0(path, finalError) }
-                    } else {
-                        self.completionHandlers[url]?.forEach { $0(path, nil) }
+            DispatchQueue.main.async {
+                if let location = location {
+                    // 下载成功，转移到指定的缓存文件夹。
+                    self.cache.saveFile(at: location, for: url, format: format) { path, error in
+                        if let error {
+                            let finalError = FileDownloaderError.saveFailed(error)
+                            self.report(error: finalError, url: url)
+                            self.completionHandlers[url]?.forEach { $0(path, finalError) }
+                        } else {
+                            self.completionHandlers[url]?.forEach { $0(path, nil) }
+                        }
+                        self.cleanupTask(of: url)
                     }
-                    self.cleanupTask(for: url)
-                }
-            } else {
-                DispatchQueue.main.async {
+                } else {
                     let finalError = error.map { FileDownloaderError.downloadFailed($0) } ?? FileDownloaderError.unknown
                     self.report(error: finalError, url: url)
                     self.completionHandlers[url]?.forEach { $0(nil, finalError) }
-                    self.cleanupTask(for: url)
+                    self.cleanupTask(of: url)
                 }
             }
         }
@@ -153,18 +154,18 @@ open class FileDownloader: NSObject {
     }
     
     open func cancelMission(for url: String) {
-        cleanupTask(for: url)
+        cleanupTask(of: url)
     }
     
     open func cancelAll() {
         let urls = downloadTasks.keys
-        urls.forEach { cleanupTask(for: $0) }
+        urls.forEach { cleanupTask(of: $0) }
     }
 }
 
 private extension FileDownloader {
     
-    func cleanupTask(for url: String) {
+    func cleanupTask(of url: String) {
         stopObservingProgress(for: url)
         downloadTasks[url]?.cancel()
         downloadTasks.removeValue(forKey: url)
@@ -177,16 +178,17 @@ private extension FileDownloader {
         guard let task = downloadTasks[url] else {
             return
         }
-        task.addObserver(self, forKeyPath: progressKeypath, options: [.new], context: nil)
+        task.addObserver(self, forKeyPath: progressKeypath, options: [.initial, .new], context: nil)
     }
     
     func stopObservingProgress(for url: String) {
-        guard let task = downloadTasks[url] else {
+        guard
+            let task = downloadTasks[url],
+            let _ = task.observationInfo
+        else {
             return
         }
-        if let _ = task.observationInfo {
-            task.removeObserver(self, forKeyPath: progressKeypath)
-        }
+        task.removeObserver(self, forKeyPath: progressKeypath)
     }
     
     // 错误上报方法

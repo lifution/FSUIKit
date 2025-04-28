@@ -8,6 +8,7 @@
 
 import UIKit
 
+@MainActor
 open class FileCache {
     
     /// 缓存所在路径
@@ -105,7 +106,7 @@ open class FileCache {
     }
     
     /// 清除所有缓存文件（仅限当前设定的路径下的缓存文件）
-    /// - Note: 删除操作暂时不放在异步线程，后续待考察。
+    ///
     open func deleteAll(completion: (() -> Void)? = nil) {
         do {
             let manager = FileManager.default
@@ -114,14 +115,10 @@ open class FileCache {
                 let filePath = (path as NSString).appendingPathComponent($0)
                 try manager.removeItem(atPath: filePath)
             }
-            DispatchQueue.fs.asyncOnMainThread {
-                completion?()
-            }
+            completion?()
         } catch {
             fs_print("FileCache deleteAll failed: [\(error.localizedDescription)]")
-            DispatchQueue.fs.asyncOnMainThread {
-                completion?()
-            }
+            completion?()
         }
     }
     
@@ -133,23 +130,17 @@ open class FileCache {
     ///   - key:        与文件对应的唯一标识符，一般使用文件的下载链接。
     ///   - completion: 缓存结束回调，该 closure 始终会在主线程中回调。
     ///
-    open func saveFile(at location: URL, for key: String, format: String? = nil, completion: ((_ path: String?, _ error: Error?) -> Void)?) {
+    open func saveFile(at location: URL, for key: String, format: String? = nil, completion: (@MainActor (_ path: String?, _ error: Error?) -> Void)?) {
         guard let filePath = filePath(for: key, format: format) else {
             let error = NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "Invalid key"])
-            DispatchQueue.fs.asyncOnMainThread {
-                completion?(nil, error)
-            }
+            completion?(nil, error)
             return
         }
         do {
             try FileManager.default.moveItem(atPath: location.path, toPath: filePath)
-            DispatchQueue.fs.asyncOnMainThread {
-                completion?(filePath, nil)
-            }
+            completion?(filePath, nil)
         } catch {
-            DispatchQueue.fs.asyncOnMainThread {
-                completion?(nil, error)
-            }
+            completion?(nil, error)
         }
     }
 }
