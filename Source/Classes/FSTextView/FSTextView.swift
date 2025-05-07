@@ -19,9 +19,9 @@ import UIKit
 /// 5. 修正系统 UITextView 在输入时自然换行的时候，contentOffset 的滚动位置没有考虑 textContainerInset.bottom。
 ///
 /// - Note:
-/// * FSTextView 内部已经实现了 delegate，外部设置 ``delegate`` 不会影响内部的代码运行。
+///   - FSTextView 内部已经实现了 delegate，外部设置 ``delegate`` 不会影响内部的代码运行。
 ///
-open class FSTextView: _TempTextView {
+open class FSTextView: _FSTempTextView {
     
     // MARK: Properties/Public
     
@@ -848,7 +848,7 @@ private class _FSTextViewDelegator: NSObject, FSTextViewDelegate {
 }
 
 /// Can not use.
-open class _TempTextView: UITextView {
+open class _FSTempTextView: UITextView {
     
     @available(*, unavailable)
     open weak override var delegate: (any UITextViewDelegate)? {

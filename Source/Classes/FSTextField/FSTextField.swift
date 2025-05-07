@@ -18,7 +18,7 @@ import ObjectiveC
 /// 3. 支持限制输入的文字的长度。
 /// 4. 修复 iOS 10 之后 UITextField 输入中文超过文本框宽度后再删除，文字往下掉的 bug。
 ///
-open class FSTextField: _TempTextField {
+open class FSTextField: _FSTempTextField {
     
     // MARK: Properties/Override
     
@@ -427,7 +427,7 @@ private final class _FSTextFieldDelegator: NSObject, FSTextFieldDelegate, UIScro
 }
 
 /// Can not use.
-open class _TempTextField: UITextField {
+open class _FSTempTextField: UITextField {
     
     @available(*, unavailable)
     weak open override var delegate: (any UITextFieldDelegate)? {
