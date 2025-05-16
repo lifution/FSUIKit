@@ -112,15 +112,15 @@ open class FSViewController: UIViewController {
     }
     
     /// 默认的 reload empty 会回调该方法。
-    @objc dynamic open func emptyReload() {
+    @objc dynamic open func loadDataOnEmptyState() {
         
     }
     
-    @objc dynamic open func setContents(hidden isHidden: Bool) {
-        contentViews().forEach { $0.isHidden = isHidden }
+    @objc dynamic open func setViewsHiddenDuringEmptyLoading(_ isHidden: Bool) {
+        hiddenViewsDuringEmptyLoading().forEach { $0.isHidden = isHidden }
     }
     
-    @objc dynamic open func contentViews() -> [UIView] {
+    @objc dynamic open func hiddenViewsDuringEmptyLoading() -> [UIView] {
         return []
     }
 }
