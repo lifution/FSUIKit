@@ -16,7 +16,7 @@ open class FSGradientLabel: UIView {
         get { return textLabel.text }
         set {
             textLabel.text = newValue
-            textLabel.sizeToFit()
+            plainColorTextLabel.text = newValue
             invalidateIntrinsicContentSize()
             setNeedsUpdateConstraints()
         }
@@ -26,7 +26,7 @@ open class FSGradientLabel: UIView {
         get { return textLabel.font }
         set {
             textLabel.font = newValue ?? .systemFont(ofSize: 17.0)
-            textLabel.sizeToFit()
+            plainColorTextLabel.font = newValue ?? .systemFont(ofSize: 17.0)
             invalidateIntrinsicContentSize()
             setNeedsUpdateConstraints()
         }
@@ -36,7 +36,10 @@ open class FSGradientLabel: UIView {
      * stop. Defaults to nil. Animatable. */
     open var colors: [UIColor]? {
         get { return gradientView.colors }
-        set { gradientView.colors = newValue }
+        set {
+            gradientView.colors = newValue
+            didUpdateColors()
+        }
     }
     
     /* An optional array of NSNumber objects defining the location of each
@@ -78,6 +81,7 @@ open class FSGradientLabel: UIView {
     // MARK: Properties/Private
     
     private let textLabel = UILabel()
+    private let plainColorTextLabel = UILabel()
     
     private let gradientView = FSGradientView()
     
@@ -95,19 +99,29 @@ open class FSGradientLabel: UIView {
     
     // MARK: Override
     
+    open override func layoutSubviews() {
+        super.layoutSubviews()
+        let rect = CGRect(origin: .zero, size: frame.size)
+        gradientView.frame = rect
+        textLabel.frame = rect
+        plainColorTextLabel.frame = rect
+    }
+    
     open override func sizeToFit() {
         var frame = self.frame
-        frame.size = sizeThatFits(.init(width: CGFloat.greatestFiniteMagnitude,
-                                        height: CGFloat.greatestFiniteMagnitude))
+        frame.size = sizeThatFits(.init(
+            width: CGFloat.greatestFiniteMagnitude,
+            height: CGFloat.greatestFiniteMagnitude
+        ))
         self.frame = frame
     }
     
     open override func sizeThatFits(_ size: CGSize) -> CGSize {
-        return textLabel.sizeThatFits(size)
+        return plainColorTextLabel.sizeThatFits(size)
     }
     
     open override var intrinsicContentSize: CGSize {
-        return textLabel.intrinsicContentSize
+        return plainColorTextLabel.intrinsicContentSize
     }
 }
 
@@ -118,13 +132,17 @@ private extension FSGradientLabel {
     /// Invoked after initialization.
     func p_didInitialize() {
         gradientView.mask = textLabel
-        gradientView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(gradientView)
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[gradientView]|",
-                                                      metrics: nil,
-                                                      views: ["gradientView": gradientView]))
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[gradientView]|",
-                                                      metrics: nil,
-                                                      views: ["gradientView": gradientView]))
+        plainColorTextLabel.isHidden = true
+        addSubview(plainColorTextLabel)
+    }
+    
+    func didUpdateColors() {
+        let isPlainColor = (colors?.count ?? 0) <= 1
+        gradientView.isHidden = isPlainColor
+        plainColorTextLabel.isHidden = !isPlainColor
+        if isPlainColor {
+            plainColorTextLabel.textColor = colors?.first ?? .black
+        }
     }
 }

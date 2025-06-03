@@ -31,6 +31,7 @@ class GradientViewController: UIViewController {
         gradientLabel.text = "FSGradientLabel"
         gradientLabel.font = .boldSystemFont(ofSize: 30.0)
         gradientLabel.colors = [.brown, .orange, .green]
+//        gradientLabel.colors = [.green]
         gradientLabel.locations = [0, 0.5, 1.0]
         gradientLabel.startPoint = .init(x: 0, y: 0.5)
         gradientLabel.endPoint = .init(x: 1.0, y: 0.5)
