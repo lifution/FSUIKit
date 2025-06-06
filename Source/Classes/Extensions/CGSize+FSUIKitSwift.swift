@@ -11,6 +11,7 @@ import UIKit
 public extension FSUIKitWrapper where Base == CGSize {
     
     /// Returns a size that is smaller or larger than the source size.
+    ///
     func insetBy(horizontal: CGFloat, vertical: CGFloat) -> CGSize {
         let width = base.width - horizontal
         let height = base.height - vertical
@@ -27,5 +28,9 @@ public extension FSUIKitWrapper where Base == CGSize {
     
     func floorFlatted() -> CGSize {
         return .init(width: FSFloorFlat(base.width), height: FSFloorFlat(base.height))
+    }
+    
+    func removedNaN() -> CGSize {
+        return .init(width: RemoveNaN(base.width), height: RemoveNaN(base.height))
     }
 }

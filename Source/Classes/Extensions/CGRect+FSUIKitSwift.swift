@@ -14,4 +14,13 @@ public extension FSUIKitWrapper where Base == CGRect {
         frame.origin.x = containerWidth - base.minX - base.width
         return frame
     }
+    
+    func removedNaN() -> CGRect {
+        return .init(
+            x: RemoveNaN(base.origin.x),
+            y: RemoveNaN(base.origin.y),
+            width: RemoveNaN(base.width),
+            height: RemoveNaN(base.height)
+        )
+    }
 }
