@@ -56,5 +56,6 @@ extension Decimal: FSUIKitCompatibleValue {}
 extension CGSize: FSUIKitCompatibleValue {}
 extension Character: FSUIKitCompatibleValue {}
 extension URL: FSUIKitCompatibleValue {}
+extension CGPoint: FSUIKitCompatibleValue {}
 
 extension NSObject: FSUIKitCompatible {}
