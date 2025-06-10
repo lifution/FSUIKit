@@ -5,7 +5,7 @@
 //  Created by Sheng on 2024/1/13.
 //  Copyright © 2023 Sheng. All rights reserved.
 //
-//  代码参考于: https://github.com/Tencent/QMUI_iOS
+//  代码参考于: https://github.com/Tencent/QMUI_iOS/blob/master/QMUIKit/QMUIComponents/QMUITextView.m
 
 import UIKit
 
