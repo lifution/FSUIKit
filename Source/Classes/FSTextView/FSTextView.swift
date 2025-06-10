@@ -26,7 +26,7 @@ open class FSTextView: _FSTempTextView {
     // MARK: Properties/Public
     
     /// placeholder 文本。
-    public var placeholder: String? = nil {
+    open var placeholder: String? = nil {
         didSet {
             p_updatePlaceholderStyle()
         }
@@ -38,28 +38,28 @@ open class FSTextView: _FSTempTextView {
     ///   - 该属性比 placeholder 的优先级更高。
     ///   - 设置该属性需要使用者自己配置颜色，FSTextView 内部不会为其配置默认颜色，也不会使用 placeholderColor。
     ///
-    public var attributedPlaceholder: NSAttributedString? = nil {
+    open var attributedPlaceholder: NSAttributedString? = nil {
         didSet {
             p_updatePlaceholderStyle()
         }
     }
     
     /// placeholder 文本颜色。
-    public var placeholderColor: UIColor? {
+    open var placeholderColor: UIColor? {
         didSet {
             p_updatePlaceholderStyle()
         }
     }
     
     /// placeholder 在默认位置上的偏移（默认位置会自动根据 textContainerInset、contentInset 来调整）。
-    public var placeholderMargins: UIEdgeInsets = .zero
+    open var placeholderMargins: UIEdgeInsets = .zero
     
     /// 显示允许输入的最大文字长度，默认为 0，即不限制长度，
-    public var maximumTextCount = 0
+    open var maximumTextCount = 0
     
     /// 最大高度，当设置了这个属性后，超过这个高度值的 frame 是不生效的。默认为 CGFloat.greatestFiniteMagnitude，也即无限制。
     /// 设置为 0 也表示不限制。
-    public var maximumHeight: CGFloat = CGFloat.greatestFiniteMagnitude {
+    open var maximumHeight: CGFloat = CGFloat.greatestFiniteMagnitude {
         didSet {
             if maximumHeight <= 0.0 {
                 maximumHeight = CGFloat.greatestFiniteMagnitude
@@ -76,28 +76,28 @@ open class FSTextView: _FSTempTextView {
     ///
     /// - Note: 系统的 UITextView 对这种行为默认是 false。
     ///
-    public var shouldResponseToProgrammaticallyTextChanges = true
+    open var shouldResponseToProgrammaticallyTextChanges = true
     
     /// 在使用 maximumTextCount 功能的时候，是否把文字长度按照「中文 2 个字符、英文 1 个字符」的方式来计算。
     /// 默认为 false。
-    public var shouldCountingNonASCIICharacterAsTwo: Bool = false
+    open var shouldCountingNonASCIICharacterAsTwo: Bool = false
     
     /// 高度更新回调，外部可实现该 closure 监听，也可实现 FSTextViewDelegate 监听。
-    public var heightDidChangeHandler: ((_ newHeight: CGFloat) -> Void)?
+    open var heightDidChangeHandler: ((_ newHeight: CGFloat) -> Void)?
     
     /// 达到最大限制数量时的回调，外部可实现该 closure 监听，也可实现 FSTextViewDelegate 监听。
-    public var onDidHitMaximumTextCountHandler: ((_ textView: FSTextView) -> Void)?
+    open var onDidHitMaximumTextCountHandler: ((_ textView: FSTextView) -> Void)?
     
     /// 控制输入框是否要出现「粘贴」menu。
     ///
     /// superReturnValue: `super.canPerformAction(:withSender:)` 的返回值，当你不需要控制这个 closure 的返回值时，可以返回 superReturnValue。
     /// closure return: 控制是否要出现「粘贴」menu，true 表示出现，false 表示不出现。当你想要返回系统默认的结果时，请返回参数 superReturnValue。
-    public var canPerformPasteActionHandler: ((_ sender: Any?, _ superReturnValue: Bool) -> Bool)?
+    open var canPerformPasteActionHandler: ((_ sender: Any?, _ superReturnValue: Bool) -> Bool)?
     
     /// 当输入框的「粘贴」事件被触发时，可通过这个 block 去接管事件的响应。
     /// sender: 「粘贴」事件触发的来源，例如可能是一个 UIMenuController。
     /// closure return: 用于控制是否要调用系统默认的 `paste(:)` 实现，true 表示执行完 closure 后继续调用系统默认实现，false 表示执行完 closure 后就结束了，不调用 super。
-    public var pasteActionHandler: ((_ sender: Any?) -> Bool)?
+    open var pasteActionHandler: ((_ sender: Any?) -> Bool)?
     
     /// 当 `text` / `attributedText` 改变时，会调用该解析器去修改输入框内的文本内容。
     /// 比如需要高亮部分内容，或者插入表情，就可以在解析器相应的协议方法中处理。
@@ -105,7 +105,7 @@ open class FSTextView: _FSTempTextView {
     public var textParser: FSTextViewTextParseable?
     
     /// 纯文本，外部可读取该字段获取输入框内容的纯文本内容。
-    public var plainText: String {
+    open var plainText: String {
         var text = ""
         if let parser = textParser, let string = parser.plainText(of: attributedText, for: .init(location: 0, length: attributedText.length)) {
             text = string
@@ -158,7 +158,7 @@ open class FSTextView: _FSTempTextView {
     // MARK: Open
     
     /// 当 viewSize 更改后会回调该方法。
-    @objc dynamic open func viewSizeDidChange() {
+    dynamic open func viewSizeDidChange() {
         
     }
 }
@@ -369,6 +369,9 @@ extension FSTextView {
             var labelSize = placeholderLabel.sizeThatFits(.init(width: limitWidth, height: limitHeight))
             labelSize.height = min(limitHeight, labelSize.height)
             placeholderLabel.frame = CGRect.fs.flatRect(x: labelMargins.left, y: labelMargins.top, width: limitWidth, height: labelSize.height)
+            if semanticContentAttribute == .forceRightToLeft {
+                placeholderLabel.frame =  placeholderLabel.frame.fs.mirrorsForRTLLanguage(with: frame.width)
+            }
         }
         do {
             if viewSize != frame.size {
@@ -445,6 +448,11 @@ private extension FSTextView {
         } else {
             var attributes = typingAttributes
             attributes[.foregroundColor] = placeholderColor ?? placeholderDefaultColor
+            if semanticContentAttribute == .forceRightToLeft {
+                let style = NSMutableParagraphStyle()
+                style.alignment = .right
+                attributes[.paragraphStyle] = style
+            }
             placeholderLabel.attributedText = NSAttributedString(string: placeholder ?? "", attributes: attributes)
         }
         setNeedsLayout()
