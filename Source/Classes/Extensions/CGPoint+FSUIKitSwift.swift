@@ -28,6 +28,6 @@ public extension FSUIKitWrapper where Base == CGPoint {
     }
     
     func removedNaN() -> CGPoint {
-        return .init(x: RemoveNaN(base.x), y: RemoveNaN(base.y))
+        return .init(x: removeNaN(base.x), y: removeNaN(base.y))
     }
 }

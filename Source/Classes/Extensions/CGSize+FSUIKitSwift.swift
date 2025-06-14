@@ -23,14 +23,27 @@ public extension FSUIKitWrapper where Base == CGSize {
     }
     
     func flatted() -> CGSize {
-        return .init(width: FSFlat(base.width), height: FSFlat(base.height))
+        return .init(width: flat(base.width), height: flat(base.height))
     }
     
     func floorFlatted() -> CGSize {
-        return .init(width: FSFloorFlat(base.width), height: FSFloorFlat(base.height))
+        return .init(width: floorFlat(base.width), height: floorFlat(base.height))
     }
     
     func removedNaN() -> CGSize {
-        return .init(width: RemoveNaN(base.width), height: RemoveNaN(base.height))
+        return .init(width: removeNaN(base.width), height: removeNaN(base.height))
+    }
+    
+    /// 比较当前 CGSize 实例与另一个 CGSize 实例在「误差范围」内是否相等。
+    ///
+    /// - Parameters:
+    ///   - other: 另一个要比较的 CGSize 实例
+    ///   - tolerance: 误差范围
+    /// - Returns: 在误差范围内相等则返回 true，否则返回 false.
+    ///
+    func isEqual(to other: CGSize, tolerance: CGFloat) -> Bool {
+        let width = abs(base.width - other.width)
+        let height = abs(base.height - other.height)
+        return width <= tolerance && height <= tolerance
     }
 }

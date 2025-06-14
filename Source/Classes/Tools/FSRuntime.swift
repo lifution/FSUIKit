@@ -18,7 +18,7 @@ import Foundation
 /// 该方法一般用于特定的场景，字符串为 empty 或 nil 都是表达一样的意思。
 ///
 @inline(__always)
-@available(*, deprecated, message: "Use isStringEqualIgnoringEmpty instead")
+@available(*, deprecated, renamed: "isStringEqualIgnoringEmpty", message: "Use isStringEqualIgnoringEmpty instead")
 public func fs_isStringEqualIgnoringEmpty(_ lhs: String?, _ rhs: String?) -> Bool {
     if let l = lhs, l.isEmpty, rhs == nil {
         return true
@@ -39,7 +39,7 @@ public func fs_isStringEqualIgnoringEmpty(_ lhs: String?, _ rhs: String?) -> Boo
 /// 3. 如果一个为 nil，另一个为 empty 则同样返回 false
 ///
 @inline(__always)
-@available(*, deprecated, message: "Use isStringValueEqual instead")
+@available(*, deprecated, renamed: "isStringValueEqual", message: "Use isStringValueEqual instead")
 public func fs_isStringValueEqual(_ lhs: String?, _ rhs: String?) -> Bool {
     // 只有当 userId 非空时才比较
     let lhsValid = lhs?.isEmpty == false  // 确保 lhs 非空
@@ -55,7 +55,7 @@ public func fs_isStringValueEqual(_ lhs: String?, _ rhs: String?) -> Bool {
 /// 例如传进来 "2.1"，在 2x 倍数下会返回 2.5（0.5pt 对应 1px），在 3x 倍数下会返回 2.333（0.333pt 对应 1px）。
 ///
 @inline(__always)
-@available(*, deprecated, message: "Use flat instead")
+@available(*, deprecated, renamed: "flat", message: "Use flat instead")
 public func FSFlat<T: FloatingPoint>(_ x: T) -> T {
     var x = removeNaN(x)
     guard
@@ -75,7 +75,7 @@ public func FSFlat<T: FloatingPoint>(_ x: T) -> T {
 /// 例如传进来 "2.6"，在 2x 倍数下会返回 2.5（0.5pt 对应 1px），在 3x 倍数下会返回 2.333（0.333pt 对应 1px）。
 ///
 @inline(__always)
-@available(*, deprecated, message: "Use floorFlat instead")
+@available(*, deprecated, renamed: "floorFlat", message: "Use floorFlat instead")
 public func FSFloorFlat<T: FloatingPoint>(_ x: T) -> T {
     var x = removeNaN(x)
     guard

@@ -303,7 +303,7 @@ private class _ToastHelper: FSKeyboardListener {
         let keyboardFrame = manager.keyboardFrame
         let toastFrameInWindow = toastView.superview?.convert(toastView.frame, to: window) ?? .zero
         let toastOriginalMaxY = toastFrameInWindow.maxY - (centerYConstraint?.constant ?? 0.0)
-        let spacing = RemoveNaN(toastOriginalMaxY - keyboardFrame.minY)
+        let spacing = removeNaN(toastOriginalMaxY - keyboardFrame.minY)
         if spacing <= -20.0 {
             return
         }
