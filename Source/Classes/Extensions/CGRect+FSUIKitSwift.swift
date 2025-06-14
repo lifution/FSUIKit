@@ -32,10 +32,8 @@ public extension FSUIKitWrapper where Base == CGRect {
     /// - Returns: 在误差范围内相等则返回 true，否则返回 false.
     ///
     func isEqual(to other: CGRect, tolerance: CGFloat) -> Bool {
-        let x = abs(base.origin.x - other.origin.x)
-        let y = abs(base.origin.y - other.origin.y)
-        let width = abs(base.size.width - other.size.width)
-        let height = abs(base.size.height - other.size.height)
-        return x <= tolerance && y <= tolerance && width <= tolerance && height <= tolerance
+        let isOriginEqual = base.origin.fs.isEqual(to: other.origin, tolerance: tolerance)
+        let isSizeEqual = base.size.fs.isEqual(to: other.size, tolerance: tolerance)
+        return isOriginEqual && isSizeEqual
     }
 }
