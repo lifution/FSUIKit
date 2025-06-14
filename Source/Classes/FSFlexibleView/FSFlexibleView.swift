@@ -43,7 +43,7 @@ open class FSFlexibleView: UIView {
     public private(set) var visibleCells = [FSFlexibleCell]()
     
     /// 选中某个 cell 的回调。
-    public final var onDidSelect: ((_ item: FSFlexibleItem, _ index: Int) -> Void)?
+    public final var onDidSelect: ((_ flexibleView: FSFlexibleView, _ item: FSFlexibleItem, _ index: Int) -> Void)?
     
     // MARK: Properties/Private
     
@@ -205,8 +205,8 @@ private extension FSFlexibleView {
            let cell = p_cellForItem(at: index) {
             
             cell.internal_didSelect()
-            onDidSelect?(item, index)
-            item.onDidSelect?(self, index)
+            onDidSelect?(self, item, index)
+            item.onDidSelect?(self, item, index)
         }
     }
 }

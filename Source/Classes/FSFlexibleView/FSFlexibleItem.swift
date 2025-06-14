@@ -34,8 +34,19 @@ open class FSFlexibleItem {
     /// cell 绑定的数据。
     open var data: Any?
     
+    /// 当前 item 的 frame 更新回调
+    ///
+    /// - Note:
+    ///   该属性是提供给 subclass 在 frame 更新时主动回调给外部，
+    ///   并不是监听 ``FSFlexibleItem/frame`` 的变化而回调。
+    ///   部份场景下，item 的 frame.size 并不会立刻确定，需等一会后
+    ///   才会确定，这时需要更新 item.frame，就可以使用该 closure 回
+    ///   调通知外部。
+    ///
+    open var onFrameDidUpdate: ((_ item: FSFlexibleItem) -> Void)?
+    
     /// 选中回调。
-    open var onDidSelect: ((_ flexibleView: FSFlexibleView, _ index: Int) -> Void)?
+    open var onDidSelect: ((_ flexibleView: FSFlexibleView, _ item: FSFlexibleItem, _ index: Int) -> Void)?
     
     // MARK: Properties/Internal
     
@@ -49,6 +60,12 @@ open class FSFlexibleItem {
     // MARK: Initialization
     
     public init() {}
+    
+    // MARK: Open
+    
+    open func updateLayout() {
+        // 默认不做任何布局更新，子类可以重写该方法。
+    }
 }
 
 // MARK: - Public

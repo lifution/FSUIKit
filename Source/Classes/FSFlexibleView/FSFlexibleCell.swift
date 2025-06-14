@@ -8,7 +8,7 @@
 
 import UIKit
 
-open class FSFlexibleCell: UIView {
+open class FSFlexibleCell: FSView {
     
     // MARK: Properties/Public
     
@@ -36,9 +36,6 @@ open class FSFlexibleCell: UIView {
     }
     
     // MARK: Open
-    
-    /// 该方法会在初始化后调用。
-    open func didInitialize() {}
     
     /// 在当前 cell 被重用前会调用该方法。
     ///
