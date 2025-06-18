@@ -130,6 +130,32 @@ public extension FSUIKitWrapper where Base == String {
     func removeNonnumeric() -> String {
         return base.replacingOccurrences(of: "[^0-9]", with: "", options: .regularExpression)
     }
+    
+    static func forceLTR(_ text: String) -> String {
+        return "\u{200E}\(text)\u{200E}"
+    }
+    
+    static func forceRTL(_ text: String) -> String {
+        return "\u{200F}\(text)\u{200F}"
+    }
+    
+    func markedNonArabicWithLTR() -> String {
+        let pattern = "[^\\u0600-\\u06FF\\u0750-\\u077F\\u08A0-\\u08FF\\uFB50-\\uFDFF\\uFE70-\\uFEFF]+"
+        guard let regex = try? NSRegularExpression(pattern: pattern, options: []) else {
+            return base
+        }
+        let nsText = base as NSString
+        let matches = regex.matches(in: base, range: NSRange(location: 0, length: nsText.length))
+        var result = base
+        for match in matches.reversed() {
+            if let range = Range(match.range, in: result) {
+                let original = result[range]
+                let wrapped = "\u{200E}\(original)\u{200E}"
+                result.replaceSubrange(range, with: wrapped)
+            }
+        }
+        return result
+    }
 }
 
 public extension FSUIKitWrapper where Base == String {
