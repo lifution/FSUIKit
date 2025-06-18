@@ -61,4 +61,30 @@ public extension FSUIKitWrapper where Base: UIViewController {
             base.present(viewControllerToPresent, animated: flag, completion: completion)
         }
     }
+    
+    /// 一次性 dismiss 所有通过 present 推出的视图控制器（包括中间嵌套的）
+    func dismiss(animated: Bool = true, completion: (() -> Void)? = nil) {
+        var stack = [UIViewController]()
+        if let _ = base.presentingViewController {
+            stack.append(base)
+        }
+        var presented = base.presentedViewController
+        while let value = presented {
+            stack.append(value)
+            presented = value.presentedViewController
+        }
+        stack.reverse()
+        func dismissStack(_ stack: [UIViewController], animated: Bool, completion: (() -> Void)?) {
+            guard !stack.isEmpty else {
+                completion?()
+                return
+            }
+            var copy = stack
+            let vc = copy.removeFirst()
+            vc.dismiss(animated: animated) {
+                dismissStack(copy, animated: animated, completion: completion)
+            }
+        }
+        dismissStack(stack, animated: animated, completion: completion)
+    }
 }

@@ -56,7 +56,7 @@ class FlexibleViewController: UIViewController {
                 let item = _FlexibleItem()
                 item.index = index
                 item.frame = CGRect(origin: .init(x: x, y: y), size: size)
-                item.onDidSelect = { _, index in
+                item.onDidSelect = { _, _, index in
                     print("did select: [\(index)]")
                 }
                 items.append(item)

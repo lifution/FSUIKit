@@ -182,4 +182,12 @@ public extension FSUIKitWrapper where Base: UIView {
         base.setContentHuggingPriority(priority, for: axis)
         return self
     }
+    
+    @discardableResult
+    func add(to view: UIView) -> FSUIKitWrapper {
+        if view !== base {
+            view.addSubview(base)
+        }
+        return self
+    }
 }
