@@ -5,7 +5,7 @@
 //  Created by Sheng on 2024/1/13.
 //  Copyright © 2023 Sheng. All rights reserved.
 //
-//  代码参考于: https://github.com/Tencent/QMUI_iOS/blob/master/QMUIKit/QMUIComponents/QMUITextView.m
+//  代码参考于: https://github.com/Tencent/QMUI_iOS
 
 import UIKit
 
@@ -19,14 +19,14 @@ import UIKit
 /// 5. 修正系统 UITextView 在输入时自然换行的时候，contentOffset 的滚动位置没有考虑 textContainerInset.bottom。
 ///
 /// - Note:
-///   - FSTextView 内部已经实现了 delegate，外部设置 ``delegate`` 不会影响内部的代码运行。
+/// * FSTextView 内部已经实现了 delegate，外部设置 ``delegate`` 不会影响内部的代码运行。
 ///
 open class FSTextView: _FSTempTextView {
     
     // MARK: Properties/Public
     
     /// placeholder 文本。
-    open var placeholder: String? = nil {
+    @objc open var placeholder: String? = nil {
         didSet {
             p_updatePlaceholderStyle()
         }
@@ -38,28 +38,28 @@ open class FSTextView: _FSTempTextView {
     ///   - 该属性比 placeholder 的优先级更高。
     ///   - 设置该属性需要使用者自己配置颜色，FSTextView 内部不会为其配置默认颜色，也不会使用 placeholderColor。
     ///
-    open var attributedPlaceholder: NSAttributedString? = nil {
+    @objc open var attributedPlaceholder: NSAttributedString? = nil {
         didSet {
             p_updatePlaceholderStyle()
         }
     }
     
     /// placeholder 文本颜色。
-    open var placeholderColor: UIColor? {
+    @objc open var placeholderColor: UIColor? {
         didSet {
             p_updatePlaceholderStyle()
         }
     }
     
     /// placeholder 在默认位置上的偏移（默认位置会自动根据 textContainerInset、contentInset 来调整）。
-    open var placeholderMargins: UIEdgeInsets = .zero
+    @objc open var placeholderMargins: UIEdgeInsets = .zero
     
     /// 显示允许输入的最大文字长度，默认为 0，即不限制长度，
-    open var maximumTextCount = 0
+    @objc open var maximumTextCount = 0
     
     /// 最大高度，当设置了这个属性后，超过这个高度值的 frame 是不生效的。默认为 CGFloat.greatestFiniteMagnitude，也即无限制。
     /// 设置为 0 也表示不限制。
-    open var maximumHeight: CGFloat = CGFloat.greatestFiniteMagnitude {
+    @objc open var maximumHeight: CGFloat = CGFloat.greatestFiniteMagnitude {
         didSet {
             if maximumHeight <= 0.0 {
                 maximumHeight = CGFloat.greatestFiniteMagnitude
@@ -76,28 +76,28 @@ open class FSTextView: _FSTempTextView {
     ///
     /// - Note: 系统的 UITextView 对这种行为默认是 false。
     ///
-    open var shouldResponseToProgrammaticallyTextChanges = true
+    @objc open var shouldResponseToProgrammaticallyTextChanges = true
     
     /// 在使用 maximumTextCount 功能的时候，是否把文字长度按照「中文 2 个字符、英文 1 个字符」的方式来计算。
     /// 默认为 false。
-    open var shouldCountingNonASCIICharacterAsTwo: Bool = false
+    @objc open var shouldCountingNonASCIICharacterAsTwo: Bool = false
     
     /// 高度更新回调，外部可实现该 closure 监听，也可实现 FSTextViewDelegate 监听。
-    open var heightDidChangeHandler: ((_ newHeight: CGFloat) -> Void)?
+    @objc open var heightDidChangeHandler: ((_ newHeight: CGFloat) -> Void)?
     
     /// 达到最大限制数量时的回调，外部可实现该 closure 监听，也可实现 FSTextViewDelegate 监听。
-    open var onDidHitMaximumTextCountHandler: ((_ textView: FSTextView) -> Void)?
+    @objc open var onDidHitMaximumTextCountHandler: ((_ textView: FSTextView) -> Void)?
     
     /// 控制输入框是否要出现「粘贴」menu。
     ///
     /// superReturnValue: `super.canPerformAction(:withSender:)` 的返回值，当你不需要控制这个 closure 的返回值时，可以返回 superReturnValue。
     /// closure return: 控制是否要出现「粘贴」menu，true 表示出现，false 表示不出现。当你想要返回系统默认的结果时，请返回参数 superReturnValue。
-    open var canPerformPasteActionHandler: ((_ sender: Any?, _ superReturnValue: Bool) -> Bool)?
+    @objc open var canPerformPasteActionHandler: ((_ sender: Any?, _ superReturnValue: Bool) -> Bool)?
     
     /// 当输入框的「粘贴」事件被触发时，可通过这个 block 去接管事件的响应。
     /// sender: 「粘贴」事件触发的来源，例如可能是一个 UIMenuController。
     /// closure return: 用于控制是否要调用系统默认的 `paste(:)` 实现，true 表示执行完 closure 后继续调用系统默认实现，false 表示执行完 closure 后就结束了，不调用 super。
-    open var pasteActionHandler: ((_ sender: Any?) -> Bool)?
+    @objc open var pasteActionHandler: ((_ sender: Any?) -> Bool)?
     
     /// 当 `text` / `attributedText` 改变时，会调用该解析器去修改输入框内的文本内容。
     /// 比如需要高亮部分内容，或者插入表情，就可以在解析器相应的协议方法中处理。
@@ -105,7 +105,7 @@ open class FSTextView: _FSTempTextView {
     public var textParser: FSTextViewTextParseable?
     
     /// 纯文本，外部可读取该字段获取输入框内容的纯文本内容。
-    open var plainText: String {
+    @objc open var plainText: String {
         var text = ""
         if let parser = textParser, let string = parser.plainText(of: attributedText, for: .init(location: 0, length: attributedText.length)) {
             text = string
@@ -117,7 +117,7 @@ open class FSTextView: _FSTempTextView {
     
     /// 当前 view 的 size。
     /// 当该属性更新时会回调 `viewSizeDidChange` 方法。
-    public private(set) var viewSize: CGSize = .zero
+    @objc public private(set) var viewSize: CGSize = .zero
     
     // MARK: Properties/Private
     
@@ -136,6 +136,8 @@ open class FSTextView: _FSTempTextView {
     }()
     
     private let delegator = _FSTextViewDelegator()
+    
+    private var isSettingTextByShouldChange = false
     
     // MARK: Deinitialization
     
@@ -158,7 +160,7 @@ open class FSTextView: _FSTempTextView {
     // MARK: Open
     
     /// 当 viewSize 更改后会回调该方法。
-    dynamic open func viewSizeDidChange() {
+    @objc dynamic open func viewSizeDidChange() {
         
     }
 }
@@ -186,12 +188,14 @@ extension FSTextView {
                 return
             }
             
-            let textBeforeChange = text ?? ""
-            let shouldChangeText = delegator.textView(self, shouldChangeTextIn: .init(location: 0, length: textBeforeChange.count), replacementText: value)
-            
-            if !shouldChangeText {
-                // 不应该改变文字，所以连 super 都不调用，直接结束方法。
-                return
+            if !isSettingTextByShouldChange {
+                let textBeforeChange = text ?? ""
+                let shouldChangeText = delegator.textView(self, shouldChangeTextIn: .init(location: 0, length: textBeforeChange.count), replacementText: value)
+                
+                if !shouldChangeText {
+                    // 不应该改变文字，所以连 super 都不调用，直接结束方法。
+                    return
+                }
             }
             
             // 应该改变文字，则调用 super 来改变文字，然后主动调用 `textViewDidChange:`。
@@ -221,12 +225,14 @@ extension FSTextView {
                 return
             }
             
-            let textBeforeChange = attributedText.string
-            let shouldChangeText = delegator.textView(self, shouldChangeTextIn: .init(location: 0, length: textBeforeChange.count), replacementText: newValue.string)
-            
-            if !shouldChangeText {
-                // 不应该改变文字，所以连 super 都不调用，直接结束方法。
-                return
+            if !isSettingTextByShouldChange {
+                let textBeforeChange = attributedText.string
+                let shouldChangeText = delegator.textView(self, shouldChangeTextIn: .init(location: 0, length: textBeforeChange.count), replacementText: newValue.string)
+                
+                if !shouldChangeText {
+                    // 不应该改变文字，所以连 super 都不调用，直接结束方法。
+                    return
+                }
             }
             
             // 应该改变文字，则调用 super 来改变文字，然后主动调用 `textViewDidChange:`。
@@ -407,7 +413,7 @@ private extension FSTextView {
             NotificationCenter.default.addObserver(self,
                                                    selector: #selector(p_didReceive(notification:)),
                                                    name: UITextView.textDidChangeNotification,
-                                                   object: nil)
+                                                   object: self)
         }
     }
     
@@ -504,16 +510,20 @@ private extension FSTextView {
 private extension FSTextView {
     
     @objc func p_didReceive(notification: Notification) {
-        guard
-            notification.name == UITextView.textDidChangeNotification,
-            let textView = notification.object as? FSTextView,
-            textView === self
-        else {
+        guard notification.name == UITextView.textDidChangeNotification else {
             return
         }
         
         // 输入字符的时候，placeholder 隐藏。
-        p_updatePlaceholderHiddenStatus()
+        if !(placeholder?.isEmpty ?? true) {
+            p_updatePlaceholderHiddenStatus()
+        }
+        
+        /// 系统的三指撤销在文本框达到最大字符长度限制时可能引发 crash
+        /// https://github.com/Tencent/QMUI_iOS/issues/1168
+        if maximumTextCount > 0, let undo = undoManager, undo.isUndoing || undo.isRedoing {
+            return
+        }
         
         // 计算高度
         p_recalculateViewHeight()
@@ -560,6 +570,20 @@ fileprivate extension FSTextView {
             self.selectedRange  = range
         }
     }
+    
+    func setTextForShouldChange(_ text: String?) {
+        isSettingTextByShouldChange = true
+        defer {
+            isSettingTextByShouldChange = false
+        }
+        self.text = text ?? ""
+        /// 对于 shouldResponseToProgrammaticallyTextChanges = YES 的，
+        /// 调用 textViewDidChange: 的工作已经在 self setText: 里做完了，
+        /// 所以这里对 shouldResponseToProgrammaticallyTextChanges = NO 的专门做一次
+        if !shouldResponseToProgrammaticallyTextChanges {
+            delegate?.textViewDidChange?(self)
+        }
+    }
 }
 
 
@@ -603,6 +627,8 @@ private class _FSTextViewDelegator: NSObject, FSTextViewDelegate {
             return true
         }
         
+        var range = range
+        
         if text == "\n" {
             if self.textViewShouldReturn(textView) {
                 /// `textViewShouldReturn(:)` 返回 true 表示程序认为当前的点击是为了进行类似「发送」之类的操作，
@@ -620,17 +646,24 @@ private class _FSTextViewDelegator: NSObject, FSTextViewDelegate {
                 return true
             }
             
-            // deleting
-            if range.length > 0, text.count <= 0 {
-                /// String 的 count 是把 emoji 表情当作一个计算的，但是 emoji 表情所占的字符数量有 1、2、4、8 等，
-                /// 而此处的 range 是按照实际字符数量计算的，如果和 String 的 count 相比较肯定不准确，
-                /// 所以此处把 String 转成 utf16 计算整个字符串的长度。
-                if NSMaxRange(range) > textView.text.utf16.count {
-                    // https://github.com/Tencent/QMUI_iOS/issues/377
-                    return false
-                } else {
-                    return true
+            /// String 的 count 是把 emoji 表情当作一个计算的，但是 emoji 表情所占的字符数量有 1、2、4、8 等，
+            /// 而此处的 range 是按照实际字符数量计算的，如果和 String 的 count 相比较肯定不准确，
+            /// 所以此处把 String 转成 utf16 计算整个字符串的长度。
+            if NSMaxRange(range) > textView.text.utf16.count {
+                // 如果 range 越界了，继续返回 true 会造成 rash
+                // https://github.com/Tencent/QMUI_iOS/issues/377
+                // https://github.com/Tencent/QMUI_iOS/issues/1170
+                // 这里的做法是本次返回 false，并将越界的 range 缩减到没有越界的范围，再手动做该范围的替换。
+                range = NSMakeRange(range.location, range.length - (NSMaxRange(range) - textView.text.utf16.count))
+                if range.length > 0, let textRange = textView.fs.convertUITextRangeFromNSRange(range) {
+                    textView.replace(textRange, withText: text)
                 }
+                return false
+            }
+            
+            if text.isEmpty, range.length > 0 {
+                // 允许删除，这段必须放在上面 #377、#1170 的逻辑后面
+                return true
             }
             
             let rangeLength: Int = {
@@ -655,11 +688,21 @@ private class _FSTextViewDelegator: NSObject, FSTextViewDelegate {
                 
                 if substringLength > 0, textView.p_count(of: text) > substringLength {
                     let allowedText = text.fs.substringAvoidBreakingUpCharacterSequences(range: .init(location: 0, length: substringLength), lessValue: true, countingNonASCIICharacterAsTwo: textView.shouldCountingNonASCIICharacterAsTwo)
-                    if textView.p_count(of: allowedText) <= substringLength, let insertRange = Range(range, in: textView.text) {
-                        textView.text = textView.text.replacingCharacters(in: insertRange, with: allowedText)
-                        textView.selectedRange = .init(location: range.location + substringLength, length: 0)
-                        if !textView.shouldResponseToProgrammaticallyTextChanges {
-                            self.textView?.delegate?.textViewDidChange?(textView)
+                    if textView.p_count(of: allowedText) <= substringLength {
+                        var shouldChange = true
+                        if let result = textView.delegate?.textView?(textView, shouldChangeTextIn: range, replacementText: text, originalValue: shouldChange) {
+                            shouldChange = result
+                        }
+                        if !shouldChange {
+                            return false
+                        }
+                        if let insertRange = Range(range, in: textView.text) {
+                            textView.setTextForShouldChange(textView.text.replacingCharacters(in: insertRange, with: allowedText))
+                        }
+                        // iOS 10 修改 selectedRange 可以让光标立即移动到新位置，但 iOS 11 及以上版本需要延迟一会才可以
+                        let finalSelectedRange = NSMakeRange(range.location + substringLength, 0)
+                        DispatchQueue.main.async {
+                            textView.selectedRange = finalSelectedRange
                         }
                     }
                 }
