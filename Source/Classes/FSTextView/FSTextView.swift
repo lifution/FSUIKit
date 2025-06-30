@@ -106,8 +106,12 @@ open class FSTextView: _FSTempTextView {
     
     /// 纯文本，外部可读取该字段获取输入框内容的纯文本内容。
     @objc open var plainText: String {
+        let length = attributedText.length
+        guard length > 0 else {
+            return ""
+        }
         var text = ""
-        if let parser = textParser, let string = parser.plainText(of: attributedText, for: .init(location: 0, length: attributedText.length)) {
+        if let parser = textParser, let string = parser.plainText(of: attributedText, for: .init(location: 0, length: length)) {
             text = string
         } else {
             text = attributedText.string
@@ -172,6 +176,9 @@ extension FSTextView {
     open override var text: String! {
         get { return super.text }
         set {
+            // Fix: 手动修改 text 后，undo 行为会导致 crash，在没找到更好的解决方法前，直接屏蔽 undo 行为。
+            undoManager?.removeAllActions()
+            
             let value = newValue ?? ""
             
             // 如果前后文字没变化，则什么都不做。
