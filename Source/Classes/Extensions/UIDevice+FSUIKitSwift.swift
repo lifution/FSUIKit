@@ -267,27 +267,17 @@ public extension UIDevice {
         }
         
         public func convertBytesToGBUnits(_ bytes: Int64) -> Double {
-            let formatter = ByteCountFormatter()
-            formatter.allowedUnits = ByteCountFormatter.Units.useGB
-            formatter.countStyle = ByteCountFormatter.CountStyle.decimal
-            formatter.includesUnit = false
-            let string = formatter.string(fromByteCount: bytes) as String
-            if let value = Double(string.replacingOccurrences(of: ",", with: "")) {
-                return value
+            guard bytes > 0 else {
+                return 0.0
             }
-            return 0.0
+            return Double(bytes/1000000000)
         }
         
         public func convertBytesToMBUnits(_ bytes: Int64) -> Double {
-            let formatter = ByteCountFormatter()
-            formatter.allowedUnits = ByteCountFormatter.Units.useMB
-            formatter.countStyle = ByteCountFormatter.CountStyle.decimal
-            formatter.includesUnit = false
-            let string = formatter.string(fromByteCount: bytes) as String
-            if let value = Double(string.replacingOccurrences(of: ",", with: "")) {
-                return value
+            guard bytes > 0 else {
+                return 0.0
             }
-            return 0.0
+            return Double(bytes/1000000)
         }
     }
 }
