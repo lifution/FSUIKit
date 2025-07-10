@@ -27,6 +27,9 @@ public protocol FSToastContentConvertable: AnyObject {
     /// 边框宽度，默认为 0。
     var borderWidth: CGFloat { get set }
     
+    /// 阴影效果，默认为 nil。
+    var shadow: FSToastShadow? { get set }
+    
     /// 背景颜色，默认为 `.black`，
     /// 当 `backgroundEffect` 为 nil 时该属性才生效。
     var backgroundColor: UIColor? { get set }
@@ -104,6 +107,7 @@ public extension FSToastContentConvertable {
     var cornerRadius: CGFloat { get { return 8.0 } set {} }
     var borderColor: UIColor? { get { return nil } set {} }
     var borderWidth: CGFloat { get { return 0.0 } set {} }
+    var shadow: FSToastShadow? { get { nil } set {} }
     var backgroundColor: UIColor? { get { return .black } set {} }
     var backgroundEffect: FSToastBackgroundEffect? { get { return nil } set {} }
     var contentInset: UIEdgeInsets { get { return .init(top: 12.0, left: 16.0, bottom: 12.0, right: 16.0) } set {} }

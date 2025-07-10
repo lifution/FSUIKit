@@ -32,6 +32,8 @@ open class FSToastContent: FSToastContentConvertable {
     
     open var borderWidth: CGFloat = 0.0
     
+    open var shadow: FSToastShadow?
+    
     open var backgroundColor: UIColor? = .black
     
     open var backgroundEffect: FSToastBackgroundEffect?

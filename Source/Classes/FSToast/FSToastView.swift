@@ -78,12 +78,15 @@ open class FSToastView: FSReloadableView {
         return view
     }()
     
+    private let containerView = UIView()
+    
     private let paddingInset = UIEdgeInsets(top: 15.0, left: 15.0, bottom: 15.0, right: 15.0)
     
     // MARK: Initialization
     
     public override init(frame: CGRect) {
         super.init(frame: frame)
+        containerView.frame.size = frame.size
         p_didInitialize()
     }
 }
@@ -116,9 +119,8 @@ extension FSToastView {
     
     open override func layoutSubviews() {
         super.layoutSubviews()
-        do {
-            blurView.frame = .init(origin: .zero, size: bounds.size)
-        }
+        containerView.frame.size = frame.size
+        blurView.frame = .init(origin: .zero, size: frame.size)
     }
     
     open override func reloadData() {
@@ -127,10 +129,18 @@ extension FSToastView {
         }
         super.reloadData()
         do {
-            backgroundColor = .clear
+            layer.cornerRadius = 0.0
+            
             layer.borderWidth = 0.0
             layer.borderColor = nil
-            layer.cornerRadius = 0.0
+            
+            layer.shadowColor = nil
+            layer.shadowOpacity = 0.0
+            layer.shadowOffset = .zero
+            layer.shadowRadius = 0.0
+            layer.shadowPath = nil
+            
+            containerView.layer.cornerRadius = 0.0
             
             topView?.removeFromSuperview()
             bottomView?.removeFromSuperview()
@@ -148,7 +158,7 @@ extension FSToastView {
         do {
             if let effect = content.backgroundEffect {
                 
-                backgroundColor = .clear
+                containerView.backgroundColor = .clear
                 blurView.isHidden = false
                 
                 blurView.scale = effect.scale
@@ -157,14 +167,26 @@ extension FSToastView {
                 blurView.blurRadius = effect.blurRadius
                 
             } else {
-                backgroundColor = content.backgroundColor
+                containerView.backgroundColor = content.backgroundColor
                 blurView.isHidden = true
             }
         }
         do {
+            layer.cornerRadius = content.cornerRadius
+            
             layer.borderWidth = content.borderWidth
             layer.borderColor = content.borderColor?.cgColor
-            layer.cornerRadius = content.cornerRadius
+            
+            if let shadow = content.shadow {
+                layer.shadowColor = shadow.color?.cgColor
+                layer.shadowOpacity = shadow.opacity
+                layer.shadowOffset = shadow.offset
+                layer.shadowRadius = shadow.radius
+                layer.shadowPath = shadow.path?.cgPath
+            }
+        }
+        do {
+            containerView.layer.cornerRadius = content.cornerRadius
         }
         do {
             if let view = content.topView {
@@ -214,18 +236,22 @@ private extension FSToastView {
             if #available(iOS 13, *) {
                 userInterfaceStyleRaw = UITraitCollection.current.userInterfaceStyle.rawValue
             }
-        }
-        do {
-            clipsToBounds = true
             if #available(iOS 17, *) {
                 registerForTraitChanges([UITraitUserInterfaceStyle.self]) { (self: Self, previousTraitCollection: UITraitCollection) in
                     self.p_traitCollectionDidChange()
                 }
             }
         }
-        addSubview(blurView)
-        addSubview(textLabel)
-        addSubview(detailTextLabel)
+        do {
+            backgroundColor = .clear
+            addSubview(containerView)
+        }
+        do {
+            containerView.clipsToBounds = true
+            containerView.addSubview(blurView)
+            containerView.addSubview(textLabel)
+            containerView.addSubview(detailTextLabel)
+        }
     }
     
     func p_layoutSubviews() {
