@@ -150,7 +150,15 @@ private extension FSKeyboardManager {
         var kbWindows = [UIWindow]()
         for window in UIApplication.shared.windows {
             let windowName = NSStringFromClass(type(of: window).self)
-            if #available(iOS 9.0, *) {
+            if #available(iOS 26.0, *) {
+                // UITextEffectsWindow
+                if windowName.count == 19,
+                   windowName.hasPrefix("UI"),
+                   windowName.hasSuffix("TextEffectsWindow")
+                {
+                    kbWindows.append(window)
+                }
+            } else if #available(iOS 9.0, *) {
                 // UIRemoteKeyboardWindow
                 if windowName.count == 22,
                    windowName.hasPrefix("UI"),
@@ -191,6 +199,11 @@ private extension FSKeyboardManager {
          UIRemoteKeyboardWindow
             UIInputSetContainerView
                 UIInputSetHostView << keyboard
+         
+         iOS 26:
+         UITextEffectsWindow
+            UITrackingWindowView
+               UIKeyboardItemContainerView << keyboard
          */
         guard let window = window else {
             return nil
@@ -217,8 +230,39 @@ private extension FSKeyboardManager {
                         |- TUIInputAssistantHostView - 外接键盘时可能存在，此时不一定有 placeholder
                 |- UIInputSetHostView - 可能存在多个，但只有一个里面有 _UIRemoteKeyboardPlaceholderView
          
+         iOS 26 及以后（仅限用 Xcode 26 及以上版本编译的 App），UIApplication.windows 里已经不存在 UIRemoteKeyboardWindow 了，所以退而求其次，我们通过 UITextEffectsWindow 里的 UIKeyboardItemContainerView 来获取键盘的位置——这两个 window 在布局层面可以理解为镜像关系。
+         |- UIApplication.windows
+            |- UITextEffectsWindow
+                |- UIKeyboardItemContainerView - 键盘及 webView 里的输入工具栏（上下键、Done键）
+                    |- _UIRemoteKeyboardPlaceholderView - 整个键盘区域，包含顶部候选词栏、emoji 键盘顶部搜索栏（有时候不一定存在）
+                    |- UIWebFormAccessory - webView 里的输入工具栏的占位
+                    |- TUIInputAssistantHostView - 外接键盘时可能存在，此时不一定有 placeholder
+         
          所以只要找到 UIInputSetHostView 即可，优先从 UIRemoteKeyboardWindow 找，不存在的话则从 UITextEffectsWindow 找。
          */
+        if #available(iOS 26.0, *) {
+            var kbView: UIView? = nil
+            let windowName = "\(type(of: window))"
+            if windowName == "UIRemoteKeyboardWindow" || windowName == "UITextEffectsWindow" {
+                var container: UIView? = nil
+                for subview in window.subviews {
+                    if "\(type(of: subview))" == "UITrackingWindowView" {
+                        container = subview
+                        break
+                    }
+                }
+                if let view = container {
+                    for subview in view.subviews {
+                        if "\(type(of: subview))" == "UIKeyboardItemContainerView" {
+                            kbView = subview
+                            break
+                        }
+                    }
+                }
+            }
+            return kbView
+        }
+        
         if #available(iOS 16.0, *) {
             var kbView: UIView? = nil
             let windowName = "\(type(of: window))"
