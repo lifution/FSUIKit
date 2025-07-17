@@ -7,16 +7,14 @@
 //
 
 import UIKit
+import Combine
 
 open class FSGradientLabel: UIView {
-    
-    // MARK: Properties/Open
     
     open var text: String? {
         get { return textLabel.text }
         set {
             textLabel.text = newValue
-            plainColorTextLabel.text = newValue
             invalidateIntrinsicContentSize()
             setNeedsUpdateConstraints()
         }
@@ -25,67 +23,44 @@ open class FSGradientLabel: UIView {
     open var font: UIFont? {
         get { return textLabel.font }
         set {
-            textLabel.font = newValue ?? .systemFont(ofSize: 17.0)
-            plainColorTextLabel.font = newValue ?? .systemFont(ofSize: 17.0)
+            textLabel.font = newValue ?? .systemFont(ofSize: 16.0)
             invalidateIntrinsicContentSize()
             setNeedsUpdateConstraints()
         }
     }
     
-    /* The array of UIColor objects defining the color of each gradient
-     * stop. Defaults to nil. Animatable. */
     open var colors: [UIColor]? {
-        get { return gradientView.colors }
-        set {
-            gradientView.colors = newValue
-            didUpdateColors()
-        }
+        get { return provider.colors }
+        set { provider.colors = newValue }
     }
     
-    /* An optional array of NSNumber objects defining the location of each
-     * gradient stop as a value in the range [0,1]. The values must be
-     * monotonically increasing. If a nil array is given, the stops are
-     * assumed to spread uniformly across the [0,1] range. When rendered,
-     * the colors are mapped to the output colorspace before being
-     * interpolated. Defaults to nil. Animatable. */
     open var locations: [NSNumber]? {
-        get { return gradientView.locations }
-        set { gradientView.locations = newValue }
+        get { return provider.locations }
+        set { provider.locations = newValue }
     }
-    
-    /* The start and end points of the gradient when drawn into the layer's
-     * coordinate space. The start point corresponds to the first gradient
-     * stop, the end point to the last gradient stop. Both points are
-     * defined in a unit coordinate space that is then mapped to the
-     * layer's bounds rectangle when drawn. (I.e. [0,0] is the bottom-left
-     * corner of the layer, [1,1] is the top-right corner.) The default values
-     * are [.5,0] and [.5,1] respectively. Both are animatable. */
     
     open var startPoint: CGPoint {
-        get { return gradientView.startPoint }
-        set { gradientView.startPoint = newValue }
+        get { return provider.startPoint }
+        set { provider.startPoint = newValue }
     }
     
     open var endPoint: CGPoint {
-        get { return gradientView.endPoint }
-        set { gradientView.endPoint = newValue }
+        get { return provider.endPoint }
+        set { provider.endPoint = newValue }
     }
     
-    /* The kind of gradient that will be drawn. Currently, the only allowed
-     * values are `axial' (the default value), `radial', and `conic'. */
-    open var gradientType: CAGradientLayerType  {
-        get { return gradientView.gradientType }
-        set { gradientView.gradientType = newValue }
+    open var gradientType: CAGradientLayerType {
+        get { return provider.gradientType }
+        set { provider.gradientType = newValue }
     }
     
-    // MARK: Properties/Private
+    // MARK: =
     
     private let textLabel = UILabel()
-    private let plainColorTextLabel = UILabel()
+    private let provider = FSGradientLabelDataProvider()
+    private var cancellables = Set<AnyCancellable>()
     
-    private let gradientView = FSGradientView()
-    
-    // MARK: Initialization
+    // MARK: =
     
     public override init(frame: CGRect) {
         super.init(frame: frame)
@@ -97,14 +72,13 @@ open class FSGradientLabel: UIView {
         p_didInitialize()
     }
     
-    // MARK: Override
+    // MARK: =
     
     open override func layoutSubviews() {
         super.layoutSubviews()
         let rect = CGRect(origin: .zero, size: frame.size)
-        gradientView.frame = rect
         textLabel.frame = rect
-        plainColorTextLabel.frame = rect
+        provider.size = rect.size
     }
     
     open override func sizeToFit() {
@@ -117,32 +91,147 @@ open class FSGradientLabel: UIView {
     }
     
     open override func sizeThatFits(_ size: CGSize) -> CGSize {
-        return plainColorTextLabel.sizeThatFits(size)
+        return textLabel.sizeThatFits(size)
     }
     
     open override var intrinsicContentSize: CGSize {
-        return plainColorTextLabel.intrinsicContentSize
+        return textLabel.intrinsicContentSize
     }
 }
 
-// MARK: - Private
+// MARK: =
 
 private extension FSGradientLabel {
     
     /// Invoked after initialization.
     func p_didInitialize() {
-        gradientView.mask = textLabel
-        addSubview(gradientView)
-        plainColorTextLabel.isHidden = true
-        addSubview(plainColorTextLabel)
+        addSubview(textLabel)
+        provider.colorRelay
+            .debounce(for: .milliseconds(100), scheduler: RunLoop.main)
+            .sink { [weak self] color in
+                guard let self else { return }
+                self.textLabel.textColor = color
+            }
+            .store(in: &cancellables)
+    }
+}
+
+private final class FSGradientLabelDataProvider {
+    
+    let colorRelay = CurrentValueSubject<UIColor, Never>(.black)
+    private let drawImageQueue = DispatchQueue(label: "com.fs.gradient.label.provider.queue.serial")
+    
+    var size: CGSize = .zero {
+        didSet {
+            if !size.fs.isEqual(to: oldValue, tolerance: 0.2) {
+                updateColorIfPossible()
+            }
+        }
     }
     
-    func didUpdateColors() {
-        let isPlainColor = (colors?.count ?? 0) <= 1
-        gradientView.isHidden = isPlainColor
-        plainColorTextLabel.isHidden = !isPlainColor
-        if isPlainColor {
-            plainColorTextLabel.textColor = colors?.first ?? .black
+    var colors: [UIColor]? {
+        didSet {
+            if !areColorArraysEqualInLightMode(colors, oldValue) {
+                updateColorIfPossible()
+            }
+        }
+    }
+    
+    var locations: [NSNumber]? {
+        didSet {
+            if !areNSNumberArraysEqual(locations, oldValue) {
+                updateColorIfPossible()
+            }
+        }
+    }
+    
+    var startPoint: CGPoint = .zero {
+        didSet {
+            if startPoint != oldValue {
+                updateColorIfPossible()
+            }
+        }
+    }
+    
+    var endPoint: CGPoint = .init(x: 1.0, y: 1.0) {
+        didSet {
+            if endPoint != oldValue {
+                updateColorIfPossible()
+            }
+        }
+    }
+    
+    var gradientType: CAGradientLayerType = .axial {
+        didSet {
+            if gradientType != oldValue {
+                updateColorIfPossible()
+            }
+        }
+    }
+    
+    private func updateColorIfPossible() {
+        guard !size.fs.isEqual(to: .zero, tolerance: 0.2) else {
+            return
+        }
+        let size = size
+        let colors = colors ?? [.black]
+        let locations = locations
+        let startPoint = startPoint
+        let endPoint = endPoint
+        let type = gradientType
+        drawImageQueue.async { [weak self] in
+            guard let self else { return }
+            if colors.count == 1 {
+                self.colorRelay.send(colors[0])
+                return
+            }
+            let image = UIImage.fs.gradientImage(
+                size: size,
+                colors: colors,
+                locations: locations,
+                startPoint: startPoint,
+                endPoint: endPoint,
+                type: type
+            )
+            let color = UIColor(patternImage: image)
+            self.colorRelay.send(color)
         }
     }
 }
+
+fileprivate func areColorArraysEqualInLightMode(_ lhs: [UIColor]?, _ rhs: [UIColor]?) -> Bool {
+    switch (lhs, rhs) {
+    case (nil, nil):
+        return true
+    case let (l?, r?):
+        guard l.count == r.count else {
+            return false
+        }
+        for (color1, color2) in zip(l, r) {
+            if !color1.fs.isEqualToColor(color2, for: .light) {
+                return false
+            }
+        }
+        return true
+    default:
+        return false
+    }
+}
+
+fileprivate func areNSNumberArraysEqual(_ lhs: [NSNumber]?, _ rhs: [NSNumber]?) -> Bool {
+    switch (lhs, rhs) {
+    case (nil, nil):
+        return true
+    case let (l?, r?):
+        guard l.count == r.count else { return false }
+        for (a, b) in zip(l, r) {
+            if a != b {
+                return false
+            }
+        }
+        return true
+    default:
+        return false
+    }
+}
+

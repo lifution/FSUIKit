@@ -1,5 +1,5 @@
 PODS:
-  - FSUIKitSwift (1.0.4)
+  - FSUIKitSwift (1.0.5)
   - LookinServer (1.2.8):
     - LookinServer/Core (= 1.2.8)
   - LookinServer/Core (1.2.8)
@@ -31,7 +31,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  FSUIKitSwift: 039dc2be7095be3e81de5d5a1be1b7a9d52785c8
+  FSUIKitSwift: 3c7d104185acfc4788046dca952a9282ad680ccc
   LookinServer: 1b2b61c6402ae29fa22182d48f5cd067b4e99e80
   RxCocoa: ac16414696ae706516be3e1ab00fcce5bdc9be8a
   RxRelay: 6b0c930e5cef57d5fe2032571e5e65b78e3cbdb1

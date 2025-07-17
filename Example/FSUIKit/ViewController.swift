@@ -22,25 +22,10 @@ class ViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        do {
-            // FSMutexLock/FSUnfairLock 压力测试
-            testLock()
-        }
+        // FSMutexLock/FSUnfairLock 压力测试
+//        testLock()
+        testGradientLabel()
         
-        do {
-            let loader = FadingRingLoaderView(
-                size: 100,
-                lineWidth: 15,
-                color: .systemBlue,
-                fadeExponent: 2.5,
-                sweepRatio: 0.95
-            )
-            canvasView.addSubview(loader)
-            loader.snp.makeConstraints { make in
-                make.center.equalToSuperview()
-                make.size.equalTo(CGSize(width: 100.0, height: 100.0))
-            }
-        }
         
 //        timer.autoSuspendInBackground = false
 //        timer.eventHandler = {
@@ -275,6 +260,20 @@ class ViewController: UITableViewController {
         print("\n测试结果: \(testPassed ? "通过" : "失败")")
         print("------------------------")
     }
+    
+    func testGradientLabel() {
+        let label = FSGradientLabel()
+        label.text = "Vincent"
+        label.font = .boldSystemFont(ofSize: 20.0)
+        label.colors = [.red, .yellow, .orange]
+        label.startPoint = CGPoint(x: 1.0, y: 0.0)
+        label.endPoint = .zero
+        canvasView.addSubview(label)
+        label.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+            make.width.lessThanOrEqualToSuperview().offset(-60.0)
+        }
+    }
 }
 
 extension ViewController {
@@ -285,88 +284,5 @@ extension ViewController {
     
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return CGFloat.leastNonzeroMagnitude
-    }
-}
-
-
-class FadingRingLoaderView: UIView {
-    private let ringLayer = CALayer()
-
-    /// 自定义初始化
-    init(size: CGFloat = 40,
-         lineWidth: CGFloat = 4,
-         color: UIColor = .systemBlue,
-         fadeExponent: CGFloat = 2.5,
-         sweepRatio: CGFloat = 0.85) {
-
-        let frame = CGRect(x: 0, y: 0, width: size, height: size)
-        super.init(frame: frame)
-        isUserInteractionEnabled = false
-
-        let image = FadingRingLoaderView.drawFadingRing(size: frame.size,
-                                                        lineWidth: lineWidth,
-                                                        startColor: color,
-                                                        fadeExponent: fadeExponent,
-                                                        sweepRatio: sweepRatio)
-        ringLayer.contents = image.cgImage
-        ringLayer.frame = bounds
-        layer.addSublayer(ringLayer)
-
-        startSpinning()
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
-    private func startSpinning() {
-        let animation = CABasicAnimation(keyPath: "transform.rotation")
-        animation.fromValue = 0
-        animation.toValue = 2 * CGFloat.pi
-        animation.duration = 1.0
-        animation.repeatCount = .infinity
-        animation.timingFunction = CAMediaTimingFunction(name: .linear)
-        ringLayer.add(animation, forKey: "rotation")
-    }
-
-    // MARK: - Drawing Code
-    static private func drawFadingRing(size: CGSize,
-                                       lineWidth: CGFloat,
-                                       startColor: UIColor,
-                                       fadeExponent: CGFloat,
-                                       sweepRatio: CGFloat) -> UIImage {
-        let renderer = UIGraphicsImageRenderer(size: size)
-        let center = CGPoint(x: size.width / 2, y: size.height / 2)
-        let radius = min(size.width, size.height) / 2 - lineWidth / 2
-
-        return renderer.image { ctx in
-            let context = ctx.cgContext
-            context.setLineCap(.round)
-            context.setLineWidth(lineWidth)
-
-            let segments = 200
-            let startAngle = -CGFloat.pi / 2
-            let sweepAngle = CGFloat.pi * 2 * sweepRatio
-            let angleIncrement = sweepAngle / CGFloat(segments)
-
-            for i in 0..<segments {
-                let progress = CGFloat(i) / CGFloat(segments)
-                let alpha = pow(1 - progress, fadeExponent) // 实色 -> 透明
-
-                // ✅ 真正逆时针绘制
-                let angle1 = startAngle - CGFloat(i) * angleIncrement
-                let angle2 = angle1 - angleIncrement
-
-                let path = UIBezierPath(arcCenter: center,
-                                        radius: radius,
-                                        startAngle: angle1,
-                                        endAngle: angle2,
-                                        clockwise: false)
-
-                context.setStrokeColor(startColor.withAlphaComponent(alpha).cgColor)
-                context.addPath(path.cgPath)
-                context.strokePath()
-            }
-        }
     }
 }

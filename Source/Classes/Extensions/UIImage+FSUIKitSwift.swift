@@ -128,7 +128,7 @@ public extension FSUIKitWrapper where Base: UIImage {
         return image
     }
     
-    /// 根据给定的颜色和生成一张图片，size 为 3x3，默认为四角拉伸。
+    /// 根据给定的颜色生成一张图片，size 为 3x3，默认为四角拉伸。
     static func image(with color: UIColor) -> UIImage? {
         guard let image = image(with: color, size: .init(width: 3.0, height: 3.0)) else {
             return nil
@@ -137,12 +137,14 @@ public extension FSUIKitWrapper where Base: UIImage {
         return image.resizableImage(withCapInsets: capInsets, resizingMode: .stretch)
     }
     
-    static func image(with color: UIColor,
-                      size: CGSize,
-                      alpha: Float = 1.0,
-                      cornerRadius: CGFloat = 0,
-                      borderWidth: CGFloat = 0,
-                      borderColor: UIColor? = nil) -> UIImage? {
+    static func image(
+        with color: UIColor,
+        size: CGSize,
+        alpha: Float = 1.0,
+        cornerRadius: CGFloat = 0,
+        borderWidth: CGFloat = 0,
+        borderColor: UIColor? = nil
+    ) -> UIImage? {
         guard size != .zero else {
             return nil
         }
@@ -314,6 +316,47 @@ public extension FSUIKitWrapper where Base: UIImage {
             }
         }
         return image
+    }
+    
+    ///
+    /// 创建渐变色图片
+    ///
+    /// - Note:
+    ///   - 该方法支持在子线程中调用执行。
+    ///
+    static func gradientImage(
+        size: CGSize,
+        colors: [UIColor],
+        locations: [NSNumber]? = nil,
+        startPoint: CGPoint = CGPoint(x: 0.0, y: 0.5),
+        endPoint: CGPoint = CGPoint(x: 1.0, y: 0.5),
+        type: CAGradientLayerType = .axial,
+        userInterfaceStyle: UIUserInterfaceStyle = .light // 为了线程安全，解析动态颜色
+    ) -> UIImage {
+        
+        // 解析动态颜色，确保线程安全
+        let traitCollection = UITraitCollection(userInterfaceStyle: userInterfaceStyle)
+        let resolvedColors = colors.map { $0.resolvedColor(with: traitCollection).cgColor }
+        
+        let bounds = CGRect(origin: .zero, size: size)
+        
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.frame = bounds
+        gradientLayer.colors = resolvedColors
+        gradientLayer.locations = locations
+        gradientLayer.startPoint = startPoint
+        gradientLayer.endPoint = endPoint
+        gradientLayer.type = type
+        
+        let format = UIGraphicsImageRendererFormat()
+        format.scale = UIScreen.main.scale
+        format.opaque = false
+        
+        let renderer = UIGraphicsImageRenderer(bounds: bounds, format: format)
+        
+        return renderer.image { context in
+            gradientLayer.render(in: context.cgContext)
+        }
     }
 }
 

@@ -115,6 +115,32 @@ public extension FSUIKitWrapper where Base: UIColor {
         }
         return UIColor(red: red, green: green, blue: blue, alpha: alpha)
     }
+    
+    ///
+    /// 解析当前 UIColor 的 RGBA 分量
+    ///
+    func resolvedRGBAComponents(for style: UIUserInterfaceStyle = .light) -> (r: CGFloat, g: CGFloat, b: CGFloat, a: CGFloat)? {
+        let lightTraits = UITraitCollection(userInterfaceStyle: style)
+        let resolved = base.resolvedColor(with: lightTraits)
+        var r: CGFloat = 0, g: CGFloat = 0, b: CGFloat = 0, a: CGFloat = 0
+        guard resolved.getRed(&r, green: &g, blue: &b, alpha: &a) else {
+            return nil
+        }
+        return (r, g, b, a)
+    }
+    
+    ///
+    /// 判断当前颜色是否与其他颜色相等
+    ///
+    func isEqualToColor(_ other: UIColor?, for style: UIUserInterfaceStyle = .light) -> Bool {
+        guard
+            let lhs = resolvedRGBAComponents(for: style),
+            let rhs = other?.fs.resolvedRGBAComponents(for: style)
+        else {
+            return false
+        }
+        return lhs == rhs
+    }
 }
 
 // MARK: - Common Const Colors

@@ -3901,25 +3901,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		26480F3F563AE34FA020A0EC0FC2CFD3 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7CEDFA3800C4D95863088FC4E1890A82 /* FSUIKitSwift.debug.xcconfig */;
-			buildSettings = {
-				CODE_SIGNING_ALLOWED = NO;
-				CODE_SIGN_IDENTITY = "Don't Code Sign";
-				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/FSUIKitSwift";
-				ENABLE_BITCODE = NO;
-				IBSC_MODULE = FSUIKitSwift;
-				INFOPLIST_FILE = "Target Support Files/FSUIKitSwift/ResourceBundle-FSUIKitSwift-FSUIKitSwift-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				PRODUCT_NAME = FSUIKitSwift;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				WRAPPER_EXTENSION = bundle;
-			};
-			name = Debug;
-		};
 		29E66F9849F87ECBBD71E92084CFC407 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A5C10BBED19921D0C492A1AE739E51EA /* RxCocoa.release.xcconfig */;
@@ -3938,6 +3919,25 @@
 				WRAPPER_EXTENSION = bundle;
 			};
 			name = Release;
+		};
+		42D582650962D241B8779123388A5D2B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7CEDFA3800C4D95863088FC4E1890A82 /* FSUIKitSwift.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGNING_ALLOWED = NO;
+				CODE_SIGN_IDENTITY = "Don't Code Sign";
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/FSUIKitSwift";
+				ENABLE_BITCODE = NO;
+				IBSC_MODULE = FSUIKitSwift;
+				INFOPLIST_FILE = "Target Support Files/FSUIKitSwift/ResourceBundle-FSUIKitSwift-FSUIKitSwift-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				PRODUCT_NAME = FSUIKitSwift;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
 		};
 		5257C77F999D344DB713A8B8324AE2BA /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -4083,6 +4083,25 @@
 			};
 			name = Release;
 		};
+		608F1F5DD403A3D56437F2E7AE69CABC /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = DFEAC3934DF19945AF09D0D52274E093 /* FSUIKitSwift.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGNING_ALLOWED = NO;
+				CODE_SIGN_IDENTITY = "Don't Code Sign";
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/FSUIKitSwift";
+				ENABLE_BITCODE = NO;
+				IBSC_MODULE = FSUIKitSwift;
+				INFOPLIST_FILE = "Target Support Files/FSUIKitSwift/ResourceBundle-FSUIKitSwift-FSUIKitSwift-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				PRODUCT_NAME = FSUIKitSwift;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
+		};
 		6640A81F128AB2806C6FC45AC22B6010 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F7CC3104E3744CE395527CCEDCC875A5 /* RxSwift.release.xcconfig */;
@@ -4159,6 +4178,49 @@
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
+		};
+		76C708AFA6178BD7471F44145B6B0B95 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = DFEAC3934DF19945AF09D0D52274E093 /* FSUIKitSwift.release.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGNING_ALLOWED = NO;
+				CODE_SIGN_IDENTITY = "Don't Code Sign";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_BITCODE = NO;
+				ENABLE_MODULE_VERIFIER = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_PREFIX_HEADER = "Target Support Files/FSUIKitSwift/FSUIKitSwift-prefix.pch";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = "Target Support Files/FSUIKitSwift/FSUIKitSwift-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/FSUIKitSwift/FSUIKitSwift.modulemap";
+				PRODUCT_MODULE_NAME = FSUIKitSwift;
+				PRODUCT_NAME = FSUIKitSwift;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
+				SWIFT_VERSION = 5;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
 		};
@@ -4309,28 +4371,9 @@
 			};
 			name = Release;
 		};
-		9FCBC2C355574F65E232D5CB70217958 /* Release */ = {
+		A0AB336AD3A391AD836EC890F0D5A1CD /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DFEAC3934DF19945AF09D0D52274E093 /* FSUIKitSwift.release.xcconfig */;
-			buildSettings = {
-				CODE_SIGNING_ALLOWED = NO;
-				CODE_SIGN_IDENTITY = "Don't Code Sign";
-				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/FSUIKitSwift";
-				ENABLE_BITCODE = NO;
-				IBSC_MODULE = FSUIKitSwift;
-				INFOPLIST_FILE = "Target Support Files/FSUIKitSwift/ResourceBundle-FSUIKitSwift-FSUIKitSwift-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				PRODUCT_NAME = FSUIKitSwift;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				WRAPPER_EXTENSION = bundle;
-			};
-			name = Release;
-		};
-		A539A8113188F8F33DD49E2E0B9CB525 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = DFEAC3934DF19945AF09D0D52274E093 /* FSUIKitSwift.release.xcconfig */;
+			baseConfigurationReference = 7CEDFA3800C4D95863088FC4E1890A82 /* FSUIKitSwift.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGNING_ALLOWED = NO;
@@ -4365,11 +4408,10 @@
 				SWIFT_INSTALL_OBJC_HEADER = YES;
 				SWIFT_VERSION = 5;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Release;
+			name = Debug;
 		};
 		AA81E3C89C4044A0A5C1CA6D3A2712DD /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -4554,48 +4596,6 @@
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = bundle;
-			};
-			name = Debug;
-		};
-		E287A6AD2DD9EF21051413C8CF14FAE6 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7CEDFA3800C4D95863088FC4E1890A82 /* FSUIKitSwift.debug.xcconfig */;
-			buildSettings = {
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGNING_ALLOWED = NO;
-				CODE_SIGN_IDENTITY = "Don't Code Sign";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_BITCODE = NO;
-				ENABLE_MODULE_VERIFIER = NO;
-				ENABLE_USER_SCRIPT_SANDBOXING = NO;
-				GCC_PREFIX_HEADER = "Target Support Files/FSUIKitSwift/FSUIKitSwift-prefix.pch";
-				GENERATE_INFOPLIST_FILE = NO;
-				INFOPLIST_FILE = "Target Support Files/FSUIKitSwift/FSUIKitSwift-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MODULEMAP_FILE = "Target Support Files/FSUIKitSwift/FSUIKitSwift.modulemap";
-				PRODUCT_MODULE_NAME = FSUIKitSwift;
-				PRODUCT_NAME = FSUIKitSwift;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_INSTALL_OBJC_HEADER = YES;
-				SWIFT_VERSION = 5;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
 		};
@@ -4790,8 +4790,8 @@
 		2BFC3D947BCF7F12E8BC678B4B62465A /* Build configuration list for PBXNativeTarget "FSUIKitSwift" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				E287A6AD2DD9EF21051413C8CF14FAE6 /* Debug */,
-				A539A8113188F8F33DD49E2E0B9CB525 /* Release */,
+				A0AB336AD3A391AD836EC890F0D5A1CD /* Debug */,
+				76C708AFA6178BD7471F44145B6B0B95 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -4826,8 +4826,8 @@
 		CF75D33EE22CB76ACD3EF69774098B60 /* Build configuration list for PBXNativeTarget "FSUIKitSwift-FSUIKitSwift" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				26480F3F563AE34FA020A0EC0FC2CFD3 /* Debug */,
-				9FCBC2C355574F65E232D5CB70217958 /* Release */,
+				42D582650962D241B8779123388A5D2B /* Debug */,
+				608F1F5DD403A3D56437F2E7AE69CABC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
