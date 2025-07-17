@@ -29,6 +29,18 @@ open class FSGradientLabel: UIView {
         }
     }
     
+    open var textAlignment: NSTextAlignment {
+        get { return textLabel.textAlignment }
+        set {
+            guard textLabel.textAlignment != newValue else {
+                return
+            }
+            textLabel.textAlignment = newValue
+            invalidateIntrinsicContentSize()
+            setNeedsUpdateConstraints()
+        }
+    }
+    
     open var colors: [UIColor]? {
         get { return provider.colors }
         set { provider.colors = newValue }
