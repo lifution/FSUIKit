@@ -28,4 +28,12 @@ public extension FSUIKitWrapper where Base: Collection {
             return nil
         }
     }
+    
+    /// Returns the object at the specified index if it exists, otherwise returns nil.
+    ///
+    /// - Parameter index: The index of the element to retrieve.
+    ///
+    func object(at index: Base.Index) -> Base.Element? {
+        base.indices.contains(index) ? base[index] : nil
+    }
 }
