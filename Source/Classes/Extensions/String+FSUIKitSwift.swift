@@ -126,6 +126,17 @@ public extension FSUIKitWrapper where Base == String {
         return result
     }
     
+    /// Convert current string to json object.
+    func toJSONObject() -> Any? {
+        guard
+            let data = base.data(using: .utf8),
+            let result = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers)
+        else {
+            return nil
+        }
+        return result
+    }
+    
     /// Remove all non-numeric characters.
     func removeNonnumeric() -> String {
         return base.replacingOccurrences(of: "[^0-9]", with: "", options: .regularExpression)
