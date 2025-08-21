@@ -31,7 +31,7 @@ public enum TextInputKind {
     /// 数字和字母
     case asciiCapable
     
-    /// 密码，只能输入`0-9 a-z A-Z @ . & _`这些字符
+    /// 密码，只能输入 `0-9a-zA-Z!\"#$%&'()*+,-./:;<=>?@[\\]^_{|}~` 这些字符
     case password
     
     public var keyboardType: UIKeyboardType {
@@ -64,7 +64,7 @@ public enum TextInputKind {
         case .asciiCapable:
             return RegexTextInputParser(regex: "[0-9a-zA-Z]+")
         case .password:
-            return RegexTextInputParser(regex: "[0-9a-zA-Z@.&_]+")
+            return RegexTextInputParser(regex: "^[!\"#$%&'()*+,-./:;<=>?@\\[\\\\\\]^_`{|}~0-9A-Za-z]*$")
         }
     }
 }
