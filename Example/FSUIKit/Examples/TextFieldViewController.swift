@@ -17,7 +17,7 @@ final class TextFieldViewController: FSViewController {
         super.viewDidLoad()
         
         textField.font = .systemFont(ofSize: 16.0)
-        textField.delegate = self
+//        textField.delegate = self
         textField.placeholder = "请输入(限制 10 个字符)"
         textField.maximumTextCount = 10
         textField.onDidHitMaximumTextCountHandler = { _ in

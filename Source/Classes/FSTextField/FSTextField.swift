@@ -242,7 +242,7 @@ private final class _FSTextFieldDelegator: NSObject, FSTextFieldDelegate, UIScro
                                                                          countingNonASCIICharacterAsTwo: textField.shouldCountingNonASCIICharacterAsTwo) ?? ""
         }
         textField.text = newText
-        textField.fs.selectedRange = .init(location: text.count - lastLength, length: 0)
+        textField.fs.selectedRange = .init(location: newText.count - lastLength, length: 0)
         textField.delegate?.textField?(textField, didPreventTextChangeIn: textField.fs.selectedRange, replacementString: nil)
         textField.onDidHitMaximumTextCountHandler?(textField)
     }
