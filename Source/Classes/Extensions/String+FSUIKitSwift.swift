@@ -18,17 +18,17 @@ public extension FSUIKitWrapper where Base == String {
         return predicate.evaluate(with: base)
     }
     
-    /// Checks whether the current string is a chinese mainland mobile phone number.
+    /// Checks whether the current string is a Chinese mainland mobile phone number.
     var isCNPhoneNumber: Bool {
         let predicate = NSPredicate(format: "SELF MATCHES %@", "^1[0-9]{10}$")
         return predicate.evaluate(with: base)
     }
     
-    var firstUppercased: String { 
+    var firstUppercased: String {
         return base.prefix(1).uppercased() + base.dropFirst()
     }
     
-    var firstCapitalized: String { 
+    var firstCapitalized: String {
         return base.prefix(1).capitalized + base.dropFirst()
     }
     
@@ -142,14 +142,6 @@ public extension FSUIKitWrapper where Base == String {
         return base.replacingOccurrences(of: "[^0-9]", with: "", options: .regularExpression)
     }
     
-    static func forceLTR(_ text: String) -> String {
-        return "\u{200E}\(text)\u{200E}"
-    }
-    
-    static func forceRTL(_ text: String) -> String {
-        return "\u{200F}\(text)\u{200F}"
-    }
-    
     func markedNonArabicWithLTR() -> String {
         let pattern = "[^\\u0600-\\u06FF\\u0750-\\u077F\\u08A0-\\u08FF\\uFB50-\\uFDFF\\uFE70-\\uFEFF]+"
         guard let regex = try? NSRegularExpression(pattern: pattern, options: []) else {
@@ -167,9 +159,22 @@ public extension FSUIKitWrapper where Base == String {
         }
         return result
     }
-}
-
-public extension FSUIKitWrapper where Base == String {
+    
+    /// 对当前字符串计算 sha256 并返回字符串格式
+    ///
+    func sha256() -> String {
+        Data(base.utf8).fs.sha256Hex()
+    }
+    
+    // MARK: =
+    
+    static func forceLTR(_ text: String) -> String {
+        return "\u{200E}\(text)\u{200E}"
+    }
+    
+    static func forceRTL(_ text: String) -> String {
+        return "\u{200F}\(text)\u{200F}"
+    }
     
     /// 对一段经过 base64 编码的字符串解码并返回解码结果。
     /// 如果解码失败则返回 nil。
@@ -345,5 +350,25 @@ public extension FSUIKitWrapper where Base == String {
                                            avoidBreakingUpCharacterSequencesWith: range,
                                            lessValue: lessValue,
                                            countingNonASCIICharacterAsTwo: asTwo)
+    }
+    
+    /// Converts the current string into a URL object.
+    ///
+    /// This method ensures that the path component of the URL is percent-encoded to handle special characters,
+    /// such as Arabic characters, which might otherwise interfere with URL parsing.
+    ///
+    /// - Returns: A `URL` object if the string can be successfully converted, otherwise `nil`.
+    ///
+    func toURL() -> URL? {
+        guard var components = URLComponents(string: base) else {
+            return nil
+        }
+        if let path = components.path.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) {
+            components.percentEncodedPath = path
+        }
+        if let query = components.query?.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
+            components.percentEncodedQuery = query
+        }
+        return components.url
     }
 }

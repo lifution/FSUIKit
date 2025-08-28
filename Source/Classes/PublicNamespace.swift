@@ -57,5 +57,6 @@ extension CGSize: FSUIKitCompatibleValue {}
 extension Character: FSUIKitCompatibleValue {}
 extension URL: FSUIKitCompatibleValue {}
 extension CGPoint: FSUIKitCompatibleValue {}
+extension Data: FSUIKitCompatibleValue {}
 
 extension NSObject: FSUIKitCompatible {}
