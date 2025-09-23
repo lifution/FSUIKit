@@ -31,7 +31,15 @@ public enum TextInputKind {
     /// 数字和字母
     case asciiCapable
     
-    /// 密码，只能输入 `0-9a-zA-Z!\"#$%&'()*+,-./:;<=>?@[\\]^_{|}~` 这些字符
+    /**
+     密码（只能输入以下字符）
+     ```
+     ! " # $ % & ' ( ) * + , - . / : ; < = > ? @ [ \ ] ^ _ { | } ~
+     0-9
+     A-Z
+     a-z
+     ```
+     */
     case password
     
     public var keyboardType: UIKeyboardType {
