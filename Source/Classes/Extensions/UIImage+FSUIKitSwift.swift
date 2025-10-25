@@ -9,6 +9,50 @@
 import UIKit
 import Foundation
 
+// MARK: - FSUIImageTextDrawingStyle
+public struct FSUIImageTextDrawingStyle {
+    
+    public enum VerticalAlignment {
+        case top
+        case center
+        case bottom
+    }
+    
+    public enum HorizontalAlignment {
+        case left
+        case center
+        case right
+    }
+    
+    public var text: String?
+    public var font: UIFont?
+    public var textColor: UIColor?
+    public var lineSpacing: CGFloat = 0.0
+    public var kernSpacing: CGFloat = 0.0
+    public var numberOfLines: Int = 1
+    public var size: CGSize = .zero
+    /// 自动适配 text 的 size。
+    /// 当该属性为 ture 时会忽略 size 属性。
+    public var adjustsSize = false
+    /// 该属性仅当 adjustsSize 为 ture 时才有效。
+    /// 该属性表示的是 text 的最大 size，并非表示最后生成的 image 的 size。
+    public var maximumSize: CGSize = .init(width: CGFloat(Int16.max), height: CGFloat(Int16.max))
+    public var borderWidth: CGFloat = 0.0
+    public var borderColor: UIColor?
+    public var cornerRadius: CGFloat = 0.0
+    public var roundingCorners: UIRectCorner = .allCorners
+    public var backgroundColor: UIColor?
+    /// 该属性仅当 adjustsSize 为 ture 时才有效。
+    /// 该属性表示的是文本四边的内切间距。
+    public var contentInset: UIEdgeInsets = .zero
+    public var textAlignment: NSTextAlignment = .left
+    public var verticalAlignment: FSUIImageTextDrawingStyle.VerticalAlignment = .top
+    public var horizontalAlignment: FSUIImageTextDrawingStyle.HorizontalAlignment = .left
+    
+    public init() {}
+}
+
+// MARK: -
 public extension FSUIKitWrapper where Base: UIImage {
     
     /// 生成二维码图片
@@ -128,38 +172,53 @@ public extension FSUIKitWrapper where Base: UIImage {
         return image
     }
     
-    /// 根据给定的颜色生成一张图片，size 为 3x3，默认为四角拉伸。
+    /// 根据给定的颜色和生成一张图片，size 为 3x3，默认为四角拉伸。
     static func image(with color: UIColor) -> UIImage? {
-        guard let image = image(with: color, size: .init(width: 3.0, height: 3.0)) else {
-            return nil
-        }
+        let image = image(with: color, size: .init(width: 3.0, height: 3.0))
         let capInsets = UIEdgeInsets(top: 1.0, left: 1.0, bottom: 1.0, right: 1.0)
         return image.resizableImage(withCapInsets: capInsets, resizingMode: .stretch)
     }
     
+    ///
+    /// 生成 UIImage 对象
+    ///
+    /// - 该方法支持在异步线程中执行
+    ///
     static func image(
         with color: UIColor,
         size: CGSize,
-        alpha: Float = 1.0,
+        alpha: CGFloat = 1.0,
         cornerRadius: CGFloat = 0,
         borderWidth: CGFloat = 0,
-        borderColor: UIColor? = nil
-    ) -> UIImage? {
-        guard size != .zero else {
-            return nil
+        borderColor: UIColor? = nil,
+        scaleFactor: CGFloat = 1.0
+    ) -> UIImage {
+        // -
+        guard size.width > 0, size.height > 0 else {
+            return .init()
         }
+        // -
         let format = UIGraphicsImageRendererFormat()
         format.opaque = false
-        format.scale = UIScreen.fs.scale
-        return UIGraphicsImageRenderer(size: size, format: format).image { context in
-            let layer = CAShapeLayer()
-            layer.frame = .init(origin: .zero, size: size)
-            layer.opacity = max(0.0, min(1.0, alpha))
-            layer.borderWidth = borderWidth
-            layer.borderColor = borderColor?.cgColor
-            layer.cornerRadius = cornerRadius
-            layer.backgroundColor = color.cgColor
-            layer.render(in: context.cgContext)
+        format.scale = scaleFactor
+        // -
+        let renderer = UIGraphicsImageRenderer(size: size, format: format)
+        return renderer.image { ctx in
+            let rect = CGRect(origin: .zero, size: size)
+            // 圆角
+            let path = UIBezierPath(roundedRect: rect, cornerRadius: cornerRadius)
+            ctx.cgContext.addPath(path.cgPath)
+            ctx.cgContext.setFillColor(color.withAlphaComponent(alpha).cgColor)
+            ctx.cgContext.fillPath()
+            // 边框
+            if borderWidth > 0, let borderColor = borderColor {
+                let borderRect = rect.insetBy(dx: borderWidth / 2, dy: borderWidth / 2)
+                let borderPath = UIBezierPath(roundedRect: borderRect, cornerRadius: max(0, cornerRadius - borderWidth / 2))
+                ctx.cgContext.addPath(borderPath.cgPath)
+                ctx.cgContext.setStrokeColor(borderColor.cgColor)
+                ctx.cgContext.setLineWidth(borderWidth)
+                ctx.cgContext.strokePath()
+            }
         }
     }
     
@@ -358,47 +417,4 @@ public extension FSUIKitWrapper where Base: UIImage {
             gradientLayer.render(in: context.cgContext)
         }
     }
-}
-
-
-public struct FSUIImageTextDrawingStyle {
-    
-    public enum VerticalAlignment {
-        case top
-        case center
-        case bottom
-    }
-    
-    public enum HorizontalAlignment {
-        case left
-        case center
-        case right
-    }
-    
-    public var text: String?
-    public var font: UIFont?
-    public var textColor: UIColor?
-    public var lineSpacing: CGFloat = 0.0
-    public var kernSpacing: CGFloat = 0.0
-    public var numberOfLines: Int = 1
-    public var size: CGSize = .zero
-    /// 自动适配 text 的 size。
-    /// 当该属性为 ture 时会忽略 size 属性。
-    public var adjustsSize = false
-    /// 该属性仅当 adjustsSize 为 ture 时才有效。
-    /// 该属性表示的是 text 的最大 size，并非表示最后生成的 image 的 size。
-    public var maximumSize: CGSize = .init(width: CGFloat(Int16.max), height: CGFloat(Int16.max))
-    public var borderWidth: CGFloat = 0.0
-    public var borderColor: UIColor?
-    public var cornerRadius: CGFloat = 0.0
-    public var roundingCorners: UIRectCorner = .allCorners
-    public var backgroundColor: UIColor?
-    /// 该属性仅当 adjustsSize 为 ture 时才有效。
-    /// 该属性表示的是文本四边的内切间距。
-    public var contentInset: UIEdgeInsets = .zero
-    public var textAlignment: NSTextAlignment = .left
-    public var verticalAlignment: FSUIImageTextDrawingStyle.VerticalAlignment = .top
-    public var horizontalAlignment: FSUIImageTextDrawingStyle.HorizontalAlignment = .left
-    
-    public init() {}
 }
