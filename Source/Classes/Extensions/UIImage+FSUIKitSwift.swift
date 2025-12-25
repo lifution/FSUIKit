@@ -249,19 +249,15 @@ public extension FSUIKitWrapper where Base: UIImage {
     }
     
     /// Flips the current image horizontally.
-    func flippingHorizontally() -> UIImage? {
-        UIGraphicsBeginImageContextWithOptions(base.size, false, base.scale)
-        let context = UIGraphicsGetCurrentContext()!
-        context.translateBy(x: base.size.width/2, y: base.size.height/2)
-        context.scaleBy(x: -1.0, y: 1.0)
-        context.translateBy(x: -base.size.width/2, y: -base.size.height/2)
-        
-        base.draw(in: CGRect(x: 0, y: 0, width: base.size.width, height: base.size.height))
-        
-        let newImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        
-        return newImage
+    ///
+    func flippingHorizontally() -> UIImage {
+        let renderer = UIGraphicsImageRenderer(size: base.size, format: UIGraphicsImageRendererFormat.default())
+        return renderer.image { context in
+            let ctx = context.cgContext
+            ctx.translateBy(x: base.size.width, y: 0)
+            ctx.scaleBy(x: -1, y: 1)
+            base.draw(in: CGRect(origin: .zero, size: base.size))
+        }
     }
     
     /// 画文本。
